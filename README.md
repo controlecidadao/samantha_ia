@@ -8,6 +8,9 @@ https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 ## 🔧 Installing Samantha
 
 To use Samantha IA you will need:
+
+* Download and unpack Samantha's zip file. Click on green button (<> Code) and select **Download ZIP file**
+  
 * [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (Community version) intalled on your computer. Download it and select only the option **Desktop development with C++**:
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
