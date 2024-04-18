@@ -11,7 +11,7 @@ To use Samantha IA you will need:
 
 * Download the repository zip file clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it on your machine.
   
-* Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (Community version) on your computer. Download it and select only the option **Desktop development with C++**:
+* Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (Community version) on your computer. Download it and select only the option **Desktop development with C++** (administrator privileges required):
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
   
