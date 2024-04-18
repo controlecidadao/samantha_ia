@@ -20,4 +20,7 @@ To use Samantha IA you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)
 
+  This is the critical part of the installation process. 
+
+
 Samantha IA works locally and needs an internet connection only to download models.
