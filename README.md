@@ -25,7 +25,10 @@ To use Samantha IA you will need:
   >_a) lack of prior installation of Visual Studio (resolved with installation)_<br>
   >_b) blocking Playwright browser downloads due to corporate internet access restrictions (resolved by using the internet at home or on a cell phone)_
 
+<br><br>
+## 💻 Loading Large Language Models (LLM)
 
+To use Samantha IA you will need:
 
 
 
