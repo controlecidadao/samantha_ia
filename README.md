@@ -16,4 +16,4 @@ To use Samantha IA you will need:
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
   
 
-Samantha AI works locally and needs an internet connection only to download models.
+Samantha IA works locally and needs an internet connection only to download models.
