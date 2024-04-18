@@ -9,7 +9,9 @@ https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 
 To use Samantha IA you will need:
 
-* Download the repository zip file clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it on your machine.
+* Download the repository zip file clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it on your machine:
+
+   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
   
 * Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (Community version) on your computer. Download it and select only the option **Desktop development with C++** (administrator privileges required):
 
