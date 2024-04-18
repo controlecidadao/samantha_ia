@@ -12,6 +12,4 @@ To use Samantha IA you will need:
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
   
-* <a href="http://google.com/" target="_blank">Hello, google!</a>
 
-https://visualstudio.microsoft.com/pt-br/vs/community/
