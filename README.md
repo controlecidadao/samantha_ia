@@ -41,7 +41,7 @@ You can also go to a specific repository and see all the `gguf` models available
 
 The templates are ordered on cards like this:
 
-![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
+![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/model_card.png)
 
 
 
