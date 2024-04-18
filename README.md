@@ -20,7 +20,7 @@ To use Samantha IA you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)
 
-  This is the critical part of the installation process. If everything goes well, the process will complete without error messages.
+This is the critical part of the installation. If everything goes well, the process will complete without error messages.
 
 
 
