@@ -23,7 +23,7 @@ To use Samantha IA you will need:
   >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._
   >_During testing, the causes of error identified were:_<br>
   >_a) lack of prior installation of Visual Studio (resolved with installation)_<br>
-  >_b) blocking the download of the Chromium browser due to corporate restrictions on internet access (resolved by using the internet at home or on a cell phone)_
+  >_b) blocking of downloads from Playwright browsers due to corporate restrictions on internet access (resolved by using the internet at home or on a cell phone)_
 
 
 
