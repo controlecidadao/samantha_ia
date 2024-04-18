@@ -3,8 +3,7 @@
 
 https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 
-
-
+<br><br>
 ## 🔧 Installing Samantha
 
 To use Samantha IA you will need:
