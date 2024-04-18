@@ -32,11 +32,18 @@ Samantha needs 2 files to work:
 * model file (.gguf)
 * prompt template file (.txt)
 
+
 ### Downloading Models
 
-Models files can be downloaded from the [Hugguing Face search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
+Models files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
 
 You can also go to a specific repository and see all the `gguf` models available for download and testing, like [TheBloke](https://huggingface.co/TheBloke).
+
+The templates are ordered on cards like this:
+
+![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
+
+
 
 
 
