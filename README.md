@@ -5,4 +5,6 @@ https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 
 
 
-### 🔧 Installing Samantha
+## 🔧 Installing Samantha
+To use Samantha IA you will need:
+* [Visual Studio](https://visualstudio.microsoft.com/pt-br/downloads/) intalled on your computer
