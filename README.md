@@ -31,9 +31,9 @@ To use Samantha IA you will need:
 Samantha needs 2 files to work:
 * model file (.gguf)
 * prompt template file (.txt)
+<br><br>
 
-
-### Downloading Open Source Models
+### Downloading Open Source Models (.gguf File)
 
 Open souce models files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
 
@@ -47,9 +47,16 @@ To download the template, click on the card to open the corresponding page. Loca
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
 
-Click on the **Files and versions** tab and download a model that fits in your available RAM space. We suggest the model with **Q4_K_M** (4 quantized bits) in its description. As a rule, the larger the model size, the greater the accuracy of the generated texts.
+Click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC` and click on **Performance** tab.
+
+We suggest the model with **Q4_K_M** (4 quantized bits) in its description. As a rule, the larger the model size, the greater the accuracy of the generated texts.
 
 Download the chosen template and save it to your computer.
+<br><br>
+
+### Creating Model Prompt Template (.txt File)
+
+After model downloading, 
 
 <br><br><br><br>
 Samantha IA works locally and needs an internet connection only to download models.
