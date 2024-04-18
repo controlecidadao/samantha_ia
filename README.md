@@ -28,8 +28,15 @@ To use Samantha IA you will need:
 <br><br>
 ## 💻 Loading Large Language Models (LLM)
 
-To use Samantha IA you will need:
+Samantha needs 2 files to work:
+* model file (.gguf)
+* prompt template file (.txt)
 
+### Downloading Models
+
+Models files can be downloaded from the [Hugguing Face search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
+
+You can also go to a specific repository and see all the `gguf` models available for download and testing, like [TheBloke](https://huggingface.co/TheBloke).
 
 
 
