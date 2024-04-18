@@ -20,7 +20,10 @@ To use Samantha IA you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)
 
-  This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal.
+  >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._
+  >_During testing, the causes of error identified were:_<br>
+  >_a) lack of prior installation of Visual Studio (resolved with installation)_<br>
+  >_b) blocking the download of the Chromium browser due to corporate restrictions on internet access (resolved by using the internet at home or on a cell phone)_
 
 
 
