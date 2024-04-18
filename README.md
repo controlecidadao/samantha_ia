@@ -41,13 +41,15 @@ You can also go to a specific repository and see all the `gguf` models available
 
 The models are displayed on cards like this:
 
-![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/model_card.png)
+  ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/model_card.png)
 
 To download the template, click on the card to open the corresponding page. Locate the **Model card** and **Files and versions** tabs:
 
-![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
+  ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
 
+Click on the **Files and versions** tab and download a model that fits in your available RAM space. We suggest the model with **Q4_K_M** (4 quantized bits) in its description. As a rule, the larger the model size, the greater the accuracy of the generated texts.
 
+Download the chosen template and save it to your computer.
 
 <br><br><br><br>
 Samantha IA works locally and needs an internet connection only to download models.
