@@ -102,6 +102,27 @@ Prompt template: **Zephyr**
 <|assistant|>
 ```
 
+Prompt template: **Llama-2-Chat**
+```
+[INST] <<SYS>>
+{system_message}
+<</SYS>>
+{prompt} [/INST]
+```
+
+Prompt template: **Instruction-Input-Response**
+```
+### Instruction:
+{system_message}
+
+### Input:
+{prompt}
+
+### Response:
+```
+
+
+
 
 
 <br><br><br><br>
