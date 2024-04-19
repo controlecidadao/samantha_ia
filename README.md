@@ -133,6 +133,8 @@ Prompt template: **Unknown**
 {prompt}
 ```
 
+For each `.gguf` file downloaded, a new `.txt` file must be created.
+
 
 
 <br><br><br><br>
