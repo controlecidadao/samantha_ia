@@ -4,7 +4,7 @@
 https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 
 <br><br>
-# 💻 Installing Samantha
+# 🛠️ Installing Samantha
 
 To use Samantha IA you will need:
 <br><br>
@@ -135,6 +135,10 @@ Prompt template: **Unknown**
 
 For each `.gguf` file downloaded, a new `.txt` file must be created.
 
+<br><br>
+# 🧠 Using Samantha
+
+To use Samantha IA you will need:
 
 
 <br><br><br><br>
