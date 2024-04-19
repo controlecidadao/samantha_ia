@@ -4,7 +4,7 @@
 https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 
 <br><br>
-## 💻 Installing Samantha
+# 💻 Installing Samantha
 
 To use Samantha IA you will need:
 <br><br>
@@ -26,7 +26,7 @@ To use Samantha IA you will need:
   >_b) blocking Playwright browser downloads due to corporate internet access restrictions (resolved by using the internet at home or on a cell phone)_
 
 <br><br>
-## 💻 Loading Large Language Models (LLM)
+# 💻 Downloading Large Language Models (LLM)
 
 Samantha needs 2 files to work:
 * model file (.gguf)
@@ -65,6 +65,8 @@ Prompt template file name: `WizardLM-2-7B.Q4_K_M.txt`
 To create an empty `.txt` file, right-click on a blank area within the directory and select the **New** > **Text Document** options. Now, right-click on the `.txt` file and rename it with the same name as the model.
 
 Finally, locate the model-specific prompt template and paste it inside the `.txt` file. This prompt template is usually on the model page.
+
+>_This is uma critical part of the initial settings. If you use the wrong prompt template, model will not generate text correctlly._<br>
 
 Examples:<br><br>
 Prompt template: **ChatML**
