@@ -58,7 +58,7 @@ As a rule, the larger the model size, the greater the accuracy of the generated 
   ![ram](https://github.com/controlecidadao/samantha_ia/blob/main/images/ram.png)
 
 <br>
-To check your free RAM, open Task Manager by clicking `CTRL + SHIFT + ESC`:
+To check your free RAM, open Task Manager:
 <br><br>
 
 ![task](https://github.com/controlecidadao/samantha_ia/blob/main/images/task_manager.png)
