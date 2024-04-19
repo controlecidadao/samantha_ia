@@ -26,7 +26,7 @@ To use Samantha IA you will need:
   >_b) blocking Playwright browser downloads due to corporate internet access restrictions (resolved by using the internet at home or on a cell phone)_
 
 <br><br>
-# 💻 Downloading Large Language Models (LLM)
+# ⬇️ Downloading Large Language Models (LLM)
 
 Samantha needs 2 files to work:
 * model file (.gguf)
