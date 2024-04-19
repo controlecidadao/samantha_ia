@@ -29,8 +29,8 @@ To use Samantha IA you will need:
 # ⬇️ Downloading Large Language Models (LLM)
 
 Samantha needs 2 files to work:
-* model file (.gguf)
-* prompt template file (.txt)
+* Model file (.gguf)
+* Prompt template file (.txt)
 <br><br>
 
 ### Downloading Open Source Models (.gguf File)
