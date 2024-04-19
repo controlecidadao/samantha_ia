@@ -1,9 +1,6 @@
 
 ![v](https://img.shields.io/badge/version-0.1.1-blue) ![v](https://img.shields.io/badge/updated-April%2018,%20%202023-green)
 
-https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
-
-
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
 <br><br>
@@ -165,3 +162,5 @@ To use Samantha IA you will need:
 
 <br><br><br><br>
 Samantha IA works locally and needs an internet connection only to download models.
+
+https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
