@@ -63,7 +63,7 @@ To check your available RAM, open Task Manager click on Performance tab (1) and 
 
 ![task](https://github.com/controlecidadao/samantha_ia/blob/main/images/task_manager.png)
 
-Download the chosen template and save it to your computer.
+Download the chosen model and save it to your computer.
 <br><br>
 
 ### Creating Model Prompt Template (.txt File)
