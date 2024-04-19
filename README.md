@@ -56,7 +56,11 @@ Download the chosen template and save it to your computer.
 
 ### Creating Model Prompt Template (.txt File)
 
-After model downloading, 
+After downloading the model, you must create a `.txt` file with the same name as the model and save it in the same directory.
+
+Example:<br>
+Model file name:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; `WizardLM-2-7B.Q4_K_M.gguf`<br>
+Prompt template file name: `WizardLM-2-7B.Q4_K_M.txt`
 
 <br><br><br><br>
 Samantha IA works locally and needs an internet connection only to download models.
