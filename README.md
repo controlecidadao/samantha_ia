@@ -3,6 +3,9 @@
 
 https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
 
+
+![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
+
 <br><br>
 # 🛠️ Installing Samantha
 
