@@ -64,6 +64,8 @@ Prompt template file name: `WizardLM-2-7B.Q4_K_M.txt`
 
 To create an empty `.txt` file, right-click on a blank area within the directory and select the **New** > **Text Document** options. Now, right-click on the `.txt` file and rename it with the same name as the model.
 
+Finally, locate the model-specific prompt template and paste it inside the `.txt` file. This prompt template is usually on the model page.
+
 
 <br><br><br><br>
 Samantha IA works locally and needs an internet connection only to download models.
