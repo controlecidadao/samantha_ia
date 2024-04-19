@@ -49,7 +49,7 @@ To download the template, click on the card to open the corresponding page. Loca
 
 Click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC` and click on **Performance** tab.
 
-We suggest the model with **Q4_K_M** (4 quantized bits) in its name (put the mouse over the download button to view the file name). As a rule, the larger the model size, the greater the accuracy of the generated texts.
+We suggest the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the file name). As a rule, the larger the model size, the greater the accuracy of the generated texts.
 
 Download the chosen template and save it to your computer.
 <br><br>
