@@ -121,7 +121,15 @@ Prompt template: **Instruction-Input-Response**
 ### Response:
 ```
 
+Prompt template: **Mistral**
+```
+[INST] {prompt} [/INST]
+```
 
+Prompt template: **Unknown**
+```
+{prompt}
+```
 
 
 
