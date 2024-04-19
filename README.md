@@ -84,7 +84,7 @@ Examples:<br><br>
 Prompt template: **ChatML**
 ```
 <|im_start|>system
-{system_message}<|im_end|>`
+{system_message}<|im_end|>
 <|im_start|>user
 {prompt}<|im_end|>
 <|im_start|>assistant
