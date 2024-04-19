@@ -136,7 +136,7 @@ Prompt template: **Unknown**
 For each `.gguf` file downloaded, a new `.txt` file must be created.
 <br><br>
 
-### Your First Model: WizardLM-2
+### Your First Models
 
 * [MaziyarPanahi/WizardLM-2-7B-GGUF](https://huggingface.co/MaziyarPanahi/WizardLM-2-7B-GGUF)
 
