@@ -58,13 +58,50 @@ Download the chosen template and save it to your computer.
 
 After downloading the model, you must create a `.txt` file with the same name as the model and save it in the **same directory**.
 
-Example:<br>
+Example:<br><br>
 Model file name:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; `WizardLM-2-7B.Q4_K_M.gguf`<br>
 Prompt template file name: `WizardLM-2-7B.Q4_K_M.txt`
 
 To create an empty `.txt` file, right-click on a blank area within the directory and select the **New** > **Text Document** options. Now, right-click on the `.txt` file and rename it with the same name as the model.
 
 Finally, locate the model-specific prompt template and paste it inside the `.txt` file. This prompt template is usually on the model page.
+
+Examples:<br><br>
+Prompt template: **ChatML**
+```
+<|im_start|>system
+{system_message}<|im_end|>`
+<|im_start|>user
+{prompt}<|im_end|>
+<|im_start|>assistant
+```
+
+Prompt template: **Orca-Vicuna**
+```
+SYSTEM: {system_message}
+USER: {prompt}
+ASSISTANT:
+```
+
+Prompt template: **Alpaca**
+```
+Below is an instruction that describes a task. Write a response that appropriately completes the request.
+
+### Instruction:
+{prompt}
+
+### Response:
+```
+
+Prompt template: **Zephyr**
+```
+<|system|>
+{system_message}</s>
+<|user|>
+{prompt}</s>
+<|assistant|>
+```
+
 
 
 <br><br><br><br>
