@@ -66,7 +66,7 @@ To create an empty `.txt` file, right-click on a blank area within the directory
 
 Finally, locate the model-specific prompt template and paste it inside the `.txt` file. This prompt template is usually on the model page.
 
->_This is uma critical part of the initial settings. If you use the wrong prompt template, model will not generate text correctlly._<br>
+>_This is a critical part of the initial settings. If you use the wrong prompt template, model will not generate text correctlly._<br>
 
 Examples:<br><br>
 Prompt template: **ChatML**
