@@ -14,11 +14,11 @@ To use Samantha IA you will need:
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
 <br><br>
-* Download the repository zip file clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it:
+* Download the repository zip file by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Double click on `install_samantha_ia.bat` to start installation (Windows may ask you to confirm the origin of the file):
+* Double click on `install_samantha_ia.bat` file to start installation (Windows may ask you to confirm the origin of the file):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)
 
