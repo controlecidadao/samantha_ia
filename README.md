@@ -6,6 +6,34 @@
 ## Experimental interface environment designed to democratize the use of open source large language models
 <br><br>
 
+# 🎯 Samantha's Features
+
+* Designed with [llama.cpp](https://github.com/ggerganov/llama.cpp) under [MIT license](https://opensource.org/license/mit) (open source) to run on regular computers without a GPU
+
+* No internet connection required (runs locally)
+
+* Model hyperparameters setting (temperature, top-k, top-p, max_tokens etc.)
+
+* Chaining of prompts, allowing unlimited text generation
+
+* Chaining of models, allowing unlimited interaction between them without human intervention
+
+* Learning mode that displays the process of choosing the output token from its probability (logits scores)
+
+* Text to speech with SAPI5 voices
+
+* Loading of small PDF and TXT files
+
+* 4 fields for text insertion:
+  - System prompt
+  - Previous response of model (changeble)
+  - User prompt
+  - Current response of model (initial text to force response)
+
+* Limited chat history to previous response for performance reasons 
+  
+<br><br>
+
 # 🛠️ Installing Samantha
 
 To use Samantha IA you will need:
