@@ -3,6 +3,8 @@
 
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
+## Experimental interface environment designed to democratize the use of open source large language models
+
 <br><br>
 # 🛠️ Installing Samantha
 
@@ -12,7 +14,7 @@ To use Samantha IA you will need:
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
 <br><br>
-* Download the repository zip file clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it on your machine:
+* Download the repository zip file clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unpack it:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
