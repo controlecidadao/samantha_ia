@@ -18,7 +18,7 @@
 
 ✅ Chaining of models, allowing unlimited interaction between them without human intervention
 
-✅ Learning mode that displays the process of choosing the output token from its probability (logits scores)
+✅ Learning mode for displaying the process of choosing the output token from its probability (logits scores)
 
 ✅ Text to speech with SAPI5 voices
 
