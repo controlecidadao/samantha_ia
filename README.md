@@ -163,13 +163,13 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Models
 
-* [TheBloke/rocket-3B-GGUF](https://huggingface.co/TheBloke/rocket-3B-GGUF) (Stabilityai)
+* [TheBloke/rocket-3B-GGUF](https://huggingface.co/TheBloke/rocket-3B-GGUF) (**3 billion** parameters model from Stabilityai)
 
-* [TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF) (Mistral)
+* [TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF) ( **7 billion** parameters model from Mistral)
 
-* [MaziyarPanahi/WizardLM-2-7B-GGUF](https://huggingface.co/MaziyarPanahi/WizardLM-2-7B-GGUF) (Microsoft)
+* [MaziyarPanahi/WizardLM-2-7B-GGUF](https://huggingface.co/MaziyarPanahi/WizardLM-2-7B-GGUF) (**7 billion** parameters model from Microsoft)
 
-* [lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF) (Meta)
+* [lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF) (**8 billion** parameters model from Meta)
 
 <br><br>
 # 🧠 Using Samantha
