@@ -39,15 +39,18 @@ Samantha needs 2 files to generate texts:
 
 Open souce models files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
 
-You can also go to a specific repository and see all the `gguf` models available for download and testing, like [TheBloke](https://huggingface.co/TheBloke).
+You can also go to a specific repository and see all the `gguf` models available for downloading and testing, like [TheBloke](https://huggingface.co/TheBloke).
+<br><br>
 
 The models are displayed on cards like this:
 
-  ![model_card](https://github.com/controlecidadao/samantha_ia/blob/main/images/model_card.png)
+![model_card](https://github.com/controlecidadao/samantha_ia/blob/main/images/model_card.png)
+<br><br>
 
-To download the template, click on the card to open the corresponding page. Locate the **Model card** and **Files and versions** tabs:
+To download the model, click on the card to open the corresponding page. Locate the **Model card** and **Files and versions** tabs:
 
-  ![tabs](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
+![tabs](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
+<br><br>
 
 Click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC` and click on **Performance** tab.
 
