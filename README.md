@@ -180,9 +180,9 @@ To start running Samantha IA:
 
    ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
 
-  A terminal window will open.
+  A terminal window will open. This is the **server-side** of Samantha IA.
 
-  For now, just press `ENTER` when you're asked if you want to download the model links. Samantha IA will open in a new browser tab.
+  For now, just press `ENTER` when you're asked if you want to download the model links. Samantha IA will open in a new browser tab. This is the **browser-side**.
 
 
 <br><br><br><br>
