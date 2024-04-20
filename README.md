@@ -174,7 +174,11 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 <br><br>
 # 🧠 Using Samantha
 
-To use Samantha IA you will need:
+To start running Samantha IA:
+
+* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the file):
+
+   ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
 
 
 <br><br><br><br>
