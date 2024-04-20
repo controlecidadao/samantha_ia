@@ -4,6 +4,11 @@
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
 ## Experimental interface environment designed to democratize the use of open source large language models
+<br><br>
+
+![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
+
+
 
 <br><br>
 # 🛠️ Installing Samantha
