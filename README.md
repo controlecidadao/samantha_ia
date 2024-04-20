@@ -54,10 +54,7 @@ To download the model, click on the card to open the corresponding page. Locate 
 
 Click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC` and click on **Performance** tab.
 
-We suggest the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the file name).
-
-<br>
-As a rule, the larger the model size, the greater the accuracy of the generated texts:
+We suggest to download the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the complete file name). As a rule, the larger the model size, the greater the accuracy of the generated texts:
 <br><br>
 
   ![ram](https://github.com/controlecidadao/samantha_ia/blob/main/images/ram.png)
