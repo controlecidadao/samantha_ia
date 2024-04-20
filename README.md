@@ -8,21 +8,23 @@
 
 # 🎯 Samantha's Features
 
-✅ Designed with [llama.cpp](https://github.com/ggerganov/llama.cpp) under [MIT license](https://opensource.org/license/mit) (open source) to run on regular computers without a GPU
+✅ Designed with [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) under [MIT license](https://opensource.org/license/mit) (open source software) to run on computers without a GPU
 
-✅ No internet connection required (runs locally)
+✅ No internet connection required (runs locally), except for downloading models files
 
 ✅ Model hyperparameters setting (temperature, top-k, top-p, max_tokens etc.)
 
 ✅ Chaining of prompts, allowing unlimited text generation
 
-✅ Chaining of models, allowing unlimited interaction between them without human intervention
+✅ Chaining of models, allowing unlimited interaction between diffent models without human intervention
 
-✅ Learning mode for displaying the process of choosing the output token from its probability (logits scores)
+✅ Learning mode, allowing monitor the process of choosing the output token from its probability (logits scores)
 
 ✅ Text to speech with SAPI5 voices
 
 ✅ Loading of small PDF and TXT files
+
+✅ Loading of unlimited instructions via TXT file
 
 ✅ 4 fields for text insertion:
   - System prompt
