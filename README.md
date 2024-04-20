@@ -65,12 +65,14 @@ We suggest to download the model with **Q4_K_M** (4-bit quantization) in its nam
 
 <br>
 
+If the downloaded model doesn't fit into the available RAM space, your hard drive will be used, impacting performance.
+
 Download the chosen model and save it to your computer.
 <br><br>
 
 ### Creating Model Prompt Template File (.txt)
 
-After downloading the model, you must create a `.txt` file with the same name as the model and save it in the **same directory**.
+After downloading the model, you must create a `.txt` file with the **same name** as the model and save it in the **same directory**.
 
 Example:<br><br>
 Model file name:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; `WizardLM-2-7B.Q4_K_M.gguf`<br>
