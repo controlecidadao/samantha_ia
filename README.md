@@ -176,7 +176,7 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 To start running Samantha IA:
 
-* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the file):
+* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the file) and wait a few seconds:
 
    ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
 
