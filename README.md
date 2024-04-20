@@ -35,11 +35,11 @@ Samantha needs 2 files to generate texts:
 * Prompt template file (.txt)
 <br><br>
 
-### Downloading Open Source Models (.gguf File)
+### Downloading Open Source Model Files (.gguf)
 
-Open souce models files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
+Open souce model files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
 
-You can also go to a specific repository and see all the `gguf` models available for downloading and testing, like [TheBloke](https://huggingface.co/TheBloke).
+You can also go to a specific repository and see all the `gguf` models available for downloading and testing, like [TheBloke](https://huggingface.co/TheBloke) repository.
 <br><br>
 
 The models are displayed on cards like this:
@@ -52,7 +52,11 @@ To download the model, click on the card to open the corresponding page. Locate 
 ![tabs](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
 <br><br>
 
-Click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC` and click on **Performance** tab.
+After that, click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC`, click on **Performance** tab (1) and select **Memory** (2):
+
+<br>
+
+![task](https://github.com/controlecidadao/samantha_ia/blob/main/images/task_manager.png)
 
 We suggest to download the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the complete file name). As a rule, the larger the model size, the greater the accuracy of the generated texts:
 <br><br>
@@ -60,15 +64,11 @@ We suggest to download the model with **Q4_K_M** (4-bit quantization) in its nam
   ![ram](https://github.com/controlecidadao/samantha_ia/blob/main/images/ram.png)
 
 <br>
-To check your available RAM, open Task Manager click on Performance tab (1) and on Memory (2):
-<br><br>
-
-![task](https://github.com/controlecidadao/samantha_ia/blob/main/images/task_manager.png)
 
 Download the chosen model and save it to your computer.
 <br><br>
 
-### Creating Model Prompt Template (.txt File)
+### Creating Model Prompt Template File (.txt)
 
 After downloading the model, you must create a `.txt` file with the same name as the model and save it in the **same directory**.
 
