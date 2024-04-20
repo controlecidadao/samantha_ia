@@ -30,8 +30,8 @@ To use Samantha IA you will need:
 <br><br>
 # ⬇️ Downloading Large Language Models (LLM)
 
-Samantha needs 2 files to work:
-* Model file (.gguf)
+Samantha needs 2 files to generate texts:
+* AI Model file (.gguf)
 * Prompt template file (.txt)
 <br><br>
 
