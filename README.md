@@ -36,7 +36,7 @@
 
 ✅ Data science models installed (Pandas, Seaborn, Altair, Plotly, Pandas Profiling, Sweetviz, D-Tale, PyMuPDF and Playwright) for use with JupyterLab
 
-✅ Limited chat history to previous response (for performance reasons)
+✅ Limited chat history to previous response (for performance reasons on CPU machines)
   
 <br><br>
 
