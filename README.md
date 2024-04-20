@@ -6,11 +6,6 @@
 ## Experimental interface environment designed to democratize the use of open source large language models
 <br><br>
 
-![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
-
-
-
-<br><br>
 # 🛠️ Installing Samantha
 
 To use Samantha IA you will need:
