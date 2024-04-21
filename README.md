@@ -13,7 +13,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 # 🎯 Key Features of Samantha
 
-- **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp), under [MIT license](https://opensource.org/license/mit) and under [MIT license](https://opensource.org/license/mit), Samantha runs seamlessly on standard computers, even without a GPU.
+- **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs seamlessly on standard computers, even without a GPU.
   
 - **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.
 
@@ -45,6 +45,8 @@ As we embrace the power of these models, let's remember that the generated text 
 
 **Objective:**
 The primary objective with Samantha is to inspire and empower others to create similar systems and to educate users on the utilization of AI. Our goal is to foster a community of developers and enthusiasts who can take the knowledge and tools used in Samantha to further innovate and contribute to the field of open source AI. By doing so, we aim to cultivate a culture of collaboration and sharing, ensuring that the benefits of AI are accessible to all, regardless of their technical background or financial resources. We believe that by enabling more people to build and understand AI applications, we can collectively drive progress and address societal challenges with informed and diverse perspectives. Let's work together to shape a future where AI is a positive transformative force for humanity.
+
+🙏 **Special Thanks** to Georgi Gerganov and the whole team working on [Llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible.
 
 <br><br>
 
