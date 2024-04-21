@@ -4,9 +4,8 @@
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
 ## Experimental interface environment designed to democratize the use of open source large language models
-<br>
 
-### Welcome to Samantha: The Open Source AI Interface Environment
+### Welcome to Samantha IA: The Open Source Interface Assistant for Artificial Intelligence Models
 
 In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha – a AI interface designed to democratize the use of large language models through open source technology. Her mission is to empower individuals and organizations alike, enabling them to harness the power of AI models.
 
@@ -14,7 +13,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 # 🎯 Key Features of Samantha
 
-- **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) under [MIT license](https://opensource.org/license/mit) and under [MIT license](https://opensource.org/license/mit), Samantha runs seamlessly on standard computers, even without a GPU.
+- **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp), under [MIT license](https://opensource.org/license/mit) and under [MIT license](https://opensource.org/license/mit), Samantha runs seamlessly on standard computers, even without a GPU.
   
 - **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.
 
@@ -22,7 +21,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Customizable Parameters**: Users have full control over model hyperparameters such as temperature, top-k, top-p, and max_tokens, allowing for fine-tuned responses that suit specific requirements.
 
-- **Interactive Experience**: Samantha's unique chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different AI systems without human intervention.
+- **Interactive Experience**: Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different AI systems without human intervention.
 
 - **Learning Insights**: A feature called 'Learning mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits).
 
@@ -30,7 +29,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Document Handling**: The system can load small PDF and TXT files, and instructions can be inputted or loaded via a TXT file for convenience.
 
-- **Versatile Text Input**: Four fields for prompt insertion allow users to interact with the system effectively, including system prompts, previous responses, user prompts, and initial texts to guide the model's response.
+- **Versatile Text Input**: Four fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response, user prompt, and initial texts to guide the model's response.
 
 - **Code Integration**: Automatic extraction of code blocks from responses, along with pre-installed JupyterLab, enables users to execute generated code swiftly for immediate results.
 
@@ -44,7 +43,8 @@ Samantha is more than just an AI interface; it's a movement towards a future whe
 **Use Responsibly:**
 As we embrace the power of these models, let's remember that the generated text reflects the content, biases, and errors present in their training datasets. We encourage responsible use of Samantha for insights only, always keeping ethical considerations at the forefront of our interactions with AI.
 
-Welcome to the future of open source AI, welcome to Samantha!
+**Objective:**
+The primary objective with Samantha is to inspire and empower others to create similar systems and to educate users on the utilization of AI. Our goal is to foster a community of developers and enthusiasts who can take the knowledge and tools used in Samantha to further innovate and contribute to the field of open source AI. By doing so, we aim to cultivate a culture of collaboration and sharing, ensuring that the benefits of AI are accessible to all, regardless of their technical background or financial resources. We believe that by enabling more people to build and understand AI applications, we can collectively drive progress and address societal challenges with informed and diverse perspectives. Let's work together to shape a future where AI is a positive transformative force for humanity.
 
 <br><br>
 
