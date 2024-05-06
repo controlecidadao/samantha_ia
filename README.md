@@ -46,7 +46,7 @@ As we embrace the power of these models, let's remember that the generated text 
 **Objective:**
 The primary objective with Samantha is to inspire and empower others to create similar systems and to educate users on the utilization of AI. Our goal is to foster a community of developers and enthusiasts who can take the knowledge and tools used in Samantha to further innovate and contribute to the field of open source AI. By doing so, we aim to cultivate a culture of collaboration and sharing, ensuring that the benefits of AI are accessible to all, regardless of their technical background or financial resources. We believe that by enabling more people to build and understand AI applications, we can collectively drive progress and address societal challenges with informed and diverse perspectives. Let's work together to shape a future where AI is a positive transformative force for humanity.
 
-🙏 **Special Thanks** to Georgi Gerganov and the whole team working on [Llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible.
+🙏 **Special Thanks** to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible.
 
 <br><br>
 
@@ -62,7 +62,7 @@ To use Samantha IA you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Double click on `install_samantha_ia.bat` file to start installation (Windows may ask you to confirm the origin of the file):
+* Double click on `install_samantha_ia.bat` file to start installation (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the file. Click on 'More info' and confirm.):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)
 
