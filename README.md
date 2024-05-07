@@ -35,7 +35,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Data Science Tools**: A suite of data science tools like [Pandas](https://pandas.pydata.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Pandas Profiling](https://github.com/ydataai/ydata-profiling), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html) and [Playwright](https://playwright.dev/python/) are available within JupyterLab for comprehensive analysis and visualization.
 
-- **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history of the previous response.
+- **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history of the previous response only.
 
 **Our Vision:**
 Samantha is more than just an AI interface; it's a movement towards a future where artificial intelligence is not a privilege but a tool for all. We envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
