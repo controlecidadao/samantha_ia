@@ -25,7 +25,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Learning Insights**: A feature called 'Learning mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits).
 
-- **Voice Interaction**: Samantha supports text-to-speech with SAPI5 voices, making it accessible and user-friendly for everyone.
+- **Voice Interaction**: Samantha supports offline text-to-speech with SAPI5 voices and speech-to-text with [Vosk](https://alphacephei.com/vosk/), making it accessible and user-friendly for everyone.
 
 - **Document Handling**: The system can load small PDF and TXT files, and instructions can be inputted or loaded via a TXT file for convenience.
 
