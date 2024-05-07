@@ -3,11 +3,11 @@
 
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
-## Experimental interface environment designed to democratize the use of open source large language models
+## Experimental Interface Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
 
-### Welcome to Samantha IA: The Open Source Interface Assistant for Artificial Intelligence Models
+### Welcome to Samantha IA: The Interface Assistant for Open Source Artificial Intelligence Models
 
-In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha – a AI interface designed to democratize the use of large language models through open source technology. Her mission is to empower individuals and organizations alike, enabling them to harness the power of AI models.
+In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha, an AI interface designed to democratize the use of large language models through open source technology. Her mission is to empower individuals and organizations alike, enabling them to harness the power of AI models.
 
 <br><br>
 
