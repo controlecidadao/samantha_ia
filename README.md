@@ -29,7 +29,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Document Handling**: The system can load small PDF and TXT files, and instructions can be inputted or loaded via a TXT file for convenience.
 
-- **Versatile Text Input**: Four fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response, user prompt, and initial texts to guide the model's response.
+- **Versatile Text Input**: Four fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response, user prompt, and initial text to guide the model's response.
 
 - **Code Integration**: Automatic extraction of code blocks from responses, along with pre-installed JupyterLab, enables users to execute generated code swiftly for immediate results.
 
