@@ -72,11 +72,13 @@ To use Samantha IA you will need:
   >_b) blocking Playwright browser downloads due to corporate internet access restrictions (resolved by using the internet at home or on a cell phone)_
 
 <br>
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file:<br><br>
 
-![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file:<br>
 
-<br><br>
+  ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
+
+<br>
+
 # ⬇️ Downloading Large Language Models (LLM)
 
 Samantha needs 2 files to generate texts:
