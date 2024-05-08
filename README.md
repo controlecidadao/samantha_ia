@@ -135,7 +135,7 @@ Finally, locate the model-specific prompt template and paste it inside the `.txt
 
 >_This is a critical part of the initial settings. If you use the wrong prompt template, model will not generate text correctlly._<br>
 
-<br>Here are some prompt template examples. Text in square brackets must be included by the user:<br><br>
+<br>Here are some prompt template examples. Text in curly braces must be included by the user:<br><br>
 Prompt template: **ChatML**
 ```
 <|im_start|>system
