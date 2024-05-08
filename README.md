@@ -31,7 +31,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Versatile Text Input**: Four fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response, user prompt, and initial text to guide the model's response.
 
-- **Code Integration**: Automatic extraction of code blocks from responses, along with pre-installed JupyterLab, enables users to execute generated code swiftly for immediate results.
+- **Code Integration**: Automatic extraction of code blocks from responses, along with pre-installed [JupyterLab](https://jupyter.org/), enables users to execute generated code swiftly for immediate results.
 
 - **Data Science Tools**: A suite of data science tools like [Pandas](https://pandas.pydata.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Pandas Profiling](https://github.com/ydataai/ydata-profiling), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html) and [Playwright](https://playwright.dev/python/) are available within JupyterLab for comprehensive analysis and visualization.
 
@@ -54,7 +54,7 @@ The primary objective with Samantha is to inspire and empower others to create s
 
 To use Samantha IA you will need:
 <br><br>
-* Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it and select only the option **Desktop development with C++** (administrator privileges required):
+* Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
 <br><br>
