@@ -124,11 +124,11 @@ Prompt template file name: `WizardLM-2-7B.Q4_K_M.txt`
 
 To create an empty `.txt` file, right-click on a blank area within the directory and select the **New** > **Text Document** options. Now, right-click on the `.txt` file and rename it with the same name as the model.
 
-Finally, locate the model-specific prompt template and paste it inside the `.txt` file. This prompt template is usually on the model page.
+Finally, locate the model-specific prompt template and paste it inside the `.txt` file. This prompt template is usually on the model page.<br><br>
 
 >_This is a critical part of the initial settings. If you use the wrong prompt template, model will not generate text correctlly._<br>
 
-Examples:<br><br>
+<br>Here are some prompt template examples. Text in square brackets must be included by the user:<br><br>
 Prompt template: **ChatML**
 ```
 <|im_start|>system
