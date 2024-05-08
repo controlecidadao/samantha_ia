@@ -50,7 +50,7 @@ The primary objective with Samantha is to inspire and empower others to create s
 
 <br><br>
 
-# 🛠️ Installing and Opening Samantha
+# 🛠️ Installing and Running Samantha
 
 To use Samantha IA you will need:
 <br><br>
