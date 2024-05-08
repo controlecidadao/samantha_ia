@@ -214,7 +214,7 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Models
 
-* [TheBloke/rocket-3B-GGUF](https://huggingface.co/TheBloke/rocket-3B-GGUF) (**3 billion** parameters model from Stabilityai)
+* [Microsoft/Phi-3-mini-4k-instruct-gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf)) (**3.8 billion** parameters model from Microsoft)
 
 * [TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF) ( **7 billion** parameters model from Mistral)
 
