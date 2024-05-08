@@ -64,7 +64,7 @@ To use Samantha IA you will need:
 <br><br>
 * Double click on `install_samantha_ia.bat` file to start installation (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the file. Click on 'More info' and confirm):
 
-   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)
+   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
   >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
   >_However, during the tests the causes of error identified were:_<br>
