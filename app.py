@@ -73,6 +73,33 @@ import json
 print('Inside the app.py...')
 
 
+# ========================
+# GET LOCAL DIRECTORY PATH
+# ========================
+
+DIRETORIO_LOCAL = os.getcwd() # Get the same Python file current directory path, but save it as a constant
+
+
+# =========================
+# INITIALIZE PYTHON MODULES
+# =========================
+
+pygame.init() # Audio module initialization
+som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load sound to warn the end of the model response
+som.set_volume(0.2)
+click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load click sound to use in buttons
+click.set_volume(0.4)
+print()
+
+engine = pyttsx3.init(driverName='sapi5') # Crete a TTS engine instance
+voices = engine.getProperty('voices')
+print('Number of voices on computer:', len(voices), f'(0 a {len(voices) - 1})')
+for i in voices:
+    print(i.name) # Print voices names installed on computer
+print()
+selected_voice = voices[0].name # Initial selected voice to be used by Gradio interface on initialization
+
+
 # ============================
 # INTERFACE LANGUAGE SELECTION
 # ============================
@@ -170,35 +197,6 @@ else:
     language = language['pt']
 
 
-
-
-# ========================
-# GET LOCAL DIRECTORY PATH
-# ========================
-
-DIRETORIO_LOCAL = os.getcwd() # Get the same Python file current directory path, but save it as a constant
-
-
-# =========================
-# INITIALIZE PYTHON MODULES
-# =========================
-
-pygame.init() # Audio module initialization
-som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load sound to warn the end of the model response
-som.set_volume(0.2)
-click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load click sound to use in buttons
-click.set_volume(0.4)
-print()
-
-engine = pyttsx3.init(driverName='sapi5') # Crete a TTS engine instance
-voices = engine.getProperty('voices')
-print('Number of voices on computer:', len(voices), f'(0 a {len(voices) - 1})')
-for i in voices:
-    print(i.name) # Print voices names installed on computer
-print()
-selected_voice = voices[0].name # Initial selected voice to be used by Gradio interface on initialization
-
-
 # ===================================
 # ASK USER ABOUT DOWNLOAD MODELS LIST
 # ===================================
@@ -219,12 +217,18 @@ def scrap_the_block_repository(headless_mode): # Perform scrapping on TheBloke H
         print('Openning Chromium browser...')
         browser = p.chromium.launch(headless=headless_mode)
         page = browser.new_page()
-        page.goto("https://huggingface.co/TheBloke", timeout=60000) # Access url
-        page.wait_for_load_state(timeout=60000) # Wait for the page loading
-        button = page.get_by_role("button", name="Expand") # Search for the button with 'Expand' text in its label
-        button.click() # Click the button to show all models cards
-        print('Expanding models cards...')
-        page.wait_for_selector('button:has-text("Collapse")') # Wait for display all the models cards
+        
+        page.goto("https://huggingface.co/models?search=gguf", timeout=60000) # Access url Trending Models
+        
+        # page.goto("https://huggingface.co/TheBloke", timeout=60000) # Access url
+        # page.wait_for_load_state(timeout=60000) # Wait for the page loading
+        # button = page.get_by_role("button", name="Expand") # Search for the button with 'Expand' text in its label
+        # button.click() # Click the button to show all models cards
+        # print('Expanding models cards...')
+        # page.wait_for_selector('button:has-text("Collapse")') # Wait for display all the models cards
+        
+        
+        
         temp = page.query_selector_all("""
             h4:has-text("GGUF")
         """) # Create a list with all 'h4' elements with 'GGUF' word in their text
@@ -247,26 +251,28 @@ def scrap_the_block_repository(headless_mode): # Perform scrapping on TheBloke H
 voice_mode = input('VOICE MODE?\t\t (y + ENTER for YES or just ENTER for NO): ')
 if 'y' in voice_mode.lower():
     voice_mode = True
+    leaning_mode_interatcive = False
 else:
     voice_mode = False
+    leaning_mode_interatcive = True
 
-temp = input('DOWNLOAD MODELS LINKS?\t (y + ENTER for YES or just ENTER for NO): ')
-if 'y' not in temp.lower():
-    pass
-else:
-    headless_mode = input('OPEN BROWSER IN VISIBLE MODE? (y + ENTER for YES or just ENTER for NO): ')
-    if 'y' not in headless_mode.lower():
-        headless_mode = True
-    else:
-        headless_mode = False
-    try:
-        scrap_the_block_repository(headless_mode) # Function call. Update global variable 'links' and 'headings'
-    except Exception as e: # Turn off internet conection to test
-        print()
-        print("Unable to get models links from https://huggingface.co/TheBloke")
-        print(traceback.format_exc()) # Print error message in terminal
-        print()
-        links = """<ul><li>Unable to download models's links from <a href="https://huggingface.co/TheBloke">https://huggingface.co/TheBloke</a></li></ul>""" # Displayed on bottom page
+# temp = input('DOWNLOAD MODELS LINKS?\t (y + ENTER for YES or just ENTER for NO): ')
+# if 'y' not in temp.lower():
+#     pass
+# else:
+#     headless_mode = input('OPEN BROWSER IN VISIBLE MODE? (y + ENTER for YES or just ENTER for NO): ')
+#     if 'y' not in headless_mode.lower():
+#         headless_mode = True
+#     else:
+#         headless_mode = False
+#     try:
+#         scrap_the_block_repository(headless_mode) # Function call. Update global variable 'links' and 'headings'
+#     except Exception as e: # Turn off internet conection to test
+#         print()
+#         print("Unable to get models links from https://huggingface.co/TheBloke")
+#         print(traceback.format_exc()) # Print error message in terminal
+#         print()
+#         links = """<ul><li>Unable to download models's links from <a href="https://huggingface.co/TheBloke">https://huggingface.co/TheBloke</a></li></ul>""" # Displayed on bottom page
 print() 
 
 # =====================
@@ -1522,6 +1528,9 @@ def speech_to_text(*inputs):
                     # ====================================
                     if 'Portuguese' in selected_voice:
                         if 'samantha' in temp['text'].lower() or (temp['text'].lower() == 'sim' and responder == True) or (temp['text'].lower() == 'não' and responder == True):
+                            if temp['text'].lower() == 'samantha':
+                                continue
+                            
                             try: # Delete previous audio file for allow the creation of a new one
                                 os.remove('voice.mp3')
                             except:
@@ -1540,10 +1549,13 @@ def speech_to_text(*inputs):
                                     temp = 'Ok!'
                                     # responder = False
                                     
+                                    print('antes do yield <<<<<<<<<')
                                     yield saida # <<<<<<<<<<<<<<< SAÍDA
+                                    # return saida # <<<<<<<<<<<<<<< SAÍDA
 
                                 elif 'não' in temp:
                                     temp = 'Tudo bem.'
+                                    # responder = False
                                 responder = False
                             if temp == 'Lendo novamente':
                                 engine.save_to_file('Lendo resposta anterior. ' + ultima_resposta, 'voice.mp3') # Save audio file
@@ -1582,6 +1594,7 @@ def speech_to_text(*inputs):
                                     responder = False
                                     
                                     yield saida # <<<<<<<<<<<<<<< SAÍDA
+                                    # return saida # <<<<<<<<<<<<<<< SAÍDA
 
                                 elif 'no' in temp:
                                     temp = 'No problem.'
@@ -1688,13 +1701,16 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
         elif len(models) > 1:
             return gr.Dropdown(choices=models, value=models[0])
 
-
+    # Imange
+    # gr.HTML("""
+    #         <img id="overlay-image" src="https://pngfre.com/wp-content/uploads/butterfly-27-1024x688.png" alt="Imagem no Canto Superior Esquerdo" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
+    #         """)
+    
     # Page title
     gr.HTML(f'<h1 style="text-align: center; margin: -5px 0 0; color: #f3813f">{language["title"]}</h1>')
     gr.HTML(f'<h5 style="text-align: center; margin: -7px 0 0px"><b><span style="color: #9CA3AF;">{language["subtitle_1"]}</span></b></h5>')
     gr.HTML(f'<h6 style="text-align: center; margin: -7px 0 0px; font-size: 0.9em"><b><span style="color: #f3813f;">{language["warning"]}: </span></b><b><span style="color: #9CA3AF;">{language["subtitle_2"]}</span></b></h6>')
     gr.HTML(f"""<h6 style="text-align: right; margin: -7px 0 0px; font-size: 0.9em"><i><span style="color: #9CA3AF;">{language["subtitle_3"]}</span></i></h6>""")
-
     with gr.Row():
             
         # ====================
@@ -1733,7 +1749,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Reads response aloud automatically", info=language['read_aloud_info'], interactive=True),
-                gr.Radio(['OFF', 0, 1, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=True),
+                gr.Radio(['OFF', 0, 1, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Slider(0, 30000, 4000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
@@ -1742,7 +1758,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
                 gr.Slider(1e-5, 1, 1e-5, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
                 gr.Slider(1e-6, 1, 1e-5, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
-                gr.Slider(1, 33000, 100, 1, label='top_k', info=language['top_k_info'], interactive=True),
+                gr.Slider(1, 150000, 100, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info='The penalty to be applied to the next token based on their presence in the already generated text', interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info='The penalty to be applied to the next token based on their frequency in the already generated text', interactive=True),
                 gr.Slider(0, 10, 1.1, 0.1, label='repeat_penalty', info='The penalty to apply to repeated tokens', interactive=True),
@@ -1765,8 +1781,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_y.click(fn=None, inputs=None, outputs=None, queue=True)
             gr.HTML('<br><h6><b>Useful links:</b></h6>') # Useful Links
             gr.HTML("""<ul>
-                        <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         <li><a href="https://huggingface.co/models?search=gguf">GGUF Hugging Face Search Results</a></li>
+                        <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
                         <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>
                         <li><a href="https://huggingface.co/spaces/eduagarcia/open_pt_llm_leaderboard">Portuguese LLM Leaderboard</a></li>
@@ -1800,7 +1816,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA). Installed Models:</b></h6>') # Exploratory Data Analysis
             gr.HTML("""<ul>
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
-                    <li><a href="https://altair-viz.github.io/">Altair</a></li>
+                    <li><a href="https://altair-viz.github.io/">Vega-Altair</a></li>
                     <li><a href="https://plotly.com/python/">Plotly</a></li>
                     
                     <li><a href="https://pyvis.readthedocs.io/en/latest/">Pyvis</a></li>
@@ -1846,10 +1862,12 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 
                 
                 if voice_mode == True:
+                    print('voice mode True')
                     btn_voice = gr.Button('Voice Command', variant='primary', visible=True)
                     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
                     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
                 elif voice_mode == False:
+                    print('voice mode False')
                     btn_voice = gr.Button('')
                     #btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
 
