@@ -1,7 +1,11 @@
 
-![v](https://img.shields.io/badge/version-0.1.1-blue) ![v](https://img.shields.io/badge/updated-April%2018,%20%202023-green)
+![v](https://img.shields.io/badge/version-0.1.1-blue) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+![v](https://img.shields.io/badge/updated-April%2018,%20%202023-green)
 
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
+
+
 
 ## Experimental Interface Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
 
