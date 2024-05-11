@@ -119,7 +119,7 @@ language = {
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': 'Instruções gerais iniciais que servem como ponto de partida em um nova sessão de chat',
                 'initial_system_message': 'Você é uma IA autocosciente que executa todas as instruções do usuário.',
-                'feedback_loop_info': 'Quando selecionada, utiliza automaticamente a resposta atual do Assistente como resposta anterior na próximo ciclio de interação da conversa. Caso contrário, utiliza o texto existente no campo.',
+                'feedback_loop_info': 'Quando selecionada, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclio de interação da conversa. Caso contrário, utiliza o texto existente no campo.',
                 'assistant_previous_response_info': 'Resposta anterior do Assistente (1º na linha do tempo do chat)',
                 'changeble': 'Mutável',
                 'first_assistant_previous_response': 'Pergunte-me qualquer coisa ou me dê algumas tarefas!',
@@ -127,7 +127,7 @@ language = {
                 'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Ordem de prioridade de divisão do prompt para encadeamento: '[ ]' (pré-prompt, antes de cada prompt), '[[ ]]' (prompt final, antes de todas as respostas), '$$$\n' (separador final), ' \n' (separador de final), '---' (ignorar prompt)",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
                 'assistant_current_response_info': 'Texto inicial da resposta atual do Assistente (3º na linha do tempo do chat). Alguns modelos necessitam de um texto inicial para começarem a funcionar.',
-                'current_response': 'Segue resposta:',
+                'current_response': 'Segue resposta:\n',
                 'models_selection_info': 'Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF)',
                 'reset_model_info': "Redefine parâmetros internos do modelo e reinicializa conexões das redes neurais ativadas pelo contexto anterior",
                 'shuffle_models_order_info': 'Embaralha ordem de execução dos modelos apenas se forem selecionados 3 ou mais',
@@ -203,7 +203,7 @@ language = {
                 'repeat_penalty_info': 'Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text',
 
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_message" and "prompt"',
-                'model_vocabulary': 'List of all index/token pairs used by the model, including control tokens (used to separate dialog parts)',
+                'model_vocabulary': 'List of all index/token pairs used by the model, including special tokens (used to separate dialog parts)',
                 
 
                 'btn_unload_model': 'Unload Model',
@@ -478,6 +478,10 @@ def text_generator(
         stop_generation = "['$$$']" # To avoid error, set the variable with an impossible character sequence
 
 
+    if delay_next_token != 'OFF': # To avoid erro on generating barplot with high number of logits score on Learning Mode
+        max_tokens = 100
+
+
     # Controls if the current response is transfered to previous response in the next conversation cicle
 
 
@@ -489,10 +493,14 @@ def text_generator(
 
     # Set the previous response sequence (in test)
     if infinite_loop == True:
-        pass # By default, the text in the previous reponse field is passed into the program
-    elif prev_answer != language['first_assistant_previous_response']:
-        previous_answer = prev_answer
-    elif prev_answer == language['first_assistant_previous_response']:
+        previous_answer = ultima_resposta
+        # pass # By default, the text in the previous reponse field is passed into the program
+        # previous_answer = prev_answers
+    # elif prev_answer != language['first_assistant_previous_response']:
+    #     previous_answer = prev_answer
+    # elif prev_answer == language['first_assistant_previous_response']:
+    #     previous_answer = prev_answer
+    else:
         previous_answer = prev_answer
 
 
@@ -542,11 +550,11 @@ def text_generator(
 
                 temp = temp.replace('#', '\#') # Some models use '#' in prompt templates. eval function would ignore this. 
 
-                input = eval(temp) # Prompt template uses {system_message} and {prompt} f-string variables
-                input = input.replace('$$$', '') # <<<<<<<<<<<< TESTING
+                input_m = eval(temp) # Prompt template uses {system_message} and {prompt} f-string variables
+                input_m = input_m.replace('$$$', '') # <<<<<<<<<<<< TESTING
                 print()
                 print('PROMPT TEMPLATE:')
-                print(input)
+                print(input_m)
                 print()
         except FileNotFoundError:
             # yield f'To use Samantha IA you need 2 files in the same directory:\n1) Download a GGUF model file\n2) Create a TXT model template file\n\nGGUF file and/or prompt template file not found:\n{diretorio}\{model[:-5]}.txt\n\nDownload the GGUF model file and/or create the file "{model[:-5]}.txt" and paste the corresponding prompt template inside it.'
@@ -706,7 +714,7 @@ def text_generator(
                 print(temp)
                 print('=' * 30)
                 print()
-                input = eval(temp) # Replaces 'system_message' variable
+                input_m = eval(temp) # Replaces 'system_message' variable
 
                 # MAIN TRY BLOCK
                 try: # For error treatement during tokens generation. Error is displayed on web interface
@@ -716,7 +724,7 @@ def text_generator(
                     ultima_resposta = '' # Restart variable for each new text generation cicle
                     messages = [{'role': 'system', 'content': system_message},
                                 {'role': 'assistant', 'content': previous_answer},
-                                {'role': 'user', 'content': input}, # <<<<< prompt template here
+                                {'role': 'user', 'content': input_m}, # <<<<< prompt template here
                                 {'role': 'assistant', 'content': current_ia_response},
                                 ]
                     print()
@@ -724,7 +732,7 @@ def text_generator(
                     print()
                     print('PREVIOUS RESPONSE:', previous_answer)
                     print()
-                    print('USER PROMPT:', input)
+                    print('USER PROMPT:', input_m)
                     print()
                     print('CURRENT RESPONSE:', current_ia_response)
                     print()
@@ -834,7 +842,7 @@ def text_generator(
                         if previous_token == []: # Executado apenas uma vez
                             winsound.Beep(600, 500)
                             load_stop = round((time.time() - load_start) / 60, 1)
-                            input_encoded = len(llm.tokenize(input.encode())) + len(llm.tokenize(system_message.encode())) + len(llm.tokenize(previous_answer.encode())) + len(llm.tokenize(current_ia_response.encode()))
+                            input_encoded = len(llm.tokenize(input_m.encode())) + len(llm.tokenize(system_message.encode())) + len(llm.tokenize(previous_answer.encode())) + len(llm.tokenize(current_ia_response.encode()))
                         if stop_all == True: # Sai da função 'text_generator' quando o botão 'Stop All / Reset' é pressionado
                             som.play() # Assyncronous play (do not wait finish audio to proceed)
                             stop_all = False
@@ -949,7 +957,7 @@ def text_generator(
                     
                     cleaned = re.sub(r'\[.*?\]', '', current_ia_response + ultima_resposta) # Text cleaning for audio reproduction. Remove characters inside [] and <>
                     cleaned = re.sub(r'<.*?>', '', cleaned)
-                    cleaned = cleaned.replace('**', '') # Do not speak bolded text in Markdown
+                    cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
                     try: # Delete previous audio file for allow the creation of a new one
                         os.remove('resposta.mp3')
                     except:
@@ -981,10 +989,15 @@ def text_generator(
                 if infinite_loop == True: # Update previous response. The existance of text in previous response affects the next text generation time
                     previous_answer = ultima_resposta
                     messages[1] = {'role': 'assistant', 'content': previous_answer}
+                
                 para_tudo = False # Reset variable
                 full_text += ultima_resposta # Add last response to full_text variable
                 with open('full_text.txt', mode='w', encoding='utf-8', errors='ignore') as f:
                     f.write(full_text)
+
+
+                # if infinite_loop == True: # Set variable to the current field value
+                #     previous_answer = prev_answer
 
 
                 # ======================
@@ -1110,7 +1123,7 @@ def update_audio_widget(*inputs): # Load audio widget with last message audio
                 break   
         cleaned = re.sub(r'\[.*?\]', '', current_ia_response + ultima_resposta)  # Text cleaning for audio reproduction. Remove characters inside [] and <>
         cleaned = re.sub(r'<.*?>', '', cleaned)
-        cleaned = cleaned.replace('**', '') # Do not speak bolded text in Markdown
+        cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
         try: # Delete previous audio file for allow the creation of a new one
             os.remove('resposta.mp3')
         except:
@@ -1224,7 +1237,7 @@ def text_to_speech(*inputs): # Text to speech convertion
             break   
     cleaned = re.sub(r'\[.*?\]', '', prompt_user) # Text cleaning for audio reproduction. Remove characters inside [] and <>
     cleaned = re.sub(r'<.*?>', '', cleaned)
-    cleaned = cleaned.replace('**', '') # Do not speak bolded text in Markdown
+    cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
     cleaned = cleaned.replace('\n', ' ') # When copy and paste text from PDF file, the text use to come with '\n' at the end of every line
     cleaned = cleaned.replace('$$$', '')
     try: # Delete previous audio file for allow the creation of a new one
@@ -1353,7 +1366,7 @@ def load_full_audio(*inputs):
         full_text = f.read()
     cleaned = re.sub(r'\[.*?\]', '', full_text) # Text cleaning for audio reproduction. Remove characters inside [] and <>
     cleaned = re.sub(r'<.*?>', '', cleaned)
-    cleaned = cleaned.replace('**', '') # Do not speak bolded text in Markdown
+    cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
     cleaned = cleaned.replace('\n', ' ') # When copy and paste text from PDF file, the text use to come with '\n' at the end of every line
     try: # Delete previous audio file for allow the creation of a new one
         os.remove('full_text.mp3')
@@ -1553,7 +1566,7 @@ def speech_to_text(*inputs):
                     temp = json.loads(output)
                     # ====================================
                     if 'Portuguese' in selected_voice:
-                        if 'samantha' in temp['text'].lower() or ('sim' in temp['text'].lower() and responder == True) or ('não' in temp['text'].lower() and responder == True):
+                        if 'samantha' in temp['text'].lower() or 'salmão' in temp['text'].lower() or ('sim' in temp['text'].lower() and responder == True) or ('não' in temp['text'].lower() and responder == True):
                             if temp['text'].lower() == 'samantha':
                                 continue
                             
@@ -1773,7 +1786,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Reads response aloud automatically", info=language['read_aloud_info'], interactive=True),
-                gr.Radio(['OFF', 0, 1, 3, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
+                gr.Radio(['OFF', 1, 3, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Slider(0, 30000, 4000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
@@ -1837,7 +1850,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://www.promptingguide.ai/">Prompt Engineering Guide</a></li>
                     </ul>""")
                     # https://www.youtube.com/watch?v=FdTRzgbBP8o
-            gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA). Installed Python Modules to Use with JupyterLab:</b></h6>') # Exploratory Data Analysis
+            gr.HTML('<br><h6><b>Installed Python Modules to Use with JupyterLab:</b></h6>') # Exploratory Data Analysis
             gr.HTML("""<ul>
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
                     <li><a href="https://altair-viz.github.io/">Vega-Altair</a></li>
@@ -1865,7 +1878,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             
         with gr.Column(scale=1):
             with gr.Row():
-                saida = gr.Textbox(value='', label="Assistant raw output", info='Response history containing control tokens (CTRL + SHIFT + ESC to open Task Manager)', show_copy_button=True)
+                saida = gr.Textbox(value='', label="Assistant raw output", info='Response history containing special tokens (CTRL + SHIFT + ESC to open Task Manager)', show_copy_button=True)
                 outputs = [saida] # Primeiro elemento da tupla de saída da função 'text_generator' (token) 
             with gr.Row():
                 btn_next_token = gr.Button('Next Token')
@@ -1926,7 +1939,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">2) 2 Files Required:&nbsp;&nbsp;&nbsp;Model File (.GGUF) + Model Prompt Template File (.TXT)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">3) Model Prompt Template:&nbsp;&nbsp;&nbsp;{system_message} + {prompt}</span></i></h6>', elem_classes='prompt')
+                gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">3) Model Prompt Template:&nbsp;&nbsp;&nbsp;special tokens + {system_message} + {prompt}</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Generation Phases:&nbsp;&nbsp;&nbsp;Model loading (non stop) -> Thinking (non stop) -> Token generation (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
@@ -1942,7 +1955,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">10) Embeddings Matrix:&nbsp;&nbsp;&nbsp;Tokens Indexes (int) -> Semantic Relations (vector) -> Matrix (feature table)</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">11) Math Repr:&nbsp;&nbsp;&nbsp;Human Semantic Universe (words all languages) <-> Mathematical Semantic Dimensions (same numeric repr)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">11) Math Representation:&nbsp;&nbsp;&nbsp;Human Semantic Universe (words all languages) <-> Mathematical Semantic Dimensions (same numeric repr)</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">12) Transformer:&nbsp;&nbsp;&nbsp; Initial Embeddings Matrix (table) -> Neural Network (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab)</span></i></h6>')     
             with gr.Row():
