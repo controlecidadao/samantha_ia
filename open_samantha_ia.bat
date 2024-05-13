@@ -64,7 +64,7 @@ call conda activate samantha
 @echo.
 @echo.
 @echo ===========================
-@echo     OPENING SAMANTHA IA
+@echo     STARTING SAMANTHA IA
 @echo ===========================
 @echo.
 
