@@ -1,6 +1,12 @@
 $$$
 $-$-$
 
+O que é Análise Crítica do Discurso? Ela pode ser aplicada a qualquer texto escrito? Explique em detalhes usando linguagem culta e sofisticada.
+$-$-$
+
+Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, que permitam ao usuário perceber o tema sob outros pontos de vista.
+$-$-$
+
 Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos serem usados em uma IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
 $-$-$
 

@@ -142,13 +142,13 @@ language = {
                 'assistant_previous_response_info': 'Resposta anterior do Assistente (1º na linha do tempo do chat)',
                 'changeble': 'Mutável',
                 'first_assistant_previous_response': 'Pergunte-me qualquer coisa ou me dê algumas tarefas!',
-                'text_to_speech': 'Texto para Fala',
+                'text_to_speech': 'Texto para Voz',
                 'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Ordem de prioridade de divisão do prompt para encadeamento: '[ ]' (pré-prompt, antes de cada prompt), '[[ ]]' (prompt final, antes de todas as respostas), '$$$\n' (separador final), ' \n' (separador de final), '---' (ignorar prompt)",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
                 'assistant_current_response_info': 'Texto inicial da resposta atual do Assistente (3º na linha do tempo do chat). Alguns modelos necessitam de um texto inicial para começarem a funcionar.',
                 'current_response': 'Segue resposta:\n',
                 'models_selection_info': 'Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF)',
-                'reset_model_info': "Redefine parâmetros internos do modelo e reinicializa conexões das redes neurais ativadas pelo contexto anterior",
+                'reset_model_info': "Reinicializa estado interno do modelo, eliminando influência do contexto anterior",
                 'shuffle_models_order_info': 'Embaralha ordem de execução dos modelos apenas se forem selecionados 3 ou mais',
                 'fast_mode_info': 'Gera texto mais rápido em segundo plano. Desativa modo de aprendizagem.',
                 'voice_selection_info': 'Seleciona voz SAPI5 no computador',
@@ -166,15 +166,26 @@ language = {
                 'presence_penalty_info': 'Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado',
                 'frequency_penalty_info': 'Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado',
                 'repeat_penalty_info': 'Penalidade a ser aplicada à sequência repetida de tokens (não à sequência das próximas palavras) com base em sua presença no texto já gerado',
-
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt"',
-                'model_vocabulary': 'Lista de todos os pares índice/token usados pelo modelo, incluindo tokens de controle (usados para separar as partes do diálogo)',
-                
+                'model_vocabulary': 'Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo)',
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
+
+                'assistant_raw_output_info': 'Histórico de respostas (CTRL + SHIFT + ESC para abrir Gerenciador de Tarefas)',
+                'btn_next_token': 'Próximo Token',
+                'btn_copy_code_blocks': 'Copiar Código',
+                'btn_open_jupyterlab': 'Abrir JupyterLab',
+                'btn_copy_last_response': 'Copiar Resposta (last)',
+                'btn_copy_all_responses': 'Copiar Respostas (all)',
+                'btn_voice_command': 'Comando por Voz',
+
+                'btn_text_to_speech': 'Texto para Voz',
+                'btn_last_response': 'Última Resposta',
+                'btn_all_responses': 'Todas Respostas',
+
 
                 },
 
@@ -202,7 +213,7 @@ language = {
                 'assistant_current_response_info': 'Initial text of the Assistant current response (3rd in chat timeline). Some models need a initial text to start working.',
                 'current_response': 'Follows response:',
                 'models_selection_info': 'Selects the sequence of artificial intelligence models to use (.GGUF files)',
-                'reset_model_info': "Resets internal model parameters and reinitializes neural network connections activated by the previous context",
+                'reset_model_info': "Reinitializes the model's internal state, eliminating the influence of the previous context",
                 'shuffle_models_order_info': 'Shuffles order of execution of models only if 3 or more are selected',
                 'fast_mode_info': 'Generates text faster in background. Disables Learning Mode.',
                 'voice_selection_info': 'Selects SAPI5 voice on the computer',
@@ -220,23 +231,38 @@ language = {
                 'presence_penalty_info': 'Penalty to apply to the next token (not next word) based on their presence in the already generated text',
                 'frequency_penalty_info': 'Penalty to apply to the next token (not next word) based on their frequency in the already generated text',
                 'repeat_penalty_info': 'Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text',
-
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt"',
-                'model_vocabulary': 'List of all index/token pairs used by the model, including special tokens (used to separate dialog parts)',
-                
-
+                'model_vocabulary': 'List of all index/token pairs used by the model, including special characters (used to separate dialog parts)',
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'PDF Full',
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
 
+                'assistant_raw_output_info': 'Response history (CTRL + SHIFT + ESC to open Task Manager)',
+                'btn_next_token': 'Next Token',
+                'btn_copy_code_blocks': 'Copy Code Blocks',
+                'btn_open_jupyterlab': 'Open JupyterLab',
+                'btn_copy_last_response': 'Copy Last Response',
+                'btn_copy_all_responses': 'Copy All Response',
+                'btn_voice_command': 'Voice Command',
+
+                'btn_text_to_speech': 'Text to Speech',
+                'btn_last_response': 'Last Response',
+                'btn_all_responses': 'All Responses',
+
+
+
+
                 }
             }
 
 read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês.')
 
-language_selected = input('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês: ')
+try: # Some keys raise EOF Error
+    language_selected = input('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês: ')
+except:
+    language_selected = 'y'
 if language_selected == '':
     language = language['pt']
     print('Idioma da interface selecionado: Português')
@@ -378,7 +404,7 @@ system_prompt = language["initial_system_prompt"] # (FIELD) First system message
 previous_answer = language['first_assistant_previous_response'] # (FIELD) Stores the previous response generated by the model and used in the current response cicle. ATENTION! This phrase must be changed in 2 place in this code!
 prompt = language['user_prompt_value']     # (FIELD) Default user prompt
 current_ia_response = language['current_response'] # (FIELD) Initial part of the Assistant current response, filled by the user
-ultima_resposta = language['assistant_current_response_info']     # Stores current response to be used in the next conversation cicle, if desired
+ultima_resposta = language['first_assistant_previous_response']     # Stores current response to be used in the next conversation cicle, if desired
 resposta = ''            # Stores cummulative text showed on output field (for each session)
 inputs = []              # Stores Gradio interface fields in a predefined sequence
 loop_models = 1          # Initial models loops number
@@ -405,7 +431,10 @@ audio = None             # Stores pygame audio object
 
 read_aloud_fn('Ativar comando por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim.')
 
-voice_mode = input('Ativar comando por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim: ')
+try: # Some keys raise EOF Error
+    voice_mode = input('Ativar comando por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim: ')
+except:
+    voice_mode = 'y'
 if voice_mode.lower() == '':
     voice_mode = False
     leaning_mode_interatcive = True
@@ -547,13 +576,10 @@ def text_generator(
 
     # Set the previous response sequence (in test)
     if infinite_loop == True:
-        previous_answer = ultima_resposta
-        # pass # By default, the text in the previous reponse field is passed into the program
-        # previous_answer = prev_answers
-    # elif prev_answer != language['first_assistant_previous_response']:
-    #     previous_answer = prev_answer
-    # elif prev_answer == language['first_assistant_previous_response']:
-    #     previous_answer = prev_answer
+        if ultima_resposta == '': # This variable is set to '' when Clear Button is pressed (clean_output function)
+            previous_answer = prev_answer
+        else:
+            previous_answer = ultima_resposta
     else:
         previous_answer = prev_answer
 
@@ -571,7 +597,7 @@ def text_generator(
         models = [models]
     if models == []: # For the case when model is not selected
         yield 'Model not selected.' # Use simple sentence
-        read_aloud_fn('Modelo não selecionado')
+        # read_aloud_fn('Modelo não selecionado')
         return
     if loop_models > 1: # Multiply number of loops by models sequence (Checkbox)
         models = models * loop_models
@@ -1106,8 +1132,10 @@ def random_list_fn(models): # Shuffles models list avoiding that equals itens ge
 
 def clean_output(): # Clear Output button: clear output text
     global resposta
+    global ultima_resposta
     click.play()
     resposta = ''
+    ultima_resposta = ''
 
     # IN TEST
     with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
@@ -1854,11 +1882,11 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Slider(0, 30000, 4000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 30000, 2000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
-                gr.Slider(0, 5, 0, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0, 5, 1, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(1e-5, 1, 1e-5, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
-                gr.Slider(1e-6, 1, 1e-5, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
-                gr.Slider(1, 150000, 100, 1, label='top_k', info=language['top_k_info'], interactive=True),
+                gr.Slider(1e-5, 1, 1, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
+                gr.Slider(1e-6, 1, 0.3, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
+                gr.Slider(1, 150000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 1.1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
@@ -1907,6 +1935,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://www.youtube.com/watch?v=xU_MFS_ACrU">How do LLMs like ChatGPT work?</a></li>
                     <li><a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Visualizing Attention, a Transformer's Heart</a></li>
                     <li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=rEDzUT3ymw4"></a>Neural Network in 1 Minute</li>
                     <li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a></li>
                     
 
@@ -1941,19 +1970,19 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             
         with gr.Column(scale=1):
             with gr.Row():
-                saida = gr.Textbox(value='', label="Assistant raw output", info='Response history containing special tokens (CTRL + SHIFT + ESC to open Task Manager)', show_copy_button=True)
-                outputs = [saida] # Primeiro elemento da tupla de saída da função 'text_generator' (token) 
+                saida = gr.Textbox(value='', label="Assistant raw output", info=language['assistant_raw_output_info'], show_copy_button=True)
+                outputs = [saida] # Primeiro elemento da tupla de saída da função 'text_generator' (token)
             with gr.Row():
-                btn_next_token = gr.Button('Next Token')
+                btn_next_token = gr.Button(language['btn_next_token'])
                 btn_next_token.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False) 
-                btn_copy_code = gr.Button('Copy Code Blocks')
+                btn_copy_code = gr.Button(language['btn_copy_code_blocks'])
                 btn_copy_code.click(fn=copy_code, inputs=None, outputs=None, queue=False)
-                btn_notebook = gr.Button('Open JupyterLab')
+                btn_notebook = gr.Button(language['btn_open_jupyterlab'])
                 btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
             with gr.Row():
-                btn_last_response = gr.Button('Copy Last Response')
+                btn_last_response = gr.Button(language['btn_copy_last_response'])
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
-                btn_all_responses = gr.Button('Copy All Responses')
+                btn_all_responses = gr.Button(language['btn_copy_all_responses'])
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
                 
 
@@ -1964,7 +1993,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 
                 if voice_mode == True:
                     # print('voice mode True')
-                    btn_voice = gr.Button('Voice Command', variant='primary', visible=True)
+                    btn_voice = gr.Button(language['btn_voice_command'], variant='primary', visible=True)
                     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
                     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
                 elif voice_mode == False:
@@ -1989,11 +2018,11 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 audio_widget = gr.Audio(value='introducao.mp3', type='filepath', autoplay=False, interactive=True, show_download_button=True, editable=True, show_share_button=True)
             with gr.Row():
-                btn_gen_audio = gr.Button('Text to Speech')
+                btn_gen_audio = gr.Button(language['btn_text_to_speech'])
                 btn_gen_audio.click(fn=text_to_speech, inputs=inputs, outputs=audio_widget, queue=True)
-                btn_audio = gr.Button('Last Response')
+                btn_audio = gr.Button(language['btn_last_response'])
                 btn_audio.click(fn=update_audio_widget, inputs=inputs, outputs=audio_widget, queue=False)
-                btn_full_audio = gr.Button('Session Responses')
+                btn_full_audio = gr.Button(language['btn_all_responses'])
                 btn_full_audio.click(fn=load_full_audio, inputs=inputs, outputs=audio_widget, queue=False)
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Fundamentals and Operating Tips:</h5>""")
@@ -2002,7 +2031,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">2) 2 Files Required:&nbsp;&nbsp;&nbsp;Model File (.GGUF) + Model Prompt Template File (.TXT)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">3) Model Prompt Template:&nbsp;&nbsp;&nbsp;special tokens + {system_prompt} + {prompt}</span></i></h6>', elem_classes='prompt')
+                gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">3) Model Prompt Template:&nbsp;&nbsp;&nbsp;special characters + {system_prompt} + {prompt}</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Generation Phases:&nbsp;&nbsp;&nbsp;Model loading (non stop) -> Thinking (non stop) -> Token generation (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
@@ -2023,10 +2052,10 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">12) Transformer:&nbsp;&nbsp;&nbsp; Initial Embeddings Matrix (table) -> Neural Network (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab)</span></i></h6>')     
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">13) Samplings/Penalties:&nbsp;&nbsp;&nbsp;Samplings (temp/top-k/top-p) -> Penalties (pres/freq/rep) -> Stop Condition</span></i></h6>')         
+            #with gr.Row():
+            #    gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">14) Setting Sequence:&nbsp;&nbsp;&nbsp;top-k -> top-p -> tfs-z -> presence_penalty -> frequency_penalty -> temperature -> repeat_penalty</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">14) Setting Sequence:&nbsp;&nbsp;&nbsp;top-k -> top-p -> tfs-z -> presence_penalty -> frequency_penalty -> temperature -> repeat_penalty</span></i></h6>')         
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">15) Summary:&nbsp;&nbsp;&nbsp;(Context Window (text) -> Tokens (vocab) -> Initial Embeddings Matrix (table) -> Transformer (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab) -> Sampling/Penalty) -> Stop Condition</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">14) Summary:&nbsp;&nbsp;&nbsp;(Context Window (text) -> Tokens (vocab) -> Initial Embeddings Matrix (table) -> Transformer (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab) -> Sampling/Penalty) -> Stop Condition</span></i></h6>')         
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">USER prompt examples</h5>""")
             with gr.Row():
