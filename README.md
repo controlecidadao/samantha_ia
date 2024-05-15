@@ -37,7 +37,7 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 - **Code Integration**: Automatic extraction of code blocks from responses, along with pre-installed [JupyterLab](https://jupyter.org/), enables users to execute generated code swiftly for immediate results.
 
-- **Data Science Tools**: A suite of data science tools like [Pandas](https://pandas.pydata.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Pandas Profiling](https://github.com/ydataai/ydata-profiling), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html) and [Playwright](https://playwright.dev/python/) are available within JupyterLab for comprehensive analysis and visualization.
+- **Data Science Tools**: A suite of data science tools like [Pandas](https://pandas.pydata.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Pandas Profiling](https://github.com/ydataai/ydata-profiling), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html) and [Playwright](https://playwright.dev/python/) are available within JupyterLab for comprehensive analysis and visualization.
 
 - **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to the previous response only.
 
