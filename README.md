@@ -140,11 +140,11 @@ Finally, locate the model-specific prompt template and paste it inside the `.txt
 
 >_This is a critical part of the initial settings. If you use the wrong prompt template, model will not generate text correctlly._<br>
 
-<br>Here are some prompt template examples. Text in curly braces must be included by the user:<br><br>
+<br>Here are some prompt template examples. Texts in curly braces `{system_prompt}` and `{prompt}` must be included by the user:<br><br>
 Prompt template: **ChatML**
 ```
 <|im_start|>system
-{system_message}<|im_end|>
+{system_prompt}<|im_end|>
 <|im_start|>user
 {prompt}<|im_end|>
 <|im_start|>assistant
@@ -170,7 +170,7 @@ Below is an instruction that describes a task. Write a response that appropriate
 Prompt template: **Zephyr**
 ```
 <|system|>
-{system_message}</s>
+{system_prompt}</s>
 <|user|>
 {prompt}</s>
 <|assistant|>
@@ -179,7 +179,7 @@ Prompt template: **Zephyr**
 Prompt template: **Llama-2-Chat**
 ```
 [INST] <<SYS>>
-{system_message}
+{system_prompt}
 <</SYS>>
 {prompt} [/INST]
 ```
@@ -196,7 +196,7 @@ Prompt template: **Llama-3**
 Prompt template: **Instruction-Input-Response**
 ```
 ### Instruction:
-{system_message}
+{system_prompt}
 
 ### Input:
 {prompt}
