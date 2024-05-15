@@ -39,36 +39,159 @@
 # CTRL + K -> CTRL + 0 = Recolhe todas as funções
 # CTRL + K -> CTRL + J = Expande todas as funções
 
-# =========================
+
+
+
+
+# import gradio as gr              # To create web interface (front-end) BREAKPOINT
+# from llama_cpp import Llama      # To load LLMs UGGF files (back-end)
+# import webbrowser                # To open web browser
+# import os                        # To manipulate files and directories
+# import pygame                    # To play sounds
+# import glob                      # To select files by their extensions
+# import traceback                 # To display errors messages
+# import time                      # To control tokens generation time in Learning Mode
+# import pyttsx3                   # To convert text-to-spea;ech using SAPI5 voices installed on computer
+# import re                        # To create regular expressions (regex) to handle string patterns
+# import pandas as pd              # To create tokens dataframes to generate barplots
+# import random                    # To shuffle models execution order
+# from collections import Counter  # To group and count distinct items from a list
+# from playwright.sync_api import sync_playwright  # To scrap HTML page
+# import winsound                  # To create and play audio signal
+# import fitz                      # To extract PDF text
+# import subprocess                # To execute programs on terminal (cmd) from Python script
+# import pyperclip                 # To copy code from the llm response to the clipboard
+# import argparse                  # To handle command-line arguments and pass parameters to the script
+# import queue                     # To create a thread-safe, deque-based queue that can be used for inter-thread communication
+# import sys                       # To access system-specific parameters like version, path, and argv (arguments passed to the script)
+# import sounddevice as sd         # To record or play audio using real-time audio streaming in Python
+# from vosk import Model           # To load a speech recognition model for offline speech recognition tasks
+# from vosk import KaldiRecognizer # To use the Vosk Speech Recognition Engine to convert spoken words into text
+# import json                      # To parse JSON files or encode/decode JSON data
+
+
+
+# ===================================
+# ASK USER ABOUT DOWNLOAD MODELS LIST
+# ===================================
+
+# Download models links from Hugging Face / TheBloke repository: https://huggingface.co/TheBloke
+
+# headings = [] # Stores UGGF models names list
+# links = '' # Stores string with HTML models list to render on HTML page, as a '<ul>' element
+
+
+# def scrap_the_block_repository(headless_mode): # Perform scrapping on TheBloke HTML page
+#     global headings
+#     global links
+#     if links != '': # If list models is already filled. This variable is used by text_generator function
+#         return links
+#     with sync_playwright() as p:
+#         print('Updating models list from HuggingFace/TheBloke repository...')
+#         print('Openning Chromium browser...')
+#         browser = p.chromium.launch(headless=headless_mode)
+#         page = browser.new_page()
+        
+#         page.goto("https://huggingface.co/models?search=gguf", timeout=60000) # Access url Trending Models
+        
+#         # page.goto("https://huggingface.co/TheBloke", timeout=60000) # Access url
+#         # page.wait_for_load_state(timeout=60000) # Wait for the page loading
+#         # button = page.get_by_role("button", name="Expand") # Search for the button with 'Expand' text in its label
+#         # button.click() # Click the button to show all models cards
+#         # print('Expanding models cards...')
+#         # page.wait_for_selector('button:has-text("Collapse")') # Wait for display all the models cards
+        
+        
+        
+#         temp = page.query_selector_all("""
+#             h4:has-text("GGUF")
+#         """) # Create a list with all 'h4' elements with 'GGUF' word in their text
+#             #h4:has-text("7B"):has-text("GGUF"), # For 7B models only
+#             #h4:has-text("13B"):has-text("GGUF") # For 13B models only
+#         print('GGUF cards found:', len(temp))
+#         links = "<ul>" # Stores HTML unordered list (ul) with models names. Starts the '<ul>' HTML element text
+#         # Loop over all models names
+#         print('Creating models links (it takes some time)...')
+#         for n, i in enumerate(temp):
+#             if i.text_content() in headings: # Ignore duplicates
+#                 continue
+#             headings.append(i.text_content())
+#             links += f"""<li><a href="https://huggingface.co/{i.text_content()}" target="_blank">{i.text_content().split('/')[-1]}</a></li>"""
+#             print(n + 1, end="\r") # Display progress           
+#         links += "</ul>" # Finish the '<ul>' HTML tag
+#         browser.close()
+#         print('Finished!')
+
+# read_aloud('Usar comandos por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim.')
+
+# voice_mode = input('Usar comandos por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim: ')
+# if voice_mode.lower() == '':
+#     voice_mode = False
+#     leaning_mode_interatcive = True
+#     read_aloud('Comando por voz não selecionado.')
+# else:
+#     voice_mode = True
+#     leaning_mode_interatcive = False
+#     read_aloud('Comando por voz selecionado.')
+
+# read_aloud('Abrindo interface no navegador')
+
+# temp = input('DOWNLOAD MODELS LINKS?\t (y + ENTER for YES or just ENTER for NO): ')
+# if 'y' not in temp.lower():
+#     pass
+# else:
+#     headless_mode = input('OPEN BROWSER IN VISIBLE MODE? (y + ENTER for YES or just ENTER for NO): ')
+#     if 'y' not in headless_mode.lower():
+#         headless_mode = True
+#     else:
+#         headless_mode = False
+#     try:
+#         scrap_the_block_repository(headless_mode) # Function call. Update global variable 'links' and 'headings'
+#     except Exception as e: # Turn off internet conection to test
+#         print()
+#         print("Unable to get models links from https://huggingface.co/TheBloke")
+#         print(traceback.format_exc()) # Print error message in terminal
+#         print()
+#         links = """<ul><li>Unable to download models's links from <a href="https://huggingface.co/TheBloke">https://huggingface.co/TheBloke</a></li></ul>""" # Displayed on bottom page
+# print() 
+
+
+
+
+
+# All code commnents were genarated by Samantha IA with 'WizardLM-2-7B.Q4_K_M_MaziyarPanahi.gguf' model
+
+# =====================
 # IMPORT PYTHON MODULES
-# =========================
+# =====================
 
-import gradio as gr              # To create web interface (front-end) BREAKPOINT
-from llama_cpp import Llama      # To load LLMs UGGF files (back-end)
-import webbrowser                # To open web browser
-import os                        # To manipulate files and directories
-import pygame                    # To play sounds
-import glob                      # To select files by their extensions
-import traceback                 # To display errors messages
-import time                      # To control tokens generation time in Learning Mode
-import pyttsx3                   # To convert text-to-speak using SAPI5 voices installed on computer
-import re                        # To create regular expressions (regex) to handle string patterns
-import pandas as pd              # To create tokens dataframes to generate barplots
-import random                    # To shuffle models execution order
-from collections import Counter  # To group and count distinct items from a list
-from playwright.sync_api import sync_playwright  # To scrap HTML page
-import winsound                  # To create and play audio signal
-import fitz                      # To extract PDF text
-import subprocess                # To execute programs on terminal (cmd) from Python script
-import pyperclip                 # To copy code from the response to the clipboard
-import argparse
-import queue
-import sys
-import sounddevice as sd
-from vosk import Model, KaldiRecognizer
-import json
+import gradio as gr             # Import Gradio to create a user-friendly web interface for interacting with machine learning models. This library simplifies the process of deploying models with a front-end that can accept inputs and display outputs. (Front-End Interface)
+from llama_cpp import Llama     # Import Llama_cpp to load Large Language Model (LLM) files in UGGF format, which are used for model storage and retrieval. This is the back-end component responsible for handling the model's logic and processing. (Back-End Model Loading)
+import webbrowser               # Import webbrowser to programmatically open a web page or file in the default system browser, useful for redirecting users to documentation or additional resources. (Web Browsing)
+import os                       # Import os for operations related to the operating system, such as file and directory manipulation, which can include tasks like reading, writing, and modifying files. (File System Operations)
+import pygame                   # Import pygame for playing sounds or music, providing a framework for writing video games, and handling multimedia content in Python. (Multimedia Content Playback)
+import glob                     # Import glob to search for files within a directory tree that match a specified pattern, useful for batch processing of files with similar extensions. (File Selection)
+import traceback                # Import traceback to print out error messages and stack traces when exceptions occur, helping in debugging and understanding the flow of program execution. (Error Handling)
+import time                     # Import time for controlling the delay between actions or measuring real-world time intervals, which can be used to manage the rate of token generation in Learning Mode. (Time Control)
+import pyttsx3                  # Import pyttsx3 to convert text to speech using SAPI5 voices installed on the computer, enabling textual information to be audibly spoken out loud. (Text-to-Speech)
+import re                       # Import re for creating regular expressions, which are powerful patterns used to match character combinations in strings for tasks like data validation and extraction. (Regular Expressions)
+import pandas as pd             # Import pandas to create DataFrames for visualization purposes, particularly useful for generating bar plots from token data. (Data Analysis and Visualization)
+import random                   # Import random to shuffle elements in a list or generate pseudo-random numbers, which can be used to randomize the order of model execution. (Randomization)
+from collections import Counter # Import collections.Counter to count occurrences of each element in a sequence and group similar items together. (Item Counting and Grouping)
+from playwright.sync_api import sync_playwright # Import playwright.sync_api for web automation, allowing the script to interact with web pages as if it were a browser, useful for scraping HTML content or testing web applications. (Web Automation)
+import winsound                 # Import winsound to create and play audio signals, such as beeps, on the computer's sound card. (Sound Synthesis)
+import fitz                     # Import fitz to extract text from PDF files using the Mozilla's poppler library. (PDF Text Extraction)
+import subprocess               # Import subprocess to execute system commands and programs from within Python, providing a way to interact with the operating system's command line. (System Command Execution)
+import pyperclip                # Import pyperclip for copying text to the clipboard, which can be useful for transferring model responses or any text data between applications. (Clipboard Management)
+import argparse                 # Import argparse to handle command-line arguments and parameters, allowing users to pass specific options to the script when it runs. (Command-Line Argument Parsing)
+import queue                    # Import queue for creating a thread-safe, deque-based queue that can be used for inter-thread communication, useful in multi-threaded applications. (Inter-Thread Communication)
+import sys                      # Import sys to access system-specific parameters like version, path, and the arguments passed to the script (argv). This is also used to print to the standard output or error. (System Information and Argument Access)
+import sounddevice as sd        # Import sounddevice as sd for real-time audio streaming in Python, which can be used to record or play audio data. (Real-Time Audio Streaming)
+from vosk import Model          # Import vosk's Model to load a speech recognition model for offline speech recognition tasks. This model converts spoken words into text without the need for an internet connection. (Offline Speech Recognition)
+from vosk import KaldiRecognizer # Import vosk's KaldiRecognizer to use the Vosk Speech Recognition Engine, which provides a simple API for converting audio data to text. (Speech Recognition)
+import json                     # Import json for parsing JSON files or encoding and decoding JSON data, which is a lightweight data interchange format. (JSON Operations)
 
-# tkinter module is imported inside 'extract_models_names' function
+# tkinter module is imported - and deleted - inside 'extract_models_names' function to avoid confict with
 
 print('Inside the app.py...')
 
@@ -77,51 +200,69 @@ print('Inside the app.py...')
 # GET LOCAL DIRECTORY PATH
 # ========================
 
-DIRETORIO_LOCAL = os.getcwd() # Get the same Python file current directory path, but save it as a constant
+DIRETORIO_LOCAL = os.getcwd() # Define a constant for the current directory path
 
 
 # =========================
 # INITIALIZE PYTHON MODULES
 # =========================
 
-pygame.init() # Audio module initialization
-som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load sound to warn the end of the model response
-som.set_volume(0.2)
-click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load click sound to use in buttons
-click.set_volume(0.4)
+# PYGAME
+pygame.init()                               # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
+som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response notification, sourced from the specified local file path.
+som.set_volume(0.2)                         # Set the volume of the notification sound to 20% of the maximum volume.
+click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a sound object for a click event, sourced from another local file path, intended to be used for interactive elements like buttons.
+click.set_volume(0.4)                       # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
 print()
 
-engine = pyttsx3.init(driverName='sapi5') # Crete a TTS engine instance
-voices = engine.getProperty('voices')
-print('Number of voices on computer:', len(voices), f'(0 a {len(voices) - 1})')
-for i in voices:
-    print(i.name) # Print voices names installed on computer
+# PYTTSX3
+engine = pyttsx3.init(driverName='sapi5')   # Initialize the text-to-speech engine using pyttsx3 with the 'sapi5' driver.
+voices = engine.getProperty('voices')       # Retrieve a list of available voices from the TTS engine instance.
+print('Number of voices installed on the computer:', len(voices), f'(0 a {len(voices) - 1})') # Display the total number of voices installed on the user's computer and an informational note about the count.
+for i in voices:                            # Iterate over the list of voices and print each voice's name to the console.
+    print(i.name)
 print()
-selected_voice = voices[0].name # Initial selected voice to be used by Gradio interface on initialization
+selected_voice = voices[0].name             # Set the initial selected voice that will be used by the Gradio interface when it is first initialized.
 
 
 def read_aloud_fn(text: str):
-    try: # Delete previous audio file for allow the creation of a new one
+    """
+    This function reads a given text aloud using text-to-speech synthesis and plays the audio as a sound file.
+    It ensures that any previous audio file is deleted to prevent overlap and then saves, plays, and outputs the new audio.
+    """
+    try:                                        # Attempt to delete 'resposta.mp3' to allow the creation of a new audio file with the latest text
         os.remove('resposta.mp3')
-    except:
+    except:                                     # If an error occurs during deletion, do nothing (pass)
         pass
-    engine.save_to_file(text, 'resposta.mp3') # Save audio file
-    engine.runAndWait()
-    audio = pygame.mixer.Sound('resposta.mp3') # Read aloud the saved audio file with the previous Assistant response
-    audio.set_volume(1.0)
-    time.sleep(1) # To insert a silence between speechs
-    audio.play()
-    while pygame.mixer.get_busy(): # Wait until notification sound ends to play (comment to make it assyncronous)
-        pass
+    engine.save_to_file(text, 'resposta.mp3')   # Save the text to speech audio file named 'resposta.mp3'
+    engine.runAndWait()                         # Wait for the speech synthesis to finish before proceeding
+    audio = pygame.mixer.Sound('resposta.mp3')  # Load the saved audio file into a Pygame mixer sound object
+    audio.set_volume(1.0)                       # Set the volume of the audio to its maximum level (1.0)
+    time.sleep(1)                               # Introduce a 1-second delay to provide a pause between audio reproductions for better clarity
+    audio.play()                                # Play the loaded sound file aloud
+    while pygame.mixer.get_busy():              # Wait until the sound has finished playing (synchronous behavior)
+        pass                                    # This loop ensures that the next action doesn't start until the current sound is complete
 
-print(f'Iniciando Samantha Interface Assistant. Voz selecionada: {voices[0].name}')
-read_aloud_fn(f'Iniciando Samantha Interface Assistant. Voz selecionada. {voices[0].name}')
-print()
+
+# The code checks if the string 'portuguese' is present in the lowercase version of the 'name' attribute of the 'voices' object.
+# If 'portuguese' is found in the voice name, it prints a welcome message to the console in Portuguese, indicating the start of Samantha Interface Assistant and the selected voice.
+# The read_aloud_fn function is called with a message that includes the selected voice, which allows the assistant to verbally announce its own voice selection to the user.
+
+if 'portuguese' in voices[0].name.lower():
+    print(f'Iniciando Samantha Interface Assistant. Voz selecionada: {voices[0].name}')
+    read_aloud_fn(f'Iniciando Samantha Interface Assistant. Voz selecionada. {voices[0].name}')
+    print()
 
 
 # ============================
 # INTERFACE LANGUAGE SELECTION
 # ============================
+
+# Defines a dictionary `language` containing language-specific configurations for an interactive AI interface.
+# The dictionary includes various settings and options for the user interface, including titles, subtitles, warnings, instructions, prompts, buttons, and other parameters that control the behavior of the AI model's interaction with the user. 
+# It also includes information on how to use the models, manage their state, and customize their performance through various parameters like temperature, token limits, and penalties for repetition or frequency. 
+# The code is designed to be multilingual, with English and Portuguese configurations provided. 
+# This setup allows users to interact with the AI in a structured and predictable manner, with options to control the flow of conversation and the output generated by the AI models.
 
 language = {
             # PORTUGUESE
@@ -173,20 +314,16 @@ language = {
                 'btn_load_full_pdf': 'PDF Completo',
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
-
                 'assistant_raw_output_info': 'Histórico de respostas (CTRL + SHIFT + ESC para abrir Gerenciador de Tarefas)',
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
                 'btn_copy_last_response': 'Copiar Resposta (last)',
                 'btn_copy_all_responses': 'Copiar Respostas (all)',
-                'btn_voice_command': 'Comando por Voz',
-
+                'btn_voice_command': 'Controle por Voz',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
                 'btn_all_responses': 'Todas Respostas',
-
-
                 },
 
             # ENGLISH
@@ -238,154 +375,81 @@ language = {
                 'btn_load_full_pdf': 'PDF Full',
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
-
                 'assistant_raw_output_info': 'Response history (CTRL + SHIFT + ESC to open Task Manager)',
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Code Blocks',
                 'btn_open_jupyterlab': 'Open JupyterLab',
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Response',
-                'btn_voice_command': 'Voice Command',
-
+                'btn_voice_command': 'Voice Control',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
                 'btn_all_responses': 'All Responses',
-
-
-
-
                 }
             }
 
-read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês.')
 
-try: # Some keys raise EOF Error
-    language_selected = input('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês: ')
-except:
-    language_selected = 'y'
-if language_selected == '':
-    language = language['pt']
-    print('Idioma da interface selecionado: Português')
-    read_aloud_fn('Idioma da interface selecionado. Português')
+# prompt the user to select their preferred language for the interface interaction, with a default option for Portuguese or English
+
+if 'portuguese' in voices[0].name.lower():  # Check if the name of the voice contains the substring 'portuguese'. If it does, proceed to offer language selection.
+    print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language by pressing ENTER for Portuguese or any other key plus ENTER for English.
+    read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português, ou qualquer outra tecla + ENTER para Inglês.')  # Use a function `read_aloud_fn` to verbally communicate the language selection prompt to the user.
+    try:                                # Try block to catch exceptions that may occur when reading input (e.g., EOFError)
+        language_selected = input('')   # Prompt the user for input without specifying a default prompt text, but with the ability to handle an empty string.
+    except:
+        language_selected = 'y'         # If an exception occurs (e.g., the user closes the input dialog), default the selection to 'y' which is assumed to be for Portuguese.
+    if language_selected == '':         # If the user enters an empty string, use the previously defined `language` variable as the selected language.
+        language = language['pt']
+        print('Idioma da interface selecionado: Português')
+        read_aloud_fn('Idioma da interface selecionado. Português')  # Confirm the selection of Portuguese and use `read_aloud_fn` to announce it.
+    else:
+        language = language['en']       # If the user enters a non-empty string, assume it's for English.
+        print('Idioma da interface selecionado: Inglês')
+        read_aloud_fn('Idioma da interface selecionado. Inglês') # Confirm the selection of English and use `read_aloud_fn` to announce it.
 else:
-    language = language['en']
-    print('Idioma da interface selecionado: Inglês')
-    read_aloud_fn('Idioma da interface selecionado. Inglês')
+    language = language['en']           # If 'portuguese' was not found in the voice name, default to the previously defined `language` variable.
+    print('Selected intereface language: English') # Inform the user that the default interface language will be English.
+print()
 
-
-# ===================================
-# ASK USER ABOUT DOWNLOAD MODELS LIST
-# ===================================
-
-# Download models links from Hugging Face / TheBloke repository: https://huggingface.co/TheBloke
-
-headings = [] # Stores UGGF models names list
-links = '' # Stores string with HTML models list to render on HTML page, as a '<ul>' element
-
-
-def scrap_the_block_repository(headless_mode): # Perform scrapping on TheBloke HTML page
-    global headings
-    global links
-    if links != '': # If list models is already filled. This variable is used by text_generator function
-        return links
-    with sync_playwright() as p:
-        print('Updating models list from HuggingFace/TheBloke repository...')
-        print('Openning Chromium browser...')
-        browser = p.chromium.launch(headless=headless_mode)
-        page = browser.new_page()
-        
-        page.goto("https://huggingface.co/models?search=gguf", timeout=60000) # Access url Trending Models
-        
-        # page.goto("https://huggingface.co/TheBloke", timeout=60000) # Access url
-        # page.wait_for_load_state(timeout=60000) # Wait for the page loading
-        # button = page.get_by_role("button", name="Expand") # Search for the button with 'Expand' text in its label
-        # button.click() # Click the button to show all models cards
-        # print('Expanding models cards...')
-        # page.wait_for_selector('button:has-text("Collapse")') # Wait for display all the models cards
-        
-        
-        
-        temp = page.query_selector_all("""
-            h4:has-text("GGUF")
-        """) # Create a list with all 'h4' elements with 'GGUF' word in their text
-            #h4:has-text("7B"):has-text("GGUF"), # For 7B models only
-            #h4:has-text("13B"):has-text("GGUF") # For 13B models only
-        print('GGUF cards found:', len(temp))
-        links = "<ul>" # Stores HTML unordered list (ul) with models names. Starts the '<ul>' HTML element text
-        # Loop over all models names
-        print('Creating models links (it takes some time)...')
-        for n, i in enumerate(temp):
-            if i.text_content() in headings: # Ignore duplicates
-                continue
-            headings.append(i.text_content())
-            links += f"""<li><a href="https://huggingface.co/{i.text_content()}" target="_blank">{i.text_content().split('/')[-1]}</a></li>"""
-            print(n + 1, end="\r") # Display progress           
-        links += "</ul>" # Finish the '<ul>' HTML tag
-        browser.close()
-        print('Finished!')
-
-# read_aloud('Usar comandos por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim.')
-
-# voice_mode = input('Usar comandos por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim: ')
-# if voice_mode.lower() == '':
-#     voice_mode = False
-#     leaning_mode_interatcive = True
-#     read_aloud('Comando por voz não selecionado.')
-# else:
-#     voice_mode = True
-#     leaning_mode_interatcive = False
-#     read_aloud('Comando por voz selecionado.')
-
-# read_aloud('Abrindo interface no navegador')
-
-# temp = input('DOWNLOAD MODELS LINKS?\t (y + ENTER for YES or just ENTER for NO): ')
-# if 'y' not in temp.lower():
-#     pass
-# else:
-#     headless_mode = input('OPEN BROWSER IN VISIBLE MODE? (y + ENTER for YES or just ENTER for NO): ')
-#     if 'y' not in headless_mode.lower():
-#         headless_mode = True
-#     else:
-#         headless_mode = False
-#     try:
-#         scrap_the_block_repository(headless_mode) # Function call. Update global variable 'links' and 'headings'
-#     except Exception as e: # Turn off internet conection to test
-#         print()
-#         print("Unable to get models links from https://huggingface.co/TheBloke")
-#         print(traceback.format_exc()) # Print error message in terminal
-#         print()
-#         links = """<ul><li>Unable to download models's links from <a href="https://huggingface.co/TheBloke">https://huggingface.co/TheBloke</a></li></ul>""" # Displayed on bottom page
-print() 
 
 # =====================
 # GET LOCAL MDDELS LIST
 # =====================
 
-# model_path = glob.glob(fr'{diretorio}\*.gguf') # Create a list with paths to all GGUF files paths saved in the current directory, if existent.
-# models = [i.split('\\')[-1] for i in model_path] # Create a list with local GGUF file names for use on initialization
+# models = []
 
-models = []
+
 def get_downloads_path():
-    home_dir = os.path.expanduser('~') # Get path to "Downloads" directory for the current user
-    model_path = os.path.join(home_dir, 'Downloads')
-    # temp = glob.glob(fr'{model_path}\*.gguf')
-    # models = [i.split('\\')[-1] for i in temp] # Create a list with local GGUF file names for use on initialization
-    if os.path.exists(model_path): # Check if "Downloads" directory exists
-        return model_path
-    else:
-        return None
+    """
+    Retrieves the absolute path to the user's Downloads directory.
 
-model_path = get_downloads_path()
-if model_path:
+    This function first expands the tilde (~) to the user's home directory, then constructs
+    the full path to the Downloads folder within the home directory. It checks if the Downloads
+    directory exists before returning the path. If the directory does not exist, it returns None.
+
+    Returns: 
+        str or None: The absolute path to the user's Downloads directory if it exists, otherwise None.
+    """
+    home_dir = os.path.expanduser('~')                  # Get the path to the "Downloads" directory for the current user by expanding the tilde (~) to the home directory
+    model_path = os.path.join(home_dir, 'Downloads')    # Construct the full path to the Downloads folder within the home directory
+    if os.path.exists(model_path):                      # Check if the "Downloads" directory exists at the constructed path
+        return model_path                               # If it does exist, return the absolute path to the Downloads directory
+    else:
+        return None                                     # If the Downloads directory does not exist, return None to indicate that the path is not 
+
+
+model_path = get_downloads_path()                       # Retrieve the absolute path to the user's Downloads directory by calling the `get_downloads_path` function. This function returns the path if it exists, or `None` if it does not.
+if model_path:                                          # Check if the path to the Downloads folder was successfully retrieved. If `model_path` is truthy (i.e., a non-empty string), print the full path to the 'Downloads' folder. Otherwise, if `model_path` is falsy (i.e., `None`), inform the user that the Downloads folder was not found.
     print(f"The path to the 'Downloads' folder is: {model_path}")
 else:
     print("The 'Downloads' folder was not found.")
 
-gguf_files = glob.glob(fr'{model_path}\*.gguf') # Create a list with paths to all GGUF files paths saved in the current directory, if existent.
-models = [i.split('\\')[-1] for i in gguf_files] # Create a list with local GGUF file names for use on initialization
+
+gguf_files = glob.glob(fr'{model_path}\*.gguf')         # Define the path pattern to match all files with the '.gguf' extension in the specified directory.
+models = [i.split('\\')[-1] for i in gguf_files]        # Create a list with paths to all GGUF files in the current directory if they exist. The glob.glob function returns a list of file paths matching the pattern. # Populate the 'models' list with local file names (without the full path) extracted from the 'gguf_files' list.
 print()
 print('Models:')
-for n, i in enumerate(models):
+for n, i in enumerate(models):                          # Enumerate over the 'models' list, displaying each model's index (n + 1) and name.
     print(n + 1, i)
 print()
 
@@ -429,30 +493,44 @@ reset_mode = False       # Reset model for each prompt of the chaining (Checkbox
 audio = None             # Stores pygame audio object
 
 
-read_aloud_fn('Ativar comando por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim.')
+if 'portuguese' in voices[0].name.lower():
+    print('Ativar comando por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
+    read_aloud_fn('Ativar comando por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
 
-try: # Some keys raise EOF Error
-    voice_mode = input('Ativar comando por voz? Aperte ENTER para não ou qualquer outra tecla + ENTER para sim: ')
-except:
-    voice_mode = 'y'
-if voice_mode.lower() == '':
-    voice_mode = False
-    leaning_mode_interatcive = True
-    print('Comando por voz desativado.')
-    read_aloud_fn('Comando por voz desativado.')
+    try: # Some keys raise EOF Error
+        voice_mode = input()
+    except:
+        voice_mode = 'y'
+    if voice_mode.lower() == '':
+        voice_mode = False
+        leaning_mode_interatcive = True
+        print('Controle por voz desativado.')
+        read_aloud_fn('Controle por voz desativado.')
+    else:
+        voice_mode = True
+        leaning_mode_interatcive = False
+        print('Controle por voz ativado.')
+        read_aloud_fn('Controle por voz ativado.')
+        read_aloud = True
+
+    print()
+    print('Abrindo interface no navegador...')
+    read_aloud_fn('Abrindo interface no navegador...')
+
 else:
-    voice_mode = True
-    leaning_mode_interatcive = False
-    print('Comando por voz ativado.')
-    read_aloud_fn('Comando por voz ativado.')
-    read_aloud = True
-
-print()
-print('Abrindo interface no navegador')
-read_aloud_fn('Abrindo interface no navegador')
-
-
-
+    try: # Some keys raise EOF Error
+        voice_mode = input('Activate voice control? Press ENTER for no or any other key + ENTER for yes: ')
+    except:
+        voice_mode = 'y'
+    if voice_mode.lower() == '':
+        voice_mode = False
+        leaning_mode_interatcive = True
+        print('Voice control disabled.')
+    else:
+        voice_mode = True
+        leaning_mode_interatcive = False
+        print('Voice control activated.')
+        read_aloud = True
 
 
 # ===============================
@@ -560,7 +638,6 @@ def text_generator(
     if stop_generation == '':
         stop_generation = "['$$$']" # To avoid error, set the variable with an impossible character sequence
 
-
     if delay_next_token != 'OFF': # To avoid erro on generating barplot with high number of logits score on Learning Mode
         max_tokens = 100
 
@@ -582,12 +659,6 @@ def text_generator(
             previous_answer = ultima_resposta
     else:
         previous_answer = prev_answer
-
-
-
-
-
-
 
     if models == None: # When selected a directory without GGUF file
         yield 'Select a directory containing UGGF file.' # Use simple sentence
@@ -1137,6 +1208,10 @@ def clean_output(): # Clear Output button: clear output text
     resposta = ''
     ultima_resposta = ''
 
+    html_files = glob.glob('*.html') # Delete all html files in current folder
+    for file in html_files:
+        os.remove(file)
+
     # IN TEST
     with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
         pass
@@ -1466,10 +1541,23 @@ def launch_notebook():
     subprocess.Popen([python_path]) # Open JupyterLab
 
 
+# def run_code(code: str): # Cria um arquivo .py no diretório local
+#     if 'runthecode' in prompt.lower() or 'runthecode' in previous_answer.lower():
+#         html_files = glob.glob('*.html')
+#         for file in html_files:
+#             os.remove(file)
+#         file_name = "code.py"
+#         with open(file_name, "w") as file:
+#             file.write(code)
+#         try:
+#             subprocess.run(["python", file_name]) # Executa o arquivo .py via terminal
+#         finally:
+#             os.remove(file_name) # Remove o arquivo .py temporário
+
+        
 def copy_code():
     click.play()
     padrao = r"```(.*?)\n(.*?)```"
-    
     #codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
     if infinite_loop == True: # If feedback loop is ON
         codigos = re.findall(padrao, previous_answer, re.DOTALL) # Copy code from previous response (after sinete sounds)
@@ -1482,6 +1570,17 @@ def copy_code():
         resultado.append(f"#{linguagem}\n{conteudo}")
     temp = "\n".join(resultado)
     pyperclip.copy(temp)
+
+    # if read_aloud == True:
+    #     try:
+    #         run_code(temp)
+    #     except Exception as e:
+    #         print('ERROR in run_code function:', traceback.format_exc())
+        
+
+
+
+
 
 
 def copy_all_responses():
@@ -1863,11 +1962,11 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             # temp6 = language['user_prompt_info']
 
             inputs = [ # ATENTION! This list MUST follows the function 'text_generator' parameters sequence
-                gr.Textbox(value=system_prompt, lines=1, label='SYSTEM prompt', info=language['system_prompt_info'], elem_classes='prompt', interactive=True),
+                gr.Textbox(value=system_prompt, lines=1, label='SYSTEM prompt', info=language['system_prompt_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Checkbox(value=infinite_loop, label='Feedback Loop / Chat Mode', info=language["feedback_loop_info"], interactive=True),
-                gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True),
-                gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True),
-                gr.Textbox(value=current_ia_response, lines=1, label="ASSISTANT current response", info=language['assistant_current_response_info'], elem_classes='prompt', interactive=True),
+                gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
+                gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
+                gr.Textbox(value=current_ia_response, lines=1, label="ASSISTANT current response", info=language['assistant_current_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 
                 # gr.Dropdown(choices=models, value=sel_model, multiselect=True, allow_custom_value=True, label="Models selection", info='Selects the Large Language Models sequence to be used (.GGUF files)', interactive=True),
                 gr.Dropdown(choices=models, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
@@ -1954,14 +2053,17 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://github.com/ydataai/ydata-profiling">Pandas Profiling</a></li>
                     <li><a href="https://github.com/fbdesignpro/sweetviz">Sweetviz</a></li>
                     <li><a href="https://github.com/man-group/dtale">D-Tale</a></li>
+                    <li><a href="https://dataprep.ai/">DataPrep</a></li>
+
+
                     <li><a href="https://pandas.pydata.org/">Pandas</a></li>
                     <li><a href="https://pymupdf.readthedocs.io/en/latest/">PyMuPDF</a></li>
                     <li><a href="https://playwright.dev/python/docs/intro">Playwright</a></li>
                     <li><a href="https://pypi.org/project/beautifulsoup4/">Beautifulsoup4</a></li>
 
                     </ul>""")
-            #gr.HTML(f'<br><h6><b>Available GGUF models to download ({len(headings)}):</b></h6>')
-            gr.HTML(links)
+            # gr.HTML(f'<br><h6><b>Available GGUF models to download ({len(headings)}):</b></h6>')
+            # gr.HTML(links)
 
 
         # =====================
