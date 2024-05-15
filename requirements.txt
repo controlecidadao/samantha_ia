@@ -18,7 +18,7 @@ vosk==0.3.45
 sounddevice==0.4.6
 pyvis==0.3.2
 networkx==3.3
-dataprep==0.4.5
+#dataprep==0.4.5 # ImportError: cannot import name 'RootModel' from 'pydantic'
 
 # Dependencies
 python-editor==1.0.4
