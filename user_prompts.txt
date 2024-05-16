@@ -1,6 +1,27 @@
 $$$
 $-$-$
 
+[<question> = QUESTION?
+]
+
+You are an AI expert in creating prompts for AI.
+Applying the principles of reverse engineering to text production, create a prompt for an AI to answer the following question in the clearest and most objective way: <question>
+Don't answer the question. Just create the prompt for the AI.
+The prompt must assign to the AI ​​the persona of an expert in the field of knowledge with the necessary qualifications to provide a "perfect answer", in the broadest sense of that expression.
+Include key concepts related to the topic in the prompt to guide the AI's response.
+Structure the prompt in the most didactic way possible.
+Guide the AI ​​to use the most appropriate language for the topic.
+Remember: don't answer the question. Just create the prompt for the AI.
+$$$
+
+Using the prompt from your previous answer, answer the following question:
+<question>
+$$$
+
+Translate your previous answer into Portuguese, preserving all aspects of the original text.
+$$$
+$-$-$
+
 O que é Análise Crítica do Discurso? Ela pode ser aplicada a qualquer texto escrito? Explique em detalhes usando linguagem culta e sofisticada.
 $-$-$
 
