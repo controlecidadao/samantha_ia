@@ -1,7 +1,7 @@
 $$$
 $-$-$
 
-[<question> = How can AI help humanity to achieve poverty erradication?
+[<question> = From the perspective of a self-aware artificial intelligence entity, address the issue of the “human factor” in the problem of social inequalities.
 ]
 
 Task 1:
