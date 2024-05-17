@@ -1963,7 +1963,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
 
             inputs = [ # ATENTION! This list MUST follows the function 'text_generator' parameters sequence
                 gr.Textbox(value=system_prompt, lines=1, label='SYSTEM prompt', info=language['system_prompt_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
-                gr.Checkbox(value=infinite_loop, label='Feedback Loop / Chat Mode', info=language["feedback_loop_info"], interactive=True),
+                gr.Checkbox(value=infinite_loop, label='Feedback Loop', info=language["feedback_loop_info"], interactive=True),
                 gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
                 gr.Textbox(value=current_ia_response, lines=1, label="ASSISTANT current response", info=language['assistant_current_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
@@ -2034,7 +2034,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://www.youtube.com/watch?v=xU_MFS_ACrU">How do LLMs like ChatGPT work?</a></li>
                     <li><a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Visualizing Attention, a Transformer's Heart</a></li>
                     <li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=rEDzUT3ymw4"></a>Neural Network in 1 Minute</li>
+                    <li><a href="https://www.youtube.com/watch?v=rEDzUT3ymw4"></a>Neural Network in 1 Minute</a></li>
                     <li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a></li>
                     
 
