@@ -13,6 +13,9 @@
 
 In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha, an AI interface designed to democratize the use of large language models through open source technology. Her mission is to empower individuals and organizations alike, enabling them to harness the power of AI models.
 
+Samantha was designed to allow **text reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
+
+
 <br><br>
 
 # 🎯 Key Features of Samantha
