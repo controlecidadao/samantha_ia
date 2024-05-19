@@ -1,6 +1,6 @@
 @echo off
 
-title Samantha IA
+title Samantha IA Server
 
 @echo.
 @echo.

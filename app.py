@@ -494,8 +494,8 @@ audio = None             # Stores pygame audio object
 
 
 if 'portuguese' in voices[0].name.lower():
-    print('Ativar comando por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
-    read_aloud_fn('Ativar comando por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
+    print('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
+    read_aloud_fn('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
 
     try: # Some keys raise EOF Error
         voice_mode = input()
@@ -660,6 +660,10 @@ def text_generator(
     else:
         previous_answer = prev_answer
 
+
+    # previous_answer = previous_answer.replace('[', '(').replace(']', ')')
+
+
     if models == None: # When selected a directory without GGUF file
         yield 'Select a directory containing UGGF file.' # Use simple sentence
         return
@@ -759,7 +763,7 @@ def text_generator(
                 except Exception as e:
                     yield 'Error on trying to load model. Try another model.' 
                     print(traceback.format_exc())
-                    return                
+                    return                               
                 temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
                 vocabulary = ''
                 for n, x in enumerate(temp):
@@ -798,23 +802,30 @@ def text_generator(
                 
             # FINAL-PROMPT: Prompt to be used as the final prompt in a list of prompts, with the 'full_text' variable
             # Extract FINAL-PROMPT text from the prompt (text between [[ ]]). Final-prompt must be placed in the beginning of the text, BEFORE pre-prompt.
-            if len(re.findall(r'\[\[(.*?)\]\]', prompt)) >= 1:
-                final_prompt = re.search(r'\[\[(.*?)\]\]', prompt).group(0)
+            temp = r'\[\[[\r\n]*([\s\S]*?)[\r\n]*\]\]'
+            # if len(re.findall(r'\[\[([\s\S]*?)\]\]', prompt)) >= 1:
+            if len(re.findall(temp, prompt)) >= 1:
+                final_prompt = re.search(temp, prompt).group(0)
                 final_prompt = final_prompt.replace('[[', '').replace(']]', '')#[1:-1] # Delete []
                 final_prompt = final_prompt.replace('\n', ' ')
                 final_prompt = final_prompt + '\n\n'
-                prompt = re.sub(r'\[\[(.*?)\]\]', '', prompt) # Delete pre-prompt phrase from the prompt text
+                prompt = re.sub(temp, '', prompt) # Delete pre-prompt phrase from the prompt text
             else:
                 final_prompt = ''
                 
             # PRE-PROMPT: Prompt to be used for each each paragraph in a list of prompt separated by '\n'
             # Extract PRE-PROMPT text from the prompt (text between [ ]). Pre-prompt must be placed in the beginning of the text
-            if len(re.findall(r'\[(.*?)\]', prompt)) >= 1:
-                pre_prompt = re.search(r'\[(.*?)\]', prompt).group(0)
+            
+            # temp = re.findall(r'\[(.*?)\]', prompt)
+            temp = re.findall(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt)
+            if len(temp) >= 1:
+                # pre_prompt = re.search(r'\[(.*?)\]', prompt).group(0)
+                pre_prompt = re.search(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt).group(0)
                 pre_prompt = pre_prompt.replace('[', '').replace(']', '')#[1:-1] # Delete []
                 pre_prompt = pre_prompt.replace('\n', ' ')
                 pre_prompt = pre_prompt + '\n\n'
-                prompt = re.sub(r'\[(.*?)\]', '', prompt) # Delete pre-prompt phrase from the prompt text
+                # prompt = re.sub(r'\[(.*?)\]', '', prompt) # Delete pre-prompt phrase from the prompt text
+                prompt = re.sub(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', '', prompt)
             else:
                 pre_prompt = ''
 
@@ -822,6 +833,8 @@ def text_generator(
             # Split prompt criterias
             if '$$$' in prompt: # First: look for $$$ in the prompt text (priority)
                 prompt_split = prompt.split('$$$\n') # Creates a list of prompts when $$$ is present on user input field
+
+                # prompt_split = [x + '\n' + pre_prompt for x in prompt_split] # Include pre-prompt in each prompt splited with "$$$"
             
             else: # Second: separetes by '\n', if prompt text has no $$$ in the text
                 prompt_split = prompt.split('\n')
@@ -921,7 +934,7 @@ def text_generator(
                             logits_processor = None,
                             grammar = None,
                         )):
-
+                       
                         #print(i)
                         
                         # Examples of i:
@@ -1135,8 +1148,9 @@ def text_generator(
 
                 # MAIN EXCEPT
                 except Exception as e:
-                    resposta = resposta + '\n\n' + '********************************\n' + traceback.format_exc()
+                    resposta = resposta + '\n\n' + '********************************\n' + traceback.format_exc() + '********************************\n\n' + 'No problem! You just reached the context window limit (n_ctx). Unload the model, increase the context window limit, and try again.\n\n'
                     yield resposta # Returns response with error message and display it on output interface
+                    return
             
                 if infinite_loop == True: # Update previous response. The existance of text in previous response affects the next text generation time
                     previous_answer = ultima_resposta
@@ -1558,11 +1572,15 @@ def launch_notebook():
 def copy_code():
     click.play()
     padrao = r"```(.*?)\n(.*?)```"
+
     #codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
-    if infinite_loop == True: # If feedback loop is ON
-        codigos = re.findall(padrao, previous_answer, re.DOTALL) # Copy code from previous response (after sinete sounds)
-    else:
-        codigos = re.findall(padrao, ultima_resposta, re.DOTALL) # Copy code from output field (possible during code generation)
+
+    codigos = re.findall(padrao, full_text, re.DOTALL)
+
+    # if infinite_loop == True: # If feedback loop is ON
+    #     codigos = re.findall(padrao, previous_answer, re.DOTALL) # Copy code from previous response (after sinete sounds)
+    # else:
+    #     codigos = re.findall(padrao, ultima_resposta, re.DOTALL) # Copy code from output field (possible during code generation)
 
     resultado = []
     for codigo in codigos:
@@ -1852,6 +1870,70 @@ def speech_to_text(*inputs):
         parser.exit(type(e).__name__ + ": " + str(e))
 
 
+
+
+# Function inside Gradio Blocks for trying to solve an exporadic Tkinter error: "RuntimeError: main thread is not in main loop"
+def extract_models_names(): # Load Model button: open window to choose directory with LLM files
+    global model_path
+    global models
+    global last_models_list
+    global last_diretorio
+    global last_model
+    # ==================================
+    import tkinter as tk # To create a window for selecting directories and files. Imported here to avoid "Tcl_AsyncDelete: async handler deleted by the wrong thread" error
+    click.play()
+    root = tk.Tk()
+    root.withdraw()
+    root.attributes('-topmost', True) # Root window on the topmost
+    while True: # IN TEST
+        try:
+            diretorio = tk.filedialog.askdirectory() # Raising "RuntimeError: main thread is not in main loop"
+            break
+        except Exception as e:
+            print('ERROR IN tk.filedialog:', traceback.format_exc())
+            del root
+            del tk
+            return gr.Dropdown(choices=last_models_list, value=models[0])
+    root.destroy()
+    del root
+    del tk
+    # ==================================
+    diretorio = diretorio.replace('/', '\\')
+    if diretorio == '':
+        # diretorio = last_diretorio
+        # SE TENTAR SELECIONAR DUAS VEZES E CANCELAR A SELEÇÃO, DÁ ERRO NA SEGUNDA (USING DEBUG MODE)
+        try:
+            if last_model == '':
+                return gr.Dropdown(choices=last_models_list, value=models[0])
+            else:
+                return gr.Dropdown(choices=last_models_list, value=last_model)
+        except:
+            return gr.Dropdown(choices=[''], value='') # Included to avoid 'out of range' list error
+    last_diretorio = diretorio
+    
+    model_path = diretorio
+
+    # model_path = glob.glob(fr'{diretorio}\*.gguf') # Create .uggf files path list to the selected directory. Update global variable (ok?)
+    # models = [i.split('\\')[-1] for i in model_path] # Create list only with files names. Upadte global variable
+    
+    temp = glob.glob(fr'{model_path}\*.gguf') # Create .uggf files path list to the selected directory. Update global variable (ok?)
+    models = [i.split('\\')[-1] for i in temp] # Create list only with files names. Upadte global variable
+    
+    print('models:', models, 'type:', type(models))
+    print()
+    last_models_list = models
+    
+    if len(models) == 1: # Update models dropdowm widget
+        return gr.Dropdown(choices=models, value=models)
+    elif len(models) > 1:
+        return gr.Dropdown(choices=models, value=models[0])
+
+
+
+
+
+
+
 # MODO VOICE CHAT
 # if read_aloud == False:
 #     new_fn = None
@@ -1873,61 +1955,6 @@ css = """
 """
 
 with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
-    # Function inside Gradio Blocks for trying to solve an exporadic Tkinter error: "RuntimeError: main thread is not in main loop"
-    def extract_models_names(): # Load Model button: open window to choose directory with LLM files
-        global model_path
-        global models
-        global last_models_list
-        global last_diretorio
-        global last_model
-        # ==================================
-        import tkinter as tk # To create a window for selecting directories and files. Imported here to avoid "Tcl_AsyncDelete: async handler deleted by the wrong thread" error
-        click.play()
-        root = tk.Tk()
-        root.withdraw()
-        root.attributes('-topmost', True) # Root window on the topmost
-        while True: # IN TEST
-            try:
-                diretorio = tk.filedialog.askdirectory() # Raising "RuntimeError: main thread is not in main loop"
-                break
-            except Exception as e:
-                print('ERROR IN tk.filedialog:', traceback.format_exc())
-                del tk
-                return gr.Dropdown(choices=last_models_list, value=models[0])
-        root.destroy()
-        del root
-        del tk
-        # ==================================
-        diretorio = diretorio.replace('/', '\\')
-        if diretorio == '':
-            # diretorio = last_diretorio
-            # SE TENTAR SELECIONAR DUAS VEZES E CANCELAR A SELEÇÃO, DÁ ERRO NA SEGUNDA (USING DEBUG MODE)
-            try:
-                if last_model == '':
-                    return gr.Dropdown(choices=last_models_list, value=models[0])
-                else:
-                    return gr.Dropdown(choices=last_models_list, value=last_model)
-            except:
-                return gr.Dropdown(choices=[''], value='') # Included to avoid 'out of range' list error
-        last_diretorio = diretorio
-        
-        model_path = diretorio
-
-        # model_path = glob.glob(fr'{diretorio}\*.gguf') # Create .uggf files path list to the selected directory. Update global variable (ok?)
-        # models = [i.split('\\')[-1] for i in model_path] # Create list only with files names. Upadte global variable
-        
-        temp = glob.glob(fr'{model_path}\*.gguf') # Create .uggf files path list to the selected directory. Update global variable (ok?)
-        models = [i.split('\\')[-1] for i in temp] # Create list only with files names. Upadte global variable
-        
-        print('models:', models, 'type:', type(models))
-        print()
-        last_models_list = models
-        
-        if len(models) == 1: # Update models dropdowm widget
-            return gr.Dropdown(choices=models, value=models)
-        elif len(models) > 1:
-            return gr.Dropdown(choices=models, value=models[0])
-
     # Imange
     # gr.HTML("""
     #         <img id="overlay-image" src="https://pngfre.com/wp-content/uploads/butterfly-27-1024x688.png" alt="Imagem no Canto Superior Esquerdo" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
@@ -1979,12 +2006,12 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Radio(['OFF', 1, 3, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
-                gr.Slider(0, 30000, 4000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
-                gr.Slider(0, 30000, 2000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
-                gr.Slider(0, 5, 1, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0, 30000, 6000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
+                gr.Slider(0, 30000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
+                gr.Slider(0, 5, 0.5, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(1e-5, 1, 1, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
-                gr.Slider(1e-6, 1, 0.3, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
+                gr.Slider(1e-5, 1, 0.5, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
+                gr.Slider(1e-6, 1, 0.5, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
                 gr.Slider(1, 150000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
