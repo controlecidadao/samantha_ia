@@ -229,7 +229,7 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Models
 
-* [Microsoft/Phi-3-mini-4k-instruct-gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf)) (**3.8 billion** parameters model from Microsoft)
+* [Microsoft/microsoft/Phi-3-mini-128k-instruct-GGUF](https://huggingface.co/microsoft/Phi-3-mini-128k-instruct) (**3.8 billion** parameters model from Microsoft)
 
 * [TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF) ( **7 billion** parameters model from Mistral)
 
