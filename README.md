@@ -47,8 +47,6 @@ Samantha was designed to allow **text reverse prompt engineering with self-impro
 **Our Vision:**
 Samantha is more than just an AI interface; it's a movement towards a future where artificial intelligence is not a privilege but a tool for all. We envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
 
->_“AI will not replace humans – but humans with AI will replace humans without AI. The places where you can apply it? Well, where do you apply thinking?”_ ([Karim Lakhani](https://hbr.org/2023/08/ai-wont-replace-humans-but-humans-with-ai-will-replace-humans-without-ai))
-
 **Use Responsibly:**
 As we embrace the power of these models, let's remember that the generated text reflects the content, biases, and errors present in their training datasets. We encourage responsible use of Samantha for insights only, always keeping ethical considerations at the forefront of our interactions with AI.
 
