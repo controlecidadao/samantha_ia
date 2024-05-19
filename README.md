@@ -212,6 +212,13 @@ Prompt template: **Mistral**
 [INST] {prompt} [/INST]
 ```
 
+Prompt template: **Microsoft Phi-3**
+```
+<|user|>
+{prompt}<|end|>
+<|assistant|>
+```
+
 Prompt template: **Unknown**
 ```
 {prompt}
