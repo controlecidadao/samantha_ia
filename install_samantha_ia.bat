@@ -1,5 +1,47 @@
 @echo off
 
+
+setlocal
+
+:inicio
+cls
+echo.
+echo Bem-vindo!
+echo.
+echo Deseja instalar Samantha IA?
+echo.
+echo 1. Sim
+echo 2. Nao
+echo.
+set /p opcao="Digite sua opcao (1 ou 2): "
+
+if "%opcao%"=="1" (
+    goto continuar
+) else if "%opcao%"=="2" (
+    echo.
+    echo Encerrando o programa...
+    echo.
+    pause
+    exit
+) else (
+    echo.
+    echo Opcao invalida!
+    echo.
+    pause
+    goto inicio
+)
+
+:continuar
+echo.
+echo Continuando a execucao...
+echo.
+:: Coloque aqui o restante do seu código que deve ser executado
+pause
+
+:endlocal
+
+
+
 @echo.
 chcp 65001
 @echo.

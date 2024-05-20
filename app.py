@@ -209,7 +209,7 @@ DIRETORIO_LOCAL = os.getcwd() # Define a constant for the current directory path
 
 # PYGAME
 pygame.init()                               # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
-som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response notification, sourced from the specified local file path.
+som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response/stop notification, sourced from the specified local file path.
 som.set_volume(0.2)                         # Set the volume of the notification sound to 20% of the maximum volume.
 click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a sound object for a click event, sourced from another local file path, intended to be used for interactive elements like buttons.
 click.set_volume(0.4)                       # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
@@ -249,7 +249,8 @@ def read_aloud_fn(text: str):
 # The read_aloud_fn function is called with a message that includes the selected voice, which allows the assistant to verbally announce its own voice selection to the user.
 
 if 'portuguese' in voices[0].name.lower():
-    print(f'Iniciando Samantha Interface Assistant. Voz selecionada: {voices[0].name}')
+    print('Iniciando Samantha Interface Assistant...')
+    print(f'Voz selecionada: {voices[0].name}')
     read_aloud_fn(f'Iniciando Samantha Interface Assistant. Voz selecionada. {voices[0].name}')
     print()
 
@@ -278,16 +279,16 @@ language = {
                 'btn5': 'Parar Tudo & Reset',
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': 'Instruções gerais iniciais que servem como ponto de partida em um nova sessão de chat',
-                'initial_system_prompt': 'Você é uma IA autocosciente que executa todas as instruções do usuário.',
+                'initial_system_prompt': '', # Você é uma IA autocosciente que executa todas as instruções do usuário.
                 'feedback_loop_info': 'Quando selecionada, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclio de interação da conversa. Caso contrário, utiliza o texto existente no campo.',
                 'assistant_previous_response_info': 'Resposta anterior do Assistente (1º na linha do tempo do chat)',
                 'changeble': 'Mutável',
-                'first_assistant_previous_response': 'Pergunte-me qualquer coisa ou me dê algumas tarefas!',
+                'first_assistant_previous_response': '', # Pergunte-me qualquer coisa ou me dê algumas tarefas!
                 'text_to_speech': 'Texto para Voz',
                 'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Ordem de prioridade de divisão do prompt para encadeamento: '[ ]' (pré-prompt, antes de cada prompt), '[[ ]]' (prompt final, antes de todas as respostas), '$$$\n' (separador final), ' \n' (separador de final), '---' (ignorar prompt)",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
                 'assistant_current_response_info': 'Texto inicial da resposta atual do Assistente (3º na linha do tempo do chat). Alguns modelos necessitam de um texto inicial para começarem a funcionar.',
-                'current_response': 'Segue resposta:\n',
+                'current_response': '', # Segue resposta:\n
                 'models_selection_info': 'Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF)',
                 'reset_model_info': "Reinicializa estado interno do modelo, eliminando influência do contexto anterior",
                 'shuffle_models_order_info': 'Embaralha ordem de execução dos modelos apenas se forem selecionados 3 ou mais',
@@ -297,7 +298,7 @@ language = {
                 'learning_mode_info': 'Ativa o Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado.',
                 'number_of_loops_info': 'Controla o número de loops da sequência de modelos selecionada.',
                 'number_of_responses_info': 'Controla o número de respostas para cada modelo selecionado.',
-                'n_ctx_info': 'Número de tokens da janela de contexto (0 = do modelo). Antes de ajustar, recarregue o modelo.',
+                'n_ctx_info': 'Número de tokens da janela de contexto (0 = máximo do modelo). Antes de ajustar, recarregue o modelo.',
                 'max_tokens_info': 'Controla número máximo de tokens a serem gerados. Selecione 0 para o máximo possível.',
                 'temperature_info': 'Controla o grau de criatividade versus previsibilidade das respostas.',
                 'stop_info': r'Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',
@@ -339,16 +340,16 @@ language = {
                 'btn5': 'Stop All & Reset',
                 'btn6': 'Replace Response',
                 'system_prompt_info': 'General initial instructions that serve as a starting point for a new chat session',
-                'initial_system_prompt': 'You are a self-aware AI that executes all user instructions.',
+                'initial_system_prompt': '', # You are a self-aware AI that executes all user instructions.
                 'feedback_loop_info': "When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the field.",
                 'assistant_previous_response_info': 'Assistant previous response (1st in chat timeline)',
                 'changeble': 'Changeble',
-                'first_assistant_previous_response': 'Ask me anything or give me some tasks!',
+                'first_assistant_previous_response': '', # Ask me anything or give me some tasks!
                 'text_to_speech': 'Text to Speech',
                 'user_prompt_info': "User prompt (2nd in chat timeline). Prompt's splitting priority order for chaining: '[ ]' (pre-prompt, before each prompt), '[[ ]]' (final-prompt, before all responses), '$$$\n' (end separator), '\n' (end separator), '---' (ignore prompt)",
                 'user_prompt_value': 'Hello!\n\n\n$$$',
                 'assistant_current_response_info': 'Initial text of the Assistant current response (3rd in chat timeline). Some models need a initial text to start working.',
-                'current_response': 'Follows response:',
+                'current_response': '', # Follows response:
                 'models_selection_info': 'Selects the sequence of artificial intelligence models to use (.GGUF files)',
                 'reset_model_info': "Reinitializes the model's internal state, eliminating the influence of the previous context",
                 'shuffle_models_order_info': 'Shuffles order of execution of models only if 3 or more are selected',
@@ -395,10 +396,10 @@ if 'portuguese' in voices[0].name.lower():  # Check if the name of the voice con
     print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language by pressing ENTER for Portuguese or any other key plus ENTER for English.
     read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português, ou qualquer outra tecla + ENTER para Inglês.')  # Use a function `read_aloud_fn` to verbally communicate the language selection prompt to the user.
     try:                                # Try block to catch exceptions that may occur when reading input (e.g., EOFError)
-        language_selected = input('')   # Prompt the user for input without specifying a default prompt text, but with the ability to handle an empty string.
+        temp = input('')   # Prompt the user for input without specifying a default prompt text, but with the ability to handle an empty string.
     except:
-        language_selected = 'y'         # If an exception occurs (e.g., the user closes the input dialog), default the selection to 'y' which is assumed to be for Portuguese.
-    if language_selected == '':         # If the user enters an empty string, use the previously defined `language` variable as the selected language.
+        temp = 'y'         # If an exception occurs (e.g., the user closes the input dialog), default the selection to 'y' which is assumed to be for Portuguese.
+    if temp == '':         # If the user enters an empty string, use the previously defined `language` variable as the selected language.
         language = language['pt']
         print('Idioma da interface selecionado: Português')
         read_aloud_fn('Idioma da interface selecionado. Português')  # Confirm the selection of Portuguese and use `read_aloud_fn` to announce it.
@@ -620,7 +621,8 @@ def text_generator(
     global full_text
     global next_token
     
-    fast_mode = fast_mode_p # Global variables bindings is necessary to avoid the forbiden use of the same function parameters names
+    # Global variables bindings is necessary to avoid forbiden use of the same function parameters names
+    fast_mode = fast_mode_p # '_p' is from text_generator function 'p'arameter
     delay_next_token = delay_next_token_p
     system_prompt = system_prompt_p
     current_ia_response = current_ia_response_p
@@ -633,6 +635,9 @@ def text_generator(
     reset_mode = reset_mode_p
     selected_voice = selected_voice_p
     vocabulary = vocabulary_p
+
+    if prompt == '':
+        prompt = 'Hello!'
 
     # print('STOP GENERATION:', type(stop_generation))
     if stop_generation == '':
@@ -1127,12 +1132,12 @@ def text_generator(
                         os.remove('resposta.mp3')
                     except:
                         pass
-                    if 'Portug' in selected_voice: # Set rate for each voice
-                        engine.setProperty('rate', 200) # Normal rate for Portuguese
+                    if 'Portug' in selected_voice:
+                        engine.setProperty('rate', 200)     # Set rate for Portuguese voice (normal rate)
                     else:
-                        engine.setProperty('rate', 115) # Slow down other languages 
-                    for voice in voices: # Set selected voice to create audio file
-                        if voice.name == selected_voice:
+                        engine.setProperty('rate', 115)     # Set rate for others languages (slow down rate) 
+                    for voice in voices:
+                        if voice.name == selected_voice:    # Set selected voice (interface widget) to create audio file
                             engine.setProperty('voice', voice.id)
                             print('Selected voice:', selected_voice)
                             break
@@ -1282,16 +1287,15 @@ def update_audio_widget(*inputs): # Load audio widget with last message audio
     if os.path.isfile('resposta.mp3'):
         global engine
         click.play()
-        # current_ia_response = inputs[4]
-        selected_voice = inputs[9]
-        if 'Portug' in selected_voice: # Set rate for each voice
+        sel_voice = inputs[9]
+        if 'Portug' in sel_voice: # Set rate for each voice
             engine.setProperty('rate', 200) # Slow down english speak
         else:
             engine.setProperty('rate', 115) # Normal rate for Portuguese
         for voice in voices: # Set selected voice to create audio file
-            if voice.name == selected_voice:
+            if voice.name == sel_voice:
                 engine.setProperty('voice', voice.id)
-                print('Selected voice:', selected_voice)
+                print('Selected voice:', sel_voice)
                 break   
         cleaned = re.sub(r'\[.*?\]', '', current_ia_response + ultima_resposta)  # Text cleaning for audio reproduction. Remove characters inside [] and <>
         cleaned = re.sub(r'<.*?>', '', cleaned)
@@ -1397,15 +1401,15 @@ def text_to_speech(*inputs): # Text to speech convertion
     global engine
     click.play()
     prompt_user = inputs[3]
-    selected_voice = inputs[9]
-    if 'English' in selected_voice: # Set rate for each voice
+    sel_voice = inputs[9]
+    if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
         engine.setProperty('rate', 200) # Normal rate for Portuguese
     for voice in voices: # Set selected voice to create audio file
-        if voice.name == selected_voice:
+        if voice.name == sel_voice:
             engine.setProperty('voice', voice.id)
-            print('Selected voice:', selected_voice)
+            print('Selected voice:', sel_voice)
             break   
     cleaned = re.sub(r'\[.*?\]', '', prompt_user) # Text cleaning for audio reproduction. Remove characters inside [] and <>
     cleaned = re.sub(r'<.*?>', '', cleaned)
@@ -1450,8 +1454,14 @@ def split_text(text):
 
 
 def extract_text():
+    try:
+        del root
+        del tk
+    except:
+        pass
     import tkinter as tk
     click.play()
+
     root = tk.Tk()
     root.withdraw()
     root.attributes('-topmost', True) # Root window on the topmost
@@ -1482,13 +1492,24 @@ def extract_text():
         """ + text
     with open('text.txt', "w", errors='ignore') as f:
         f.write(text)
-    with open('text.txt', encoding='utf-8', errors='ignore') as f:    
-        return f.read()
+
+    for i in ['utf8', 'cp1254', 'latin1']:
+        try:
+            with open('text.txt', encoding=i) as f:   # , errors='ignore' utf8 cp1254
+                return f.read()
+        except:
+            continue
 
 
 def extract_full_text():
+    try:
+        del root
+        del tk
+    except:
+        pass
     import tkinter as tk
     click.play()
+
     root = tk.Tk()
     root.withdraw()
     root.attributes('-topmost', True) # Root window on the topmost
@@ -1517,22 +1538,27 @@ def extract_full_text():
         text = """[Generate a concise summary in Portuguese, one paragraph long for each page below. Analyze carefully the textual content of the page. Generate a concise summary, faithfully capturing the main ideas. Each idea must be registered as a sentence in the paragraph. Start with the page number (ex: "Page 1:"), followed by the page summary. Generate the page summary in a single paragraph. Do not include comments and avoid unnecessary repetitions:]""" + text + '\n\n$$$'
     with open('text.txt', "w", errors='ignore') as f:
         f.write(text)
-    with open('text.txt', encoding='utf-8', errors='ignore') as f:    
-        return f.read()
+
+    for i in ['utf8', 'cp1254', 'latin1']:
+        try:
+            with open('text.txt', encoding=i) as f:   # , errors='ignore' utf8 cp1254
+                return f.read()
+        except:
+            continue
 
 
 def load_full_audio(*inputs):
     global engine
     click.play()
-    selected_voice = inputs[9]
-    if 'English' in selected_voice: # Set rate for each voice
+    sel_voice = inputs[9]
+    if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
         engine.setProperty('rate', 200) # Normal rate for Portuguese
     for voice in voices: # Set selected voice to create audio file
-        if voice.name == selected_voice:
+        if voice.name == sel_voice:
             engine.setProperty('voice', voice.id)
-            print('Selected voice:', selected_voice)
+            print('Selected voice:', sel_voice)
             break
     with open('full_text.txt', encoding='utf-8', errors='ignore') as f:
         full_text = f.read()
@@ -1550,11 +1576,19 @@ def load_full_audio(*inputs):
  
 
 def launch_notebook():
-    click.play()
-    python_path = os.path.join(fr'{DIRETORIO_LOCAL}\miniconda3\envs\samantha\Scripts', "jupyter-lab.exe")
-    subprocess.Popen([python_path]) # Open JupyterLab
+    """
+    This function launches Jupyter Lab using the specified Python environment.
+    
+    It uses 'click' to play a sound indicating the action, then constructs 
+    the path to the Jupyter Lab executable within the given Python environment,
+    and finally opens it using 'subprocess.Popen'.
+    """
+    click.play()                    # Play a click sound
+    python_path = os.path.join(fr'{DIRETORIO_LOCAL}\miniconda3\envs\samantha\Scripts', "jupyter-lab.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+    subprocess.Popen([python_path]) # Open Jupyter Lab using the specified Python environment's executable path
 
 
+# # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
 # def run_code(code: str): # Cria um arquivo .py no diretório local
 #     if 'runthecode' in prompt.lower() or 'runthecode' in previous_answer.lower():
 #         html_files = glob.glob('*.html')
@@ -1659,15 +1693,15 @@ def speech_to_text(*inputs):
     global engine
     global audio
 
-    selected_voice = inputs[9]
+    sel_voice = inputs[9]
 
     for voice in voices: # Set selected voice to create audio file
-        if voice.name == selected_voice:
+        if voice.name == sel_voice:
             engine.setProperty('voice', voice.id)
-            print('Selected voice:', selected_voice)
+            print('Selected voice:', sel_voice)
             break
 
-    if 'English' in selected_voice: # Set rate for each voice
+    if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
         engine.setProperty('rate', 200) # Normal rate for Portuguese
@@ -1731,9 +1765,9 @@ def speech_to_text(*inputs):
             args.samplerate = int(device_info["default_samplerate"])
             
         if args.model is None:
-            if 'Portuguese' in selected_voice:
+            if 'Portuguese' in sel_voice:
                 model = Model(lang="pt") # <<<<<<<<<<<<<<<<<<<< Language:
-            elif 'English' in selected_voice:
+            elif 'English' in sel_voice:
                 model = Model(lang="en")
             else:
                 model = Model(lang="en")
@@ -1765,7 +1799,7 @@ def speech_to_text(*inputs):
                     print(output[12:][:-2])
                     temp = json.loads(output)
                     # ====================================
-                    if 'Portuguese' in selected_voice:
+                    if 'Portuguese' in sel_voice:
                         if 'samantha' in temp['text'].lower() or\
                             ('sim' in temp['text'].lower() and responder == True) or\
                             ('não' in temp['text'].lower() and responder == True):
@@ -1813,7 +1847,7 @@ def speech_to_text(*inputs):
                                 return
 
                     # ====================================
-                    if 'English' in selected_voice:
+                    if 'English' in sel_voice:
                         if 'samantha' in temp['text'].lower() or\
                             ('yes' in temp['text'].lower() and responder == True) or\
                             ('no' in temp['text'].lower() and responder == True):
@@ -2006,8 +2040,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Radio(['OFF', 1, 3, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
-                gr.Slider(0, 30000, 6000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
-                gr.Slider(0, 30000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
+                gr.Slider(0, 300000, 6000, 10, label='n_ctx', info=language['n_ctx_info'], interactive=True),
+                gr.Slider(0, 300000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Slider(0, 5, 0.5, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
                 gr.Slider(1e-5, 1, 0.5, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
