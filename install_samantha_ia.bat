@@ -158,8 +158,8 @@ call pip list
 :: Instala as dependências do Ambiente Virtual 'samantha'.
 call pip install -r requirements.txt
 
-:: Instala Playwright
-call playwright install
+:: Instala Playwright (Desabilitado por erro no download do Chromium devido a restrições nos computadores corporativos)
+::call playwright install
 
 @echo Exibindo lista de bibliotecas instaladas no ambiente %CONDA_DEFAULT_ENV%
 call pip list
