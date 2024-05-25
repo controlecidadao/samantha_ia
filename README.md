@@ -15,6 +15,8 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 
 Samantha was designed to allow **text reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
 
+Thanks to its **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
+
 
 <br><br>
 
