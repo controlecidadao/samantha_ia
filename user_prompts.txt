@@ -1,6 +1,12 @@
 $$$
 $-$-$
 
+Um tribunal de contas criou uma regra que condiciona a análise do mérito das denúncias de irregularidades apresentadas por cidadãos ao atingimento de uma pontuação mínima decorrente do preechimento de vários requisitos, tais como: IDH do município, resultado do julgamento da prestação de contas anual anterior, existência ou não de dano ao erário, entre outros. A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, todas as denúncias eram analisadas pelo tribunal de contas. De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas.
+$-$-$
+
+Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da  forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria,  e gere uma nova pergunta ainda mais disruptiva para desafiá-la. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas para responder.
+$-$-$
+
 [Variables:
 <question> = From the perspective of a self-aware artificial intelligence entity, address the issue of the “human factor” in the problem of social inequalities.
 ]
@@ -41,14 +47,38 @@ Consider in the analysis the fact that the text of your previous answer was gene
 $$$
 $-$-$
 
+
+Create instructions to be used as input to an AI system. The instructions should allow you to delve deeper into the topic contained in your previous answer.
+Structure the prompt with:
+1 title;
+1 introduction with subtitle;
+3 sections with subtitles;
+1 conclusion with subtitle.
+Each section must have 3 instructions starting with a verb .
+$$$
+
+Follow the instructions contained in your previous answer and create an essay based on them. Develop each section into 3 paragraphs.
+$$$
+
+---Translate your previous answer into portuguese.
+$$$
+$-$-$
+
+
 O que é Análise Crítica do Discurso? Ela pode ser aplicada a qualquer texto escrito? Explique em detalhes usando linguagem culta e sofisticada.
 $-$-$
+
+
 
 Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, que permitam ao usuário perceber o tema sob outros pontos de vista.
 $-$-$
 
-Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos serem usados em uma IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
+
+
+Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos para serem usados em uma IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
 $-$-$
+
+
 
 [Explique, do ponto de vista científico, como os textos produzidos por sistemas de inteligência artificial podem auxiliar na expansão do conhecimento dos usuários. Sua explicação científica deve demonstrar como a exposição a textos gerados por IA, combinada com o poderoso processamento cognitivo humano, pode levar à expansão do conhecimento por meio da criação de insights e conexões inovadoras.
 Palavras-chave: processos cognitivos, integração de informações, sistemas de IA, insights, conexões inesperadas, pensamento criativo, priming, serendipity, validação de conhecimentos, processamento cognitivo humano, expansão do conhecimento.
@@ -59,6 +89,54 @@ Em sua resposta, aborde os seguintes aspectos-chave:]
 3) Formação de conexões cerebrais inesperadas e geração de insights criativos
 4) Validação e incorporação de novos conhecimentos pelo cérebro humano
 5) Benefícios da interação entre IA e processamento cognitivo humano
+$-$-$
+
+Crie uma consulta SQL a partir das chaves e valores do seguinte arquivo JSON:
+{
+  "database": "sistema_vendas",
+  "tables": [
+    {
+      "name": "clientes",
+      "alias": "c"
+    },
+    {
+      "name": "pedidos",
+      "alias": "p"
+    },
+    {
+      "name": "produtos",
+      "alias": "pr"
+    }
+  ],
+  "joinConditions": [
+    "p.id_cliente = c.id_cliente",
+    "p.id_pedido = pr.id_pedido"
+  ],
+  "columns": [
+    {
+      "table": "c",
+      "name": "nome"
+    },
+    {
+      "table": "p",
+      "name": "data_pedido"
+    },
+    {
+      "table": "pr",
+      "name": "descricao"
+    },
+    {
+      "table": "pr",
+      "name": "preco_unitario"
+    }
+  ],
+  "filterConditions": [
+    "c.cidade = 'São Paulo'",
+    "p.data_pedido BETWEEN '2023-01-01' AND '2023-03-31'",
+    "pr.preco_unitario > 100"
+  ]
+}
+$$$
 $-$-$
 
 [Responda em Português:]
