@@ -26,6 +26,10 @@ Thanks to its **emergent behavior**, with the right prompt and proper hyperparam
   
 - **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.
 
+- **Unlimited and Free Use**: Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.
+
+- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.
+
 - **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models, users can experiment with various AI capabilities, each tailored to different tasks and applications.
 
 - **Customizable Parameters**: Users have full control over model hyperparameters such as temperature, top-k, top-p, and max_tokens, allowing for fine-tuned responses that suit specific requirements.
