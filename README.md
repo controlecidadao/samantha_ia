@@ -258,7 +258,7 @@ To start running Samantha IA:
 
   A terminal window will open. This is the **server-side** of Samantha IA.
 
-  Answer the questions. Samantha IA will open in a new browser tab. This is the **browser-side**.
+  After answering the questions, Samantha IA will open in a new browser tab. This is the **browser-side**.
 
 <br><br>
 # 📝 Future Improvements
