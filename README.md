@@ -137,6 +137,7 @@ If the downloaded model doesn't fit into the available RAM space, your hard driv
 Download the chosen model and save it to your computer.
 <br><br>
 
+<!--
 ### Creating Model Prompt Template File (.txt)
 
 After downloading the model, you must create a `.txt` file with the **same name** as the model and save it in the **same directory**.
@@ -234,6 +235,7 @@ Prompt template: **Unknown**
 
 For each `.gguf` file downloaded, a new `.txt` file must be created.
 <br><br>
+-->
 
 ### Your First Models
 
