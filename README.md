@@ -96,10 +96,10 @@ To use Samantha IA you will need:
 
 # ⬇️ Downloading Large Language Models (LLM)
 
-Samantha needs 2 files to generate texts:
+Samantha needs 1 file to generate texts:
 * AI Model file (.gguf)
-* Prompt template file (.txt)
-<br><br>
+<!--* Prompt template file (.txt)-->
+<br>
 
 ### Downloading Open Source Model Files (.gguf)
 
@@ -260,8 +260,13 @@ To start running Samantha IA:
 
   For now, just press `ENTER` when you're asked if you want to download the model links. Samantha IA will open in a new browser tab. This is the **browser-side**.
 
+<br><br>
+# 📝 Future Improvements
+
+As an experimental project, Samantha has points to be corrected and improved:
+
+* Double click on
 
 <br><br><br><br>
-Samantha IA works locally and needs an internet connection only to download models.
 
 https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
