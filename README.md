@@ -258,7 +258,7 @@ To start running Samantha IA:
 
   A terminal window will open. This is the **server-side** of Samantha IA.
 
-  For now, just press `ENTER` when you're asked if you want to download the model links. Samantha IA will open in a new browser tab. This is the **browser-side**.
+  For now, just press `ENTER` to say 'NO' to the questions. Samantha IA will open in a new browser tab. This is the **browser-side**.
 
 <br><br>
 # 📝 Future Improvements
