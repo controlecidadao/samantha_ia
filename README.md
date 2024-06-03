@@ -88,7 +88,7 @@ To use Samantha IA you will need:
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file:<br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the file. Click on 'More info' and confirm):<br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
