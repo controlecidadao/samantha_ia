@@ -263,9 +263,11 @@ To start running Samantha IA:
 <br><br>
 # 📝 Future Improvements
 
-As an experimental project, Samantha has points to be corrected and improved:
+As an experimental project, Samantha has points to be improved:
 
-* Double click on
+* Create an isolated virtual environment for use with Jupyterlab to allow the installation of other Python libraries and avoid conflicts with the libraries used by Samantha;
+
+* Try other offline speech-to-text libraries with better accuracy;
 
 <br><br><br><br>
 
