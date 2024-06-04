@@ -8,7 +8,7 @@ jupyterlab==4.1.5
 pygame==2.5.2
 pyttsx3==2.90
 pandas==2.1.4
-playwright==1.41.0
+#playwright==1.41.0
 PyMuPDF==1.24.1
 vega-datasets==0.9.0
 sweetviz==2.3.1
