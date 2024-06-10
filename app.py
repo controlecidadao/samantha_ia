@@ -142,7 +142,7 @@ def read_aloud_fn(text: str):
 if 'portuguese' in voices[0].name.lower():
     print('Iniciando Samantha Interface Assistant...')
     print(f'Voz selecionada: {voices[0].name}')
-    read_aloud_fn(f'Iniciando Samantha Interface Assistant. Voz selecionada. {voices[0].name}')
+    #read_aloud_fn(f'Iniciando Samantha Interface Assistant. Voz selecionada. {voices[0].name}')
     print()
 
 
@@ -295,7 +295,7 @@ language = {
 
 if 'portuguese' in voices[0].name.lower(): # Check if the name of the voice contains the substring 'portuguese'. If it does, proceed to offer language selection.
     print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language by pressing ENTER for Portuguese or any other key plus ENTER for English.
-    read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português, ou qualquer outra tecla + ENTER para Inglês.')  # Use a function `read_aloud_fn` to verbally communicate the language selection prompt to the user.
+    #read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português, ou qualquer outra tecla + ENTER para Inglês.')  # Use a function `read_aloud_fn` to verbally communicate the language selection prompt to the user.
     try:                                    # Try block to catch exceptions that may occur when reading input (e.g., EOFError)
         temp = input('')                    # Prompt the user for input without specifying a default prompt text, but with the ability to handle an empty string.
     except:
@@ -303,11 +303,11 @@ if 'portuguese' in voices[0].name.lower(): # Check if the name of the voice cont
     if temp == '':                          # If the user enters an empty string, use the previously defined `language` variable as the selected language.
         language = language['pt']
         print('Idioma da interface selecionado: Português')
-        read_aloud_fn('Idioma da interface selecionado. Português') # Confirm the selection of Portuguese and use `read_aloud_fn` to announce it.
+        #read_aloud_fn('Idioma da interface selecionado. Português') # Confirm the selection of Portuguese and use `read_aloud_fn` to announce it.
     else:
         language = language['en']           # If the user enters a non-empty string, assume it's for English.
         print('Idioma da interface selecionado: Inglês')
-        read_aloud_fn('Idioma da interface selecionado. Inglês') # Confirm the selection of English and use `read_aloud_fn` to announce it.
+        #read_aloud_fn('Idioma da interface selecionado. Inglês') # Confirm the selection of English and use `read_aloud_fn` to announce it.
 else:
     language = language['en']               # If 'portuguese' was not found in the voice name, default to the previously defined `language` variable.
     print('Selected intereface language: English') # Inform the user that the default interface language will be English.
@@ -406,7 +406,7 @@ model_metadata = ''             # Stores llm metadata to show on interface
 
 if 'portuguese' in voices[0].name.lower(): # Check if Portuguese language is available as a voice option (SAPI5).
     print('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
-    read_aloud_fn('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
+    #read_aloud_fn('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
 
     try:
         voice_mode = input()
@@ -417,17 +417,17 @@ if 'portuguese' in voices[0].name.lower(): # Check if Portuguese language is ava
         voice_mode = False
         leaning_mode_interatcive = True
         print('Controle por voz desativado.')
-        read_aloud_fn('Controle por voz desativado.')
+        #read_aloud_fn('Controle por voz desativado.')
     else:
         voice_mode = True
         leaning_mode_interatcive = False
         print('Controle por voz ativado.')
-        read_aloud_fn('Controle por voz ativado.')
+        #read_aloud_fn('Controle por voz ativado.')
         read_aloud = True
 
     print()
     print('Abrindo interface no navegador...')
-    read_aloud_fn('Abrindo interface no navegador...')
+    #read_aloud_fn('Abrindo interface no navegador...')
 
 else: # If 'portuguese' SAPI5 voice is not available
     try:
@@ -1070,15 +1070,15 @@ def text_generator(
                             zipped = zip(([llm.detokenize([x])] for x in range(llm._n_vocab)), scores) # [('a', 1), ('b', 2), ('c', 3)]
                             lista = list(zipped)
                             token_score = []
-                            for x in lista:
+                            for n, x in enumerate(lista):
                                 try:
-                                    token_score.append([x[0][0].decode(), x[1]])
+                                    token_score.append([f'{n})    ' + "'" + x[0][0].decode() + "'    ", x[1], x[0][0].decode()])
                                 except:
                                     pass
                             token_score_sorted = sorted(token_score, key=lambda x: x[1], reverse=True)
                             x_bar = [l[0] for l in token_score_sorted[:top_k]]
                             y_bar = [round(l[1], 2) for l in token_score_sorted[:top_k]]
-                            color_bar = ['Selected' if l[0] == current_token else 'No' for l in token_score_sorted[:top_k]]
+                            color_bar = ['Selected' if l[2] == current_token else 'No' for l in token_score_sorted[:top_k]]
                             for n, l in enumerate(token_score_sorted[:top_k]):
                                 if l[0] == current_token and n != 0:
                                     x_score.append(str(count))
@@ -1088,7 +1088,7 @@ def text_generator(
                                 else:
                                     continue   
                             try:
-                                token_score_sorted = [[x[0], '   (' + str(round(x[1], 2)) + ')     <<<  Selected'] if x[0] == current_token else [x[0], '   (' + str(round(x[1], 2)) + ')'] for x in token_score_sorted ]
+                                token_score_sorted = [[x[0], '   (' + str(round(x[1], 2)) + ')     <<<  Selected'] if x[2] == current_token else [x[0], '   (' + str(round(x[1], 2)) + ')'] for x in token_score_sorted ]
                             except:
                                 pass
                             token_score_sorted = token_score_sorted[:top_k] # top_k, 10
@@ -1645,7 +1645,9 @@ def launch_notebook():
     and finally opens it using 'subprocess.Popen'.
     """
     click.play()                    # Play a click sound
-    python_path = os.path.join(fr'{DIRETORIO_LOCAL}\miniconda3\envs\samantha\Scripts', "jupyter-lab.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+    # python_path = os.path.join(fr'{DIRETORIO_LOCAL}\miniconda3\envs\samantha\Scripts', "jupyter-lab.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+    python_path = os.path.join(fr'{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts', "jupyter-lab.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+    
     subprocess.Popen([python_path]) # Open Jupyter Lab using the specified Python environment's executable path
 
         
@@ -2033,6 +2035,13 @@ def extract_models_names(): # Load Model button: open window to choose directory
         return gr.Dropdown(choices=models, value=models[0])
 
 
+def open_db_browser():
+
+    click.play()                    # Play a click sound
+    python_path = os.path.join(fr'{DIRETORIO_LOCAL}\DB Browser for SQLite', "DB Browser for SQLite.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+    subprocess.Popen([python_path]) # Open DB Browser using the specified Python environment's executable path
+
+
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
 # def run_code(code: str): # Cria um arquivo .py no diretório local
 #     if 'runthecode' in prompt.lower() or 'runthecode' in previous_answer.lower():
@@ -2111,8 +2120,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Radio(['OFF', 1, 3, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
-                gr.Slider(0, 300_000, 512, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
-                gr.Slider(0, 300_000, 512, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
+                gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
+                gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Slider(0, 5, 0.2, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
                 gr.Slider(1e-5, 1, 1, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
@@ -2141,7 +2150,29 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_load_user_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[3], queue=False)
                 btn_y = gr.Button('')
                 btn_y.click(fn=None, inputs=None, outputs=None, queue=True)
+            
+            gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA):</b></h6>') # Useful Links
+
+            with gr.Row():
+                btn_x1 = gr.Button('DB Browser')
+                btn_x1.click(fn=open_db_browser, inputs=None, outputs=None)
+                btn_x2 = gr.Button('')
+                btn_x2.click(fn=None, inputs=None, outputs=None)
+                btn_x3 = gr.Button('')
+                btn_x3.click(fn=None, inputs=None, outputs=None)
+                
+            # with gr.Row():
+            #     btn_x4 = gr.Button('')
+            #     btn_x4.click(fn=, inputs=None, outputs=None)
+            #     btn_x5 = gr.Button('')
+            #     btn_x5.click(fn=None, inputs=None, outputs=None)
+            #     btn_x6 = gr.Button('')
+            #     btn_x6.click(fn=None, inputs=None, outputs=None)
+
+
             gr.HTML('<br><h6><b>Useful links:</b></h6>') # Useful Links
+
+
             gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?search=gguf">GGUF Hugging Face Search Results</a></li>
                         <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
@@ -2152,6 +2183,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard">Big Code Models Leaderboard</a></li>
                         <li><a href="https://huggingface.co/spaces/ggml-org/gguf-my-repo">GGUF My Repository</a></li>
                         <li><a href="https://www.google.com/search?q=google+tradutor">Google Translator</a></li>
+                        <li><a href="https://nulpointerexception.com/2017/12/16/a-tutorial-to-understand-decision-tree-id3-learning-algorithm/">Decision Tree - Play Tennis Dataset</a></li>
                         <li><a href="https://huggingface.co/spaces/Xenova/the-tokenizer-playground">Tokenizer Playground</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
                         <li><a href="https://llama-cpp-python.readthedocs.io/en/latest/api-reference/">llama-cpp-python API Reference</a></li>

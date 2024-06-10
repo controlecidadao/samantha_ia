@@ -108,10 +108,6 @@ DEL Miniconda3-latest-Windows-x86_64.exe
 
 
 
-
-
-
-
 @echo off
 
 @echo =====================
@@ -122,6 +118,8 @@ DEL Miniconda3-latest-Windows-x86_64.exe
 :: Obtém o diretório atual
 @echo Obtendo diretorio atual...
 @echo Diretorio atual: %cd%
+
+
 
 
 
@@ -156,17 +154,100 @@ call pip list
 ::call pip cache purge
 
 :: Instala as dependências do Ambiente Virtual 'samantha'.
-call pip install -r requirements.txt
+call pip install -r requirements_samantha.txt
 
-:: Instala Playwright (Desabilitado por erro no download do Chromium devido a restrições nos computadores corporativos)
+:: Instala Playwright
+::call playwright install
+
+@echo Exibindo lista de bibliotecas instaladas no ambiente %CONDA_DEFAULT_ENV%
+call pip list
+
+
+
+
+
+@echo.
+@echo.
+@echo ================================
+@echo CRIA AMBIENTE VIRTUAL jupyterlab
+@echo ================================
+@echo.
+
+:: Cria o ambiente virtual 'samantha' com Python 3.10
+@echo Criando ambiente virtual 'jupyterlab'...
+call %cd%\miniconda3\condabin\conda.bat create -y -n jupyterlab python=3.10
+
+:: Ativa o ambiente virtual samantha
+@echo Ativando ambiente virtual 'jupyterlab'...
+call %cd%\miniconda3\condabin\conda.bat activate
+
+TIMEOUT /t 3
+@echo.
+
+:: Ativa o ambiente virtual samantha
+call conda activate jupyterlab
+
+@echo Ambiente ativado: %CONDA_DEFAULT_ENV%
+
+@echo Exibindo lista de bibliotecas instaladas no ambiente %CONDA_DEFAULT_ENV%
+call pip list
+@echo.
+
+:: Limpa módulos salvos no cache
+::call pip cache purge
+
+:: Instala as dependências do Ambiente Virtual 'samantha'.
+call pip install -r requirements_jupyterlab.txt
+
+:: Instala Playwright
 ::call playwright install
 
 @echo Exibindo lista de bibliotecas instaladas no ambiente %CONDA_DEFAULT_ENV%
 call pip list
 
 @echo.
-@echo Rotina 'Cria Ambiente Virtual samantha' finalizada!
+@echo Rotina 'Cria Ambiente Virtual jupyterlab' finalizada!
 @echo.
+
+
+
+
+
+:: ==============================
+:: DOWNLOAD AND UNPACK DB BROWSER
+:: ==============================
+
+set "URL=https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win64.zip"
+set "TMP_FILE=%TEMP%\db_browser.zip"
+set "INSTALL_DIR=%cd%"
+
+echo Baixando dB browser Portable...
+curl -o "%TMP_FILE%" "%URL%"
+
+echo Descompactando o arquivo...
+powershell -command "Expand-Archive -Path '%TMP_FILE%' -DestinationPath '%INSTALL_DIR%'"
+
+echo Instalação concluída.
+
+
+
+
+
+
+:: ============
+:: OPEN BROWSER
+:: ============
+
+::set "CURRENT_DIR=%~dp0"
+::set "EXE_FILE=%CURRENT_DIR%DB Browser for SQLite\DB Browser for SQLite.exe"
+
+::echo Starting "%EXE_FILE%"...
+
+::start "" "%EXE_FILE%"
+
+::pause
+
+
 
 pause
 exit

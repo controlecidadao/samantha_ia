@@ -1,0 +1,32 @@
+#  gradio==4.25.0
+llama-cpp-python==0.2.69
+seaborn==0.12.2
+altair==5.3.0
+plotly==5.20.0
+#  pyperclip==1.8.2
+jupyterlab==4.1.5
+#  pygame==2.5.2
+#  pyttsx3==2.90
+pandas==1.5.3 # Different version!!
+playwright==1.41.0
+PyMuPDF==1.24.1
+vega-datasets==0.9.0
+sweetviz==2.3.1
+dtale==3.11.0
+#  vosk==0.3.45
+#  sounddevice==0.4.6
+pyvis==0.3.2
+networkx==3.3
+ydata-profiling==4.0.0
+dataprep==0.4.5
+
+# Dependencies
+python-editor==1.0.4
+readchar==4.0.6
+appdirs==1.4.4
+importlib-metadata==7.1.0
+openai==0.28.1
+python-dotenv==1.0.1
+tokenizers==0.15.2
+#  regex==2023.12.25
+certifi==2023.11.17
