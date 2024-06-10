@@ -239,7 +239,7 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Models
 
-* [llmware/bling-phi-3-gguf]([https://huggingface.co/PrunaAI/Phi-3-mini-128k-instruct-GGUF-Imatrix-smashed/tree/main](https://huggingface.co/llmware/bling-phi-3-gguf)) (**3.8 billion** parameters model from Microsoft, fine-tunned by llmware)
+* [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model from Microsoft, fine-tunned by llmware)
 
 
 <br><br>
