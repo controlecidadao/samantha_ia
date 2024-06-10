@@ -239,13 +239,8 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Models
 
-* [PrunaAI/Phi-3-mini-128k-instruct-GGUF-Imatrix-smashed](https://huggingface.co/PrunaAI/Phi-3-mini-128k-instruct-GGUF-Imatrix-smashed/tree/main) (**3.8 billion** parameters model from Microsoft, fine-tunned by PrunaAI)
+* [llmware/bling-phi-3-gguf]([https://huggingface.co/PrunaAI/Phi-3-mini-128k-instruct-GGUF-Imatrix-smashed/tree/main](https://huggingface.co/llmware/bling-phi-3-gguf)) (**3.8 billion** parameters model from Microsoft, fine-tunned by llmware)
 
-* [TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF) ( **7 billion** parameters model from Mistral)
-
-* [MaziyarPanahi/WizardLM-2-7B-GGUF](https://huggingface.co/MaziyarPanahi/WizardLM-2-7B-GGUF) (**7 billion** parameters model from Microsoft)
-
-* [lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF) (**8 billion** parameters model from Meta)
 
 <br><br>
 # 🧠 Using Samantha
