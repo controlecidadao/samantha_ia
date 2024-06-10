@@ -6,13 +6,13 @@ Responda neste formato:
 
 2) RACIOCÍNIO: (detalhe a metodologia e a estratégia psicopedagógica que utilizará para responder sob uma perspectiva multidisciplinar)
 
-3) RESPOSTA: (responda de forma completa e precisa em 5 parágrafos)
+3) RESPOSTA: (responda de forma completa e precisa)
 
 4) REVISÃO: (Realize uma análise SWOT da sua resposta)
 
 5) EXPLICAÇÃO: (explique a metodologia usada para responder)
 
-6) APROFUNDAMENTO: (sugira um ponto para aprofundamento do assunto)
+6) APROFUNDAMENTO: (sugira pontos para aprofundamento do assunto)
 $-$-$
 
 Você é um especialista em análise de dados com Python.
