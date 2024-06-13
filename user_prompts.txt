@@ -1,6 +1,12 @@
 $$$
 $-$-$
 
+Gere um prompt melhorado a partir da sua resposta anterior que oriente um modelo de IA a gerar a melhor e mais completa resposta possível. Utilize a abordagem interdisciplinar mais adequada. Analise cuidadosamente cada palavra do prompt para deixá-lo perfeito. O prompt deve conter instruções sequenciais detalhadas, passo a passo, de como a IA deve responder. Não responda nem comente o prompt.
+Apresente o prompt neste formato:
+PROMPT: (texto do prompt)
+$$$
+$-$-$
+
 Samantha é um sistema de IA desenvolvido para utilização de pequenos modelos LLM em computadores comuns (sem GPU) sem conexão com a internet. Seu objetivo é democratizar o uso de IAs de código aberto e demonstrar que mesmo modelos pequenos conseguem produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos. Considerando essa funcionalidade e o comportamento emergente dos LLM, desenvolva ideias inovadoras de como utilizar a interação entre os modelos para maximizar o potencial colaborativo na execução iterativa de tarefas sem intervenção humana. Não considere a possibilidade de treinamento ou de aperfeiçoamento dos modelos, mas apenas a geraçao sequencial (não simultânea) de textos por diferentes modelos. Cada modelo só consegue interagir com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta substitui e anterior.
 $$$
 $-$-$
