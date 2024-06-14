@@ -243,7 +243,7 @@ Note that each model has its own characteristics, presenting significantly diffe
 
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft), fine-tunned by [llmware](https://huggingface.co/llmware))
 
-Where to find templates to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)
+Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)
 
 
 <br><br>
