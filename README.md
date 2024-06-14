@@ -239,7 +239,7 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Testing Models
 
-Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. Samantha is just an interface that allows you to use the models.
+Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. Some models may not (yet) be loaded by Samantha due to their technical characteristics.
 
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft), fine-tunned by [llmware](https://huggingface.co/llmware))
 
