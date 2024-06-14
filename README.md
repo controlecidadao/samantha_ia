@@ -259,6 +259,9 @@ To start running Samantha IA:
 
   After answering the questions, Samantha IA will open in a new browser tab. This is the **browser-side**.
 
+
+Open Microsoft Task Management by pressing CTRL + SHIFT + ESC
+
 <br><br>
 # 📝 Future Improvements
 
