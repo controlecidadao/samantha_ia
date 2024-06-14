@@ -8,6 +8,8 @@ $$$
 $-$-$
 
 Samantha é uma interface desenvolvida para utilização de pequenos modelos LLM em computadores comuns (sem GPU) e sem conexão com a internet. Seu objetivo é democratizar o uso de IAs de código aberto e demonstrar que mesmo modelos pequenos conseguem produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo seguinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos. Considerando essa funcionalidade e o comportamento emergente dos LLM, desenvolva ideias inovadoras de como utilizar a interação entre os modelos para maximizar o potencial colaborativo na execução iterativa de tarefas sem intervenção humana. Não considere a possibilidade de treinamento ou de aperfeiçoamento dos modelos, mas apenas a geraçao sequencial (não simultânea) de textos por diferentes modelos. Cada modelo consegue interagir apenas com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta substitui a anterior.
+Samantha was designed to allow text reverse prompt engineering with self-improvement feedback loop. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
+Please, explain how this technique works and say, honestly, what you think about it.
 $$$
 $-$-$
 
