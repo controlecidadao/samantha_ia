@@ -260,9 +260,9 @@ To start running Samantha IA:
 
 As an experimental project, Samantha has points to be improved:
 
-* Implement the code to open Qwen and Granite LLMs;
+* Implement the code to use Alibaba Qwen and IBM Granite LLMs;
 
-* Try other offline speech-to-text libraries with better accuracy;
+* Try other lightweight offline Speech-to-Text libraries with better accuracy;
 
 <br><br><br><br>
 
