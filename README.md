@@ -237,7 +237,7 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 <br><br>
 -->
 
-### Your First Models
+### Your First Testing Models
 
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model from Microsoft, fine-tunned by llmware)
 
