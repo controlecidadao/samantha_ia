@@ -239,6 +239,8 @@ For each `.gguf` file downloaded, a new `.txt` file must be created.
 
 ### Your First Testing Models
 
+Note that each model has its own characteristics, presenting significantly different responses depending on its size, training method, user prompt, and hyperparameter adjustment, and it is necessary to test its performance for the desired task.
+
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model from Microsoft, fine-tunned by llmware)
 
 
