@@ -86,6 +86,8 @@ To use Samantha IA you will need:
   >_a) lack of prior installation of Visual Studio (resolved with installation)_<br>
   <!-- >_b) blocking Playwright browser downloads due to corporate internet access restrictions (resolved by using the internet at home or on a cell phone)_-->
 
+  The installation process takes several minutes.
+
 <br>
 
 * Once installed, open Samantha by double clicking on `open_samantha.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the file. Click on 'More info' and confirm):<br>
