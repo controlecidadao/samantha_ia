@@ -22,7 +22,7 @@ Thanks to its **emergent behavior**, with the right prompt and proper hyperparam
 
 # 🎯 Key Features of Samantha
 
-- **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs seamlessly on standard computers, even without a GPU.
+- **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a GPU.
   
 - **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.
 
@@ -30,23 +30,23 @@ Thanks to its **emergent behavior**, with the right prompt and proper hyperparam
 
 - **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.
 
-- **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Meta, Mistral and others), users can experiment with various AI capabilities, each tailored to different tasks and applications.
+- **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Meta, Mistral etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications (Alibaba Qwen and IBM Granite models are not functional yet).
 
-- **Customizable Parameters**: Users have full control over model hyperparameters such as temperature, top-k, top-p, and max_tokens, allowing for fine-tuned responses that suit specific requirements.
+- **Customizable Parameters**: Users have control over model hyperparameters such as temperature, top-k, top-p, and max_tokens, allowing for responses that suit specific requirements.
 
-- **Interactive Experience**: Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different AI systems without human intervention.
+- **Interactive Experience**: Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.
 
-- **Learning Insights**: A feature called 'Learning mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits).
+- **Learning Insights**: A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings.
 
 - **Voice Interaction**: Samantha supports offline text-to-speech with SAPI5 voices and speech-to-text with [Vosk](https://alphacephei.com/vosk/), making it accessible and user-friendly for everyone.
 
 - **Document Handling**: The system can load small PDF and TXT files, and instructions can be inputted or loaded via a TXT file for convenience.
 
-- **Versatile Text Input**: Four fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response, user prompt, and initial text to guide the model's response.
+- **Versatile Text Input**: Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response and user prompt to guide the model's response.
 
-- **Code Integration**: Automatic extraction of code blocks from responses, along with pre-installed [JupyterLab](https://jupyter.org/), enables users to execute generated code swiftly for immediate results.
+- **Code Integration**: Automatic extraction of code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/), enables users to execute generated code swiftly for immediate results.
 
-- **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [DB Browser](https://sqlitebrowser.org/about/), [PyMuPDF](https://pypi.org/project/PyMuPDF/)  and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of available libraries, type `!pip list` in a JupyterLab cell).
+- **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [DB Browser](https://sqlitebrowser.org/about/), [PyMuPDF](https://pypi.org/project/PyMuPDF/)  and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell).
 
 - **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to the previous response only.
 
