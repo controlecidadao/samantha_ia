@@ -673,7 +673,7 @@ def text_generator(
                 try:                                                # Try to load model                    
                     llm = Llama(                                    # Instantiate Llama class passing the selected model (https://llama-cpp-python.readthedocs.io/en/latest/api-reference/)
                             model_path= model_path + '\\' + model,
-                            n_gpu_layers=0,
+                            n_gpu_layers=-1,                        # default: 0
                             main_gpu=0,
                             tensor_split=None,
                             vocab_only=False,
@@ -1080,7 +1080,7 @@ def text_generator(
                             y_bar = [round(l[1], 2) for l in token_score_sorted[:top_k]]
                             color_bar = ['Selected' if l[2] == current_token else 'No' for l in token_score_sorted[:top_k]]
                             for n, l in enumerate(token_score_sorted[:top_k]):
-                                if l[0] == current_token and n != 0:
+                                if l[2] == current_token and n != 0:
                                     x_score.append(str(count))
                                     y_score.append(n + 1)
                                     count += 1
@@ -2042,6 +2042,15 @@ def open_db_browser():
     subprocess.Popen([python_path]) # Open DB Browser using the specified Python environment's executable path
 
 
+def open_dtale():
+
+    click.play()
+    subprocess.run(['open_dtale.bat'], shell=True)
+
+
+
+
+
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
 # def run_code(code: str): # Cria um arquivo .py no diretório local
 #     if 'runthecode' in prompt.lower() or 'runthecode' in previous_answer.lower():
@@ -2156,8 +2165,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 btn_x1 = gr.Button('DB Browser')
                 btn_x1.click(fn=open_db_browser, inputs=None, outputs=None)
-                btn_x2 = gr.Button('')
-                btn_x2.click(fn=None, inputs=None, outputs=None)
+                btn_x2 = gr.Button('D-Tale')
+                btn_x2.click(fn=open_dtale, inputs=None, outputs=None)
                 btn_x3 = gr.Button('')
                 btn_x3.click(fn=None, inputs=None, outputs=None)
                 
@@ -2195,6 +2204,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/autotrain">AutoTrain Finetuning LLM</a></li>
                         <li><a href="https://huggingface.co/docs/hub/gguf">GGUF File</a></li>
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
+                        
                     </ul>""")  
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
 
@@ -2207,6 +2217,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://www.youtube.com/watch?v=rEDzUT3ymw4">Neural Network in 1 Minute</a></li>
                     <li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a></li>
                     <li><a href="https://www.promptingguide.ai/">Prompt Engineering Guide</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=XpoKB3usmKc">QLoRA—How to Fine-tune an LLM on a Single GPU</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
                     </ul>""")
                     # https://www.youtube.com/watch?v=FdTRzgbBP8o
             gr.HTML('<br><h6><b>Installed Python Modules to Use with JupyterLab:</b></h6>') # Exploratory Data Analysis
@@ -2302,7 +2314,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Generation Phases:&nbsp;&nbsp;&nbsp;Model loading (non stop) -> Thinking (non stop) -> Next token selection (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">5) Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt = Current Response</span></i></h6>')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">5) Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">6) Chaining Sequence:&nbsp;&nbsp;&nbsp;(Models List -> Prompts List -> Number of Responses) -> Number of Loops</span></i></h6>')         
             with gr.Row():
