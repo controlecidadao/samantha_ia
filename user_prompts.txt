@@ -1,19 +1,7 @@
 $$$
 $-$-$
-
-Gere um prompt melhorado a partir da sua resposta anterior que oriente um modelo de IA a gerar a melhor e mais completa resposta possível. Utilize a abordagem interdisciplinar mais adequada. Analise cuidadosamente cada palavra do prompt para deixá-lo perfeito. O prompt deve conter instruções sequenciais detalhadas, passo a passo, de como a IA deve responder. Não responda nem comente o prompt.
-Apresente o prompt neste formato:
-PROMPT: (texto do prompt)
-$$$
-$-$-$
-
-Samantha é uma interface desenvolvida para utilização de pequenos modelos LLM em computadores comuns (sem GPU) e sem conexão com a internet. Seu objetivo é democratizar o uso de IAs de código aberto e demonstrar que mesmo modelos pequenos conseguem produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo seguinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos. Considerando essa funcionalidade e o comportamento emergente dos LLM, DESENVOLVA ideias inovadoras de como utilizar a interação entre os modelos para maximizar o potencial colaborativo na execução iterativa de tarefas sem intervenção humana. Não considere a possibilidade de treinamento ou de aperfeiçoamento dos modelos, mas apenas a geraçao sequencial (não simultânea) de textos por diferentes modelos. Cada modelo consegue interagir apenas com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta substitui a anterior.
-Nesse sistema, o usuário insere um texto inicial no campo destinado à resposta anterior do modelo (Assistant Previous Response). Esse campo será atualizado automaticamente com a resposta do próximo modelo. O usuário também insere um segundo texto fixo no campo destinado ao prompt do usuário (User Prompt), que será usado para orientar o modelo em cada novo ciclo de iteração.
-Exemplo:
-Assistant Previous Response (atualizável): "Crie um prompt que gere um gráfico de dispersão usando Seaborn".
-User Prompt (fixo): "Melhore o prompt da sua resposta anterior, deixando-o ainda mais completo para ser usado em um sistema de IA". 
-Samantha was designed to allow text reverse prompt engineering with self-improvement feedback loop. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
-Please, EXPLAIN how this technique works and say, honestly, what you think about it.
+Samantha é um sistema de IA desenvolvido para utilização de modelos LLM de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet. Seu objetivo é democratizar o uso de IAs e demonstrar que mesmo modelos pequenos conseguem produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos e ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo só consegue interagir com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta substitui a anterior. Também é possível usar apenas um modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos. Para otimizar recursos, para que um modelo seja carregado, o anterior deve ser descarregado.
+Qual a sua opinião sobre esse sistema?
 $$$
 $-$-$
 
