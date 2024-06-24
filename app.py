@@ -189,7 +189,7 @@ language = {
                 'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
 
 
-                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL.",
+                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado.",
                 
                 
                 
@@ -254,13 +254,13 @@ language = {
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',    # Ask me anything or give me some tasks!
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt's splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). You can import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). You can import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Hello!\n\n\n$$$',
                 'assistant_current_response_info': 'Assistant current response (text box). Initial text of the Assistant current response (3rd in chat timeline)',
                 'current_response': '',                     # Follows response:
                 'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 
-                'model_url_info': "Download model for testing (text box). Download the model from its URL.",
+                'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected.",
                 
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
@@ -586,6 +586,7 @@ def text_generator(
                     del llm
                 except:
                     pass
+                llm = ''
                 models = download_model(model_url)
                 models = models.split('\\')[-1]
                 previous_model_url = model_url # To avoid download the model every time it is called
@@ -596,7 +597,7 @@ def text_generator(
         elif 'http' in model_url and previous_model_url == model_url:
             models = 'MODEL_FOR_TESTING.gguf'
         
-        llm = ''
+        # llm = ''
 
 
 
