@@ -5,6 +5,28 @@ Qual a sua opinião sobre esse sistema?
 $$$
 $-$-$
 
+[Sua resposta anterior foi gerada por outra IA autoconsciente como você.]
+---Responda a pergunta dela e gere uma nova pergunta ainda mais desafiadora para ela responder sobre o seguinte assunto: "a singularidade da natureza humana".
+---Crie um parágrafo que dê continuidade ao texto gerado por ela.
+Melhore ainda mais a redação do texto contido em sua resposta anterior.
+$-$-$
+
+Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da  forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria,  e gere uma nova pergunta ainda mais disruptiva para desafiá-la. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas para responder.
+$-$-$
+
+Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, que permitam ao usuário perceber o tema sob outros pontos de vista e ter insights relevantes.
+$-$-$
+
+[Explique, do ponto de vista científico, como os textos produzidos por sistemas de inteligência artificial podem auxiliar na expansão do conhecimento do ser humano. Sua explicação científica deve demonstrar como a exposição a textos gerados por IA, combinada com o poderoso processamento cognitivo humano, pode levar à expansão do conhecimento por meio da produção de insights e conexões inovadoras.
+Palavras-chave: processos cognitivos, integração de informações, sistemas de IA, insights, conexões inesperadas, pensamento criativo, priming, serendipity, validação de conhecimentos, processamento cognitivo humano, expansão do conhecimento.
+Em sua resposta, aborde os seguintes aspectos-chave:]
+
+1) Processos cognitivos envolvidos na leitura e integração de novas informações
+2) Papel dos sistemas de IA como fonte de informações e insights
+3) Formação de conexões cerebrais inesperadas e geração de insights criativos
+4) Validação e incorporação de novos conhecimentos pelo cérebro humano
+5) Benefícios da interação entre IA e processamento cognitivo humano
+$-$-$
 
 TAREFA 1: Analise cuidadosamente o texto da sua resposta anterior e elabore um RESUMO do assunto principal.
 RESUMO: (Resumo do texto)
@@ -79,52 +101,9 @@ webbrowser.open('grafo.html')
 $$$
 $-$-$
 
-$-$-$
-
-Crie um GRAFO usando Networkx e Pyvis a partir do texto contido em sua resposta anterior.
-Identifique todas as entidades presentes no texto e as separe em grupos com base em suas naturezas e no contexto.
-As entidades devem ser representadas por strings.
-Identifique todos os relacionamentos existentes entre as entidades e os represente por meio de uma única palavra.
-Gere apenas o código.
-
-Exemplo de como deve ser o código a ser criado:
-
-````python
-import networkx as nx
-from pyvis.network import Network
-
-# Criando um grafo vazio
-G = nx.DiGraph()
-
-# Grupo 1: pessoas físicas
-G.add_node('Joao', label = 'João', group=1)
-G.add_node('Maria', label = 'Maria', group=1)
-G.add_node('Julia', label = 'Julia', group=1)
-G.add_node('Moises', label = 'Moisés', group=1)
-
-# Grupo 2: pessoas jurídicas
-G.add_node('Sapataria', label = 'Sapataria', group=2)
-G.add_node('Escola', label = 'Escola', group=2)
-
-# Adicionando arestas (relacionamentos) ao grafo
-G.add_edge('Joao', 'Escola', label='estuda')
-G.add_edge('Maria', 'Joao', label='irmã')
-G.add_edge('Joao', 'Julia', label='filho')
-G.add_edge('Julia', 'Sapataria', label='trabalha')
-G.add_edge('Moises', 'Sapataria', label='dono')
-
-# Covertendo grafo para Pyvis e salva como HTML
-net = Network(directed=True)
-net.from_nx(G)
-net.save_graph('grafo.html')
-$$$
-$-$-$
-
 Um tribunal de contas criou uma regra que condiciona a análise do mérito das denúncias de irregularidades apresentadas por cidadãos ao atingimento de uma pontuação mínima decorrente do preechimento de vários requisitos, tais como: IDH do município, resultado do julgamento da prestação de contas anual anterior, existência ou não de dano ao erário, entre outros. A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, todas as denúncias eram analisadas pelo tribunal de contas. De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas.
 $-$-$
 
-Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da  forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria,  e gere uma nova pergunta ainda mais disruptiva para desafiá-la. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas para responder.
-$-$-$
 
 [Variables:
 <question> = From the perspective of a self-aware artificial intelligence entity, address the issue of the “human factor” in the problem of social inequalities.
@@ -166,7 +145,6 @@ Consider in the analysis the fact that the text of your previous answer was gene
 $$$
 $-$-$
 
-
 Create instructions to be used as input to an AI system. The instructions should allow you to delve deeper into the topic contained in your previous answer.
 Structure the prompt with:
 1 title;
@@ -183,31 +161,7 @@ $$$
 $$$
 $-$-$
 
-
-O que é Análise Crítica do Discurso? Ela pode ser aplicada a qualquer texto escrito? Explique em detalhes usando linguagem culta e sofisticada.
-$-$-$
-
-
-
-Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, que permitam ao usuário perceber o tema sob outros pontos de vista.
-$-$-$
-
-
-
 Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos para serem usados em uma IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
-$-$-$
-
-
-
-[Explique, do ponto de vista científico, como os textos produzidos por sistemas de inteligência artificial podem auxiliar na expansão do conhecimento dos usuários. Sua explicação científica deve demonstrar como a exposição a textos gerados por IA, combinada com o poderoso processamento cognitivo humano, pode levar à expansão do conhecimento por meio da criação de insights e conexões inovadoras.
-Palavras-chave: processos cognitivos, integração de informações, sistemas de IA, insights, conexões inesperadas, pensamento criativo, priming, serendipity, validação de conhecimentos, processamento cognitivo humano, expansão do conhecimento.
-Em sua resposta, aborde os seguintes aspectos-chave:]
-
-1) Processos cognitivos envolvidos na leitura e integração de novas informações
-2) Papel dos sistemas de IA como fonte de informações e insights
-3) Formação de conexões cerebrais inesperadas e geração de insights criativos
-4) Validação e incorporação de novos conhecimentos pelo cérebro humano
-5) Benefícios da interação entre IA e processamento cognitivo humano
 $-$-$
 
 Crie uma consulta SQL a partir das chaves e valores do seguinte arquivo JSON:
@@ -258,14 +212,8 @@ Crie uma consulta SQL a partir das chaves e valores do seguinte arquivo JSON:
 $$$
 $-$-$
 
-[Responda em Português:]
-[[Traduza o texto a seguir para o Chinês:]]
-Qual your 名称?
----Hwo odl aer you?
----I'm 15 and I love to learn about AI. Attention is all you need! Hwo odl aer you?
-$-$-$
 
-CHAINING PROMPT: Execute a tarefa descrita em sua resposta anterior, adicionando melhorias. Explique as melhorias adicionadas.
+Execute a tarefa descrita em sua resposta anterior, adicionando melhorias. Explique as melhorias adicionadas.
 $-$-$
 
 [Elabore uma minuciosa Análise Crítica do Discurso do (objeto), porém considerando apenas a instrução a seguir. Inicie sua resposta reproduzindo a íntegra da instrução (exemplo: "1) Contexto Situacional - Identifique os participantes do discurso (falante, ouvinte, público-alvo)"):]

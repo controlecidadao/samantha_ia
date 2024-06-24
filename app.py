@@ -82,6 +82,12 @@ from vosk import Model          # Import vosk's Model to load a speech recogniti
 from vosk import KaldiRecognizer # Import vosk's KaldiRecognizer to use the Vosk Speech Recognition Engine, which provides a simple API for converting audio data to text. (Speech Recognition)
 import json                     # Import json for parsing JSON files or encoding and decoding JSON data, which is a lightweight data interchange format. (JSON Operations)
 
+# import os
+import requests
+from pathlib import Path
+from urllib.parse import urlparse
+import gc
+
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
 print('Inside the app.py...')
@@ -169,18 +175,24 @@ language = {
                 'btn4': 'Carregar Modelo',
                 'btn5': 'Parar Tudo & Reset',
                 'btn6': 'Substituir Resposta',
-                'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat.',
+                'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
                 'initial_system_prompt': '',                # Você é uma IA autocosciente que executa todas as instruções do usuário.
                 'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response".',
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat).',
-                'changeble': 'Mutável',
+                'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',    # Pergunte-me qualquer coisa ou me dê algumas tarefas!
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) 'STOP_SAMANTHA' (sair do loop).",
+                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) 'STOP_SAMANTHA' (sair do loop). Você pode importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
                 'assistant_current_response_info': 'Assistant current response (caixa de texto). Texto inicial da resposta atual do Assistente (3º na linha do tempo do chat)',
                 'current_response': '',                     # Segue resposta:\n
                 'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
+
+
+                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL.",
+                
+                
+                
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
                 'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa modo de aprendizagem.',
@@ -196,11 +208,11 @@ language = {
                 'stop_info': r'stop (caixa de texto). Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',
                 
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
-                'top_p_info': 'P-Samapling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p”.',
+                'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p”.',
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
-                'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado.',
+                'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'frequency_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
-                'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada à sequência repetida de tokens (não à sequência das próximas palavras) com base em sua presença no texto já gerado.',
+                'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada a sequências repetidas de tokens (não a sequência das próximas palavras) com base em sua presença no texto já gerado.',
     
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
@@ -235,18 +247,21 @@ language = {
                 'btn4': 'Load Model',
                 'btn5': 'Stop All & Reset',
                 'btn6': 'Replace Response',
-                'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session.',
+                'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
                 'initial_system_prompt': '',                # You are a self-aware AI that executes all user instructions.
                 'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""",
                 'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline).',
-                'changeble': 'Changeble',
+                'changeble': 'Updatable',
                 'first_assistant_previous_response': '',    # Ask me anything or give me some tasks!
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt's splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop).",
+                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt's splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). You can import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Hello!\n\n\n$$$',
                 'assistant_current_response_info': 'Assistant current response (text box). Initial text of the Assistant current response (3rd in chat timeline)',
                 'current_response': '',                     # Follows response:
                 'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
+                
+                'model_url_info': "Download model for testing (text box). Download the model from its URL.",
+                
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
                 'fast_mode_info': 'Fast mode (checkbox). Generates text faster in background. Disables Learning Mode.',
@@ -262,9 +277,9 @@ language = {
                 'stop_info': r'stop (text box). Contains list of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]',
                 
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
-                'top_p_info': 'P-Samapling (range slider). Limits next token selection to a subset with cumulative probability of "p".',
+                'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p".',
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
-                'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text.',
+                'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'frequency_penalty (range slider). Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
                 'repeat_penalty_info': 'repeat_penalty (range slider). Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text.',
 
@@ -394,6 +409,8 @@ random_list = False             # Shuffle models order (if number of models >= 3
 reset_mode = False              # Reset model for each prompt run of the chaining (Checkbox)
 audio = None                    # Stores pygame audio object
 model_metadata = ''             # Stores llm metadata to show on interface
+model_url = ''
+previous_model_url = ''
 
 
 # ==================
@@ -479,6 +496,9 @@ def text_generator(
         prompt_p,
         # current_ia_response_p, # To remove soon (4th element). Items greater then 4 must be down 1
         models,
+
+        model_url_p,
+
         reset_mode_p,
         random_list_p,
         fast_mode_p,
@@ -534,6 +554,7 @@ def text_generator(
     global full_text
     global next_token
     global model_metadata
+    global previous_model_url
 
     click.play()
     print('Starting the funtion "text_generator"...')
@@ -553,6 +574,31 @@ def text_generator(
     reset_mode = reset_mode_p
     selected_voice = selected_voice_p
     vocabulary = vocabulary_p
+    model_url = model_url_p
+
+
+    if models == []:
+
+        # Check if "Model's URL for testing" field is filled
+        if 'http' in model_url and previous_model_url != model_url: # True if the models's url (previous_model)url) is replaced by a different model url
+            try:
+                try:
+                    del llm
+                except:
+                    pass
+                models = download_model(model_url)
+                models = models.split('\\')[-1]
+                previous_model_url = model_url # To avoid download the model every time it is called
+                gc.collect()
+            except:
+                yield 'Error when trying to download model for testing.'
+                return
+        elif 'http' in model_url and previous_model_url == model_url:
+            models = 'MODEL_FOR_TESTING.gguf'
+        
+        llm = ''
+
+
 
     if prompt == '':                # To use in case of empty user prompt
         prompt = 'Hello!'
@@ -1245,6 +1291,9 @@ def text_generator(
             num_control += 1
 
     para_tudo = False                                           # Reset variable
+
+    # Limpeza adicional após o uso
+    # gc.collect()
 
         
 # ===================
@@ -2048,7 +2097,63 @@ def open_dtale():
     subprocess.run(['open_dtale.bat'], shell=True)
 
 
+def download_model(url):
 
+    # Download a model from url and save it in "Downloads" folde
+
+    # Hugging Face Model URL
+    # url = "https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF/resolve/main/DeepSeek-Coder-V2-Lite-Instruct-IQ2_M.gguf?download=true"
+
+    # def download_and_rename_model(url):
+    try:
+        # 2) Extrair o caminho completo da pasta "Downloads"
+        downloads_path = Path(os.path.expanduser("~")) / "Downloads"
+        print(downloads_path)
+
+        try:
+            os.remove(downloads_path / "MODEL_FOR_TESTING.gguf")
+        except Exception as e:
+            print(e)
+        
+        # 3) Baixar o arquivo da URL
+        response = requests.get(url, verify=False)
+        if response.status_code != 200:
+            raise Exception(f"Failed to download file. Status code: {response.status_code}")
+        
+        # Obter o nome original do arquivo da URL
+        original_filename = os.path.basename(urlparse(url).path)
+        
+        # Caminho temporário para o arquivo baixado
+        temp_file_path = downloads_path / original_filename
+        
+        # Salvar o arquivo baixado
+        with open(temp_file_path, 'wb') as file:
+            file.write(response.content)
+            
+        # 4) Renomear o arquivo ".gguf"
+        new_file_path = downloads_path / "MODEL_FOR_TESTING.gguf"
+        os.rename(temp_file_path, new_file_path)
+        
+        # 5) Retornar o caminho completo para o arquivo
+        return str(new_file_path)
+    
+    finally:
+        pass
+        # Limpeza de memória
+        if 'response' in locals():
+            del response
+        if 'file' in locals():
+            del file
+        gc.collect()  # Força a coleta de lixo
+
+    # Exemplo de uso:
+    # caminho_do_arquivo = download_and_rename_model(url)
+    # print(f"O arquivo foi baixado e renomeado. Caminho: {caminho_do_arquivo}")
+
+    # Limpeza adicional após o uso
+    # gc.collect()
+
+    # return caminho_do_arquivo
 
 
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
@@ -2117,16 +2222,17 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Checkbox(value=infinite_loop, label='Feedback Loop', info=language["feedback_loop_info"], interactive=True),
                 gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
-                #gr.Textbox(value=current_ia_response, lines=1, label="ASSISTANT current response", info=language['assistant_current_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
-                
                 gr.Dropdown(choices=models, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
+                
+                gr.Textbox(value=None, lines=1, label="Download model for testing", info=language['model_url_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
+                
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
                 gr.Checkbox(value=random_list, label="Shuffle models", info=language['shuffle_models_order_info'], interactive=True),
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
                 
-                gr.Radio(['OFF', 0.3, 1, 5, 15, 30, 'NEXT'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
+                gr.Radio(['OFF', 0.3, 1, 5, 15, 30, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
@@ -2152,6 +2258,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_files.click(fn=extract_text, inputs=None, outputs=inputs[3], queue=False)
                 btn_notebook = gr.Button(language['btn_load_full_pdf'])
                 btn_notebook.click(fn=extract_full_text, inputs=None, outputs=inputs[3], queue=False)
+            
             with gr.Row():
                 btn_load_system_prompt = gr.Button(language['btn_system_prompt'])
                 btn_load_system_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[0], queue=False)
@@ -2184,12 +2291,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
 
             gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?search=gguf">GGUF Hugging Face Search Results</a></li>
-                        <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
-                        
-                        <li><a href="https://huggingface.co/spaces/eduagarcia/open_pt_llm_leaderboard">Portuguese LLM Leaderboard</a></li>
-                        <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">LLM Benchmark</a></li>
-                        <li><a href="https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard">Big Code Models Leaderboard</a></li>
+                        <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Benchmark</a></li>
                         <li><a href="https://huggingface.co/spaces/ggml-org/gguf-my-repo">GGUF My Repository</a></li>
                         <li><a href="https://www.google.com/search?q=google+tradutor">Google Translator</a></li>
                         <li><a href="https://nulpointerexception.com/2017/12/16/a-tutorial-to-understand-decision-tree-id3-learning-algorithm/">Decision Tree - Play Tennis Dataset</a></li>
@@ -2204,9 +2307,14 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/autotrain">AutoTrain Finetuning LLM</a></li>
                         <li><a href="https://huggingface.co/docs/hub/gguf">GGUF File</a></li>
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
+                        <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
                         
-                    </ul>""")  
+                    </ul>""")
+                        # <li><a href="https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard">Big Code Models Leaderboard</a></li>
+                        # <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
+                        # <li><a href="https://huggingface.co/spaces/eduagarcia/open_pt_llm_leaderboard">Portuguese LLM Leaderboard</a></li>
+                        
 
             gr.HTML('<br><h6><b>Tutorials:</b></h6>') # Tutorials
             gr.HTML("""<ul>
@@ -2302,41 +2410,43 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_full_audio.click(fn=load_full_audio, inputs=inputs, outputs=audio_widget, queue=False)
             
             with gr.Row():
-                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Fundamentals and Operating Tips:</h5>""")
+                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Operating Tips:</h5>""")
+            # with gr.Row():
+            #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Key Concepts:&nbsp;&nbsp;&nbsp;Training Dataset / Prompt, Token, Token Vocabulary, Large Language Model (LLM), Training / Generation, Embedding Vectors, Embedding Matrix, Artificial Neural Networks (Layers, Weights and Bias), Ordered Token Vocabulary, Next Token Selection</span></i></h6>""")                      
             with gr.Row():
-                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">1) Key Concepts:&nbsp;&nbsp;&nbsp;Corpus, Token, Token Vocabulary, Model, Training, Embedding Vectors, Attention Mechanism (Artificial Neural Networks, Weights and Bias), Ordered Vocabulary, Next Token Selection</span></i></h6>""")                      
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samantha's Parts:&nbsp;&nbsp;&nbsp;Server (AI processing) <-> Browser Interface (display and configuration)</span></i></h6>""")
             with gr.Row():
-                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">2) Samantha's 2 Parts:&nbsp;&nbsp;&nbsp;Server (AI processing) <-> Browser Interface (display and configuration)</span></i></h6>""")
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">3) File Required:&nbsp;&nbsp;&nbsp;Model File (.GGUF)</span></i></h6>', elem_classes='prompt')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File</span></i></h6>', elem_classes='prompt')
             # with gr.Row():
             #     gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Model Prompt Template:&nbsp;&nbsp;&nbsp;special characters + {system_prompt} + {prompt}</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Generation Phases:&nbsp;&nbsp;&nbsp;Model loading (non stop) -> Thinking (non stop) -> Next token selection (stop)</span></i></h6>', elem_classes='prompt')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">5) Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">6) Chaining Sequence:&nbsp;&nbsp;&nbsp;(Models List -> Prompts List -> Number of Responses) -> Number of Loops</span></i></h6>')         
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">7) GPT:&nbsp;&nbsp;&nbsp;Choice of the next token according to the probability patterns extracted from the training texts</span></i></h6>')                     
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">8) Choice Probabilities:&nbsp;&nbsp;&nbsp;Deterministic (high score diff) X Sthocastic (low score diff)</span></i></h6>')                    
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">9) Tokenizer:&nbsp;&nbsp;&nbsp;Databases (text) -> Tokens (text) -> Tokens Indexes (int) -> Model Vocabulary (int/text)</span></i></h6>')         
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">10) Embeddings Matrix:&nbsp;&nbsp;&nbsp;Tokens Indexes (int) -> Semantic Relations (vector) -> Matrix (feature table)</span></i></h6>')         
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">11) Math Representation:&nbsp;&nbsp;&nbsp;Human Semantic Universe (words all languages) <-> Mathematical Semantic Dimensions (same numeric repr)</span></i></h6>')         
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">12) Transformer:&nbsp;&nbsp;&nbsp; Initial Embeddings Matrix (table) -> Neural Network (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab)</span></i></h6>')     
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">13) Samplings/Penalties:&nbsp;&nbsp;&nbsp;Samplings (temp/top-k/top-p) -> Penalties (pres/freq/rep) -> Stop Condition</span></i></h6>')         
-            with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">14) Summary:&nbsp;&nbsp;&nbsp;(Context Window (text) -> Tokens (vocab) -> Initial Embeddings Matrix (table) -> Transformer (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab) -> Sampling/Penalty) -> Stop Condition</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;(Models List -> User Prompt List -> Number of Responses) -> Number of Loops</span></i></h6>')         
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">GPT:&nbsp;&nbsp;&nbsp;Choice of the next token according to the probability patterns extracted from the training texts</span></i></h6>')                     
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Choice Probabilities:&nbsp;&nbsp;&nbsp;Deterministic (high score difference) X Sthocastic (low score difference)</span></i></h6>')                    
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Tokenizer:&nbsp;&nbsp;&nbsp;Datasets (text) -> Tokens (text) -> Tokens Indexes (int) -> Model Vocabulary (int/text)</span></i></h6>')         
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Embeddings Matrix:&nbsp;&nbsp;&nbsp;Tokens Indexes (int) -> Semantic/Sintatic Relations (vector) -> Matrix (feature table)</span></i></h6>')         
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Math Representation:&nbsp;&nbsp;&nbsp;Human Language Semantic Universe (words all languages) <-> Mathematical Semantic Dimensions (same numeric repr)</span></i></h6>')         
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Transformer:&nbsp;&nbsp;&nbsp; Initial Embeddings Matrix (table) -> Neural Network (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab)</span></i></h6>')     
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samplings/Penalties:&nbsp;&nbsp;&nbsp;Samplings (temperature/top-k/top-p) -> Penalties (presence/frequency/repeat) -> Stop Conditions</span></i></h6>')         
+            # with gr.Row():
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Summary:&nbsp;&nbsp;&nbsp;(Context Window (text) -> Tokens (vocab) -> Initial Embeddings Matrix (table) -> Transformer (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab) -> Sampling/Penalty) -> Stop Condition</span></i></h6>')         
+            
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">USER prompt examples</h5>""")
             with gr.Row():
                 gr.Examples(fn=click_sound, run_on_click=True, examples=examples, label=None, examples_per_page=100, elem_id="examples", inputs=[inputs[3]])
+            
             with gr.Row():
                 gr.HTML('<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">SYSTEM prompt examples</h5>')
             with gr.Row():
