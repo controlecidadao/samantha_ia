@@ -643,8 +643,12 @@ def text_generator(
     pre_prompt = ''     # Required to store the 'pre_prompt' for use in each of the prompts in the prompt list
     final_prompt = ''   # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
 
+    # model_single_answer = True
+
     for n_model, model in enumerate(models):            # Loop over models list
 
+        # back_first_loop = False
+        
         # Extract model prompt template
         # try:                                            # try to get the corresponding prompt template for the selected model
         #     with open(fr'{model_path}\{model[:-5]}.txt', encoding='utf-8', errors='ignore') as f:
@@ -681,6 +685,10 @@ def text_generator(
         # ================================
 
         while True:
+
+            # if back_first_loop == True:
+            #     break
+
             para_tudo = False                                       # Reinitializes 'para_tudo' variable after it was set to True (para_tudo = True stop text generation)
             if last_model != model or llm == '' or loop_models > 1: # Check if model changed or was unloaded. If so, load new model. Force unload model if loop_model > 1
                 try:                                                # Delete previous model from memory
@@ -843,6 +851,7 @@ def text_generator(
             # ======================================
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
+                
                 # num_tokens = 1 # Starts tokens counting of the current response                
                 # prompt_text = prompt_text.replace('{', '(').replace('}', ')') # To evoid NameError em eval(temp). Some texts has {} inside it
                 # temp = temp_2.replace('{prompt}', prompt_text) # Replaces prompt with item from prompt list
@@ -1091,10 +1100,14 @@ def text_generator(
                                 except:
                                     pass
                             token_score_sorted = sorted(token_score, key=lambda x: x[1], reverse=True) # ["22867)    'lá'    ", 29.99230194091797, 'lá']
-                            x_bar = [l[0] for l in token_score_sorted[:top_k]]
-                            y_bar = [round(l[1], 2) for l in token_score_sorted[:top_k]]
-                            color_bar = ['Selected' if l[2] == current_token else 'No' for l in token_score_sorted[:top_k]]
-                            for n, l in enumerate(token_score_sorted[:top_k]):
+                            if top_k > 100:
+                                top_k_bar = 100
+                            else:
+                                top_k_bar = top_k
+                            x_bar = [l[0] for l in token_score_sorted[:top_k_bar]]
+                            y_bar = [round(l[1], 2) for l in token_score_sorted[:top_k_bar]]
+                            color_bar = ['Selected' if l[2] == current_token else 'No' for l in token_score_sorted[:top_k_bar]]
+                            for n, l in enumerate(token_score_sorted[:top_k_bar]):
                                 if l[2] == current_token and n != 0:
                                     x_score.append(str(count))
                                     y_score.append(n + 1)
@@ -1235,6 +1248,10 @@ def text_generator(
                 # Leaves function if reponse contains this stop words
                 if 'STOP_SAMANTHA' in ultima_resposta:
                     return
+                
+                
+                # if model_single_answer == True: # To go back to the first loop (selected models)
+                #     back_first_loop = True
 
 
                 # ======================
@@ -1253,11 +1270,16 @@ def text_generator(
                         elif n_model == len(models) - 1:        # Leave the function
                             return
                 if num_control < num_respostas:                 # Break prompt list's for loop (go back to endless where loop)
-                    break
+                    break           
+            
             if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
                 break
 
             num_control += 1
+
+
+
+
 
     para_tudo = False                                           # Reset variable
 
