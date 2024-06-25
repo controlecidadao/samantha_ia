@@ -2400,6 +2400,14 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_full_audio.click(fn=load_full_audio, inputs=inputs, outputs=audio_widget, queue=False)
             
             with gr.Row():
+                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Models Repository:</h5>""")
+                
+            with gr.Row():
+                gr.HTML("""<ul>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf">Hugging Face GGUF Models</a></li>
+                        </ul>""")
+            
+            with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Operating Tips:</h5>""")
             # with gr.Row():
             #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Key Concepts:&nbsp;&nbsp;&nbsp;Training Dataset / Prompt, Token, Token Vocabulary, Large Language Model (LLM), Training / Generation, Embedding Vectors, Embedding Matrix, Artificial Neural Networks (Layers, Weights and Bias), Ordered Token Vocabulary, Next Token Selection</span></i></h6>""")                      
