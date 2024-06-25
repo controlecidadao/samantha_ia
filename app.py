@@ -2,7 +2,7 @@
 # SAMANTHA IA - INTERFACE ASSISTANT
 # =================================
 
-# This is an experimental project that was developed solely with the aim of encouraging the creation of similar works.
+# This is an experimental project developed solely with the aim of encouraging the creation of similar works.
 
 
 # =============
@@ -47,7 +47,7 @@
 
 
 # VSCODE DEBUG CODE EXPLORER
-# To use VSCode Debug Mode with Gradio, put a breakpoint in the first code line inside every function called by Gradio (global variables do not acept breakpoint)
+# To use VSCode Debug Mode with Gradio, put a breakpoint in the first code line inside every function called by Gradio (global variable calls do not acept breakpoint)
 # CTRL + K -> CTRL + 0 = COLLAPSE ALL ITEMS
 # CTRL + K -> CTRL + J = EXPAND ALL ITEMS
 
@@ -81,12 +81,10 @@ import sounddevice as sd        # Import sounddevice as sd for real-time audio s
 from vosk import Model          # Import vosk's Model to load a speech recognition model for offline speech recognition tasks. This model converts spoken words into text without the need for an internet connection. (Offline Speech Recognition)
 from vosk import KaldiRecognizer # Import vosk's KaldiRecognizer to use the Vosk Speech Recognition Engine, which provides a simple API for converting audio data to text. (Speech Recognition)
 import json                     # Import json for parsing JSON files or encoding and decoding JSON data, which is a lightweight data interchange format. (JSON Operations)
-
-# import os
-import requests
-from pathlib import Path
-from urllib.parse import urlparse
-import gc
+import requests                 # Import json allows for sending HTTP requests to remote servers and receiving HTTP responses in Python. It is used to perform tasks like fetching web pages, making API calls, and downloading files from the internet.
+from pathlib import Path        # Import Path class provides a cross-platform way of working with file system paths in Python. It can be used for creating, opening, and manipulating files or directories on the local file system.
+from urllib.parse import urlparse # Import urlparse to analyze and construct URLs (Uniform Resource Locators). It is useful when working with web scraping, API calls, or any other tasks that involve handling URLs.
+import gc                       # Import gc to help manage memory by automatically freeing up objects that are no longer being referenced by the program. This can be used to reduce memory usage and improve performance when working with large datasets or complex programs.
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -187,12 +185,7 @@ language = {
                 'assistant_current_response_info': 'Assistant current response (caixa de texto). Texto inicial da resposta atual do Assistente (3º na linha do tempo do chat)',
                 'current_response': '',                     # Segue resposta:\n
                 'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
-
-
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado.",
-                
-                
-                
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
                 'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa modo de aprendizagem.',
@@ -201,23 +194,20 @@ language = {
                 'learning_mode_info': 'Learning mode (caixa de seleção). Ativa o Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado. Tempo em segundos.',
                 'number_of_loops_info': 'Number of loops (caixa de seleção). Controla o número de loops da sequência de modelos selecionada.',
                 'number_of_responses_info': 'Number of responses (caixa de seleção). Controla o número de respostas para cada modelo selecionado.',
-                
                 'n_ctx_info': 'n_ctx (ajuste deslizante). Número de tokens da janela de contexto (0 = máximo do modelo). Aumenta uso da memória RAM. Antes de ajustar, descarregue o modelo.',
                 'max_tokens_info': 'max_tokens (ajuste de faixa de valores). Controla número máximo de tokens a serem gerados na resposta. Selecione 0 para o máximo possível.',
                 'temperature_info': 'temperature (ajuste de faixa de valores). Controla o grau de criatividade versus previsibilidade das respostas.',
-                'stop_info': r'stop (caixa de texto). Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',
-                
+                'stop_info': r'stop (caixa de texto). Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',                
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
                 'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p”.',
+                'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "m".', 
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
                 'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'frequency_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
                 'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada a sequências repetidas de tokens (não a sequência das próximas palavras) com base em sua presença no texto já gerado.',
-    
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
-                
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
@@ -259,9 +249,7 @@ language = {
                 'assistant_current_response_info': 'Assistant current response (text box). Initial text of the Assistant current response (3rd in chat timeline)',
                 'current_response': '',                     # Follows response:
                 'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
-                
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected.",
-                
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
                 'fast_mode_info': 'Fast mode (checkbox). Generates text faster in background. Disables Learning Mode.',
@@ -270,23 +258,20 @@ language = {
                 'learning_mode_info': 'Learning mode (select box). Activates Learning Mode. Works only if Fast Mode is unchecked. Time in seconds.',
                 'number_of_loops_info': 'Number of loops (select box). Controls the number of loops of the selected models sequence.',
                 'number_of_responses_info': 'Number of responses (select box). Controls the number of responses for each selected model.',
-                
                 'n_ctx_info': 'n_ctx (range slider). Number of context window tokens (0 = from model). Increases RAM memory usage. Before adjusting, unload the model.',
                 'max_tokens_info': 'max_tokens (range slider). Controls maximum number of tokens that will be generated in the response. Set 0 for maximum possible.',
                 'temperature_info': 'temperature (range slider). Controls the degree of creativity versus predictability of responses.',
                 'stop_info': r'stop (text box). Contains list of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]',
-                
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
                 'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p".',
+                'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "m".', 
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
                 'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'frequency_penalty (range slider). Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
                 'repeat_penalty_info': 'repeat_penalty (range slider). Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text.',
-
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
-                
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'PDF Full',
@@ -305,8 +290,8 @@ language = {
                 }
             }
 
-
 # prompt the user to select their preferred language for the interface interaction, with a default option for Portuguese or English
+# read_aloud_fn desabled
 
 if 'portuguese' in voices[0].name.lower(): # Check if the name of the voice contains the substring 'portuguese'. If it does, proceed to offer language selection.
     print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language by pressing ENTER for Portuguese or any other key plus ENTER for English.
@@ -332,7 +317,6 @@ print()
 # =====================
 # GET LOCAL MDDELS LIST
 # =====================
-
 
 def get_downloads_path():
     """
@@ -409,13 +393,13 @@ random_list = False             # Shuffle models order (if number of models >= 3
 reset_mode = False              # Reset model for each prompt run of the chaining (Checkbox)
 audio = None                    # Stores pygame audio object
 model_metadata = ''             # Stores llm metadata to show on interface
-model_url = ''
-previous_model_url = ''
+model_url = ''                  # Stores the model url for downloading
+previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
 
 
-# ==================
-# INTERFACE SETTINGS
-# ==================
+# ================================
+# INTERFACE VOICE CONTROL SETTINGS
+# ================================
 
 # This code first checks if the Portuguese language option is available for voice control. If it's available, it prompts the user to enable or disable voice control and read-aloud functionality in Portuguese. It then sets flags based on the user's input.
 # If the Portuguese option isn't available, it falls back to a standard English prompt for enabling/disabling voice control. Again, it sets the flags accordingly. 
@@ -496,9 +480,7 @@ def text_generator(
         prompt_p,
         # current_ia_response_p, # To remove soon (4th element). Items greater then 4 must be down 1
         models,
-
         model_url_p,
-
         reset_mode_p,
         random_list_p,
         fast_mode_p,
@@ -512,7 +494,8 @@ def text_generator(
         temperature, 
         stop_generation, 
         tfs_z, 
-        top_p, 
+        top_p,
+        min_p,
         top_k, 
         presence_penalty, 
         frequency_penalty, 
@@ -577,6 +560,7 @@ def text_generator(
     model_url = model_url_p
 
 
+    # Check if no model is selected
     if models == []:
 
         # Check if "Model's URL for testing" field is filled
@@ -596,19 +580,13 @@ def text_generator(
                 return
         elif 'http' in model_url and previous_model_url == model_url:
             models = 'MODEL_FOR_TESTING.gguf'
-        
         # llm = ''
-
-
 
     if prompt == '':                # To use in case of empty user prompt
         prompt = 'Hello!'
 
     if stop_generation == '':       # To avoid error, set the variable with an impossible character sequence
         stop_generation = "['$$$']"
-
-    # if delay_next_token != 'OFF':   # Limit number of bars in the barplot to avoid error on generating barplot with high number of logits score on Learning Mode
-    #     max_tokens = 100
 
     # Set the previous response sequence (in test)
     if infinite_loop == True:
@@ -639,7 +617,6 @@ def text_generator(
         models = random_list_fn(models) # Auxiliary function
     print()
 
-
     full_text = ''                  # Restart variable before load models.
     
     with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
@@ -654,7 +631,7 @@ def text_generator(
     #      |
     #      ENDLESS WHILE LOOP (Until leave the text_generator function)       2ND LOOP
     #           |
-    #           FOR LOOP OVER PROMPTS (Prompt 1, Prompt 1...)                 3RD LOOP
+    #           FOR LOOP OVER PROMPT LIST (Prompt 1, Prompt 1...)             3RD LOOP
     #                |
     #                FOR LOOP TOKEN GENERATION (Token 1, Token 2...)          4TH LOOP
 
@@ -726,9 +703,9 @@ def text_generator(
                             vocab_only=False,
                             use_mmap=True,
                             use_mlock=False,
-                            seed=4294967295, #-1,
+                            seed=4294967295,                        #-1,
                             n_ctx=n_ctx,                            # default: 512 <<<<<<<<<<<<<<<<<<<<<<<<<<<<< SET BY THE USER (NECESSARY TO RELOAD MODEL TO PRODUCE EFFECTS)
-                            n_batch=512, #128,                            # default: 512 Estava em 256
+                            n_batch=512,                            # default: 512 Estava em 256
                             n_threads=None,                         # Estava em None
                             n_threads_batch=None,                   # Estava em None
                             rope_freq_base=0,
@@ -742,7 +719,7 @@ def text_generator(
                             lora_scale=1.0,
                             lora_path=None,
                             numa=False,
-                            chat_format=None, #'llama-2', # 'llama-2' (padrão), 'alpaca', 'vicuna', 'oasst_llama', 'openbuddy', 'redpajama-incite', 'snoozy', 'phind', 'open-orca'
+                            chat_format=None,                       # 'llama-2' (padrão), 'alpaca', 'vicuna', 'oasst_llama', 'openbuddy', 'redpajama-incite', 'snoozy', 'phind', 'open-orca'
                             chat_handler=None,
                             verbose=True,         
                         )
@@ -768,13 +745,8 @@ def text_generator(
             #     print('>>>>> EOS after:', llm._token_eos)
             #     print()
 
-
-
             if max_tokens == 0:
                 max_tokens = None   
-
-
-
             
             # num_tokens = 0 # Starts tokens counting of the current response
             previous_token = [] # Stores 10 last tokens. Displayed on top of the output field
@@ -865,9 +837,10 @@ def text_generator(
             with open('partial_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
                 pass
 
-            # ========================
-            # THIRD LOOP - PROMPT LIST
-            # ========================
+
+            # ======================================
+            # THIRD LOOP - FOR LOOP OVER PROMPT LIST
+            # ======================================
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
                 # num_tokens = 1 # Starts tokens counting of the current response                
@@ -894,13 +867,6 @@ def text_generator(
                 # Text cleaning for audio reproduction. Remove characters inside [] and <>
                 # full_text = re.sub(r'\[.*?\]', '', full_text) 
                 # full_text = re.sub(r'<.*?>', '', full_text)
-
-
-
-
-
-
-
 
                 # temp = temp.replace('full_text', full_text + '$$$') # $$$ joins paragraphs in only one prompt
                 print()
@@ -998,9 +964,9 @@ def text_generator(
                     total_time_start = time.time()
 
 
-                    # ===============================
-                    # FOURTH LOOP - TOKENS GENERATION
-                    # ===============================    
+                    # ========================================
+                    # FOURTH LOOP - FOR LOOP TOKENS GENERATION
+                    # ========================================    
                     
                     # Loop to generate text, token by token. Model is loaded in memory here.
                     for nu, i in enumerate(llm.create_chat_completion(
@@ -1009,6 +975,7 @@ def text_generator(
                             function_call = None,
                             temperature = temperature,             # default: 0.2
                             top_p = top_p,                         # default: 0.95
+                            min_p = min_p,                         # default: 0.05
                             top_k = top_k,                         # default: 40
                             stream = True,                         # default: False
                             stop = eval(stop_generation),          # default: None
@@ -1082,6 +1049,7 @@ def text_generator(
                                 continue
 
                         # In Fast Mode, all text bellow is not executed
+
 
                         # ===========
                         # NORMAL MODE
@@ -1175,7 +1143,7 @@ def text_generator(
                                 # num_control = num_respostas # Se tiver executando loop de respostas, para todo o loop REMOVER PARA PERMITIR INTERROMPER APENAS O LOOP ATUAL
                                 break
                             if delay_next_token != 'OFF':
-                                if delay_next_token == 'NEXT':
+                                if delay_next_token == 'NEXT TOKEN':
                                     while True:
                                         if next_token == True: # Controls NEXT TOKEN button infinite loop
                                             next_token = False
@@ -1293,8 +1261,8 @@ def text_generator(
 
     para_tudo = False                                           # Reset variable
 
-    # Limpeza adicional após o uso
-    # gc.collect()
+    # Final cleaning
+    gc.collect()
 
         
 # ===================
@@ -2158,18 +2126,18 @@ def download_model(url):
 
 
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
-# def run_code(code: str): # Cria um arquivo .py no diretório local
+# def run_my_code(code: str): # Cria um arquivo .py no diretório local
 #     if 'runthecode' in prompt.lower() or 'runthecode' in previous_answer.lower():
 #         html_files = glob.glob('*.html')
 #         for file in html_files:
 #             os.remove(file)
-#         file_name = "code.py"
+#         file_name = "code_my_code.py"
 #         with open(file_name, "w") as file:
 #             file.write(code)
 #         try:
-#             subprocess.run(["python", file_name]) # Executa o arquivo .py via terminal
+#             subprocess.run(["python", file_name]) # Executa o arquivo .py via terminal com o interpretador do ambiente virtual atual
 #         finally:
-#             os.remove(file_name) # Remove o arquivo .py temporário
+#             os.remove(file_name) # Remove o arquivo .py temporário (talvez melhor não apagar)
 
 
 # ================
@@ -2203,6 +2171,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
     
     with gr.Row():
             
+
         # ====================
         # INPUT COMLUMN (LEFT)
         # ====================
@@ -2224,15 +2193,12 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
                 gr.Dropdown(choices=models, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
-                
                 gr.Textbox(value=None, lines=1, label="Download model for testing", info=language['model_url_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
-                
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
                 gr.Checkbox(value=random_list, label="Shuffle models", info=language['shuffle_models_order_info'], interactive=True),
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
-                
                 gr.Radio(['OFF', 0.3, 1, 5, 15, 30, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
@@ -2242,6 +2208,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
                 gr.Slider(1e-5, 1, 1, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
                 gr.Slider(1e-6, 1, 0.95, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
+                gr.Slider(0, 1, 0.05, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
