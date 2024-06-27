@@ -217,17 +217,17 @@ call pip list
 :: DOWNLOAD AND UNPACK DB BROWSER
 :: ==============================
 
-set "URL=https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win64.zip"
-set "TMP_FILE=%TEMP%\db_browser.zip"
-set "INSTALL_DIR=%cd%"
+::set "URL=https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win64.zip"
+::set "TMP_FILE=%TEMP%\db_browser.zip"
+::set "INSTALL_DIR=%cd%"
 
-echo Baixando dB browser Portable...
-curl -o "%TMP_FILE%" "%URL%"
+::echo Baixando dB browser Portable...
+::curl -o "%TMP_FILE%" "%URL%"
 
-echo Descompactando o arquivo...
-powershell -command "Expand-Archive -Path '%TMP_FILE%' -DestinationPath '%INSTALL_DIR%'"
+::echo Descompactando o arquivo...
+::powershell -command "Expand-Archive -Path '%TMP_FILE%' -DestinationPath '%INSTALL_DIR%'"
 
-echo Instalação concluída.
+::echo Instalação concluída.
 
 
 
@@ -240,13 +240,9 @@ echo Instalação concluída.
 
 ::set "CURRENT_DIR=%~dp0"
 ::set "EXE_FILE=%CURRENT_DIR%DB Browser for SQLite\DB Browser for SQLite.exe"
-
 ::echo Starting "%EXE_FILE%"...
-
 ::start "" "%EXE_FILE%"
-
 ::pause
-
 
 
 pause
