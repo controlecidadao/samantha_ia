@@ -588,7 +588,7 @@ def text_generator(
         elif 'http' in model_url and previous_model_url == model_url:
             models = 'MODEL_FOR_TESTING.gguf'
     
-    llm = '' # <<<<<<<<<<<<<< EM TESTE
+    llm = '' # <<<<<<<<<<<<<< in test. To avoid error (llm previuosly deleted)
 
 
 
@@ -2091,9 +2091,13 @@ def extract_models_names(): # Load Model button: open window to choose directory
 
 def open_db_browser():
 
-    click.play()                    # Play a click sound
-    python_path = os.path.join(fr'{DIRETORIO_LOCAL}\DB Browser for SQLite', "DB Browser for SQLite.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
-    subprocess.Popen([python_path]) # Open DB Browser using the specified Python environment's executable path
+    click.play()                        # Play a click sound
+
+    try:
+        python_path = os.path.join(fr'{DIRETORIO_LOCAL}\DB Browser for SQLite', "DB Browser for SQLite.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+        subprocess.Popen([python_path]) # Open DB Browser using the specified Python environment's executable path
+    except Exception as e:
+        print(f'{e}:', python_path)
 
 
 def open_dtale():
