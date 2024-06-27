@@ -27,6 +27,7 @@
 # 7) INTERFACE VOICE CONTROL SETTING
 # 8) READ FILES WITH PROMPT EXAMPLES
 # 9) TEXT GENERATOR FUNCTION
+#    DOWNLOAD MODEL ONLY FOR TESTING
 #    LOOPS DESCRIPTION
 #    FIRST LOOP - FOR LOOP OVER SELECTED MODELS
 #    SECOND LOOP - ENDLESS WHILE LOOP
@@ -559,6 +560,13 @@ def text_generator(
     vocabulary = vocabulary_p
     model_url = model_url_p
 
+
+    # ================================
+    # DOWNLOAD MODEL ONLY FOR TESTING
+    # ================================
+
+    # Model is downloaded and saved with the same file name, replacing the previous one
+    # TO DO: Allow more than one download sequencially for testing multiples models
 
     # Check if no model is selected
     if models == []:
