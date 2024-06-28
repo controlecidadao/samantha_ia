@@ -270,8 +270,6 @@ Open Microsoft Task Management by pressing CTRL + SHIFT + ESC
 
 As an experimental project, Samantha has points to be improved:
 
-* Implement the code to use Alibaba Qwen and IBM Granite LLMs;
-
 * Try other lightweight offline Speech-to-Text libraries with better accuracy;
 
 <br><br><br><br>
