@@ -1,6 +1,6 @@
 @echo off
 
-title D-Tale
+::title D-Tale
 
 @echo.
 @echo =======================
