@@ -86,6 +86,7 @@ import requests                 # Import json allows for sending HTTP requests t
 from pathlib import Path        # Import Path class provides a cross-platform way of working with file system paths in Python. It can be used for creating, opening, and manipulating files or directories on the local file system.
 from urllib.parse import urlparse # Import urlparse to analyze and construct URLs (Uniform Resource Locators). It is useful when working with web scraping, API calls, or any other tasks that involve handling URLs.
 import gc                       # Import gc to help manage memory by automatically freeing up objects that are no longer being referenced by the program. This can be used to reduce memory usage and improve performance when working with large datasets or complex programs.
+import shutil
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -596,7 +597,7 @@ def text_generator(
         elif 'http' in model_url and previous_model_url == model_url:
             models = 'MODEL_FOR_TESTING.gguf'
     
-    llm = '' # <<<<<<<<<<<<<< in test. To avoid error (llm previuosly deleted)
+    # llm = '' # <<<<<<<<<<<<<< in test. To avoid error (llm previuosly deleted)
 
 
 
@@ -2114,28 +2115,23 @@ def open_dtale():
     subprocess.run(['open_dtale.bat'], shell=True)
 
 
+import os
+import requests
+from pathlib import Path
+from urllib.parse import urlparse
+
+
 def download_model(url):
-
-    # Download a model from url and save it in "Downloads" folde
-
-    # Hugging Face Model URL
-    # url = "https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF/resolve/main/DeepSeek-Coder-V2-Lite-Instruct-IQ2_M.gguf?download=true"
-
-    # def download_and_rename_model(url):
     try:
-        # 2) Extrair o caminho completo da pasta "Downloads"
+        # Extrair o caminho completo da pasta "Downloads"
         downloads_path = Path(os.path.expanduser("~")) / "Downloads"
         print(downloads_path)
 
+        # Tentar remover o arquivo existente, se houver
         try:
             os.remove(downloads_path / "MODEL_FOR_TESTING.gguf")
         except Exception as e:
             print(e)
-        
-        # 3) Baixar o arquivo da URL
-        response = requests.get(url, verify=False)
-        if response.status_code != 200:
-            raise Exception(f"Failed to download file. Status code: {response.status_code}")
         
         # Obter o nome original do arquivo da URL
         original_filename = os.path.basename(urlparse(url).path)
@@ -2143,34 +2139,98 @@ def download_model(url):
         # Caminho temporário para o arquivo baixado
         temp_file_path = downloads_path / original_filename
         
-        # Salvar o arquivo baixado
-        with open(temp_file_path, 'wb') as file:
-            file.write(response.content)
-            
-        # 4) Renomear o arquivo ".gguf"
+        # Baixar e salvar o arquivo diretamente no disco
+        with requests.get(url, stream=True, verify=False) as response:
+            response.raise_for_status()
+            with open(temp_file_path, 'wb') as file:
+                shutil.copyfileobj(response.raw, file)
+        
+        # Renomear o arquivo ".gguf"
         new_file_path = downloads_path / "MODEL_FOR_TESTING.gguf"
         os.rename(temp_file_path, new_file_path)
         
-        # 5) Retornar o caminho completo para o arquivo
+        # Retornar o caminho completo para o arquivo
         return str(new_file_path)
     
-    finally:
-        pass
-        # Limpeza de memória
-        if 'response' in locals():
-            del response
-        if 'file' in locals():
-            del file
-        gc.collect()  # Força a coleta de lixo
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao baixar o arquivo: {e}")
+        return None
+    except Exception as e:
+        print(f"Erro inesperado: {e}")
+        return None
 
-    # Exemplo de uso:
-    # caminho_do_arquivo = download_and_rename_model(url)
-    # print(f"O arquivo foi baixado e renomeado. Caminho: {caminho_do_arquivo}")
+# Exemplo de uso:
+# url = "https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF/resolve/main/DeepSeek-Coder-V2-Lite-Instruct-IQ2_M.gguf?download=true"
+# result = download_model(url)
+# print(result)
 
-    # Limpeza adicional após o uso
-    # gc.collect()
 
-    # return caminho_do_arquivo
+
+
+
+
+# def download_model(url):
+
+#     # Download a model from url and save it in "Downloads" folde
+
+#     # Hugging Face Model URL
+#     # url = "https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF/resolve/main/DeepSeek-Coder-V2-Lite-Instruct-IQ2_M.gguf?download=true"
+
+#     # def download_and_rename_model(url):
+#     try:
+#         # 2) Extrair o caminho completo da pasta "Downloads"
+#         downloads_path = Path(os.path.expanduser("~")) / "Downloads"
+#         print(downloads_path)
+
+#         try:
+#             os.remove(downloads_path / "MODEL_FOR_TESTING.gguf")
+#         except Exception as e:
+#             print(e)
+        
+#         # 3) Baixar o arquivo da URL
+#         response = requests.get(url, verify=False)
+#         if response.status_code != 200:
+#             raise Exception(f"Failed to download file. Status code: {response.status_code}")
+        
+#         # Obter o nome original do arquivo da URL
+#         original_filename = os.path.basename(urlparse(url).path)
+        
+#         # Caminho temporário para o arquivo baixado
+#         temp_file_path = downloads_path / original_filename
+        
+#         # Salvar o arquivo baixado
+#         with open(temp_file_path, 'wb') as file:
+#             file.write(response.content)
+            
+#         # 4) Renomear o arquivo ".gguf"
+#         new_file_path = downloads_path / "MODEL_FOR_TESTING.gguf"
+#         os.rename(temp_file_path, new_file_path)
+        
+#         # 5) Retornar o caminho completo para o arquivo
+#         return str(new_file_path)
+    
+#     finally:
+#         pass
+#         # Limpeza de memória
+#         if 'response' in locals():
+#             del response
+#         if 'file' in locals():
+#             del file
+#         gc.collect()  # Força a coleta de lixo
+
+#     # Exemplo de uso:
+#     # caminho_do_arquivo = download_and_rename_model(url)
+#     # print(f"O arquivo foi baixado e renomeado. Caminho: {caminho_do_arquivo}")
+
+#     # Limpeza adicional após o uso
+#     # gc.collect()
+
+#     # return caminho_do_arquivo
+
+
+
+
+
 
 
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
@@ -2247,7 +2307,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
-                gr.Radio(['OFF', 0.3, 1, 5, 15, 30, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
+                gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
@@ -2431,6 +2491,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
                         <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
+                        <li><a href="https://huggingface.co/Qwen/Qwen2-7B-Instruct-GGUF">Qwen/Qwen2-7B-Instruct-GGUF</a></li>
+                        <li><a href="https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF">bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a></li>
                         
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a></li>
                         </ul>""")
