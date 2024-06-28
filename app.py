@@ -2361,9 +2361,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             #     btn_x6 = gr.Button('')
             #     btn_x6.click(fn=None, inputs=None, outputs=None)
 
-
             gr.HTML('<br><h6><b>Useful links:</b></h6>') # Useful Links
-
 
             gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?search=gguf">GGUF Hugging Face Search Results</a></li>
@@ -2384,15 +2382,14 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/docs/hub/gguf">GGUF File</a></li>
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
-                        
                     </ul>""")
                         # <li><a href="https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard">Big Code Models Leaderboard</a></li>
                         # <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
                         # <li><a href="https://huggingface.co/spaces/eduagarcia/open_pt_llm_leaderboard">Portuguese LLM Leaderboard</a></li>
                         
-
             gr.HTML('<br><h6><b>Tutorials:</b></h6>') # Tutorials
+
             gr.HTML("""<ul>
                     <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=5">But what is a GPT? (3Blue 1Brown)</a></li>
                     <li><a href="https://www.youtube.com/watch?v=xU_MFS_ACrU">How do LLMs like ChatGPT work?</a></li>
@@ -2405,7 +2402,9 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
                     </ul>""")
                     # https://www.youtube.com/watch?v=FdTRzgbBP8o
+            
             gr.HTML('<br><h6><b>Installed Python Modules to Use with JupyterLab:</b></h6>') # Exploratory Data Analysis
+            
             gr.HTML("""<ul>
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
                     <li><a href="https://altair-viz.github.io/">Vega-Altair</a></li>
@@ -2414,25 +2413,21 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://networkx.org/documentation/stable/index.html">NetworkX</a></li>
                     <li><a href="https://github.com/fbdesignpro/sweetviz">Sweetviz</a></li>
                     <li><a href="https://github.com/man-group/dtale">D-Tale</a></li>
-                    <li><a href="https://dataprep.ai/">DataPrep</a></li>
                     <li><a href="https://pandas.pydata.org/">Pandas</a></li>
                     <li><a href="https://pymupdf.readthedocs.io/en/latest/">PyMuPDF</a></li>
                     <li><a href="https://pypi.org/project/beautifulsoup4/">Beautifulsoup4</a></li>
                     </ul>""")
-            
+                    #<li><a href="https://dataprep.ai/">DataPrep</a></li>
                     #<li><a href="https://playwright.dev/python/docs/intro">Playwright</a></li>
                     #<li><a href="https://github.com/ydataai/ydata-profiling">Pandas Profiling</a></li>
             
             gr.HTML('<br><h6><b>Accessibility:</b></h6>') # Exploratory Data Analysis
+            
             gr.HTML("""<ul>
                     <li><a href="https://support.microsoft.com/en-us/windows/windows-keyboard-shortcuts-for-accessibility-021bcb62-45c8-e4ef-1e4f-41b8c1fc87fd">Windows keyboard shortcuts for accessibility</a></li>
                     <li><a href="https://support.microsoft.com/en-us/windows/appendix-b-narrator-keyboard-commands-and-touch-gestures-8bdab3f4-b3e9-4554-7f28-8b15bd37410a#WindowsVersion=Windows_11">Narrator keyboard commands and touch gestures</a></li>
                     </ul>""")
             
-            
-            # gr.HTML(f'<br><h6><b>Available GGUF models to download ({len(headings)}):</b></h6>')
-            # gr.HTML(links)
-
 
         # =====================
         # OUTPUT COLUMN (RIGHT)
@@ -2513,16 +2508,10 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;(Models List -> User Prompt List -> Number of Responses) -> Number of Loops</span></i></h6>')         
-            
-            
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), presence_penalty (0), frequency_penalty (0), repeat_penalty (1)</span></i></h6>')         
-
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
-            
-            
-            
             # with gr.Row():
             #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">GPT:&nbsp;&nbsp;&nbsp;Choice of the next token according to the probability patterns extracted from the training texts</span></i></h6>')                     
             # with gr.Row():
@@ -2556,17 +2545,13 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
         btn3.click(fn=clean_output, inputs=None, outputs=[saida], queue=True)
         # btn4.click(fn=extract_models_names, inputs=None, outputs=inputs[5])
         btn4.click(fn=extract_models_names, inputs=None, outputs=inputs[4])
-        
-        
         btn5.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False) # Bound to STOP ALL / RESET button
         btn5.click(fn=stop_running_all, inputs=None, outputs=None, queue=False)
         btn6.click(fn=update_previous_answer, inputs=None, outputs=inputs[2], queue=False, show_progress='hidden')
         
         # saida.change(fn=update_template_field, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=False, show_progress=False) 
-        
         saida.change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=True, show_progress=False)
         inputs[-1].change(fn=update_metadata, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=True, show_progress=False)
-        
         # inputs[-2].change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=False)
 
 
