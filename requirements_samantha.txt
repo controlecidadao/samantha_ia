@@ -19,6 +19,7 @@ sounddevice==0.4.6
 #  networkx==3.3
 #  ydata-profiling==4.0.0
 #  dataprep==0.4.5
+beautifulsoup4==4.12.3
 
 # Dependencies
 python-editor==1.0.4
