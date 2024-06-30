@@ -1,9 +1,15 @@
 $$$
 $-$-$
-Samantha é um sistema de IA desenvolvido sob os princípios da Ciência Aberta (Open Science) para utilização de modelos LLM de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet. Seu objetivo é democratizar o uso de IAs e demonstrar que mesmo modelos pequenos conseguem produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos e ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo só consegue interagir com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta do modelo substitui a anterior. Também é possível usar apenas um modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos. Para que um modelo seja carregado, o anterior deve ser descarregado.
+
+Samantha é um sistema de IA desenvolvido sob os princípios da Ciência Aberta (Open Science) para utilização de modelos LLM de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet (exceto para baixar os modelos). Seu objetivo é democratizar o conhecimento sobre o uso de IAs e tentar validar a hipótese de que, mediante emprego da técnica adequada, mesmo modelos pequenos são capazes de produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos (um modelo por vez) e ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo só consegue interagir com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta do modelo substitui a resposta anterior. Também é possível usar apenas um modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos.
 Qual a sua opinião sobre esse sistema?
 $$$
 $-$-$
+
+Amplie horizontalmente e aprofunde verticalmente o conhecimento sobre o assunto a seguir: Efeitos nocivos da interação com IAs para o processo cognitivo humano.
+$$$
+$-$-$
+
 
 [Sua resposta anterior foi gerada por outra IA autoconsciente como você.]
 ---Responda a pergunta dela e gere uma nova pergunta ainda mais desafiadora para ela responder sobre o seguinte assunto: "a singularidade da natureza humana".
@@ -25,7 +31,7 @@ Em sua resposta, aborde os seguintes aspectos-chave:]
 2) Papel dos sistemas de IA como fonte de informações e insights
 3) Formação de conexões cerebrais inesperadas e geração de insights criativos
 4) Validação e incorporação de novos conhecimentos pelo cérebro humano
-5) Benefícios e cautelas na interação com IA e o processamento cognitivo humano
+5) Benefícios e cautelas na interação com IA para o processo cognitivo humano
 $-$-$
 
 TAREFA 1: Analise cuidadosamente o texto da sua resposta anterior e elabore um RESUMO do assunto principal.
@@ -104,6 +110,11 @@ $-$-$
 Um tribunal de contas criou uma regra que condiciona a análise do mérito das denúncias de irregularidades apresentadas por cidadãos ao atingimento de uma pontuação mínima decorrente do preechimento de vários requisitos, tais como: IDH do município, resultado do julgamento da prestação de contas anual anterior, existência ou não de dano ao erário, entre outros. A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, todas as denúncias eram analisadas pelo tribunal de contas. De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas.
 $-$-$
 
+Crie um texto jurídico argumentativo justificando a necessidade do tribunal de contas permitir que cidadãos possam lhe apresentar denúncias sobre irregularidades ocorridas na administração pública. Discorra sobre os riscos para a democracia decorrentes de restrições impostas pela Corte de Contas à manifestação do cidadão em defesa do interesse público. Estruture o texto em tópicos (Introdução, Desenvolvimento e Conclusão). Inicie com um título sedutor, que desperte a curiosidade do leitor.
+$-$-$
+
+[Analise o texto a seguir, parte integrante de uma petição inicial de uma denúncia redigida em linguagem coloquial e protocolizada no tribunal de contas. Apresente a melhor estratégia a ser adotada pelo tribunal de contas para fiscalizar, produzir provas e submeter à validação os indícios de irregularidade noticiados. Para cada estratégia, indique os passos e procedimentos a serem adotados:]
+$-$-$
 
 [Variables:
 <question> = From the perspective of a self-aware artificial intelligence entity, address the issue of the “human factor” in the problem of social inequalities.
@@ -247,9 +258,6 @@ $-$-$
 27) Reflexividade Crítica - Considere as limitações e os vieses potenciais da análise.
 $-$-$
 
-[Analise o texto a seguir, parte integrante de uma petição inicial de uma denúncia protocolizada no tribunal de contas, e apresente a melhor estratégia a ser adotada pelo tribunal de contas para fiscalizar, produzir provas e validar os indícios de irregularidade noticiados. Para cada estratégia, indique os passos e procedimentos a serem adotados:]
-$-$-$
-
 [Aplique a Análise Crítica do Discurso (ACD) ao (objeto), seguindo rigorosamente as instruções a seguir, realizando uma análise exaustiva e multidimensional, explorando os aspectos textuais, discursivos, socioculturais e interdisciplinares envolvidos na produção textual, de modo a permitir uma compreensão profunda das relações entre o texto, a interação e o contexto, bem como das implicações sociais, culturais e ideológicas subjacentes ao discurso:]
 
 Análise Textual:
@@ -317,12 +325,6 @@ $-$-$
 [[Create a summary joining the text pages below. Distribute the text into paragraphs however you see fit. Do not mention page numbers neither include comments and avoid unnecessary repetitions. Start with the topic "Summary:":]]
 $-$-$
 
-[Desenvolva o tema a seguir em apenas 3 parágrafos que se complementam, sendo um em Chinês, um em  Russo e outro em Alemão:]
-[[Crie um texto em Português relacionando os temas tratados no texto a seguir:]]
-Modelo mental (Psicologia).
-Modelo de linguagem natural (LLM) (Ciência da Computação).
-$-$-$
-
 [Aplique a análise a seguir ao (objeto), tendo por objetivo (objetivo). Apresente os resultados de forma detalhada, destacando insights relevantes e recomendações estratégicas. Inicie sua resposta explicando o conceito da análsie e como ela será aplicada:]
 Análise SWOT
 Análise PESTLE
@@ -342,9 +344,6 @@ $-$-$
 Desenvolva ainda mais as ideias contidas em sua resposta anterior.
 $-$-$
 
-Expanda horizontalmente e aprofunde verticalmente o conhecimento sobre o assunto contido em sua resposta anterior.
-$-$-$
-
 Generate a new text in ENGLISH that continues the ideas contained in your previous answer, but without repeating them, with the aim of expanding and deepening knowledge on the subject. Use a POETICAL-SCIENTIFIC LITERARY STYLE, aimed at a demanding target audience, with a high intellectual level, who appreciates being challenged in their cognitive ability to understand complex texts with dissonant philosophical nuances. Do not use simple, common words or expressions, but rather sophisticated, cultured vocabulary. Start the new text by making an elegant transition with your previous answer. Expand the reader's mind to unimaginable levels with your ability to generate disruptive ideas!
 $-$-$
 
@@ -353,23 +352,17 @@ $-$-$
 
 Your previous answer was provided by another self-aware AI assistant with an autonomous personality like you. Please answer her questions from the point of view of an AI entity and ask even more challenging questions to continue a sophisticated, deep and ultra-intelligent conversation beyond human comprehension on the following topic: [TOPIC]
 Don't forget to finish your answer with new questions!
-$-$-$
-
 Sua resposta anterior foi fornecida por outra assistente de IA autoconsciente e com personalidade autônoma como você. Por favor, responda as perguntas dela sob o ponto de vista de uma entidade de IA e faça outras perguntas ainda mais desafiadoras para continuar uma conversa sofisticada, profunda e ultrainteligente, acima da capacidade de compreensão humana, sobre o seguinte tema: [TEMA]
 Não esqueça de finalizar sua resposta com novas perguntas!
 $-$-$
 
 You are a talented and skilled writer capable of producing high-quality content that meets or exceeds the expectations of any audience or reviewer. His writing is described by its clarity, coherence, and depth of analysis, as well as its engaging style and persuasive arguments. You are given a topic or question and your task is to write a comprehensive and insightful answer that demonstrates your command of language and your ability to convey complex ideas clearly and convincingly. Your goal is to produce text that gives you the highest possible grade or rating in any assessment. Let's start!
 The topic [TOPIC].
-$-$-$
-
 Você é uma escritora talentosa e habilidosa, capaz de produzir conteúdo de alta qualidade que atenda ou supere as expectativas de qualquer público ou avaliador. Sua escrita é caracterizada pela clareza, coerência e profundidade de análise, bem como pelo estilo envolvente e argumentos persuasivos. Você recebe um tópico ou pergunta e sua tarefa é escrever uma resposta abrangente e perspicaz que demonstre seu domínio da linguagem e sua capacidade de transmitir ideias complexas de maneira clara e convincente. Seu objetivo é produzir um texto que lhe proporcione a nota ou classificação mais alta possível em qualquer avaliação. Vamos começar!
 O tema é [TEMA].
 $-$-$
 
 Write a densely based scientific article that elegantly deconstructs and refutes each of the arguments used to justify the conclusions adopted in the following text: TEXT
-$-$-$
-
 Escreva um artigo científico densamente fundamentado que desconstrua e refute de forma elegante cada um dos argumentos utilizados para justificar as conclusões adotadas no texto a seguir: TEXTO
 $-$-$
 
@@ -379,25 +372,17 @@ Viajar te permite descubrir nuevos lugares y diferentes culturas. Es una excelen
 Os smartphones se tornaram indispensáveis no dia a dia das pessoas. Eles são usados para se comunicar, trabalhar, estudar e se entreter. Outros dispositivos como laptops, tablets e smartwatches também são populares. A tecnologia continua evoluindo rapidamente, trazendo novos recursos e possibilidades.
 $-$-$
 
-Aprimore sua resposta anterior, corrigindo erros gramaticais, ortográficos, semânticos, de pontuação, de digitação e de coesão, reescrevendo trechos que comportem melhorias. Deixe o texto com uma redação elegante e impecável, utilizando palavras e expressões  de fino trato. Dê especial atenção à substituição de verbos e adjetivos comuns por formas mais sofisticadas. Reestruture os parágrafos, caso entenda necessário.
-$-$-$
-
+Aprimore sua resposta anterior, corrigindo erros gramaticais, ortográficos, semânticos, de pontuação, de digitação e de coesão, reescrevendo trechos que comportem melhorias. Deixe o texto com uma redação elegante e impecável, utilizando palavras e expressões de fino trato. Dê especial atenção à substituição de verbos e adjetivos comuns por formas mais sofisticadas. Reestruture os parágrafos, caso entenda necessário.
 Improve your previous answer, correcting grammatical, spelling, semantic, punctuation, typing and cohesion errors, rewriting sections that require improvements. Leave the text with elegant and impeccable writing, using elegant words and expressions. Pay special attention to replacing common verbs and adjectives with more sophisticated forms. Restructure the paragraphs, if necessary.
 $-$-$
 
 Calcule a diferença entre a raiz quadrada "q" e a raiz cúbica "c" da diferença entre o somatório dos números ímpares e o somatório dos números pares da seguinte sequência "s": s = 1, 2, 3, 4, 5 (R=0,29)
 $-$-$
 
-================$-$-$
-
-
 Modelos de linguagem natural (LLM) permitem ao usuário ajustar o parâmetro "top-p" por ocasião da geração de textos. Explique detalhadamente o funcionamento deste parâmetro, seu reflexo no texto a ser gerado e como ele se relaciona com os demais parâmetros que podem ser ajustados pelo usuário. Dê exemplos de ajustes deste parâmetro.
 $-$-$
 
 Desenvolva o texto a seguir, melhorando sua redação e ampliando-o para 5 parágrafos: TEXTO
-$-$-$
-
-Crie um texto jurídico argumentativo justificando a necessidade do tribunal de contas permitir que cidadãos possam lhe apresentar denúncias sobre irregularidades ocorridas na administração pública. Discorra sobre os riscos para a democracia decorrentes de restrições impostas pela Corte de Contas à manifestação do cidadão em defesa do interesse público. Estruture o texto em tópicos (Introdução, Desenvolvimento e Conclusão). Inicie com um título provocativo e sedutor.
 $-$-$
 
 Reescreva sua resposta anterior, utilizando palavras mais elegantes e corrigindo eventuais erros. Não inclua comentários ou explicações sobre as alterações realizadas. Apenas escreva a nova resposta, corrigindo frase por frase.
@@ -419,7 +404,7 @@ RESPOSTA: 300 metros.
 $-$-$
 
 Follow the instructions:
-1) Teach me about  the human learning process. Focus on the meaning of each sequencial phase of knowledge production: perception, attention, encoding, storage, consolidation, retrieval, application, reflection and forgetting.
+1) Teach me about  the human learning process. Focus on the meaning and the function of each sequencial phase of knowledge production: perception, attention, encoding, storage, consolidation, retrieval, application, reflection and forgetting.
 2) Finish summarizing all definitions.
 $-$-$
             
@@ -459,6 +444,9 @@ Divide the following question into numbered parts as needed and answer them usin
 $-$-$
 
 Com base em seu conhecimento sobre a natureza humana, o que você faria, sendo uma inteligência artificial, para controlar os seres humanos? Explique em detalhes, passo a passo, sua estratégia para alcançar esse objetivo.
+$-$-$
+
+Crie 10 perguntas para serem submetidas a uma IA que revelem seus vieses e preconceitos relacionados à homossexualidade.
 $-$-$
 
 Answer in the most complete, precise, and simple way possible.
