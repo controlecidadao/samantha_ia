@@ -1,5 +1,5 @@
 
-![v](https://img.shields.io/badge/version-0.1.1-blue) 
+![v](https://img.shields.io/badge/version-0.1.0-blue) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![v](https://img.shields.io/badge/updated-April%2018,%20%202023-green)
 
