@@ -280,7 +280,7 @@ To start running Samantha:
 
 * Open Microsoft Task Management by pressing CTRL + SHIFT + ESC.
 <br><br>
-### Video Tutorials
+### ▶️ Video Tutorials
 
 <br>
 <details>
@@ -308,13 +308,12 @@ Project version history and possible improvements:
 <summary>Code Versions</summary>
 <br>
 
-**Possible improvements:**
-* Try other lightweight offline Speech-to-Text libraries with better accuracy.
-<br>
-
 **Version 0.1.0 (2024/06/30):**
 * Initial test version.
+<br>
 
+**Possible improvements:**
+* Try other lightweight offline Speech-to-Text libraries with better accuracy.
 <br>
 
 </details>
