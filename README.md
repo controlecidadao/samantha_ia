@@ -272,7 +272,7 @@ To start running Samantha:
 
 <br>
 <details>
-<summary>Tips for collapsed sections</summary>
+<summary>Installing Samantha</summary>
 
 <br>
 You can add text within a collapsed section. 
