@@ -7,7 +7,7 @@
 
 
 
-## Samantha Interface Assistant: An Experimental Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
+## Samantha Interface Assistant: Experimental Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
 
 ### Welcome to Samantha: The Interface Assistant for Open Source Artificial Intelligence Models
 
@@ -16,7 +16,13 @@ In an era where artificial intelligence is becoming increasingly accessible, we 
 Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
 
 Thanks to their **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
+<br><br>
 
+<p align="center">
+  <a href="https://youtu.be/vt5fpE0bzSY">
+    <img src="https://i.sstatic.net/Vp2cE.png" alt="Watch the video">
+  </a>
+</p>
 
 <br><br>
 
