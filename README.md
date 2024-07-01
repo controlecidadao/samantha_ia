@@ -7,15 +7,15 @@
 
 
 
-## Samantha IA: An Experimental Interface Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
+## Samantha Interface Assistant: An Experimental Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
 
 ### Welcome to Samantha: The Interface Assistant for Open Source Artificial Intelligence Models
 
 In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha, an simple AI interface designed to democratize the use of large language models through open source technology. Her mission is to help explore the boundaries of open source AI models.
 
-Samantha Interface Assistant was designed to allow **text reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
+Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
 
-Thanks to its **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
+Thanks to their **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
 
 
 <br><br>
@@ -28,11 +28,11 @@ Thanks to its **emergent behavior**, with the right prompt and proper hyperparam
 
 - **Unlimited and Free Use**: Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.
 
-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.
+<!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
 - **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Meta, Mistral etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications (Alibaba Qwen and IBM Granite models are not functional yet).
 
-- **Customizable Parameters**: Users have control over model hyperparameters such as temperature, top-k, top-p, and max_tokens, allowing for responses that suit specific requirements.
+- **Customizable Parameters**: Users have control over model hyperparameters such as temperature, top-k, top-p, among others, allowing for responses that suit specific requirements.
 
 - **Interactive Experience**: Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.
 
@@ -46,20 +46,20 @@ Thanks to its **emergent behavior**, with the right prompt and proper hyperparam
 
 - **Code Integration**: Automatic extraction of code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/), enables users to execute generated code swiftly for immediate results.
 
-- **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [DB Browser](https://sqlitebrowser.org/about/), [PyMuPDF](https://pypi.org/project/PyMuPDF/)  and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell).
+- **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [DB Browser](https://sqlitebrowser.org/about/), [PyMuPDF](https://pypi.org/project/PyMuPDF/)  and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell).
 
 - **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to the previous response only.
 
 **Our Vision:**
-Samantha is more than just an AI interface; it's a movement towards a future where artificial intelligence is not a privilege but a tool for all. We envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
+Samantha is more than just an AI interface; it's a [Open Science](https://www.unesco.org/en/open-science) movement towards a future where artificial intelligence is not a privilege but a tool for all. We envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
 
 **Use Responsibly:**
-As we embrace the power of these models, let's remember that the generated text reflects the content, biases, and errors present in their training datasets. We encourage responsible use of Samantha for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just a mathematical model that generates coherent texts from the sequencing of words (tokens) based on the probability extracted from the training texts.
+As we embrace the power of these models, let's remember that the generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just a mathematical model that generates coherent texts from the sequencing of words (tokens) based on the probability extracted from the training texts.
 
 Users should be aware that the responses generated by AI are derived from the training of its large language models on a vast corpus of text data. The exact sources or processes used by the AI to generate its outputs cannot be precisely cited or identified. The content produced by the AI is not a direct quotation or compilation from specific sources. Instead, it reflects the patterns, statistical relationships, and knowledge that the AI's neural networks have learned and encoded during the training process on the broad data corpus. The responses are generated based on this learned knowledge representation, rather than being retrieved verbatim from any particular source material. While the AI's training data may have included authoritative sources, its outputs are its own synthesized expressions of the learned associations and concepts.
 
 **Objective:**
-The primary objective with Samantha is to inspire and empower others to create similar systems and to educate users on the utilization of AI. Our goal is to foster a community of developers and enthusiasts who can take the knowledge and tools used in Samantha to further innovate and contribute to the field of open source AI. By doing so, we aim to cultivate a culture of collaboration and sharing, ensuring that the benefits of AI are accessible to all, regardless of their technical background or financial resources. We believe that by enabling more people to build and understand AI applications, we can collectively drive progress and address societal challenges with informed and diverse perspectives. Let's work together to shape a future where AI is a positive transformative force for humanity.
+The primary objective with Samantha is to inspire others to create similar systems and to educate users on the utilization of AI. Our goal is to foster a community of developers and enthusiasts who can take the knowledge and tools used in Samantha to further innovate and contribute to the field of open source AI. By doing so, we aim to cultivate a culture of collaboration and sharing, ensuring that the benefits of AI are accessible to all, regardless of their technical background or financial resources. We believe that by enabling more people to build and understand AI applications, we can collectively drive progress and address societal challenges with informed and diverse perspectives. Let's work together to shape a future where AI is a positive transformative force for humanity.
 
 🙏 **Special Thanks** to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible.
 
