@@ -25,7 +25,7 @@ Samantha Interface Assistant was designed to explore **reverse prompt engineerin
 
 <br>
 
-Thanks to their **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
+Thanks to the **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
 <br><br>
 
 <p align="center">
