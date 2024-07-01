@@ -260,7 +260,26 @@ To start running Samantha:
   After answering the questions, the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
-Open Microsoft Task Management by pressing CTRL + SHIFT + ESC
+* Open Microsoft Task Management by pressing CTRL + SHIFT + ESC.
+<br><br>
+### Video Tutorials
+
+<br>
+<details>
+<summary>Tips for collapsed sections</summary>
+
+<br>
+You can add text within a collapsed section. 
+<br><br>
+  
+```python
+   print("Hello World")
+```
+<br>
+
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
+
+</details>
 
 <br><br>
 # 📝 Future Improvements
@@ -271,4 +290,4 @@ As an experimental project, Samantha has points to be improved:
 
 <br><br><br><br>
 
-https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples
+<!--https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples-->
