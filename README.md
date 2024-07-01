@@ -67,7 +67,7 @@ The primary objective with Samantha is to inspire others to create similar syste
 
 # 🛠️ Installing and Running Samantha
 
-To use Samantha IA you will need:
+To use Samantha you will need:
 <br><br>
 * Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
 
@@ -82,8 +82,8 @@ To use Samantha IA you will need:
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
   >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
-  >_However, during the tests the causes of error identified were:_<br>
-  >_a) lack of prior installation of Visual Studio (resolved with installation)_<br>
+  <!-- >_However, during the tests the causes of error identified were:_<br>
+  >_a) lack of prior installation of Visual Studio (resolved with installation)_<br>-->
   <!-- >_b) blocking Playwright browser downloads due to corporate internet access restrictions (resolved by using the internet at home or on a cell phone)_-->
 
   <br>
@@ -99,7 +99,7 @@ To use Samantha IA you will need:
 
 # ⬇️ Downloading Large Language Models (LLM)
 
-Samantha needs 1 file to generate texts:
+Samantha needs just 1 file to generate texts:
 * AI Model file (.gguf)
 <!--* Prompt template file (.txt)-->
 <br>
@@ -108,7 +108,7 @@ Samantha needs 1 file to generate texts:
 
 Open souce model files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
 
-You can also go to a specific repository and see all the `gguf` models available for downloading and testing, like [TheBloke](https://huggingface.co/TheBloke) repository.
+You can also go to a specific repository and see all the `.gguf` models available for downloading and testing.
 <br><br>
 
 The models are displayed on cards like this:
@@ -129,15 +129,12 @@ After that, click on the **Files and versions** tab and download a model that fi
 <br><br>
 
 We suggest to download the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the complete file name). As a rule, the larger the model size, the greater the accuracy of the generated texts:
-<br><br>
-
-  ![ram](https://github.com/controlecidadao/samantha_ia/blob/main/images/ram.png)
-
 <br>
+<!-- ![ram](https://github.com/controlecidadao/samantha_ia/blob/main/images/ram.png)-->
 
 If the downloaded model doesn't fit into the available RAM space, your hard drive will be used, impacting performance.
 
-Download the chosen model and save it to your computer.
+Download the chosen model and save it to your computer or copy the download link and paste it inside Samantha's _Download model for testing_ field.
 <br><br>
 
 <!--
@@ -252,15 +249,15 @@ Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/m
 <br><br>
 # 🧠 Using Samantha
 
-To start running Samantha IA:
+To start running Samantha:
 
-* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the file) and wait a few seconds:
+* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the file) located inside the unziped folder and wait a few seconds:
 
    ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
 
-  A terminal window will open. This is the **server-side** of Samantha IA.
+  A terminal window will open. This is the Samantha's **server-side**.
 
-  After answering the questions, Samantha IA will open in a new browser tab. This is the **browser-side**.
+  After answering the questions, the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
 Open Microsoft Task Management by pressing CTRL + SHIFT + ESC
