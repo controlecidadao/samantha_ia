@@ -299,7 +299,8 @@ You can add text within a collapsed section.
 
 </details>
 
-<br>
+
+<br><br>
 # 📝 Version History
 
 Project version history and possible improvements:
