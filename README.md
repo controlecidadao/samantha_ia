@@ -7,13 +7,13 @@
 
 
 
-## Experimental Interface Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
+## Samantha IA: An Experimental Interface Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
 
-### Welcome to Samantha IA: The Interface Assistant for Open Source Artificial Intelligence Models
+### Welcome to Samantha: The Interface Assistant for Open Source Artificial Intelligence Models
 
-In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha, an AI interface designed to democratize the use of large language models through open source technology. Her mission is to empower individuals and organizations alike, enabling them to harness the power of AI models.
+In an era where artificial intelligence is becoming increasingly accessible, we introduce Samantha, an simple AI interface designed to democratize the use of large language models through open source technology. Her mission is to help explore the boundaries of open source AI models.
 
-Samantha was designed to allow **text reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
+Samantha Interface Assistant was designed to allow **text reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt based on the user's initial instructions, adding intermediate layers to the prompt construction process.
 
 Thanks to its **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
 
