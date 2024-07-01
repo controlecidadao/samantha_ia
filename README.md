@@ -263,9 +263,8 @@ Note that each model has its own characteristics, presenting significantly diffe
 
 Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)
 
-
 <br><br>
-# 🧠 Using Samantha
+# 🧠 Starting Samantha
 
 To start running Samantha:
 
@@ -278,9 +277,10 @@ To start running Samantha:
   After answering the questions, the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
-* Open Microsoft Task Management by pressing CTRL + SHIFT + ESC.
+* Open Microsoft Task Management by pressing CTRL + SHIFT + ESC to monitor resource usage (memory, wifi, etc.).
+
 <br><br>
-### ▶️ Video Tutorials
+# ▶️ Video Tutorials
 
 <br>
 <details>
@@ -299,7 +299,7 @@ You can add text within a collapsed section.
 
 </details>
 
-<br><br>
+<br>
 # 📝 Version History
 
 Project version history and possible improvements:
