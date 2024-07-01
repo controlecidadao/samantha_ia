@@ -300,11 +300,26 @@ You can add text within a collapsed section.
 </details>
 
 <br><br>
-# 📝 Future Improvements
+# 📝 Version History
 
-As an experimental project, Samantha has points to be improved:
+Project version history and possible improvements:
 
-* Try other lightweight offline Speech-to-Text libraries with better accuracy;
+<details>
+<summary>Code Versions</summary>
+<br>
+
+**Possible improvements:**
+* Try other lightweight offline Speech-to-Text libraries with better accuracy.
+<br>
+
+**Version 0.1.0 (2024/06/30):**
+* Initial test version.
+
+<br>
+
+</details>
+
+
 
 <br><br><br><br>
 
