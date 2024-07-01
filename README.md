@@ -56,7 +56,7 @@ Thanks to their **emergent behavior**, with the right prompt and proper hyperpar
 
 - **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [DB Browser](https://sqlitebrowser.org/about/), [PyMuPDF](https://pypi.org/project/PyMuPDF/)  and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell).
 
-- **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to the previous response only.
+- **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size.
 
 **Our Vision:**
 Samantha is more than just an AI interface; it's a [Open Science](https://www.unesco.org/en/open-science) movement towards a future where artificial intelligence is not a privilege but a tool for all. We envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
