@@ -315,7 +315,7 @@ You can add text within a collapsed section.
 
 Project version history and future improvements.
 
-<br><br>
+<br>
 
 <details>
 <summary>Code Versions</summary>
