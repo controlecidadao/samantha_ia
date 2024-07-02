@@ -42,9 +42,9 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 ✅ **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
   
-- **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.<br><br>
+✅ **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.<br><br>
 
-- **Unlimited and Free Use**: Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.<br><br>
+✅ **Unlimited and Free Use**: Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.<br><br>
 
 <!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
