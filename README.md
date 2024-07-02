@@ -58,7 +58,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 - **Audio feedback**: Provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.
 
-- **Document Handling**: The system can load small PDF and TXT files, and instructions can be inputted or loaded via a TXT file for convenience.
+- **Document Handling**: The system can load small PDF and TXT files, and chaining instructions/prompts can be inputted or loaded via a TXT file for convenience.
 
 - **Versatile Text Input**: Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response and user prompt to guide the model's response.
 
