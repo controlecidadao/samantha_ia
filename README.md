@@ -313,7 +313,7 @@ You can add text within a collapsed section.
 <br><br>
 # 📝 Version History
 
-Project version history and possible improvements:
+Project version history and future improvements:
 
 <details>
 <summary>Code Versions</summary>
@@ -323,7 +323,7 @@ Project version history and possible improvements:
 * Initial test version.
 <br>
 
-**Possible improvements:**
+**Future improvements:**
 * Try other lightweight offline Speech-to-Text libraries with better accuracy.
 <br>
 
