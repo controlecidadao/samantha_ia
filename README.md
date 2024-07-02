@@ -129,7 +129,7 @@ To use Samantha you will need:
 
 # ⬇️ Downloading Large Language Models (LLM)
 
-Samantha needs just 1 `.gguf` model file to generate texts.
+Samantha needs just 1 `.gguf` model file to generate text.
 <br>
 
 ### Downloading Open Source Model Files (.gguf)
