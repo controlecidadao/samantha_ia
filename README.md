@@ -69,7 +69,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 - **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size.
 
 **Our Vision:**
-Samantha is more than just an AI interface; it's a [Open Science](https://www.unesco.org/en/open-science) movement towards a future where artificial intelligence is not a privilege but a tool for all. We envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
+Samantha is more than just an AI interface; it's a [Open Science](https://www.unesco.org/en/open-science) movement towards a future where artificial intelligence is not a privilege but a tool for all. One can envision a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
 
 **Use Responsibly:**
 As we embrace the power of these models, let's remember that the generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just a mathematical model that generates coherent texts from the sequencing of words (tokens) based on the probability extracted from the training texts.
