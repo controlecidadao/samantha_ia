@@ -291,7 +291,10 @@ To start running Samantha:
 
 <br><br>
 # ▶️ Video Tutorials
+
 Learn how to use Samantha.<br>
+
+<br>
 
 <details>
 <summary>Installing Samantha</summary>
