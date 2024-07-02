@@ -107,7 +107,7 @@ To use Samantha you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Double click on `install_samantha_ia.bat` file to start installation (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the .bat file. Click on 'More info' and confirm):
+* Double click on `install_samantha_ia.bat` file to start installation (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the `.bat` file. Click on 'More info' and confirm):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
@@ -121,7 +121,7 @@ To use Samantha you will need:
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you again to confirm the origin of the .bat file. Click on 'More info' and confirm):<br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you again to confirm the origin of the `.bat` file. Click on 'More info' and confirm):<br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
@@ -129,9 +129,7 @@ To use Samantha you will need:
 
 # ⬇️ Downloading Large Language Models (LLM)
 
-Samantha needs just 1 file to generate texts:
-* AI Model file (.gguf)
-<!--* Prompt template file (.txt)-->
+Samantha needs just 1 `.gguf` model file to generate texts.
 <br>
 
 ### Downloading Open Source Model Files (.gguf)
