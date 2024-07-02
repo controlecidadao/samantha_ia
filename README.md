@@ -107,7 +107,7 @@ To use Samantha you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Double click on `install_samantha_ia.bat` file to start installation (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the `.bat` file. Click on 'More info' and confirm):
+* Double click on `install_samantha_ia.bat` file to start installation (Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
@@ -121,7 +121,7 @@ To use Samantha you will need:
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you again to confirm the origin of the `.bat` file. Click on 'More info' and confirm):<br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file (Windows may ask you again to confirm the origin of the `.bat` file. Click on 'More info' and confirm):<br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
@@ -278,7 +278,7 @@ Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/m
 
 To start running Samantha:
 
-* Double click on `open_samantha_ia.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the `.bat` file) located inside the unziped folder and wait a few seconds:
+* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the `.bat` file) located inside the unziped folder and wait a few seconds:
 
    ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
 
