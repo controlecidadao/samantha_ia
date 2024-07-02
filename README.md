@@ -278,7 +278,7 @@ Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/m
 
 To start running Samantha:
 
-* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the file) located inside the unziped folder and wait a few seconds:
+* Double click on `open_samantha_ia.bat` file (Windows may [ask](https://i.stack.imgur.com/wa3KQ.png) you to confirm the origin of the `.bat` file) located inside the unziped folder and wait a few seconds:
 
    ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
 
@@ -287,7 +287,7 @@ To start running Samantha:
   After answering the questions, the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
-* Open Microsoft Task Management by pressing CTRL + SHIFT + ESC to monitor resource usage (memory, wifi, etc.).
+* Open Microsoft Task Management by pressing CTRL + SHIFT + ESC to monitor memory usage.
 
 <br><br>
 # ▶️ Video Tutorials
