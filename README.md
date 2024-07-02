@@ -291,8 +291,8 @@ To start running Samantha:
 
 <br><br>
 # ▶️ Video Tutorials
-Learn how to use Samantha.
-<br>
+Learn how to use Samantha.<br>
+
 <details>
 <summary>Installing Samantha</summary>
 
@@ -313,7 +313,7 @@ You can add text within a collapsed section.
 <br><br>
 # 📝 Version History
 
-Project version history and future improvements:
+Project version history and future improvements.<br>
 
 <details>
 <summary>Code Versions</summary>
