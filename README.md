@@ -156,7 +156,7 @@ After that, click on the **Files and versions** tab and download a model that fi
 ![task](https://github.com/controlecidadao/samantha_ia/blob/main/images/task_manager.png)
 <br><br>
 
-We suggest to download the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the complete file name). As a rule, the larger the model size, the greater the accuracy of the generated texts:
+We suggest to download the model with **Q4_K_M** (4-bit quantization) in its name (put the mouse over the download button to view the complete file name). As a rule, the larger the model size, the greater the accuracy of the generated text:
 <br>
 <!-- ![ram](https://github.com/controlecidadao/samantha_ia/blob/main/images/ram.png)-->
 
