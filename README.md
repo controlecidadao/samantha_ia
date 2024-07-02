@@ -313,7 +313,9 @@ You can add text within a collapsed section.
 <br><br>
 # 📝 Version History
 
-Project version history and future improvements.<br><br>
+Project version history and future improvements.
+
+<br><br>
 
 <details>
 <summary>Code Versions</summary>
