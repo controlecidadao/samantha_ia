@@ -27,12 +27,13 @@
 # 7) INTERFACE VOICE CONTROL SETTING
 # 8) READ FILES WITH PROMPT EXAMPLES
 # 9) TEXT GENERATOR FUNCTION
-#    DOWNLOAD MODEL ONLY FOR TESTING
 #    LOOPS DESCRIPTION
+#    FIFTH LOOP - NUMBER OF SEQUENCES
 #    FIRST LOOP - FOR LOOP OVER SELECTED MODELS
+#       DOWNLOAD MODEL ONLY FOR TESTING
 #    SECOND LOOP - ENDLESS WHILE LOOP
 #       CREATE LLM
-#       PROMPT SPLITTER
+#       PROMPT LIST CREATION
 #    THIRD LOOP - PROMPT LIST
 #    FOURTH LOOP - TOKENS GENERATION
 #       FAST MODE
@@ -401,7 +402,8 @@ audio = None                    # Stores pygame audio object
 model_metadata = ''             # Stores llm metadata to show on interface
 model_url = ''                  # Stores the model url for downloading
 previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
-original_filename = ''
+original_filename = ''          # Stores the model name from url
+
 
 # ================================
 # INTERFACE VOICE CONTROL SETTINGS
@@ -413,7 +415,7 @@ original_filename = ''
 # DO NOT DELETE 'read_aloud_fn' SCRITPS!
 
 if 'portuguese' in voices[0].name.lower(): # Check if Portuguese language is available as a voice option (SAPI5).
-    print('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
+    print('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim:')
     #read_aloud_fn('Ativar controle por voz? Aperte ENTER para não, ou qualquer outra tecla + ENTER para sim.')
 
     try:
@@ -452,6 +454,9 @@ else: # If 'portuguese' SAPI5 voice is not available
         leaning_mode_interatcive = False
         print('Voice control activated.')
         read_aloud = True
+
+    print()
+    print('Opening interface on browser...')
 
 
 # ===============================
@@ -587,13 +592,7 @@ def text_generator(
         pass
 
 
-    # ================================
-    # DOWNLOAD MODEL ONLY FOR TESTING
-    # ================================
-
-    # Model is downloaded and saved with the same file name, replacing the previous one
-
-    # Check if no model is selected
+    # Check if no model is selected and if 'Download model for testing' field is not empty
     if models == []:
         models = model_url.split('\n')
         models = [x.strip() for x in models if x[:3] != '---']
@@ -607,31 +606,21 @@ def text_generator(
         
         if isinstance(models, str):
             models = [models]
+
+        
+        # ================================
+        # FIFTH LOOP - NUMBER OF SEQUENCES
+        # ================================
         
         if loop_models > 1:             # Multiply number of loops by the number of models sequence (Checkbox)
             models = models * loop_models
         
+        # ================================
+        
+
         if random_list == True and len(set(models)) >= 3: # Shuffles models order if >= 3 (Checkbox)
             models = random_list_fn(models) # Auxiliary function
-        print()
-
-
-    # =================
-    # LOOPS DESCRIPTION
-    # =================
-
-    # FOR LOOP OVER SELECTED MODELS (Model 1, Model 2...)                     1ST LOOP
-    #      |
-    #      ENDLESS WHILE LOOP (Until leave the text_generator function)       2ND LOOP
-    #           |
-    #           FOR LOOP OVER PROMPT LIST (Prompt 1, Prompt 1...)             3RD LOOP
-    #                |
-    #                FOR LOOP TOKEN GENERATION (Token 1, Token 2...)          4TH LOOP
-
-
-    # ==========================================
-    # FIRST LOOP - FOR LOOP OVER SELECTED MODELS
-    # ==========================================
+        # print()
 
     pre_prompt = ''                             # Required to store the 'pre_prompt' for use in each of the prompts in the prompt list
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
@@ -640,7 +629,34 @@ def text_generator(
         yield 'Model not selected.'             # Use simple sentence
         return                                  # Leaves the function
 
+
+    # =================
+    # LOOPS DESCRIPTION
+    # =================
+
+    # NUMBER OF SEQUENCES (3x, 10x, 100x...)                                       5TH LOOP
+    #      |
+    #      FOR LOOP OVER SELECTED MODELS (Model 1, Model 2...)                     1ST LOOP
+    #           |
+    #           ENDLESS WHILE LOOP (Until leave the text_generator function)       2ND LOOP
+    #                |
+    #                FOR LOOP OVER PROMPT LIST (Prompt 1, Prompt 1...)             3RD LOOP
+    #                     |
+    #                     FOR LOOP TOKEN GENERATION (Token 1, Token 2...)          4TH LOOP
+
+
+    # ==========================================
+    # FIRST LOOP - FOR LOOP OVER SELECTED MODELS
+    # ==========================================
+
     for n_model, model in enumerate(models):    # Loop over models list
+
+
+        # ================================
+        # DOWNLOAD MODEL ONLY FOR TESTING
+        # ================================
+
+        # Model is downloaded and saved with the same file name, replacing the previous one
 
         if 'http' in model and previous_model_url == model:
             model = 'MODEL_FOR_TESTING.gguf'
@@ -663,6 +679,7 @@ def text_generator(
                 yield 'Error when trying to download model for testing.'
                 return
         
+
         # Extract model prompt template
         # try:                                            # try to get the corresponding prompt template for the selected model
         #     with open(fr'{model_path}\{model[:-5]}.txt', encoding='utf-8', errors='ignore') as f:
@@ -755,6 +772,10 @@ def text_generator(
                     print(traceback.format_exc())
                     break
                     # return
+
+                print()
+                print('llm object created with llama.cpp.')
+                print()
                                           
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
                 
@@ -796,9 +817,9 @@ def text_generator(
             #     return
 
 
-            # ===============
-            # PROMPT SPLITTER
-            # ===============
+            # ====================
+            # PROMPT LIST CREATION
+            # ====================
                 
             # FINAL-PROMPT: Prompt to be used as the final prompt in a list of prompts, with the 'full_text' variable
             # Extract FINAL-PROMPT text from the prompt (text between [[ ]]). Final-prompt must be placed in the beginning of the text, BEFORE pre-prompt.
@@ -850,7 +871,7 @@ def text_generator(
                 with open('full_text.txt', 'r', errors='ignore') as f: # Delete content of the file 'full_text.txt'
                     temp = f.read()
                 
-                prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. The word will be replaced by variable 'full_text'
+                prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
 
             
             partial_text = ''
@@ -865,7 +886,7 @@ def text_generator(
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
                 
-                # Text cleaning for audio reproduction. Remove characters inside [] and <>
+                # Text cleaning for audio reproduction. Remove characters inside [] and <> if the model response returns special tokens
                 full_text = re.sub(r'\[.*?\]', '', full_text) 
                 full_text = re.sub(r'<.*?>', '', full_text)
 
@@ -876,25 +897,25 @@ def text_generator(
                 # =============================
 
                 # MAIN TRY BLOCK
-                try: # For error treatement during tokens generation. Error is displayed on web interface and on terminal, but not crash the program
+                try:                        # For error treatement during tokens generation. Error is displayed on web interface and on terminal, but not crash the program
                     if reset_mode == True:
                         llm.reset()         # Reset model's internal parameters without unload it from memory.
                     start = 0
                     ultima_resposta = ''    # Restart variable for each new text generation cicle
                     
-                    # After tests performed in JupyterLab with 'prompt_text' always present. If the fiel empty, the correspendent role is not inserted
-                    if system_prompt == '' and previous_answer == '':# and current_ia_response == ''):
+                    # After tests performed in JupyterLab with 'prompt_text' always present. If the field is empty, the correspendent role is not inserted
+                    if system_prompt == '' and previous_answer == '':
                         messages = [
                                     {'role': 'user', 'content': prompt_text},
                                     ]
                     
-                    elif system_prompt == '' and previous_answer != '': # and current_ia_response == ''):
+                    elif system_prompt == '' and previous_answer != '':
                         messages = [
                                     {'role': 'assistant', 'content': previous_answer},
                                     {'role': 'user', 'content': prompt_text},
                                     ]
                         
-                    elif system_prompt != '' and previous_answer != '': # and current_ia_response == ''):
+                    elif system_prompt != '' and previous_answer != '':
                         messages = [                                                        # Responses to prompt_text "Olá!"
                                     {'role': 'system', 'content': system_prompt},           # Requires text to avoid short responses like this: "Boa tarde! (If it's the afternoon) / Boa noite! (If it's evening or night).""
                                     {'role': 'assistant', 'content': previous_answer},      # Requires text to avoid short responses like this: "Boa tarde! Como posso ajudá-lo hoje?"
@@ -916,7 +937,7 @@ def text_generator(
                                 messages.insert(n, {'role': 'assistant', 'content': previous_answer})
                                 break
 
-                    print()
+                    # print()
                     print('>>>>> SYSTEM MESSAGE:', system_prompt)
                     print()
                     print('>>>>> PREVIOUS RESPONSE:', previous_answer)
@@ -1022,6 +1043,9 @@ def text_generator(
                         try:
                             current_token = i['choices'][0]['delta']['content']
                         except:
+                            print()
+                            print(i)
+                            print()
                             continue
                         try:
                             print(f'{nu})', round(time.time() - start, 2), repr(current_token))
@@ -1096,12 +1120,14 @@ def text_generator(
                             stop = round((time.time() - start), 1)
                             tt = round(time.time() - total_time_start, 1)
 
+
                             # <<<<<<<<<<<<<<<<
 
                             # Retorna resposta (já com o último token) e número parcial de tokens
                             yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu}, {stop}s)"""
                                                         
                             # <<<<<<<<<<<<<<<<
+
 
                             # Sai do loop quando o usuário aperta o botão Stop
                             if para_tudo == True:
@@ -2064,18 +2090,25 @@ def download_model_urls():
 
 
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
-# def run_my_code(code: str): # Cria um arquivo .py no diretório local
-#     if 'runthecode' in prompt.lower() or 'runthecode' in previous_answer.lower():
-#         html_files = glob.glob('*.html')
-#         for file in html_files:
-#             os.remove(file)
-#         file_name = "code_my_code.py"
-#         with open(file_name, "w") as file:
-#             file.write(code)
-#         try:
-#             subprocess.run(["python", file_name]) # Executa o arquivo .py via terminal com o interpretador do ambiente virtual atual
-#         finally:
-#             os.remove(file_name) # Remove o arquivo .py temporário (talvez melhor não apagar)
+
+# code = """
+
+# import seaborn as sns
+# sns.set_theme(style="ticks")
+
+# df = sns.load_dataset("penguins")
+# sns.pairplot(df, hue="species")
+
+# """
+
+# def run_my_code(): # Cria um arquivo .py no diretório local
+#     file_name = "code_my_code.py"
+#     with open(file_name, "w") as file:
+#         file.write(code)
+#     try:
+#         subprocess.run([f"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe", file_name]) # Executa o arquivo .py via terminal com o interpretador do ambiente virtual atual
+#     finally:
+#         os.remove(file_name) # Remove o arquivo .py temporário (talvez melhor não apagar)
 
 
 # ================
@@ -2277,6 +2310,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
                 btn_all_responses = gr.Button(language['btn_copy_all_responses'])
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
+                btn_run_my_code = gr.Button('')
+                btn_run_my_code.click(fn=None, inputs=None, outputs=None, queue=False)
                                 
                 # =================================
                 
@@ -2317,6 +2352,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
                         <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
                         <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
+                        <li><a href="https://huggingface.co/arcee-ai/Arcee-Spark-GGUF">arcee-ai/Arcee-Spark-GGUF</a></li>
                         <li><a href="https://huggingface.co/bartowski/Replete-Coder-Qwen2-1.5b-GGUF">bartowski/Replete-Coder-Qwen2-1.5b-GGUF</a></li>
                         <li><a href="https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF">bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a></li>
                         <li><a href="https://huggingface.co/Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix">Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix</a></li>
@@ -2332,6 +2368,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
                         </ul>""")
             
             with gr.Row():
