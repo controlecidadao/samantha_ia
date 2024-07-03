@@ -207,6 +207,9 @@ language = {
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
                 'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p”.',
                 'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "m".', 
+                
+                'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estão abaixo de um limiar de tipicidade, calculado como entropia x typical_p, e então renormaliza as probabilidades deste subconjunto para amostragem',
+                
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
                 'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'frequency_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
@@ -272,6 +275,9 @@ language = {
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
                 'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p".',
                 'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "m".', 
+                
+                'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limits the selection of the next token to a subset whose individual probabilities are below a typicality threshold, calculated as entropy x typical_p, and then renormalizes the probabilities of this subset for sampling.',
+                
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
                 'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'frequency_penalty (range slider). Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
@@ -507,6 +513,9 @@ def text_generator(
         tfs_z, 
         top_p,
         min_p,
+
+        typical_p, # 21
+
         top_k, 
         presence_penalty, 
         frequency_penalty, 
@@ -568,7 +577,6 @@ def text_generator(
     selected_voice = selected_voice_p
     vocabulary = vocabulary_p
     model_url = model_url_p
-    
 
     if prompt == '':                # To use in case of empty user prompt
         prompt = 'Hello!'
@@ -666,6 +674,7 @@ def text_generator(
             try:
                 try:
                     del llm
+                    gc.collect()
                 except:
                     pass
                 llm = ''
@@ -726,6 +735,7 @@ def text_generator(
             if last_model != model or llm == '' or loop_models > 1: # Check if model changed or was unloaded. If so, load new model. Force unload model if loop_model > 1
                 try:                                                # Delete previous model from memory
                     del llm
+                    gc.collect()
                 except:
                     pass
                 last_model = model                                  # Update last_model variable
@@ -755,6 +765,9 @@ def text_generator(
                             f16_kv=True,
                             logits_all=False,
                             embedding=False,
+
+                            flash_attn=True,                        # default False <<<<<<<<<<<<<<<<<<<<< IN TEST
+                            
                             last_n_tokens_size=64,                  # default 64. Estava em 512
                             lora_base=None,
                             lora_scale=1.0,
@@ -904,6 +917,7 @@ def text_generator(
                     ultima_resposta = ''    # Restart variable for each new text generation cicle
                     
                     # After tests performed in JupyterLab with 'prompt_text' always present. If the field is empty, the correspendent role is not inserted
+                    # If needed, you can add a user role before assistant role to insert previous text in models that has no system prompt
                     if system_prompt == '' and previous_answer == '':
                         messages = [
                                     {'role': 'user', 'content': prompt_text},
@@ -964,6 +978,9 @@ def text_generator(
                             temperature = temperature,             # default: 0.2
                             top_p = top_p,                         # default: 0.95
                             min_p = min_p,                         # default: 0.05
+
+                            typical_p = typical_p,                 # default: 1.0
+
                             top_k = top_k,                         # default: 40
                             stream = True,                         # default: False
                             stop = eval(stop_generation),          # default: None
@@ -1009,7 +1026,7 @@ def text_generator(
                         if fast_mode == True:
                             try:
                                 if nu == 0: # To sound only once at the beginning of text generation
-                                    winsound.Beep(400, 500)
+                                    winsound.Beep(600, 500)
                                 
                                 # Print token on terminal. # The first and last 'i' has no 'content' key and raise an error.
                                 print(f'{nu})', round(time.time() - start, 2), repr(i['choices'][0]['delta']['content']))
@@ -1247,8 +1264,7 @@ def text_generator(
 
     para_tudo = False                                           # Reset variable
 
-    # Final cleaning
-    gc.collect()
+    gc.collect()                                                # Final cleaning (realy needed?)
 
         
 # ===================
@@ -1491,6 +1507,7 @@ def unload_model():
     click.play()
     try:
         del llm
+        gc.collect()    
         llm = ''
         print('Model deleted')
     except:
@@ -2180,6 +2197,9 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Slider(0.00001, 1, 0.00001, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
                 gr.Slider(0.000001, 1, 0.000001, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
                 gr.Slider(0, 1, 1, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
+                
+                gr.Slider(0.00001, 1, 0.00001, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
+                
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
@@ -2224,21 +2244,20 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             gr.HTML('<br><h6><b>Useful links:</b></h6>') # Useful Links
 
             gr.HTML("""<ul>
-                        <li><a href="https://huggingface.co/models?search=gguf">GGUF Hugging Face Search Results</a></li>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
                         <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Benchmark</a></li>
                         <li><a href="https://huggingface.co/spaces/ggml-org/gguf-my-repo">GGUF My Repository</a></li>
-                        <li><a href="https://www.google.com/search?q=google+tradutor">Google Translator</a></li>
-                        <li><a href="https://nulpointerexception.com/2017/12/16/a-tutorial-to-understand-decision-tree-id3-learning-algorithm/">Decision Tree - Play Tennis Dataset</a></li>
+                        <li><a href="https://huggingface.co/spaces/arcee-ai/mergekit-gui">arcee-ai/mergekit-gui</a></li>
+                        <li><a href="https://github.com/cg123/mergekit">LLM Mergekit</a></li>
+                        <li><a href="https://github.com/unslothai/unsloth">Unsloth Finetunnig</a></li>
+                        <li><a href="https://github.com/OpenAccess-AI-Collective/axolotl">Axolotl</a></li>
+                        <li><a href="https://huggingface.co/autotrain">AutoTrain Finetuning LLM</a></li>
                         <li><a href="https://huggingface.co/spaces/Xenova/the-tokenizer-playground">Tokenizer Playground</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
                         <li><a href="https://llama-cpp-python.readthedocs.io/en/latest/api-reference/">llama-cpp-python API Reference</a></li>
                         <li><a href="https://github.com/abetlen/llama-cpp-python">llama-cpp-python on GitHub</a></li>
                         <li><a href="https://github.com/byroneverson/llm.cpp/blob/master/examples/main/README.md">llama.cpp examples on GitHub</a></li>
                         <li><a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a></li>
-                        <li><a href="https://github.com/unslothai/unsloth">Unsloth Finetunnig</a></li>
-                        <li><a href="https://github.com/cg123/mergekit">LLM Mergekit</a></li>
-                        <li><a href="https://huggingface.co/autotrain">AutoTrain Finetuning LLM</a></li>
                         <li><a href="https://huggingface.co/docs/hub/gguf">GGUF File</a></li>
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
@@ -2247,11 +2266,12 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         # <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
                         # <li><a href="https://huggingface.co/spaces/eduagarcia/open_pt_llm_leaderboard">Portuguese LLM Leaderboard</a></li>
+                        # <li><a href="https://nulpointerexception.com/2017/12/16/a-tutorial-to-understand-decision-tree-id3-learning-algorithm/">Decision Tree - Play Tennis Dataset</a></li>
                         
             gr.HTML('<br><h6><b>Tutorials:</b></h6>') # Tutorials
 
             gr.HTML("""<ul>
-                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=5">But what is a GPT? (3Blue 1Brown)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT? (3Blue 1Brown)</a></li>
                     <li><a href="https://www.youtube.com/watch?v=xU_MFS_ACrU">How do LLMs like ChatGPT work?</a></li>
                     <li><a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Visualizing Attention, a Transformer's Heart</a></li>
                     <li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a></li>
@@ -2310,8 +2330,6 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
                 btn_all_responses = gr.Button(language['btn_copy_all_responses'])
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
-                btn_run_my_code = gr.Button('')
-                btn_run_my_code.click(fn=None, inputs=None, outputs=None, queue=False)
                                 
                 # =================================
                 
@@ -2361,12 +2379,14 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+phi">Phi</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+llama">Llama</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+qwen">Qwen</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+gemma">Gemma</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+wizard">WizardLM</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+dolphin">Dolphin</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+mistral">Mistral</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+hermes">Hermes</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a></li>
+                        <br>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
                         </ul>""")
@@ -2390,9 +2410,9 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling methods and penalties.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), presence_penalty (0), frequency_penalty (0), repeat_penalty (1)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), presence_penalty (0), frequency_penalty (0), repeat_penalty (1)</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
             # with gr.Row():
             #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">GPT:&nbsp;&nbsp;&nbsp;Choice of the next token according to the probability patterns extracted from the training texts</span></i></h6>')                     
             # with gr.Row():
