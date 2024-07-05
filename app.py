@@ -35,6 +35,7 @@
 #       CREATE LLM
 #       PROMPT LIST CREATION
 #    THIRD LOOP - PROMPT LIST
+#       SINGLE ANSWER CONTROL
 #    FOURTH LOOP - TOKENS GENERATION
 #       FAST MODE
 #       NORMAL MODE
@@ -71,7 +72,6 @@ import re                       # Import re for creating regular expressions, wh
 import pandas as pd             # Import pandas to create DataFrames for visualization purposes, particularly useful for generating bar plots from token data. (Data Analysis and Visualization)
 import random                   # Import random to shuffle elements in a list or generate pseudo-random numbers, which can be used to randomize the order of model execution. (Randomization)
 from collections import Counter # Import collections.Counter to count occurrences of each element in a sequence and group similar items together. (Item Counting and Grouping)
-#from playwright.sync_api import sync_playwright # Import playwright.sync_api for web automation, allowing the script to interact with web pages as if it were a browser, useful for scraping HTML content or testing web applications. (Web Automation)
 import winsound                 # Import winsound to create and play audio signals, such as beeps, on the computer's sound card. (Sound Synthesis)
 import fitz                     # Import fitz to extract text from PDF files using the Mozilla's poppler library. (PDF Text Extraction)
 import subprocess               # Import subprocess to execute system commands and programs from within Python, providing a way to interact with the operating system's command line. (System Command Execution)
@@ -86,10 +86,12 @@ import json                     # Import json for parsing JSON files or encoding
 import requests                 # Import json allows for sending HTTP requests to remote servers and receiving HTTP responses in Python. It is used to perform tasks like fetching web pages, making API calls, and downloading files from the internet.
 from pathlib import Path        # Import Path class provides a cross-platform way of working with file system paths in Python. It can be used for creating, opening, and manipulating files or directories on the local file system.
 from urllib.parse import urlparse # Import urlparse to analyze and construct URLs (Uniform Resource Locators). It is useful when working with web scraping, API calls, or any other tasks that involve handling URLs.
-import urllib3
+import urllib3                  # Import urllib3 for making HTTP requests and handling HTTP responses. It provides a flexible and powerful way to interact with web servers and APIs.
 import gc                       # Import gc to help manage memory by automatically freeing up objects that are no longer being referenced by the program. This can be used to reduce memory usage and improve performance when working with large datasets or complex programs.
-import shutil
-from bs4 import BeautifulSoup
+import shutil                   # Import shutil for transferring files and directories. It provides a high-level interface for working with files and directories on the local file system.
+from bs4 import BeautifulSoup   # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
+#from playwright.sync_api import sync_playwright # Import playwright.sync_api for web automation, allowing the script to interact with web pages as if it were a browser, useful for scraping HTML content or testing web applications. (Web Automation)
+
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -192,6 +194,7 @@ language = {
                 'current_response': '',                     # Segue resposta:\n
                 'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignorar URL.",
+                'single_answer_info': 'Single answer (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos selecionados são ignorados.',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
                 'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa modo de aprendizagem.',
@@ -230,6 +233,7 @@ language = {
                 'btn_copy_last_response': 'Copiar Resposta (last)',
                 'btn_copy_all_responses': 'Copiar Respostas (all)',
                 'btn_voice_command': 'Controle por Voz',
+                'btn_idle': 'Executar Código',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
                 'btn_all_responses': 'Todas as Respostas',
@@ -260,6 +264,7 @@ language = {
                 'current_response': '',                     # Follows response:
                 'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
+                'single_answer_info': 'Single answer (checkbox). Activates a single response per model. Prompts that exceed the number of selected models are ignored',
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
                 'fast_mode_info': 'Fast mode (checkbox). Generates text faster in background. Disables Learning Mode.',
@@ -298,6 +303,7 @@ language = {
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Response',
                 'btn_voice_command': 'Voice Control',
+                'btn_idle': 'Run Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
                 'btn_all_responses': 'All Responses',
@@ -409,6 +415,7 @@ model_metadata = ''             # Stores llm metadata to show on interface
 model_url = ''                  # Stores the model url for downloading
 previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
 original_filename = ''          # Stores the model name from url
+single_answer = False
 
 
 # ================================
@@ -498,6 +505,7 @@ def text_generator(
         prompt_p,
         models,
         model_url_p,
+        single_answer_p,
         reset_mode_p,
         random_list_p,
         fast_mode_p,
@@ -558,6 +566,7 @@ def text_generator(
     global model_metadata
     global previous_model_url
     global original_filename
+    global single_answer
 
     click.play()
     print('Starting the funtion "text_generator"...')
@@ -577,6 +586,7 @@ def text_generator(
     selected_voice = selected_voice_p
     vocabulary = vocabulary_p
     model_url = model_url_p
+    single_answer = single_answer_p
 
     if prompt == '':                # To use in case of empty user prompt
         prompt = 'Hello!'
@@ -667,7 +677,7 @@ def text_generator(
         # Model is downloaded and saved with the same file name, replacing the previous one
 
         if 'http' in model and previous_model_url == model:
-            model = 'MODEL_FOR_TESTING.gguf'
+            model = 'MODEL_FOR_TESTING.gguf' # If .gguf file was downloaded partially, system will raise 'ValueError: Failed to load model from file:...\MODEL_FOR_TESTING.gguf'
         
         # Check if "Model's URL for testing" field is filled
         elif 'http' in model and previous_model_url != model: # True if the models's url (previous_model)url) is replaced by a different model url
@@ -724,7 +734,12 @@ def text_generator(
         # SECOND LOOP - ENDLESS WHILE LOOP
         # ================================
 
+        # num_of_the_prompt = ''
+
         while True:
+
+            # if num_of_the_prompt == 1:
+            #     break
 
             try:
                 llm
@@ -779,15 +794,15 @@ def text_generator(
                         )
                     
                 except Exception as e:
-                    # yield 'Error on trying to load this model. Try another model.'
-                    resposta += f'\n\n==========================================\nError on trying to load {original_filename}. Try another model.\n==========================================\n'
+                    model = ''                                      # Restart variable just to force new download
+                    resposta += f'\n\n==========================================\nError loading {original_filename}. Try another model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
                     break
                     # return
 
                 print()
-                print('llm object created with llama.cpp.')
+                print('SAMANTHA: llm object created with llama.cpp. Loading model...')
                 print()
                                           
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
@@ -833,59 +848,65 @@ def text_generator(
             # ====================
             # PROMPT LIST CREATION
             # ====================
+
+            if n_model == 0:
                 
-            # FINAL-PROMPT: Prompt to be used as the final prompt in a list of prompts, with the 'full_text' variable
-            # Extract FINAL-PROMPT text from the prompt (text between [[ ]]). Final-prompt must be placed in the beginning of the text, BEFORE pre-prompt.
-            
-            if final_prompt == '':
-                temp = r'\[\[[\r\n]*([\s\S]*?)[\r\n]*\]\]'
-                if len(re.findall(temp, prompt)) >= 1:
-                    final_prompt = re.search(temp, prompt).group(0)
-                    final_prompt = final_prompt.replace('[[', '').replace(']]', '')#[1:-1] # Delete []
-                    final_prompt = final_prompt.replace('\n', ' ')
-                    final_prompt = final_prompt + '\n\n'
-                    prompt = re.sub(temp, '', prompt) # Delete pre-prompt phrase from the prompt text
-                else:
-                    final_prompt = ''
+                # FINAL-PROMPT: Prompt to be used as the final prompt in a list of prompts, with the 'full_text' variable
+                # Extract FINAL-PROMPT text from the prompt (text between [[ ]]). Final-prompt must be placed in the beginning of the text, BEFORE pre-prompt.
                 
-            # PRE-PROMPT: Prompt to be used for each each paragraph in a list of prompt separated by '\n'
-            # Extract PRE-PROMPT text from the prompt (text between [ ]). Pre-prompt must be placed in the beginning of the text
-            
-            if pre_prompt == '': 
-                temp = re.findall(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt)
-                if len(temp) >= 1:
-                    pre_prompt = re.search(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt).group(0)
-                    pre_prompt = pre_prompt.replace('[', '').replace(']', '')#[1:-1] # Delete []
-                    pre_prompt = pre_prompt.replace('\n', ' ')
-                    pre_prompt = pre_prompt + '\n\n'
-                    prompt = re.sub(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', '', prompt)
-                else:
-                    pre_prompt = ''
-
-            # Split prompt criterias
-            if '$$$' in prompt:                                         # First: look for $$$ in the prompt text (priority)
-                prompt_split = prompt.split('$$$\n')                    # Creates a list of prompts when $$$ is present on user input field
-            
-            else:                                                       # Second: separetes by '\n', if prompt text has no $$$ in the text
-                prompt_split = prompt.split('\n')
-
-
-            # Final cleanning process. Some codes works only in specific prompts (press Step-Over in VSCODE)
-            prompt_split = [x.strip() for x in prompt_split]            # Delete empty items from the prompt list
-            prompt_split = [x for x in prompt_split if x != '']         # Delete empty items
-            prompt_split = [x for x in prompt_split if x[:3] != '---']  # Delete items beginning wiht '---'
-            prompt_split = [pre_prompt + x for x in prompt_split]       # Add pre-prompt at the beginning of each prompt in the list
-            prompt_split = [x.replace('$$$', '').strip() for x in prompt_split] # Delete '$$$' and leading spaces and new lines characters
-
-
-            # MECANISMO QUE PERMITE A ELABORAÇÃO DE UMA RESPOSTA FINAL BASEADA EM TODAS AS RESPOSTAS ANTERIORES DOS MODELOS (FINAL-PROMPT)
-            if final_prompt != '':
-
-                with open('full_text.txt', 'r', errors='ignore') as f: # Delete content of the file 'full_text.txt'
-                    temp = f.read()
+                if final_prompt == '':
+                    temp = r'\[\[[\r\n]*([\s\S]*?)[\r\n]*\]\]'
+                    if len(re.findall(temp, prompt)) >= 1:
+                        final_prompt = re.search(temp, prompt).group(0)
+                        final_prompt = final_prompt.replace('[[', '').replace(']]', '')#[1:-1] # Delete []
+                        final_prompt = final_prompt.replace('\n', ' ')
+                        final_prompt = final_prompt + '\n\n'
+                        prompt = re.sub(temp, '', prompt) # Delete pre-prompt phrase from the prompt text
+                    else:
+                        final_prompt = ''
+                    
+                # PRE-PROMPT: Prompt to be used for each each paragraph in a list of prompt separated by '\n'
+                # Extract PRE-PROMPT text from the prompt (text between [ ]). Pre-prompt must be placed in the beginning of the text
                 
-                prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
+                if pre_prompt == '': 
+                    temp = re.findall(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt)
+                    if len(temp) >= 1:
+                        pre_prompt = re.search(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt).group(0)
+                        pre_prompt = pre_prompt.replace('[', '').replace(']', '')#[1:-1] # Delete []
+                        pre_prompt = pre_prompt.replace('\n', ' ')
+                        pre_prompt = pre_prompt + '\n\n'
+                        prompt = re.sub(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', '', prompt)
+                    else:
+                        pre_prompt = ''
 
+                # Split prompt criterias
+                if '$$$' in prompt:                                         # First: look for $$$ in the prompt text (priority)
+                    prompt_split = prompt.split('$$$\n')                    # Creates a list of prompts when $$$ is present on user input field
+                
+                else:                                                       # Second: separetes by '\n', if prompt text has no $$$ in the text
+                    prompt_split = prompt.split('\n')
+
+
+                # Final cleanning process. Some codes works only in specific prompts (press Step-Over in VSCODE)
+                prompt_split = [x.strip() for x in prompt_split]            # Delete empty items from the prompt list
+                prompt_split = [x for x in prompt_split if x != '']         # Delete empty items
+                prompt_split = [x for x in prompt_split if x[:3] != '---']  # Delete items beginning wiht '---'
+                prompt_split = [pre_prompt + x for x in prompt_split]       # Add pre-prompt at the beginning of each prompt in the list
+                prompt_split = [x.replace('$$$', '').strip() for x in prompt_split] # Delete '$$$' and leading spaces and new lines characters
+
+
+                # MECANISMO QUE PERMITE A ELABORAÇÃO DE UMA RESPOSTA FINAL BASEADA EM TODAS AS RESPOSTAS ANTERIORES DOS MODELOS (FINAL-PROMPT)
+                if final_prompt != '':
+
+                    with open('full_text.txt', 'r', errors='ignore') as f: # Delete content of the file 'full_text.txt'
+                        temp = f.read()
+                    
+                    prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
+
+            
+            
+            
+            
             
             partial_text = ''
             
@@ -898,6 +919,19 @@ def text_generator(
             # ======================================
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
+                
+                
+                # =====================
+                # SINGLE ANSWER CONTROL
+                # =====================
+                
+                if single_answer == True:
+                    if n_model == len(models):
+                        return
+                    if num_of_the_prompt > n_model:
+                        break
+                    del prompt_split[0]
+                    
                 
                 # Text cleaning for audio reproduction. Remove characters inside [] and <> if the model response returns special tokens
                 full_text = re.sub(r'\[.*?\]', '', full_text) 
@@ -925,6 +959,7 @@ def text_generator(
                     
                     elif system_prompt == '' and previous_answer != '':
                         messages = [
+                                    {'role': 'user', 'content': ''}, # IN TEST (may degradate model response)
                                     {'role': 'assistant', 'content': previous_answer},
                                     {'role': 'user', 'content': prompt_text},
                                     ]
@@ -932,11 +967,12 @@ def text_generator(
                     elif system_prompt != '' and previous_answer != '':
                         messages = [                                                        # Responses to prompt_text "Olá!"
                                     {'role': 'system', 'content': system_prompt},           # Requires text to avoid short responses like this: "Boa tarde! (If it's the afternoon) / Boa noite! (If it's evening or night).""
+                                    {'role': 'user', 'content': ''}, # IN TEST (may degradate model response)
                                     {'role': 'assistant', 'content': previous_answer},      # Requires text to avoid short responses like this: "Boa tarde! Como posso ajudá-lo hoje?"
                                     {'role': 'user', 'content': prompt_text},               # Always present
                                     ]
                             
-                    elif system_prompt != '' and previous_answer == '': # and current_ia_response == ''):
+                    elif system_prompt != '' and previous_answer == '':
                         messages = [                                                        
                                     {'role': 'system', 'content': system_prompt},
                                     {'role': 'user', 'content': prompt_text},
@@ -944,11 +980,13 @@ def text_generator(
                             
                     # Feedback loop activated. Insert 'previous_answer' right before 'user', independently the user position.
                     if infinite_loop == True and previous_answer == '': # Insert 'previous_answer' only if it was not inserted yet.
-                        for n, k in enumerate(messages):
+                        for n, k in enumerate(messages):                # Loop over messages
                             temp = next(iter(k))
                             if k[temp] == 'user':
                                 print(n, k[temp])
-                                messages.insert(n, {'role': 'assistant', 'content': previous_answer})
+                                # messages.insert(n, {'role': 'assistant', 'content': previous_answer})
+                                messages.insert(n, {'role': 'user', 'content': ''}) # IN TEST
+                                messages.insert(n + 1, {'role': 'assistant', 'content': previous_answer}) # IN TEST
                                 break
 
                     # print()
@@ -997,6 +1035,7 @@ def text_generator(
                             grammar = None,
                         )):
                        
+
                         #print(i)
                         
                         # Examples of i content:
@@ -1214,7 +1253,7 @@ def text_generator(
 
                 # MAIN EXCEPT
                 except Exception as e:
-                    resposta = resposta + '\n\n' + '********************************\n' + traceback.format_exc() + '********************************\n\n' + 'No problem! You just reached the context window limit (n_ctx). Unload the model, increase the context window limit, and try again.\n\n'
+                    # resposta = resposta + '\n\n' + '********************************\n' + traceback.format_exc() + '********************************\n\n' + 'No problem! You just reached the context window limit (n_ctx). Unload the model, increase the context window limit, and try again.\n\n'
                     yield resposta                                          # Returns response with error message and display it on output interface
                     return
                 
@@ -1360,7 +1399,7 @@ def update_audio_widget(*inputs): # Load audio widget with last message audio
     if os.path.isfile('resposta.mp3'):
         global engine
         click.play()
-        sel_voice = inputs[9]
+        sel_voice = inputs[10]
         if 'Portug' in sel_voice: # Set rate for each voice
             engine.setProperty('rate', 200) # Slow down english speak
         else:
@@ -1478,7 +1517,7 @@ def text_to_speech(*inputs): # Text to speech convertion
     global engine
     click.play()
     prompt_user = inputs[3]
-    sel_voice = inputs[9]
+    sel_voice = inputs[10]
     if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
@@ -1628,8 +1667,7 @@ def extract_full_text():
 def load_full_audio(*inputs):
     global engine
     click.play()
-    # sel_voice = inputs[9]
-    sel_voice = inputs[9]
+    sel_voice = inputs[10]
     if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
@@ -1679,6 +1717,12 @@ def copy_code():
         linguagem, conteudo = codigo
         resultado.append(f"#{linguagem}\n{conteudo}")
     temp = "\n".join(resultado)
+
+    padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
+
+    # Divide o código em linhas, filtra as linhas que não correspondem ao padrão e junta novamente
+    temp = '\n'.join([linha for linha in temp.split('\n') if not re.match(padrao, linha)])
+
     pyperclip.copy(temp)
     
 
@@ -1745,7 +1789,7 @@ def speech_to_text(*inputs):
     global engine
     global audio
 
-    sel_voice = inputs[9]
+    sel_voice = inputs[10]
 
     for voice in voices: # Set selected voice to create audio file
         if voice.name == sel_voice:
@@ -2106,6 +2150,42 @@ def download_model_urls():
         print(e)
 
 
+def open_idle():
+    click.play()
+    print('======================')
+    print('Running Python code...')
+    print('======================')
+    python_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe"
+    # idle_path = f"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts\idle.exe"
+    # subprocess.Popen([idle_path])
+
+    padrao = r"```(.*?)\n(.*?)```"
+    codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
+    resultado = []
+    for codigo in codigos:
+        linguagem, conteudo = codigo
+        resultado.append(f"#{linguagem}\n{conteudo}")
+    final_code = "\n".join(resultado)
+
+    padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
+
+    # Divide o código em linhas, filtra as linhas que não correspondem ao padrão e junta novamente
+    final_code = '\n'.join([linha for linha in final_code.split('\n') if not re.match(padrao, linha)])
+        
+    with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
+        f.write(final_code)
+
+    try:
+        subprocess.run([python_path, "temp.py"], check=True)
+    except:
+        print()
+        print('Error on trying to run code.')
+        print()
+        winsound.Beep(600, 300) # Signals to indicate error
+        winsound.Beep(600, 300)
+    
+
+
 # # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
 
 # code = """
@@ -2182,6 +2262,9 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
                 gr.Dropdown(choices=models, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
                 gr.Textbox(value=None, lines=1, label="Download model for testing", info=language['model_url_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
+                
+                gr.Checkbox(value=single_answer, label="Single answer", info=language['single_answer_info'], interactive=True),
+
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
                 gr.Checkbox(value=random_list, label="Shuffle models", info=language['shuffle_models_order_info'], interactive=True),
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
@@ -2197,9 +2280,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Slider(0.00001, 1, 0.00001, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
                 gr.Slider(0.000001, 1, 0.000001, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
                 gr.Slider(0, 1, 1, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
-                
                 gr.Slider(0.00001, 1, 0.00001, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
-                
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
@@ -2207,6 +2288,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
+
             with gr.Row():
                 btn_unload = gr.Button(language['btn_unload_model'])
                 btn_unload.click(fn=unload_model, inputs=None, outputs=None)
@@ -2339,7 +2421,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
                     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
                 elif voice_mode == False:
-                    btn_voice = gr.Button('')
+                    btn_idle = gr.Button(language['btn_idle'])
+                    btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
 
                 # =================================
             
