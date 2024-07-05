@@ -210,9 +210,7 @@ language = {
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
                 'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p”.',
                 'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "m".', 
-                
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estão abaixo de um limiar de tipicidade, calculado como entropia x typical_p, e então renormaliza as probabilidades deste subconjunto para amostragem',
-                
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
                 'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'frequency_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
@@ -280,9 +278,7 @@ language = {
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
                 'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p".',
                 'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "m".', 
-                
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limits the selection of the next token to a subset whose individual probabilities are below a typicality threshold, calculated as entropy x typical_p, and then renormalizes the probabilities of this subset for sampling.',
-                
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
                 'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'frequency_penalty (range slider). Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
@@ -415,7 +411,7 @@ model_metadata = ''             # Stores llm metadata to show on interface
 model_url = ''                  # Stores the model url for downloading
 previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
 original_filename = ''          # Stores the model name from url
-single_answer = False
+single_answer = False           # Activates one single answer per model
 
 
 # ================================
@@ -521,9 +517,7 @@ def text_generator(
         tfs_z, 
         top_p,
         min_p,
-
-        typical_p, # 21
-
+        typical_p,
         top_k, 
         presence_penalty, 
         frequency_penalty, 
@@ -612,7 +606,7 @@ def text_generator(
 
     # Check if no model is selected and if 'Download model for testing' field is not empty
     if models == []:
-        models = model_url.split('\n')
+        models = model_url.split('\n')  # URL
         models = [x.strip() for x in models if x[:3] != '---']
         models = [x for x in models if x != '']
     
@@ -667,7 +661,20 @@ def text_generator(
     # FIRST LOOP - FOR LOOP OVER SELECTED MODELS
     # ==========================================
 
+    prompt_split = None
+
     for n_model, model in enumerate(models):    # Loop over models list
+
+
+        # ==============================
+        # SINGLE ANSWER CONTROL - PART 2
+        # ==============================
+        
+        if single_answer == True:               # SINGLE ANSWER PART 1
+            if len(models) > 1:
+                if models[0][:4] == 'http':
+                    if prompt_split == []:      # After delete all prompts when downloading models from URL
+                        return
 
 
         # ================================
@@ -734,12 +741,7 @@ def text_generator(
         # SECOND LOOP - ENDLESS WHILE LOOP
         # ================================
 
-        # num_of_the_prompt = ''
-
         while True:
-
-            # if num_of_the_prompt == 1:
-            #     break
 
             try:
                 llm
@@ -780,9 +782,7 @@ def text_generator(
                             f16_kv=True,
                             logits_all=False,
                             embedding=False,
-
                             flash_attn=True,                        # default False <<<<<<<<<<<<<<<<<<<<< IN TEST
-                            
                             last_n_tokens_size=64,                  # default 64. Estava em 512
                             lora_base=None,
                             lora_scale=1.0,
@@ -849,7 +849,7 @@ def text_generator(
             # PROMPT LIST CREATION
             # ====================
 
-            if n_model == 0:
+            if n_model == 0: # Executed only once
                 
                 # FINAL-PROMPT: Prompt to be used as the final prompt in a list of prompts, with the 'full_text' variable
                 # Extract FINAL-PROMPT text from the prompt (text between [[ ]]). Final-prompt must be placed in the beginning of the text, BEFORE pre-prompt.
@@ -903,11 +903,6 @@ def text_generator(
                     
                     prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
 
-            
-            
-            
-            
-            
             partial_text = ''
             
             with open('partial_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
@@ -921,16 +916,17 @@ def text_generator(
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
                 
                 
-                # =====================
-                # SINGLE ANSWER CONTROL
-                # =====================
+                # ==============================
+                # SINGLE ANSWER CONTROL - PART 2
+                # ==============================
                 
                 if single_answer == True:
                     if n_model == len(models):
                         return
                     if num_of_the_prompt > n_model:
                         break
-                    del prompt_split[0]
+                    if len(prompt_split) >= 1:
+                        del prompt_split[0]
                     
                 
                 # Text cleaning for audio reproduction. Remove characters inside [] and <> if the model response returns special tokens
@@ -989,7 +985,6 @@ def text_generator(
                                 messages.insert(n + 1, {'role': 'assistant', 'content': previous_answer}) # IN TEST
                                 break
 
-                    # print()
                     print('>>>>> SYSTEM MESSAGE:', system_prompt)
                     print()
                     print('>>>>> PREVIOUS RESPONSE:', previous_answer)
@@ -1016,9 +1011,7 @@ def text_generator(
                             temperature = temperature,             # default: 0.2
                             top_p = top_p,                         # default: 0.95
                             min_p = min_p,                         # default: 0.05
-
                             typical_p = typical_p,                 # default: 1.0
-
                             top_k = top_k,                         # default: 40
                             stream = True,                         # default: False
                             stop = eval(stop_generation),          # default: None
@@ -2018,6 +2011,7 @@ def extract_models_names(): # Load Model button: open window to choose directory
     global last_models_list
     global last_diretorio
     global last_model
+
     click.play()
     
     # ==================================
@@ -2151,10 +2145,13 @@ def download_model_urls():
 
 
 def open_idle():
+
     click.play()
+
     print('======================')
     print('Running Python code...')
     print('======================')
+
     python_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe"
     # idle_path = f"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts\idle.exe"
     # subprocess.Popen([idle_path])
@@ -2185,34 +2182,9 @@ def open_idle():
         winsound.Beep(600, 300)
     
 
-
-# # TO RUN CODE AUTOMATICALLY AFTER ITS GENERATION 
-
-# code = """
-
-# import seaborn as sns
-# sns.set_theme(style="ticks")
-
-# df = sns.load_dataset("penguins")
-# sns.pairplot(df, hue="species")
-
-# """
-
-# def run_my_code(): # Cria um arquivo .py no diretório local
-#     file_name = "code_my_code.py"
-#     with open(file_name, "w") as file:
-#         file.write(code)
-#     try:
-#         subprocess.run([f"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe", file_name]) # Executa o arquivo .py via terminal com o interpretador do ambiente virtual atual
-#     finally:
-#         os.remove(file_name) # Remove o arquivo .py temporário (talvez melhor não apagar)
-
-
 # ================
 # GRADIO INTERFACE
 # ================ 
-
-# https://www.gradio.app/
   
 # CSS code
 css = """
@@ -2245,10 +2217,12 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
         # ====================
 
         with gr.Column(scale=1):
+
             with gr.Row(): # Input buttons
                 btn1 = gr.Button(language['btn1'], variant='primary')
                 btn2 = gr.Button(language['btn2'])
                 btn3 = gr.Button(language['btn3'])
+
             with gr.Row():
                 btn4 = gr.Button(language['btn4'])
                 btn5 = gr.Button(language['btn5'])
@@ -2262,9 +2236,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
                 gr.Dropdown(choices=models, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
                 gr.Textbox(value=None, lines=1, label="Download model for testing", info=language['model_url_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
-                
-                gr.Checkbox(value=single_answer, label="Single answer", info=language['single_answer_info'], interactive=True),
-
+                gr.Checkbox(value=single_answer, label="Single response per model", info=language['single_answer_info'], interactive=True),
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
                 gr.Checkbox(value=random_list, label="Shuffle models", info=language['shuffle_models_order_info'], interactive=True),
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
@@ -2397,9 +2369,11 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
         # =====================
             
         with gr.Column(scale=1):
+
             with gr.Row():
                 saida = gr.Textbox(value='', label="Assistant output", info=language['assistant_raw_output_info'], show_copy_button=True)
                 outputs = [saida] # Primeiro elemento da tupla de saída da função 'text_generator' (token)
+
             with gr.Row():
                 btn_next_token = gr.Button(language['btn_next_token'])
                 btn_next_token.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False) 
@@ -2407,6 +2381,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_copy_code.click(fn=copy_code, inputs=None, outputs=None, queue=False)
                 btn_notebook = gr.Button(language['btn_open_jupyterlab'])
                 btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
+
             with gr.Row():
                 btn_last_response = gr.Button(language['btn_copy_last_response'])
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
@@ -2420,6 +2395,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     btn_voice = gr.Button(language['btn_voice_command'], variant='primary', visible=True)
                     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
                     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
+
                 elif voice_mode == False:
                     btn_idle = gr.Button(language['btn_idle'])
                     btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
@@ -2430,12 +2406,15 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 plot_1 = gr.BarPlot(visible=False) # Creates first plot that is updeted in the sequence (https://www.gradio.app/docs/barplot)
                 demo.load(fn=update_barplot_widget, inputs=None, outputs=plot_1)
                 saida.change(fn=update_barplot_widget, inputs=None, outputs=plot_1, show_progress='hidden', queue=False)
+            
             with gr.Row():
                 plot_2 = gr.BarPlot(visible=False) # Creates second plot that is updeted in the sequence
                 demo.load(fn=update_barplot_widget_2, inputs=None, outputs=plot_2)
                 saida.change(fn=update_barplot_widget_2, inputs=None, outputs=plot_2, show_progress='hidden', queue=False)
+            
             with gr.Row():
                 audio_widget = gr.Audio(value='introducao.mp3', type='filepath', autoplay=False, interactive=True, show_download_button=True, editable=True, show_share_button=True)
+            
             with gr.Row():
                 btn_gen_audio = gr.Button(language['btn_text_to_speech'])
                 btn_gen_audio.click(fn=text_to_speech, inputs=inputs, outputs=audio_widget, queue=True)
@@ -2446,6 +2425,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Models Repository:</h5>""")
+            
             with gr.Row():
                 gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a></li>
