@@ -667,10 +667,10 @@ def text_generator(
 
 
         # ==============================
-        # SINGLE ANSWER CONTROL - PART 2
+        # SINGLE ANSWER CONTROL - PART 1
         # ==============================
         
-        if single_answer == True:               # SINGLE ANSWER PART 1
+        if single_answer == True:
             if len(models) > 1:
                 if models[0][:4] == 'http':
                     if prompt_split == []:      # After delete all prompts when downloading models from URL
