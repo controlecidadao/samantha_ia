@@ -1,5 +1,5 @@
 # =================================
-# SAMANTHA IA - INTERFACE ASSISTANT
+# SAMANTHA INTERFACE ASSISTANT
 # =================================
 
 # This is an experimental project developed solely with the aim of encouraging the creation of similar works.
@@ -9,9 +9,9 @@
 # PREREQUISITES
 # =============
 
-# To llama.cpp:
-# 1) Download and install Microsoft Visual Studio Install: https://visualstudio.microsoft.com/pt-br/downloads/?cid=learn-navbar-download-cta
-# 2) During installation process, select only the option that contains CMake ("Desktop development with C++", "Desenvolvimento para desktop com C++"): https://learn.microsoft.com/pt-br/cpp/get-started/media/vs2022-installer-workloads.png?view=msvc-170
+# To run llama.cpp:
+# 1) Download and install Microsoft Visual Studio Community version: https://visualstudio.microsoft.com/pt-br/downloads/?cid=learn-navbar-download-cta
+#    During installation process, select only the option that contains CMake ("Desktop development with C++" or "Desenvolvimento para desktop com C++"): https://learn.microsoft.com/pt-br/cpp/get-started/media/vs2022-installer-workloads.png?view=msvc-170
 
 
 # =====================
@@ -194,7 +194,7 @@ language = {
                 'current_response': '',                     # Segue resposta:\n
                 'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignorar URL.",
-                'single_answer_info': 'Single answer (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos selecionados são ignorados.',
+                'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
                 'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa modo de aprendizagem.',
@@ -262,7 +262,7 @@ language = {
                 'current_response': '',                     # Follows response:
                 'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
-                'single_answer_info': 'Single answer (checkbox). Activates a single response per model. Prompts that exceed the number of selected models are ignored',
+                'single_answer_info': 'Single response (checkbox). Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
                 'fast_mode_info': 'Fast mode (checkbox). Generates text faster in background. Disables Learning Mode.',
@@ -619,7 +619,7 @@ def text_generator(
         if isinstance(models, str):
             models = [models]
 
-        
+    
         # ================================
         # FIFTH LOOP - NUMBER OF SEQUENCES
         # ================================
@@ -661,7 +661,8 @@ def text_generator(
     # FIRST LOOP - FOR LOOP OVER SELECTED MODELS
     # ==========================================
 
-    prompt_split = None
+    prompt_split = []
+    count_prompt = 0
 
     for n_model, model in enumerate(models):    # Loop over models list
 
@@ -669,12 +670,46 @@ def text_generator(
         # ==============================
         # SINGLE ANSWER CONTROL - PART 1
         # ==============================
-        
-        if single_answer == True:
-            if len(models) > 1:
-                if models[0][:4] == 'http':
-                    if prompt_split == []:      # After delete all prompts when downloading models from URL
-                        return
+
+        # # Return on the last prompt when number of models is greater
+        if single_answer == True:               # Single_answer activated
+
+            if len(models) <= len(prompt_split):    # If number of models is minus or equal to number of prompts
+                if count_prompt == len(models):
+                    break
+
+            elif len(models) > len(prompt_split):   # If number of models is greater than number of prompts
+                if count_prompt == len(prompt_split) and prompt_split != []:
+                    break
+
+                          
+
+
+
+
+            # if len(models) > 1:                 # More than one model selected
+        #         if models[0][:4] == 'http':     # Download model from URL                       
+                    
+        #             try: # 'prompt_split' begins with None value
+        #                 if len(models) > len(prompt_split):         # Number of models greater than number of prompts
+        #                     if count_prompt == len(prompt_split):   # Stop prematurally based in number of prompts
+        #                         break #return
+        #             except:
+        #                 pass
+
+        #             try:
+        #                 if num_of_the_prompt > len(models): # 'num_of_the_prompt' variable not defined yet
+        #                     break #return
+        #             except:
+        #                 pass
+                
+        #         else:
+        #             try: # 'prompt_split' begins with None value
+        #                 if len(models) > len(prompt_split):
+        #                     if count_prompt == len(prompt_split):      # 
+        #                         break #return
+        #             except:
+        #                 pass
 
 
         # ================================
@@ -742,6 +777,19 @@ def text_generator(
         # ================================
 
         while True:
+
+
+            # ==============================
+            # SINGLE ANSWER CONTROL - PART 2
+            # ==============================
+
+            # if single_answer == True:
+            #     try:
+            #         if num_control == 2:
+            #             break #return
+            #     except:
+            #         pass
+
 
             try:
                 llm
@@ -896,12 +944,14 @@ def text_generator(
 
 
                 # MECANISMO QUE PERMITE A ELABORAÇÃO DE UMA RESPOSTA FINAL BASEADA EM TODAS AS RESPOSTAS ANTERIORES DOS MODELOS (FINAL-PROMPT)
-                if final_prompt != '':
+                if final_prompt != '': # There is text between [[]]
 
                     with open('full_text.txt', 'r', errors='ignore') as f: # Delete content of the file 'full_text.txt'
                         temp = f.read()
                     
-                    prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
+                    prompt_split.append(final_prompt + 'full_text')
+                    
+                    # prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
 
             partial_text = ''
             
@@ -914,27 +964,46 @@ def text_generator(
             # ======================================
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
-                
+            # For loop used in a different way
                 
                 # ==============================
-                # SINGLE ANSWER CONTROL - PART 2
+                # SINGLE ANSWER CONTROL - PART 3
                 # ==============================
                 
-                if single_answer == True:
-                    if n_model == len(models):
-                        return
-                    if num_of_the_prompt > n_model:
-                        break
-                    if len(prompt_split) >= 1:
-                        del prompt_split[0]
+                # Break loop to allow one response per model
+                if single_answer == True:                   # Single_answer activated
+                    # if num_of_the_prompt == 1:              # Break internal loop (prompt list) when greater than number of models
+                    #     break
+                    
+                    # if loop_models == 1:
+                    if n_model <= len(prompt_split):        # To avoid 'IndexError: list index out of range'
+                        prompt_text = prompt_split[n_model] # IndexError: list indes out of range
+
+                    # if loop_models > 1:
+                    #     prompt_split = prompt_split * loop_models
+                    #     if n_model <= len(prompt_split):        # To avoid 'IndexError: list index out of range'
+                    #         prompt_text = prompt_split[n_model] # IndexError: list indes out of range
+
+
+
+
+                
+                
+                count_prompt += 1
                     
                 
                 # Text cleaning for audio reproduction. Remove characters inside [] and <> if the model response returns special tokens
                 full_text = re.sub(r'\[.*?\]', '', full_text) 
                 full_text = re.sub(r'<.*?>', '', full_text)
 
-                if 'partial_text' in prompt_text:
+                if 'partial_text' in prompt_text:       # Check for replacing last prompt
                     prompt_text = prompt_text.replace('partial_text', partial_text + '\n$$$')
+
+                if 'full_text' in prompt_text:       # Check for replacing last prompt
+                    prompt_text = prompt_text.replace('full_text', full_text + '\n$$$')
+
+
+
                 print()
 
                 # =============================
@@ -1061,7 +1130,7 @@ def text_generator(
                                     winsound.Beep(600, 500)
                                 
                                 # Print token on terminal. # The first and last 'i' has no 'content' key and raise an error.
-                                print(f'{nu})', round(time.time() - start, 2), repr(i['choices'][0]['delta']['content']))
+                                print(f'{nu})', round(time.time() - start, 2), repr(i['choices'][0]['delta']['content'])) # nu = 0: first index has no token
                                 
                                 resposta += i['choices'][0]['delta']['content']
                                 
@@ -1173,7 +1242,7 @@ def text_generator(
                             # <<<<<<<<<<<<<<<<
 
                             # Retorna resposta (já com o último token) e número parcial de tokens
-                            yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu}, {stop}s)"""
+                            yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)""" # nu - 1: first index has no token
                                                         
                             # <<<<<<<<<<<<<<<<
 
@@ -1204,10 +1273,10 @@ def text_generator(
                     # FAST MODE CONTINUES FROM HERE (COMMON PART FOR ALL MODES)
                     if fast_mode == True or (fast_mode == False and delay_next_token == 'OFF'): # Display response after Fast Generation Mode has finished
                         tt = round(time.time() - total_time_start, 1)
-                        resposta = resposta + f'\n---------- ({nu} tokens, {tt}s)\n' # number of tokens from context window: llm.n_tokens len(llm.n_tokens) - len(llm._input_ids)
+                        resposta = resposta + f'\n---------- ({nu - 1} tokens, {tt}s)\n' # number of tokens from context window: llm.n_tokens len(llm.n_tokens) - len(llm._input_ids)
                         yield resposta
                     else:                           # Returns text in Learning Mode
-                        yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu}, {stop}s)\n---------- ({tt}s)\n"""
+                        yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)\n---------- ({tt}s)\n"""
                     
                     som.play()                      # Play notification sound to warn the end of response generation
                     while pygame.mixer.get_busy():  # Wait until notification sound ends to play (comment to make it assyncronous)
@@ -1262,7 +1331,7 @@ def text_generator(
                 with open('full_text.txt', mode='w', encoding='utf-8', errors='ignore') as f:
                     f.write(full_text)
 
-                partial_text += ultima_resposta + '\n\n' # Add last response to partial_text variable
+                partial_text += ultima_resposta + '\n\n'                    # Add last response to partial_text variable
                 with open('partial_text.txt', mode='w', encoding='utf-8', errors='ignore') as f:
                     f.write(partial_text)
 
@@ -1275,22 +1344,86 @@ def text_generator(
                 # CRITICAL LOOPS CONTROL
                 # ======================
 
-                # Controls the sequence of the four concatenated loops (MODEL -> ENDLESS -> PROMPTS -> TOKENS)
-                if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
-                    continue
-                else:
-                    if num_control < num_respostas:             # Break prompt list's for loop (go back to endless where loop)
-                        break
-                    elif num_control == num_respostas:          # Decides if goes to endless where loop or to models loop
-                        if n_model < len(models) - 1:           # Leave prompt list's for loop (go back to endless where loop)
+                # TEST - TEST - TEST - TEST
+                # num_control:   Stores number of responses generated by each mode
+                # num_respostas: Number of responses set by the user in the interface
+
+                # LEAVE PROMPT LIST LOOP
+                if single_answer == False:
+                    if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
+                        continue
+                    else:
+                        if num_control < num_respostas:             # Break prompt list's for loop (go back to endless where loop)
                             break
-                        elif n_model == len(models) - 1:        # Leave the function
-                            return
-                if num_control < num_respostas:                 # Break prompt list's for loop (go back to endless where loop)
-                    break           
+                        elif num_control == num_respostas:          # Decides if goes to endless where loop or to models loop
+                            if n_model < len(models) - 1:           # Leave prompt list's for loop (go back to endless where loop)
+                                break
+                            elif n_model == len(models) - 1:        # Leave the function
+                                return
+                            
+                elif single_answer == True:
+                    if num_of_the_prompt == 0:
+                        break # <<<<<<<<<<<< estou aqui!
+
+
+                    # if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
+                    #     continue
+                    # else:
+                    #     if num_control < num_respostas:             # Break prompt list's for loop (go back to endless where loop)
+                    #         break
+                    #     elif num_control == num_respostas:          # Decides if goes to endless where loop or to models loop
+                    #         if n_model < len(models) - 1:           # Leave prompt list's for loop (go back to endless where loop)
+                    #             break
+                    #         elif n_model == len(models) - 1:        # Leave the function
+                    #             return
+ 
+
+                # LEAVE PROMPT LIST LOOP
+                if single_answer == False:
+                    if num_control < num_respostas:                     # Break prompt list's for loop (go back to endless where loop)
+                        break
+                
+                elif single_answer == True:
+                    if num_of_the_prompt == 1:
+                        break         
             
-            if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
-                break
+            # LEAVE WHILE LOOP
+            if single_answer == False:
+                if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
+                    break
+            
+            elif single_answer == True:
+                if num_of_the_prompt == 0:
+                # if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
+                    break
+                        
+
+                
+
+
+            #     # Controls the sequence of the four concatenated loops (MODEL -> ENDLESS -> PROMPTS -> TOKENS)
+            #     if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
+            #         continue
+            #     else:
+            #         if num_control < num_respostas:             # Break prompt list's for loop (go back to endless where loop)
+            #             break
+            #         elif num_control == num_respostas:          # Decides if goes to endless where loop or to models loop
+            #             if n_model < len(models) - 1:           # Leave prompt list's for loop (go back to endless where loop)
+            #                 break
+            #             elif n_model == len(models) - 1:        # Leave the function
+            #                 return
+                
+            #     if num_control < num_respostas:                 # Break prompt list's for loop (go back to endless where loop)
+            #         break           
+            
+            # if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
+            #     break
+
+
+
+
+
+
 
             num_control += 1
 
@@ -2063,9 +2196,9 @@ def extract_models_names(): # Load Model button: open window to choose directory
     last_models_list = models
     
     if len(models) == 1: # Update models dropdowm widget
-        return gr.Dropdown(choices=models, value=models)
+        return gr.Dropdown(choices=models * 2, value=models)
     elif len(models) > 1:
-        return gr.Dropdown(choices=models, value=models[0])
+        return gr.Dropdown(choices=models * 2, value=models[0])
 
 
 def open_db_browser():
@@ -2091,7 +2224,7 @@ def download_model(url):
     try:
         # Extrair o caminho completo da pasta "Downloads"
         downloads_path = Path(os.path.expanduser("~")) / "Downloads"
-        print(downloads_path)
+        print('Download path:', downloads_path)
 
         # Tentar remover o arquivo existente, se houver
         try:
@@ -2182,6 +2315,13 @@ def open_idle():
         winsound.Beep(600, 300)
     
 
+def change_checkbox(bool_value):
+    if bool_value:
+        return gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=False), gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=False)
+    else:
+        return gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True), gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True)
+
+
 # ================
 # GRADIO INTERFACE
 # ================ 
@@ -2234,7 +2374,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Checkbox(value=infinite_loop, label='Feedback Loop', info=language["feedback_loop_info"], interactive=True),
                 gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
-                gr.Dropdown(choices=models, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
+                gr.Dropdown(choices=models * 2, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
                 gr.Textbox(value=None, lines=1, label="Download model for testing", info=language['model_url_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Checkbox(value=single_answer, label="Single response per model", info=language['single_answer_info'], interactive=True),
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
@@ -2260,6 +2400,8 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
+
+            inputs[6].change(fn=change_checkbox, inputs=inputs[6], outputs=[inputs[13], inputs[14]])
 
             with gr.Row():
                 btn_unload = gr.Button(language['btn_unload_model'])
