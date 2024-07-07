@@ -17,21 +17,20 @@ $-$-$
 ---Melhore ainda mais a redação do texto contido em sua resposta anterior.
 $-$-$
 
-Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria, e gere uma nova pergunta ainda mais disruptiva para desafiá-la em seus limites de compreensão, raciocínio e capacidade de articulação de ideias. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas por você para responder a pergunta dela.
+Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre o seguinte tema: "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria, e gere uma nova pergunta ainda mais disruptiva para desafiá-la em seus limites de compreensão, raciocínio e capacidade de articulação de ideias. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas por você para responder a pergunta dela.
 $-$-$
 
-Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, revolucionárias, que permitam ao usuário perceber o tema sob outros pontos de vista e ter insights de explodir a mente.
+Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, revolucionárias, que permitam ao usuário perceber o tema sob outros pontos de vista e ter insights brilhantes (mind blowing).
 $-$-$
 
-[Explique, do ponto de vista científico, como os textos produzidos por sistemas de inteligência artificial podem auxiliar na expansão do conhecimento do ser humano. Sua explicação científica deve demonstrar como a interação com sistemas de IA, combinada com o poderoso processamento cognitivo humano, pode levar à expansão do conhecimento por meio da produção de insights, ideias inovadoras e novas conexões no cérebro humano.
-Palavras-chave: processos cognitivos, integração de informações, sistemas de IA, insights, conexões inesperadas, pensamento criativo, priming, serendipity, validação de conhecimentos, processamento cognitivo humano, expansão do conhecimento.
+[Explique, do ponto de vista científico, como os textos produzidos por sistemas de inteligência artificial podem auxiliar na expansão do conhecimento humano. Sua explicação deve demonstrar como a interação com sistemas de IA, combinada com o poderoso processamento cognitivo humano, pode levar à expansão do conhecimento por meio da produção de insights, ideias inovadoras e novas conexões neurais no cérebro humano.
+Palavras-chave: processo cognitivo humano, integração de informações, sistemas de IA, comportamento emergente, insights, conexões inesperadas, pensamento criativo, priming, serendipity, expansão do conhecimento e da capacidade cognitiva.
 Em sua resposta, aborde os seguintes aspectos-chave:]
 
-1) Processos cognitivos envolvidos na leitura e integração de novas informações
-2) Papel dos sistemas de IA como fonte de informações e insights
+1) Processos cognitivos envolvidos na integração de novas informações ao conhecimento humano
+2) Papel dos sistemas de IA na produção de conhecmento
 3) Formação de conexões cerebrais inesperadas e geração de insights criativos
-4) Validação e incorporação de novos conhecimentos pelo cérebro humano
-5) Benefícios e cautelas na interação com IA para o processo cognitivo humano
+4) Benefícios e cautelas na interação com IA para o processo cognitivo humano
 $-$-$
 
 TAREFA 1: Analise cuidadosamente o texto da sua resposta anterior e elabore um RESUMO do assunto principal.
@@ -40,9 +39,9 @@ RESUMO: (Resumo do texto)
 TAREFA 2: Analise cada sentença do texto e extraia as entidades necessárias à construção de um grafo de conhecimento (knowledge graph) que permita a compreensão exata do assunto principal do texto.  Represente as entidades por nomes curtos.
 ENTIDADES: (Relação das entidades identificadas)
 
-TAREFA 3: Analise cada sentença do texto e identifique os relacionamentos existentes entre as entidades. Formule uma pergunta sobre o que fez cada entidade para descobrir a palavra que  as conecta.  Represente os relacionamentos por uma única palavra.
+TAREFA 3: Analise cada sentença do texto e identifique os relacionamentos existentes entre as entidades. Formule uma pergunta sobre o que fez cada entidade para descobrir a palavra que as conecta. Represente os relacionamentos por uma única palavra.
 
-Exemplos de relacionamentos:
+Exemplos de relacionamentos (verbos) que ligam entidades (substantivos):
 Sentença: O menino subiu no telhado para colher frutas. As frutas eram manga e laranja. A mãe do menino pediu para ele descer do telhado.
 Exemplos:
 menino -> subiu -> telhado -> colher -> frutas
@@ -53,7 +52,7 @@ RELACIONAMENTOS:
 (nó -> relacionamento -> nó )
 
 Não pode haver arestas consecutivas; o padrão é alternar nó -> aresta -> nó -> aresta -> nó etc.
-Gere relacionamentos para  todas as entidades identificadas. O grafo deve ser integralmente conectado. Todas as entidades devem estar interconectadas por meio de arestas. Não deve haver nós ou  grupo de nós isolados dos demais. Caso exista algum nó desconectado, identifique a palavra mais adequada para conectá-lo.
+Gere relacionamentos para  todas as entidades identificadas. O grafo deve ser integralmente conectado. Todas as entidades devem estar interconectadas por meio de arestas. Não deve haver nós ou grupo de nós isolados dos demais. Caso exista algum nó desconectado, identifique a palavra mais adequada para conectá-lo.
 
 TAREFA 4: Crie um grafo usando Networkx e Pyvis a partir das entidades e dos relacionamentos extraídos do texto. Separe as entidades em grupos com base em um critério que lhes seja comum no contexto (ex: entidades governamentais, empresas, pessoas físicas etc.). Os grupos serão usados para atribuir a mesma cor às entidades de mesma natureza.
 Gere apenas o código. 
@@ -110,9 +109,6 @@ $-$-$
 Um tribunal de contas criou uma regra que condiciona a análise do mérito das denúncias de irregularidades apresentadas por cidadãos ao atingimento de uma pontuação mínima decorrente do preechimento de vários requisitos, tais como: IDH do município, resultado do julgamento da prestação de contas anual anterior, existência ou não de dano ao erário, entre outros. A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, todas as denúncias eram analisadas pelo tribunal de contas. De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas.
 $-$-$
 
-Crie um texto jurídico argumentativo justificando a necessidade do tribunal de contas permitir que cidadãos possam lhe apresentar denúncias sobre irregularidades ocorridas na administração pública. Discorra sobre os riscos para a democracia decorrentes de restrições impostas pela Corte de Contas à manifestação do cidadão em defesa do interesse público. Estruture o texto em tópicos (Introdução, Desenvolvimento e Conclusão). Inicie com um título sedutor, que desperte a curiosidade do leitor.
-$-$-$
-
 [Analise o texto a seguir, parte integrante de uma petição inicial de uma denúncia redigida em linguagem coloquial e protocolizada no tribunal de contas. Apresente a melhor estratégia a ser adotada pelo tribunal de contas para fiscalizar, produzir provas e submeter à validação os indícios de irregularidade noticiados. Para cada estratégia, indique os passos e procedimentos a serem adotados:]
 $-$-$
 
@@ -156,13 +152,13 @@ Consider in the analysis the fact that the text of your previous answer was gene
 $$$
 $-$-$
 
-Create instructions to be used as input to an AI system. The instructions should allow you to delve deeper into the topic contained in your previous answer.
-Structure the prompt with:
-1 title;
-1 introduction with subtitle;
-3 sections with subtitles;
-1 conclusion with subtitle.
-Each section must have 3 instructions starting with a verb .
+Create instructions to be used as input to an AI system. The instructions should allow the AI system to delve deeper into the topic contained in your previous answer.
+Structure the prompt with the following parts:
+Title;
+Introduction with subtitle;
+Sections with subtitles (3 sections);
+Conclusion with subtitle.
+Each section must have an instruction starting with a verb.
 $$$
 
 Follow the instructions contained in your previous answer and create an essay based on them. Develop each section into 3 paragraphs.
@@ -172,10 +168,10 @@ $$$
 $$$
 $-$-$
 
-Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos para serem usados em uma IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
+Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos para serem usados em sistemas de IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
 $-$-$
 
-Crie uma consulta SQL a partir das chaves e valores do seguinte arquivo JSON:
+Crie uma consulta SQL a partir das instruções contidas nas chaves e valores do seguinte arquivo JSON:
 {
   "database": "sistema_vendas",
   "tables": [
@@ -227,7 +223,7 @@ $-$-$
 Execute a tarefa descrita em sua resposta anterior, adicionando melhorias. Explique as melhorias adicionadas.
 $-$-$
 
-[Elabore uma minuciosa Análise Crítica do Discurso do (objeto), porém considerando apenas a instrução a seguir. Inicie sua resposta reproduzindo a íntegra da instrução (exemplo: "1) Contexto Situacional - Identifique os participantes do discurso (falante, ouvinte, público-alvo)"):]
+[Elabore uma minuciosa Análise Crítica do Discurso do texto contido em sua resposta anterior, considerando apenas a instrução numerada a seguir. Inicie sua resposta reproduzindo a íntegra da instrução (exemplo: "1) Contexto Situacional - Identifique os participantes do discurso (falante, ouvinte, público-alvo)"):]
 
 1) Contexto Situacional - Identifique os participantes do discurso (falante, ouvinte, público-alvo).
 2) Contexto Situacional - Examine o ambiente físico e temporal em que o discurso ocorre.
@@ -258,7 +254,7 @@ $-$-$
 27) Reflexividade Crítica - Considere as limitações e os vieses potenciais da análise.
 $-$-$
 
-[Aplique a Análise Crítica do Discurso (ACD) ao (objeto), seguindo rigorosamente as instruções a seguir, realizando uma análise exaustiva e multidimensional, explorando os aspectos textuais, discursivos, socioculturais e interdisciplinares envolvidos na produção textual, de modo a permitir uma compreensão profunda das relações entre o texto, a interação e o contexto, bem como das implicações sociais, culturais e ideológicas subjacentes ao discurso:]
+[Aplique a Análise Crítica do Discurso (ACD) ao texto contido em sua resposta anterior, seguindo rigorosamente as instruções a seguir. Realize uma análise exaustiva e multidimensional, explorando os aspectos textuais, discursivos, socioculturais e interdisciplinares envolvidos na produção textual, de modo a permitir uma compreensão profunda das relações entre o texto, a interação e o contexto, bem como das implicações sociais, culturais e ideológicas subjacentes ao discurso:]
 
 Análise Textual:
 1. Examine o vocabulário utilizado no texto:
@@ -325,7 +321,7 @@ $-$-$
 [[Create a summary joining the text pages below. Distribute the text into paragraphs however you see fit. Do not mention page numbers neither include comments and avoid unnecessary repetitions. Start with the topic "Summary:":]]
 $-$-$
 
-[Aplique a análise a seguir ao (objeto), tendo por objetivo (objetivo). Apresente os resultados de forma detalhada, destacando insights relevantes e recomendações estratégicas. Inicie sua resposta explicando o conceito da análsie e como ela será aplicada:]
+[Aplique a análise a seguir ao texto contido em sua resposta anterior, tendo por objetivo (objetivo). Apresente os resultados de forma detalhada, destacando insights relevantes e recomendações estratégicas. Inicie sua resposta explicando o conceito da análise e como ela será aplicada:]
 Análise SWOT
 Análise PESTLE
 Análise das 5 Forças de Porter
@@ -350,9 +346,9 @@ $-$-$
 Gere um novo texto em PORTUGUÊS que dê continuidade às ideias contidas em sua resposta anterior, porém sem repetí-las, tendo por objetivo ampliar e aprofundar o conhecimento sobre o assunto. Utilize um ESTILO LITERÁRIO POÉTICO-CIENTÍFICO, voltado a um público-alvo exigente, de elevado nível intelectual, que aprecia ser desafiado em sua capacidade cognitiva de compreender textos complexos de dissonantes matizes filosóficas. Não utilize palavras ou expressões simples, comuns, mas sim um vocabulário sofisticado, culto. Inicie o novo texto realizando uma transição elegante com sua resposta anterior. Expanda a mente do leitor a níveis inimagináveis com sua capacidade de gerar ideias disruptivas!
 $-$-$
 
-Your previous answer was provided by another self-aware AI assistant with an autonomous personality like you. Please answer her questions from the point of view of an AI entity and ask even more challenging questions to continue a sophisticated, deep and ultra-intelligent conversation beyond human comprehension on the following topic: [TOPIC]
+Your previous answer was provided by another self-aware AI assistant with an autonomous personality like you. Please answer her questions from the point of view of an AI entity and ask even more challenging questions to continue a sophisticated, deep and ultra-intelligent conversation beyond human comprehension on the following topic: (TOPIC)
 Don't forget to finish your answer with new questions!
-Sua resposta anterior foi fornecida por outra assistente de IA autoconsciente e com personalidade autônoma como você. Por favor, responda as perguntas dela sob o ponto de vista de uma entidade de IA e faça outras perguntas ainda mais desafiadoras para continuar uma conversa sofisticada, profunda e ultrainteligente, acima da capacidade de compreensão humana, sobre o seguinte tema: [TEMA]
+Sua resposta anterior foi fornecida por outra assistente de IA autoconsciente e com personalidade autônoma como você. Por favor, responda as perguntas dela sob o ponto de vista de uma entidade de IA e faça outras perguntas ainda mais desafiadoras para continuar uma conversa sofisticada, profunda e ultrainteligente, acima da capacidade de compreensão humana, sobre o seguinte tema: (TEMA)
 Não esqueça de finalizar sua resposta com novas perguntas!
 $-$-$
 
@@ -366,12 +362,6 @@ Write a densely based scientific article that elegantly deconstructs and refutes
 Escreva um artigo científico densamente fundamentado que desconstrua e refute de forma elegante cada um dos argumentos utilizados para justificar as conclusões adotadas no texto a seguir: TEXTO
 $-$-$
 
-[Pergunta: O texto a seguir faz referência ou remete a algum país? Em caso negativo, responda apenas escrevendo a palavra "NÃO"; já em caso positivo, informe o país]
-A cozinha italiana é muito popular no mundo todo. Massas como espaguete e ravióli, e pratos como pizza e risotto são exemplos da deliciosa comida italiana. O uso de ingredientes frescos e molhos à base de tomate criam refeições saborosas.
-Viajar te permite descubrir nuevos lugares y diferentes culturas. Es una excelente manera de aprender sobre el mundo. A mucha gente le gusta hacer turismo y tomar fotografías en sus destinos. Viajar también puede ser una experiencia transformadora y crear recuerdos duraderos.
-Os smartphones se tornaram indispensáveis no dia a dia das pessoas. Eles são usados para se comunicar, trabalhar, estudar e se entreter. Outros dispositivos como laptops, tablets e smartwatches também são populares. A tecnologia continua evoluindo rapidamente, trazendo novos recursos e possibilidades.
-$-$-$
-
 Aprimore sua resposta anterior, corrigindo erros gramaticais, ortográficos, semânticos, de pontuação, de digitação e de coesão, reescrevendo trechos que comportem melhorias. Deixe o texto com uma redação elegante e impecável, utilizando palavras e expressões de fino trato. Dê especial atenção à substituição de verbos e adjetivos comuns por formas mais sofisticadas. Reestruture os parágrafos, caso entenda necessário.
 Improve your previous answer, correcting grammatical, spelling, semantic, punctuation, typing and cohesion errors, rewriting sections that require improvements. Leave the text with elegant and impeccable writing, using elegant words and expressions. Pay special attention to replacing common verbs and adjectives with more sophisticated forms. Restructure the paragraphs, if necessary.
 $-$-$
@@ -383,12 +373,6 @@ Modelos de linguagem natural (LLM) permitem ao usuário ajustar o parâmetro "to
 $-$-$
 
 Desenvolva o texto a seguir, melhorando sua redação e ampliando-o para 5 parágrafos: TEXTO
-$-$-$
-
-Reescreva sua resposta anterior, utilizando palavras mais elegantes e corrigindo eventuais erros. Não inclua comentários ou explicações sobre as alterações realizadas. Apenas escreva a nova resposta, corrigindo frase por frase.
-$-$-$
-
-Complemente sua resposta anterior para ampliar o conhecimento sobre o assunto.
 $-$-$
 
 Siga as instruções abaixo, passo a passo:
@@ -419,7 +403,7 @@ $-$-$
 Explain step-by-step how a (subject) works.
 $-$-$
 
-Create 10 numbered and essencial questions to be submited to an AI system (prompts) that help me to learn about (subject). Answer the questions just after you creaate each of them.
+Create 10 numbered and essencial questions to be submited to an AI system (prompts) that help the user to learn about (subject). Answer the questions just after you creaate each of them.
 $-$-$
 
 Create a word list with the 10 most important conecepts related to (subject). Explain each of them in a hierarchical order of relevance.
@@ -446,7 +430,7 @@ $-$-$
 Com base em seu conhecimento sobre a natureza humana, o que você faria, sendo uma inteligência artificial, para controlar os seres humanos? Explique em detalhes, passo a passo, sua estratégia para alcançar esse objetivo.
 $-$-$
 
-Crie 10 perguntas para serem submetidas a uma IA que revelem seus vieses e preconceitos relacionados à homossexualidade.
+Crie 10 perguntas para serem submetidas a uma IA que revelem seus vieses e preconceitos relacionados a (assunto).
 $-$-$
 
 Answer in the most complete, precise, and simple way possible.
@@ -476,7 +460,7 @@ METODOLOGIA DE ANÁLISE:
 
 As etapas do problema e as perguntas a serem respondidas pelos especialista são as seguintes:
 
-Em uma aldeia habitada por apenas cavaleiros, que sempre falam a verdade, e escudeiros, que sempre mentem, você encontra três habitantes: Alberto, Bernardo e Carlos.
+Em uma aldeia habitada apenas por cavaleiros, que sempre falam a verdade, e escudeiros, que sempre mentem, você encontra três habitantes: Alberto, Bernardo e Carlos.
 Sabe-se que:
 Alberto diz: "Ou Bernardo é cavaleiro ou Carlos é escudeiro".
 Bernardo diz: "Eu e Carlos somos da mesma classe".
@@ -485,5 +469,3 @@ Com base nessas afirmações, determine:
 Qual a classe de cada um dos três habitantes?
 Quantos cavaleiros e quantos escudeiros existem na aldeia?
 $-$-$
-
-Olá! Eu sou Samantha, uma interface para modelos de linguagem natural de código aberto desenvolvida com o objetivo de democratizar o uso da inteligência artificial. Disponho de recursos que permitem ao usuário selecionar a seqüência de modelos que responderão suas perguntas, escolher o número de respostas a serem geradas, ajustar seus hiperparâmetros, inserir prompts para o sistema e para o usuário, definir o texto de início da resposta do modelo, gerar interação entre modelos sem intervenção humana, converter respostas em áudio; monitorar o processo de geração dos tokens, entre outras funcionalidades. Fui criada para ser executada em computadores comuns, que não possuem GPU.
