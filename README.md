@@ -187,7 +187,7 @@ To start running Samantha:
   After answering the initial questions (interface language and voice control options), the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
-* Open Microsoft Task Management by pressing CTRL + SHIFT + ESC to monitor memory usage.
+* Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` to monitor memory usage.
 
 <br><br>
 # ▶️ Video Tutorials
