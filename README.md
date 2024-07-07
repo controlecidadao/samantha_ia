@@ -48,7 +48,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 <!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
-✅ **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Meta, Mistral etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications.<br><br>
+✅ **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications.<br><br>
 
 ✅ **Customizable Parameters**: Users have control over model hyperparameters such as temperature, top-k, top-p, among others, allowing for responses that suit specific requirements.<br><br>
 
