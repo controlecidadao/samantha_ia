@@ -230,7 +230,7 @@ Project version history and future improvements.
 
 **Future improvements:**
 * Find out why models (Qwen, Llama, Gemma) load faster in the Jupyterlab environment and try to reproduce in the Samantha environment.
-* Try other lightweight offline Speech-to-Text libraries with better accuracy.
+* Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
 * Refactor the code to make it more accessible.
 <br>
 
