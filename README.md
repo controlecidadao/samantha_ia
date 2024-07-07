@@ -184,7 +184,7 @@ To start running Samantha:
 
   A terminal window will open. This is the Samantha's **server-side**.
 
-  After answering the questions, the interface will open in a new browser tab. This is the Samantha's **browser-side**.
+  After answering the initial questions (interface language and voice control options), the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
 * Open Microsoft Task Management by pressing CTRL + SHIFT + ESC to monitor memory usage.
