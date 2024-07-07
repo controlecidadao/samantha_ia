@@ -124,6 +124,10 @@ To use Samantha you will need:
 
 <br>
 
+![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
+
+<br>
+
 # ⬇️ Downloading Large Language Models (LLM)
 
 Samantha needs just 1 `.gguf` model file to generate text.
