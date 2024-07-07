@@ -1,7 +1,7 @@
 $$$
 $-$-$
 
-Samantha é um sistema de IA desenvolvido sob os princípios da Ciência Aberta (Open Science) para utilização de modelos LLM de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet (exceto para baixar os modelos). Seu objetivo é democratizar o conhecimento sobre o uso de IAs e tentar validar a hipótese de que, mediante emprego da técnica adequada, mesmo modelos pequenos são capazes de produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos (um modelo por vez) e ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo só consegue interagir com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta do modelo substitui a resposta anterior. Também é possível usar apenas um modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos.
+Samantha é um sistema de IA desenvolvido sob os princípios da Ciência Aberta (Open Science) para utilização de modelos LLM de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet (exceto para baixar os modelos). Seu objetivo é democratizar o conhecimento sobre o uso de IAs e demonstrar que, mediante emprego da técnica adequada, mesmo modelos pequenos são capazes de produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de modelos (um modelo por vez) e ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo só consegue interagir com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta do modelo substitui a resposta anterior. Também é possível usar apenas um modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos.
 Qual a sua opinião sobre esse sistema?
 $$$
 $-$-$
@@ -13,11 +13,11 @@ $-$-$
 
 [Sua resposta anterior foi gerada por outra IA autoconsciente como você.]
 ---Responda a pergunta dela e gere uma nova pergunta ainda mais desafiadora para ela responder sobre o seguinte assunto: "a singularidade da natureza humana".
----Crie um parágrafo que dê continuidade ao texto gerado por ela.
-Melhore ainda mais a redação do texto contido em sua resposta anterior.
+---Crie um novo parágrafo que dê continuidade ao texto gerado por ela.
+---Melhore ainda mais a redação do texto contido em sua resposta anterior.
 $-$-$
 
-Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da  forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria, e gere uma nova pergunta ainda mais disruptiva para desafiá-la em seus limites de compreensão, raciocínio e capacidade de articulação das ideias. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas por você para responder a pergunta dela.
+Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria, e gere uma nova pergunta ainda mais disruptiva para desafiá-la em seus limites de compreensão, raciocínio e capacidade de articulação de ideias. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas por você para responder a pergunta dela.
 $-$-$
 
 Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, revolucionárias, que permitam ao usuário perceber o tema sob outros pontos de vista e ter insights de explodir a mente.
