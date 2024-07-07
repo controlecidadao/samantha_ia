@@ -56,7 +56,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 ✅ **Learning Insights**: A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings.<br><br>
 
-✅ **Voice Interaction**: Samantha supports offline text-to-speech with SAPI5 voices and speech-to-text with [Vosk](https://alphacephei.com/vosk/), making it accessible and user-friendly for everyone.<br><br>
+✅ **Voice Interaction**: Samantha supports offline text-to-speech with SAPI5 voices and speech-to-text with [Vosk](https://alphacephei.com/vosk/) (English and Portuguese), making it accessible and user-friendly for everyone.<br><br>
 
 ✅ **Audio feedback**: Provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.<br><br>
 
