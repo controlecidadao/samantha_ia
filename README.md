@@ -171,7 +171,15 @@ Note that each model has its own characteristics, presenting significantly diffe
 
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft), fine-tunned by [llmware](https://huggingface.co/llmware))
 
-Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)
+Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)<br><br>
+
+The quality of a model can be assessed using three basic criteria:
+
+  * **degree of understanding** of the explicit and implicit instructions contained in the user prompt;
+
+  * **degree of adherence** to these instructions;
+
+  * **quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model.
 
 <br><br>
 # 🧠 Starting Samantha
