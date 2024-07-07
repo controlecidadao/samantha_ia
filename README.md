@@ -58,7 +58,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 ✅ **Voice Interaction**: Samantha supports offline text-to-speech with SAPI5 voices and speech-to-text with [Vosk](https://alphacephei.com/vosk/) (English and Portuguese), making it accessible and user-friendly for everyone.<br><br>
 
-✅ **Audio feedback**: Provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.<br><br>
+✅ **Audio feedback**: The interface provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.<br><br>
 
 ✅ **Document Handling**: The system can load small PDF and TXT files, and chaining instructions/prompts can be inputted or loaded via a TXT file for convenience.<br><br>
 
