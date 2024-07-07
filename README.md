@@ -162,7 +162,7 @@ We suggest to download the model with **Q4_K_M** (4-bit quantization) in its nam
 
 If the downloaded model doesn't fit into the available RAM space, your hard drive will be used, impacting performance.
 
-Download the chosen model and save it to your computer or copy the download link and paste it inside Samantha's _Download model for testing_ field.
+Download the chosen model and save it to your computer or just copy the download link and paste it inside Samantha's _Download model for testing_ field. Watch the video tutorial for more details.
 <br><br>
 
 ### Your First Testing Models
