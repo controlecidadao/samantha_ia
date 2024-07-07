@@ -175,11 +175,11 @@ Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/m
 
 The quality of a model can be assessed using three basic criteria:
 
-  * **degree of understanding** of the explicit and implicit instructions contained in the user prompt;
+  * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
 
-  * **degree of adherence** to these instructions;
+  * **Degree of adherence** to these instructions;
 
-  * **quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model.
+  * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model.
 
 <br><br>
 # 🧠 Starting Samantha
