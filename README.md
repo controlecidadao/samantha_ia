@@ -145,7 +145,7 @@ To use Samantha you will need:
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the source of the '.bat' file. This process is required only the first time you run the program. Click on 'More info' and confirm:<br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the source of the `.bat` file. This process is required only the first time you run the program. Click on 'More info' and confirm:<br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
@@ -162,9 +162,9 @@ Samantha needs just a `.gguf` model file to generate text.
 
 ### Downloading Open Source Model Files (.gguf)
 
-Open souce model files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter.
+Open souce model files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code`.
 
-You can also go to a specific repository and see all the `.gguf` models available for downloading and testing.
+You can also go to a specific repository and see all the `.gguf` models available for downloading and testing, like [https://huggingface.co/bartowski](https://huggingface.co/bartowski)
 <br><br>
 
 The models are displayed on cards like this:
