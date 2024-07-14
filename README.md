@@ -26,7 +26,7 @@ Some chaining examples _without_ response feeddback:
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model.
 
-  * **(model_1, model_2, model_n) respond (prompt_1):** used to compare models' responses for the same single prompt.
+  * **(model_1, model_2, model_n) respond (prompt_1):** used to compare models' responses for the same single prompt. Useful for comparing quantized versions of the same model.
 
   * **(prompt_1, prompt_2, prompt_n) respond (prompt_1, prompt_2, prompt_n):** used to compare models' responses for a list of prompts, as well as to execute a sequence of instructions using disctinct models. By using the single response per model feature, each model can also respond to one specific prompt before the next model.
 <br><br>
