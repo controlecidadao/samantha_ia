@@ -22,7 +22,7 @@ The system allows the sequential loading of a list of prompts and models (one mo
 
 Some chaining examples without response feeddback:
 
-  * **(model_1) responds (prompt_1) x number of responses:** used to adjust model's deterministic or stochastic behavior, as well to generate multiple diverse responses with stochastic settings.
+  * **(model_1) responds (prompt_1) X number of responses:** used to adjust model's deterministic or stochastic behavior, as well to generate multiple diverse responses with stochastic settings.
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model.
 
@@ -40,7 +40,7 @@ Some chaining examples with response feeddback:
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models.
 <br><br>
 
-Sequencing of prompts and models allows the generation of long responses by fractioning the input instruction.
+Sequencing of prompts and models allows the generation of long responses by fractioning the input instruction. Every partial response fits in the model' response length defined in the training process.
 <br><br>
 
 Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
