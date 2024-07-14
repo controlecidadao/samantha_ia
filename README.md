@@ -35,7 +35,7 @@ Some chaining examples with response feeddback:
 
   * **(model_1) responds (prompt_1) x number of responses:** Used to refine the model's previous response using the same model, as well as to generate a dialog using a single model.
 
-  * **(model_1, model_2, model_n) respond (prompt_1):** Used to refine the previous model's response using disctinct models, as well as to generate a dialog using distinct models.
+  * **(model_1, model_2, model_n) respond (prompt_1):** Used to refine the previous model's response using disctinct models, as well as to generate a dialog between all models.
 
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models.
 <br><br>
@@ -43,7 +43,10 @@ Some chaining examples with response feeddback:
 Sequencing allows the generation of long responses by fractioning the instructions.
 <br><br>
 
-Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial instructions, adding intermediate layers to the prompt construction process.
+Samantha Interface Assistant was also designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
+<br><br>
+
+
 
 <br>
 
