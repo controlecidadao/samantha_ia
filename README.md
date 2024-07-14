@@ -43,7 +43,7 @@ Some chaining examples with response feeddback:
 Sequencing of prompts and models allows the generation of long responses by fractioning the input instruction.
 <br><br>
 
-Samantha Interface Assistant was also designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
+Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop**. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
 <br><br>
 
 Thanks to **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
