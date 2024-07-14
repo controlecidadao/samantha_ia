@@ -33,9 +33,11 @@ Some chaining examples _without_ response feeddback:
 
 Some chaining examples _with_ response feeddback:
 
-  * **(model_1) responds (prompt_1) X number of responses:** Used to refine the model's previous response using the same model, as well as to generate a dialog using a single model.
+  * **(model_1) responds (prompt_1) X number of responses:** Used to improve model's previous response through a fixed instruction using the same model, as well as to generate a dialog using a single model.
 
-  * **(model_1, model_2, model_n) respond (prompt_1):** Used to refine the previous model's response using disctinct models, as well as to generate a dialog between different models.
+  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples instructions sequencially with the same model. Each prompt is used to refine the previous model response.
+
+  * **(model_1, model_2, model_n) respond (prompt_1):** Used to improve previous model's response using disctinct models, as well as to generate a dialog between different models.
 
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models.
 <br><br>
