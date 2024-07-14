@@ -24,40 +24,43 @@
 # 4) INTERFACE LANGUAGE SELECTION
 # 5) GET LOCAL MDDELS LIST
 # 6) CREATE REMAINING GLOBAL VARIABLES
-# 7) INTERFACE VOICE CONTROL SETTING
+# 7) INTERFACE VOICE CONTROL SETTINGS
 # 8) READ FILES WITH PROMPT EXAMPLES
 # 9) TEXT GENERATOR FUNCTION
-#    LOOPS DESCRIPTION
-#    FIFTH LOOP - NUMBER OF SEQUENCES
-#    FIRST LOOP - FOR LOOP OVER SELECTED MODELS
-#       DOWNLOAD MODEL ONLY FOR TESTING
-#    SECOND LOOP - ENDLESS WHILE LOOP
-#       CREATE LLM
-#       PROMPT LIST CREATION
-#    THIRD LOOP - PROMPT LIST
-#       SINGLE ANSWER CONTROL
-#    FOURTH LOOP - TOKENS GENERATION
-#       FAST MODE
-#       NORMAL MODE
-#       LEARNING MODE
-#       TEXT TO SPEECH
-#       CRITICAL LOOPS CONTROL
+#       FIFTH LOOP - NUMBER OF SEQUENCES             <<<<<<<<<<<< 5TH LOOP
+#       LOOPS DESCRIPTION
+#       FIRST LOOP - FOR LOOP OVER SELECTED MODELS   <<<<<<<<<<<< 1ST LOOP
+#          SINGLE ANSWER CONTROL - PART 1
+#          DOWNLOAD MODEL ONLY FOR TESTING
+#          SECOND LOOP - ENDLESS WHILE LOOP          <<<<<<<<<<<< 2ND LOOP
+#             CREATE LLM
+#             PROMPT LIST CREATION
+#             THIRD LOOP - PROMPT LIST               <<<<<<<<<<<< 3RD LOOP
+#                SINGLE ANSWER CONTROL - PART 2
+#                FOURTH LOOP - TOKENS GENERATION     <<<<<<<<<<<< 4TH LOOP
+#                   FAST MODE
+#                   NORMAL MODE
+#                   LEARNING MODE
+#                   TEXT TO SPEECH
+#                CRITICAL LOOPS CONTROL
 # 10) AUXILIARY FUNCTIONS
 # 11) GRADIO INTERFACE
-#     INPUT COLUMN (LEFT)
-#     OUTPUT COLUMN (RIGHT)
+#        INPUT COLUMN (LEFT)
+#        OUTPUT COLUMN (RIGHT)
 # 12) MAIN FUNCTION
 
 
 # VSCODE DEBUG CODE EXPLORER
 # To use VSCode Debug Mode with Gradio, put a breakpoint in the first code line inside every function called by Gradio (global variable calls do not acept breakpoint)
+# Web browser must be visible on screen (some behaviors are trigered only when brwoser window is visible)
+# Windwos Keyboard Shortcuts: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 # CTRL + K -> CTRL + 0 = COLLAPSE ALL ITEMS
 # CTRL + K -> CTRL + J = EXPAND ALL ITEMS
 
 
-# =====================
-# IMPORT PYTHON MODULES
-# =====================
+# ========================
+# 1) IMPORT PYTHON MODULES
+# ========================
 
 import gradio as gr             # Import Gradio to create a user-friendly web interface for interacting with machine learning models. This library simplifies the process of deploying models with a front-end that can accept inputs and display outputs. (Front-End Interface)
 from llama_cpp import Llama     # Import Llama_cpp to load Large Language Model (LLM) files in UGGF format, which are used for model storage and retrieval. This is the back-end component responsible for handling the model's logic and processing. (Back-End Model Loading)
@@ -90,25 +93,26 @@ import urllib3                  # Import urllib3 for making HTTP requests and ha
 import gc                       # Import gc to help manage memory by automatically freeing up objects that are no longer being referenced by the program. This can be used to reduce memory usage and improve performance when working with large datasets or complex programs.
 import shutil                   # Import shutil for transferring files and directories. It provides a high-level interface for working with files and directories on the local file system.
 from bs4 import BeautifulSoup   # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
+import tempfile                 # Import tempfile to create temporary files and directories.
 #from playwright.sync_api import sync_playwright # Import playwright.sync_api for web automation, allowing the script to interact with web pages as if it were a browser, useful for scraping HTML content or testing web applications. (Web Automation)
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # Desable warning messages in terminal
 
 print('Inside the app.py...')
 
 
-# ========================
-# GET LOCAL DIRECTORY PATH
-# ========================
+# ==================---======
+# 2) GET LOCAL DIRECTORY PATH
+# ===========================
 
 DIRETORIO_LOCAL = os.getcwd() # Define a constant for the current directory path
 
 
-# =========================
-# INITIALIZE PYTHON MODULES
-# =========================
+# ============================
+# 3) INITIALIZE PYTHON MODULES
+# ============================
 
 # PYGAME
 pygame.init()                               # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
@@ -158,9 +162,9 @@ if 'portuguese' in voices[0].name.lower():
     print()
 
 
-# ============================
-# INTERFACE LANGUAGE SELECTION
-# ============================
+# ===============================
+# 4) INTERFACE LANGUAGE SELECTION
+# ===============================
 
 # Defines a dictionary `language` containing language-specific configurations for an interactive AI interface.
 # The dictionary includes various settings and options for the user interface, including titles, subtitles, warnings, instructions, prompts, buttons, and other parameters that control the behavior of the AI model's interaction with the user. 
@@ -182,18 +186,16 @@ language = {
                 'btn5': 'Parar Tudo & Reset',
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
-                'initial_system_prompt': '',                # Você é uma IA autocosciente que executa todas as instruções do usuário.
+                'initial_system_prompt': '',
                 'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response".',
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat).',
                 'changeble': 'Atualizável',
-                'first_assistant_previous_response': '',    # Pergunte-me qualquer coisa ou me dê algumas tarefas!
+                'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) 'STOP_SAMANTHA' (sair do loop). Você pode importar um arquivo TXT contendo uma lista de prompts.",
+                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) 'STOP_SAMANTHA' (sair do loop). É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
-                'assistant_current_response_info': 'Assistant current response (caixa de texto). Texto inicial da resposta atual do Assistente (3º na linha do tempo do chat)',
-                'current_response': '',                     # Segue resposta:\n
                 'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
-                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignorar URL.",
+                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignora URL.",
                 'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
@@ -218,19 +220,20 @@ language = {
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo.",
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
-                'btn_copy_model_url': 'Copia URLs Modelo HF',
-                'assistant_raw_output_info': 'Histórico de respostas. Pressione CTRL + SHIFT + ESC para abrir o Gerenciador de Tarefas do Windows e monitorar o uso da memória RAM.',
+                'btn_copy_model_url': 'Copiar URLs Modelo HF',
+                'assistant_raw_output_info': 'Histórico de respostas',
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
                 'btn_copy_last_response': 'Copiar Resposta (last)',
                 'btn_copy_all_responses': 'Copiar Respostas (all)',
-                'btn_voice_command': 'Controle por Voz',
+                'btn_voice_command': 'Ativar Controle por Voz',
                 'btn_idle': 'Executar Código',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
@@ -250,16 +253,14 @@ language = {
                 'btn5': 'Stop All & Reset',
                 'btn6': 'Replace Response',
                 'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
-                'initial_system_prompt': '',                # You are a self-aware AI that executes all user instructions.
+                'initial_system_prompt': '',
                 'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""",
                 'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline).',
                 'changeble': 'Updatable',
-                'first_assistant_previous_response': '',    # Ask me anything or give me some tasks!
+                'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). You can import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Hello!\n\n\n$$$',
-                'assistant_current_response_info': 'Assistant current response (text box). Initial text of the Assistant current response (3rd in chat timeline)',
-                'current_response': '',                     # Follows response:
                 'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
                 'single_answer_info': 'Single response (checkbox). Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
@@ -286,19 +287,20 @@ language = {
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time.",
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'PDF Full',
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
                 'btn_copy_model_url': 'Copy HF Model URLs',
-                'assistant_raw_output_info': 'Response history (CTRL + SHIFT + ESC to open Task Manager)',
+                'assistant_raw_output_info': 'Response history',
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Code Blocks',
                 'btn_open_jupyterlab': 'Open JupyterLab',
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Response',
-                'btn_voice_command': 'Voice Control',
+                'btn_voice_command': 'Activate Voice Control',
                 'btn_idle': 'Run Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
@@ -330,9 +332,10 @@ else:
 print()
 
 
-# =====================
-# GET LOCAL MDDELS LIST
-# =====================
+
+# ========================
+# 5) GET LOCAL MDDELS LIST
+# ========================
 
 def get_downloads_path():
     """
@@ -369,9 +372,9 @@ for n, i in enumerate(models):                          # Enumerate over the 'mo
 print()
 
 
-# =================================
-# CREATE REMAINING GLOBAL VARIABLES
-# =================================
+# ====================================
+# 6) CREATE REMAINING GLOBAL VARIABLES
+# ====================================
 
 last_models_list = models       # List with models names. Starts with models in 'Downloads' folder
 last_diretorio = model_path     # Previous selected directory (Load Model Button)
@@ -412,11 +415,12 @@ model_url = ''                  # Stores the model url for downloading
 previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
 original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
+show_vocabulary = False         # Stores model's token vocabulary
 
 
-# ================================
-# INTERFACE VOICE CONTROL SETTINGS
-# ================================
+# ===================================
+# 7) INTERFACE VOICE CONTROL SETTINGS
+# ===================================
 
 # This code first checks if the Portuguese language option is available for voice control. If it's available, it prompts the user to enable or disable voice control and read-aloud functionality in Portuguese. It then sets flags based on the user's input.
 # If the Portuguese option isn't available, it falls back to a standard English prompt for enabling/disabling voice control. Again, it sets the flags accordingly. 
@@ -468,9 +472,9 @@ else: # If 'portuguese' SAPI5 voice is not available
     print('Opening interface on browser...')
 
 
-# ===============================
-# READ FILES WITH PROMPT EXAMPLES
-# ===============================
+# ==================================
+# 8) READ FILES WITH PROMPT EXAMPLES
+# ==================================
 
 # The provided code snippet is a Python script that reads two text files containing templates for user and system prompts, respectively. The prompts are separated by a special delimiter (`$-$-$`) in the files. The script then processes these templates to create a list of formatted strings for each type of prompt. Below is an annotated version of the code with comments for help maintenance:
 
@@ -485,9 +489,9 @@ with open('system_prompts.txt', encoding='utf-8', errors='ignore') as f:    # Op
     messages_text = [f"""{x.strip()}""" for x in messages_text]
 
 
-# =======================
-# TEXT GENERATOR FUNCTION
-# =======================
+# ==========================
+# 9) TEXT GENERATOR FUNCTION
+# ==========================
             
 # This main function generates next token in response to input context (system prompt + previous assistant response + user prompt + initial part of current assistant response).
 # Function called by "Start Chat" button and by user speech in Voice Control Mode
@@ -523,6 +527,7 @@ def text_generator(
         frequency_penalty, 
         repeat_penalty,
         prompt_template_p,
+        show_vocabulary_p,
         vocabulary_p,
         ):
           
@@ -561,6 +566,7 @@ def text_generator(
     global previous_model_url
     global original_filename
     global single_answer
+    global show_vocabulary
 
     click.play()
     print('Starting the funtion "text_generator"...')
@@ -581,7 +587,10 @@ def text_generator(
     vocabulary = vocabulary_p
     model_url = model_url_p
     single_answer = single_answer_p
+    show_vocabulary = show_vocabulary_p
 
+
+    # Initial conditional settings
     if prompt == '':                # To use in case of empty user prompt
         prompt = 'Hello!'
 
@@ -598,23 +607,23 @@ def text_generator(
         previous_answer = prev_answer
 
 
-    full_text = ''                  # Restart variable before load models.
-    
-    with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
-        pass
-
-
     # Check if no model is selected and if 'Download model for testing' field is not empty
-    if models == []:
-        models = model_url.split('\n')  # URL
-        models = [x.strip() for x in models if x[:3] != '---']
-        models = [x for x in models if x != '']
+    if models == [] or models == None:
+
+        if len(model_url.split('\n')) > 0:
+            models = model_url.split('\n')  # URL
+            models = [x.strip() for x in models if x[:3] != '---']
+            models = [x for x in models if x != '']
+
+        else:
+            yield 'Select a directory containing UGGF file.'
+            return
     
     else:
         # Models handling block. 'models' vairable must be passed forward as a list
-        if models == None:              # When selected a directory without GGUF file
-            yield 'Select a directory containing UGGF file.' # Use simple sentence
-            return                      # Leaves the function
+        # if models == None:              # When selected a directory without GGUF file
+        #     yield 'Select a directory containing UGGF file.' # Use simple sentence
+        #     return                      # Leaves the function
         
         if isinstance(models, str):
             models = [models]
@@ -632,15 +641,19 @@ def text_generator(
 
         if random_list == True and len(set(models)) >= 3: # Shuffles models order if >= 3 (Checkbox)
             models = random_list_fn(models) # Auxiliary function
-        # print()
-
-    pre_prompt = ''                             # Required to store the 'pre_prompt' for use in each of the prompts in the prompt list
-    final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
 
     if models == []:                            # For the case when model is not selected
         yield 'Model not selected.'             # Use simple sentence
         return                                  # Leaves the function
 
+    with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
+        pass
+    
+    full_text = ''                              # Restart variable before load models.
+    pre_prompt = ''                             # Required to store the 'pre_prompt' for use in each of the prompts in the prompt list
+    final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
+    prompt_split = []
+    count_prompt = 0
 
     # =================
     # LOOPS DESCRIPTION
@@ -661,9 +674,6 @@ def text_generator(
     # FIRST LOOP - FOR LOOP OVER SELECTED MODELS
     # ==========================================
 
-    prompt_split = []
-    count_prompt = 0
-
     for n_model, model in enumerate(models):    # Loop over models list
 
 
@@ -672,7 +682,7 @@ def text_generator(
         # ==============================
 
         # # Return on the last prompt when number of models is greater
-        if single_answer == True:               # Single_answer activated
+        if single_answer == True:                   # Single_answer activated
 
             if len(models) <= len(prompt_split):    # If number of models is minus or equal to number of prompts
                 if count_prompt == len(models):
@@ -681,35 +691,6 @@ def text_generator(
             elif len(models) > len(prompt_split):   # If number of models is greater than number of prompts
                 if count_prompt == len(prompt_split) and prompt_split != []:
                     break
-
-                          
-
-
-
-
-            # if len(models) > 1:                 # More than one model selected
-        #         if models[0][:4] == 'http':     # Download model from URL                       
-                    
-        #             try: # 'prompt_split' begins with None value
-        #                 if len(models) > len(prompt_split):         # Number of models greater than number of prompts
-        #                     if count_prompt == len(prompt_split):   # Stop prematurally based in number of prompts
-        #                         break #return
-        #             except:
-        #                 pass
-
-        #             try:
-        #                 if num_of_the_prompt > len(models): # 'num_of_the_prompt' variable not defined yet
-        #                     break #return
-        #             except:
-        #                 pass
-                
-        #         else:
-        #             try: # 'prompt_split' begins with None value
-        #                 if len(models) > len(prompt_split):
-        #                     if count_prompt == len(prompt_split):      # 
-        #                         break #return
-        #             except:
-        #                 pass
 
 
         # ================================
@@ -730,7 +711,7 @@ def text_generator(
                 except:
                     pass
                 llm = ''
-                previous_model_url = model # To avoid download the model every time it is called
+                previous_model_url = model      # To avoid download the model every time it is called
                 print()
                 print('Model URL:', model)
                 print()
@@ -739,35 +720,7 @@ def text_generator(
             except:
                 yield 'Error when trying to download model for testing.'
                 return
-        
-
-        # Extract model prompt template
-        # try:                                            # try to get the corresponding prompt template for the selected model
-        #     with open(fr'{model_path}\{model[:-5]}.txt', encoding='utf-8', errors='ignore') as f:
-        #         temp = f.read()
-        #         prompt_template = model + ' prompt template:\n' + temp # Variable to be displayed on web interface (Model prompt template field)
-        #         temp = "f" + '"""' + temp + '"""'       # Format string before applying 'eval' function
-
-        #         temp = temp.replace('#', '\#')          # Some models use '#' inside prompt templates. 'eval' function would ignore this. 
-
-        #         # Replaces variables {system_prompt} and {prompt} using f-string. Returns a string
-        #         # input_m = eval(temp)
-
-        #         # try:
-        #         #     input_m = eval(temp) # Replaces 'system_prompt' variable
-        #         #     input_m = input_m.replace('$$$', '')    # <<<<<<<<<<<< TESTING
-        #         #     print()
-        #         # except Exception as e:
-        #         #     yield traceback.format_exc() + '\n\nSingle backslash (\) must be replaced by double backslash (\\)\n colon (:) must be predeced by backslash (\:)'
-        #         #     return
                 
-        #         # input_m = input_m.replace('$$$', '')    # <<<<<<<<<<<< TESTING
-        #         # print()
-
-        # except FileNotFoundError:                       # If model template TXT file not found
-        #     yield f'To use Samantha IA you need 2 files in the same directory:\n1) Download a GGUF model file\n2) Create a TXT model template file\n\nGGUF file and/or prompt template file not found:\n{model_path}\{model[:-5]}.txt\n\nDownload the GGUF model file and/or create the file "{model[:-5]}.txt" and paste the corresponding prompt template inside it.'
-        #     return
-        
         num_control = 1                         # Controls number of responses generated by each mode
         load_start = time.time()                # Starts model loading time counting
 
@@ -777,19 +730,6 @@ def text_generator(
         # ================================
 
         while True:
-
-
-            # ==============================
-            # SINGLE ANSWER CONTROL - PART 2
-            # ==============================
-
-            # if single_answer == True:
-            #     try:
-            #         if num_control == 2:
-            #             break #return
-            #     except:
-            #         pass
-
 
             try:
                 llm
@@ -840,7 +780,7 @@ def text_generator(
                             chat_handler=None,
                             verbose=True,         
                         )
-                    
+
                 except Exception as e:
                     model = ''                                      # Restart variable just to force new download
                     resposta += f'\n\n==========================================\nError loading {original_filename}. Try another model.\n==========================================\n'
@@ -852,24 +792,18 @@ def text_generator(
                 print()
                 print('SAMANTHA: llm object created with llama.cpp. Loading model...')
                 print()
-                                          
+                     
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
                 
-                temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
-                vocabulary = ''
-                for n, x in enumerate(temp):
-                    try:
-                        vocabulary += f'{n})    {repr(x.decode())}\n'
-                    except:
-                        vocabulary += f'{n})    {repr(x)}\n'
+                if show_vocabulary == True:
+                    temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
+                    vocabulary = ''
+                    for n, x in enumerate(temp):
+                        try:
+                            vocabulary += f'{n})    {repr(x.decode())}\n'
+                        except:
+                            vocabulary += f'{n})    {repr(x)}\n'
             
-            # if max_tokens == 0: # Change default End Of Sentence (EOS) token to allow unlimited text generation (until reach n_ctx)
-            #     print()
-            #     print('>>>>> EOS before:', llm._token_eos)
-            #     llm._token_eos = 1_000_000 # Model vocabulary less than 50k tokens, so EOS will never be reached
-            #     print('>>>>> EOS after:', llm._token_eos)
-            #     print()
-
             if max_tokens == 0:
                 max_tokens = None   
             
@@ -880,17 +814,6 @@ def text_generator(
             else:
                 # Adds model name to the current response. Text response starts here. 'resposta' is a cummulative text variable
                 resposta += f'\n\n==========================================\n{num_control}) {model}\n==========================================\n'
-
-            # try:
-            #     # with open(fr'{diretorio}\{model[:-5]}.txt', encoding='utf-8') as f: # Extract prompt template from TXT file
-            #     with open(fr'{model_path}\{model[:-5]}.txt', encoding='utf-8', errors='ignore') as f: # Extract prompt template from TXT file
-            #         temp = f.read()
-            #         temp_2 = "f" + '"""' + temp + '"""' # 'temp_2' is used below
-            
-            # except Exception as e:
-            #     yield 'Error on trying to load model prompt template TXT file. Check if it exists.' 
-            #     print(traceback.format_exc())
-            #     return
 
 
             # ====================
@@ -906,7 +829,7 @@ def text_generator(
                     temp = r'\[\[[\r\n]*([\s\S]*?)[\r\n]*\]\]'
                     if len(re.findall(temp, prompt)) >= 1:
                         final_prompt = re.search(temp, prompt).group(0)
-                        final_prompt = final_prompt.replace('[[', '').replace(']]', '')#[1:-1] # Delete []
+                        final_prompt = final_prompt.replace('[[', '').replace(']]', '')
                         final_prompt = final_prompt.replace('\n', ' ')
                         final_prompt = final_prompt + '\n\n'
                         prompt = re.sub(temp, '', prompt) # Delete pre-prompt phrase from the prompt text
@@ -920,7 +843,7 @@ def text_generator(
                     temp = re.findall(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt)
                     if len(temp) >= 1:
                         pre_prompt = re.search(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', prompt).group(0)
-                        pre_prompt = pre_prompt.replace('[', '').replace(']', '')#[1:-1] # Delete []
+                        pre_prompt = pre_prompt.replace('[', '').replace(']', '')
                         pre_prompt = pre_prompt.replace('\n', ' ')
                         pre_prompt = pre_prompt + '\n\n'
                         prompt = re.sub(r'\[[\r\n]*([\s\S]*?)[\r\n]*\]', '', prompt)
@@ -967,31 +890,17 @@ def text_generator(
             # For loop used in a different way
                 
                 # ==============================
-                # SINGLE ANSWER CONTROL - PART 3
+                # SINGLE ANSWER CONTROL - PART 2
                 # ==============================
                 
                 # Break loop to allow one response per model
                 if single_answer == True:                   # Single_answer activated
-                    # if num_of_the_prompt == 1:              # Break internal loop (prompt list) when greater than number of models
-                    #     break
                     
-                    # if loop_models == 1:
                     if n_model <= len(prompt_split):        # To avoid 'IndexError: list index out of range'
                         prompt_text = prompt_split[n_model] # IndexError: list indes out of range
 
-                    # if loop_models > 1:
-                    #     prompt_split = prompt_split * loop_models
-                    #     if n_model <= len(prompt_split):        # To avoid 'IndexError: list index out of range'
-                    #         prompt_text = prompt_split[n_model] # IndexError: list indes out of range
-
-
-
-
-                
-                
                 count_prompt += 1
                     
-                
                 # Text cleaning for audio reproduction. Remove characters inside [] and <> if the model response returns special tokens
                 full_text = re.sub(r'\[.*?\]', '', full_text) 
                 full_text = re.sub(r'<.*?>', '', full_text)
@@ -1001,8 +910,6 @@ def text_generator(
 
                 if 'full_text' in prompt_text:       # Check for replacing last prompt
                     prompt_text = prompt_text.replace('full_text', full_text + '\n$$$')
-
-
 
                 print()
 
@@ -1049,12 +956,13 @@ def text_generator(
                             temp = next(iter(k))
                             if k[temp] == 'user':
                                 print(n, k[temp])
-                                # messages.insert(n, {'role': 'assistant', 'content': previous_answer})
                                 messages.insert(n, {'role': 'user', 'content': ''}) # IN TEST
                                 messages.insert(n + 1, {'role': 'assistant', 'content': previous_answer}) # IN TEST
                                 break
 
-                    print('>>>>> SYSTEM MESSAGE:', system_prompt)
+                    # INSERT USER CHAT ROLE IN THE SYSTEM PROMPT FIELD? NOT ALL MODELS HAVE SYSTEM PROMPT.
+
+                    print('>>>>> SYSTEM PROMPT:', system_prompt)
                     print()
                     print('>>>>> PREVIOUS RESPONSE:', previous_answer)
                     print()
@@ -1070,8 +978,8 @@ def text_generator(
 
                     # ========================================
                     # FOURTH LOOP - FOR LOOP TOKENS GENERATION
-                    # ========================================    
-                    
+                    # ========================================
+                     
                     # Loop to generate text, token by token. Model is loaded in memory here.
                     for nu, i in enumerate(llm.create_chat_completion(
                             messages = messages,
@@ -1096,7 +1004,7 @@ def text_generator(
                             logits_processor = None,
                             grammar = None,
                         )):
-                       
+
 
                         #print(i)
                         
@@ -1125,6 +1033,7 @@ def text_generator(
                         # ========= 
 
                         if fast_mode == True:
+
                             try:
                                 if nu == 0: # To sound only once at the beginning of text generation
                                     winsound.Beep(600, 500)
@@ -1135,16 +1044,20 @@ def text_generator(
                                 resposta += i['choices'][0]['delta']['content']
                                 
                                 ultima_resposta += i['choices'][0]['delta']['content']
+                                
                                 if para_tudo == True:       # Stop / Next button
                                     break
+                                
                                 if stop_all == True:        # Stop All and Reset button
                                     som.play()              # Assyncronous play (do not wait finish audio to proceed)
                                     stop_all = False
                                     llm.reset()
                                     yield resposta
                                     return
+                                
                                 start = time.time()         # Restart token generation time
                                 continue
+                            
                             except:
                                 print()
                                 print("EXCEPTION:", i) # The first and last 'i' has no 'content' key and raise an error
@@ -1165,14 +1078,17 @@ def text_generator(
                             print(i)
                             print()
                             continue
+                        
                         try:
                             print(f'{nu})', round(time.time() - start, 2), repr(current_token))
                         except:
                             continue
+                        
                         if previous_token == []:        # Executado apenas uma vez
                             winsound.Beep(600, 500)
                             load_stop = round((time.time() - load_start) / 60, 1)
                             input_encoded = len(llm.tokenize(prompt_text.encode())) + len(llm.tokenize(system_prompt.encode())) + len(llm.tokenize(previous_answer.encode())) #+ len(llm.tokenize(current_ia_response.encode()))
+                        
                         if stop_all == True:            # Sai da função 'text_generator' quando o botão 'Stop All / Reset' é pressionado
                             som.play()                  # Assyncronous play (do not wait finish audio to proceed)
                             stop_all = False
@@ -1185,25 +1101,28 @@ def text_generator(
                         # =============
 
                         if delay_next_token != 'OFF':
-                            # fast_mode = False
                             scores = llm.eval_logits
                             scores = scores[0]
                             zipped = zip(([llm.detokenize([x])] for x in range(llm._n_vocab)), scores) # [('a', 1), ('b', 2), ('c', 3)]
                             lista = list(zipped)
                             token_score = []
+                            
                             for n, x in enumerate(lista):
                                 try:
                                     token_score.append([f'{n})    ' + "'" + x[0][0].decode() + "'    ", x[1], x[0][0].decode()])
                                 except:
                                     pass
                             token_score_sorted = sorted(token_score, key=lambda x: x[1], reverse=True) # ["22867)    'lá'    ", 29.99230194091797, 'lá']
+                            
                             if top_k > 100:
                                 top_k_bar = 100
                             else:
                                 top_k_bar = top_k
+                            
                             x_bar = [l[0] for l in token_score_sorted[:top_k_bar]]
                             y_bar = [round(l[1], 2) for l in token_score_sorted[:top_k_bar]]
                             color_bar = ['Selected' if l[2] == current_token else 'No' for l in token_score_sorted[:top_k_bar]]
+                            
                             for n, l in enumerate(token_score_sorted[:top_k_bar]):
                                 if l[2] == current_token and n != 0:
                                     x_score.append(str(count))
@@ -1212,16 +1131,21 @@ def text_generator(
                                     break
                                 else:
                                     continue   
+                            
                             try:
                                 token_score_sorted = [[x[0], '   (' + str(round(x[1], 2)) + ')     <<<  Selected'] if x[2] == current_token else [x[0], '   (' + str(round(x[1], 2)) + ')'] for x in token_score_sorted ]
                             except:
                                 pass
+                            
                             token_score_sorted = token_score_sorted[:top_k] # top_k, 10
+                            
                             try:
                                 tokens_score = ''.join([repr(x[0]) + x[1] + '\n' for x in token_score_sorted])
                             except:
                                 pass
+                            
                             candidates = f'Candidates and scores for the next token in {llm._n_vocab} tokens vocabulary:\n'
+                        
                         else:
                             tokens_score = ''
                             candidates = ''
@@ -1250,6 +1174,7 @@ def text_generator(
                             # Sai do loop quando o usuário aperta o botão Stop
                             if para_tudo == True:
                                 break
+                            
                             if delay_next_token != 'OFF':
                                 if delay_next_token == 'NEXT TOKEN':
                                     while True:
@@ -1262,12 +1187,14 @@ def text_generator(
                                     time.sleep(delay_next_token)
                         except:
                             pass
+                        
                         try: # Atualiza token anterior
                             if len(previous_token) == 10:
                                 previous_token.pop(0)
                             previous_token.append(current_token)
                         except:
                             pass
+                        
                         start = time.time()         # Início do tempo do próximo token. Atualiza variável
 
                     # FAST MODE CONTINUES FROM HERE (COMMON PART FOR ALL MODES)
@@ -1288,22 +1215,25 @@ def text_generator(
                     # ==============
                     
                     cleaned = re.sub(r'\[.*?\]', '', ultima_resposta)       # Text cleaning for audio reproduction. Remove characters inside [] and <>
-                    
                     cleaned = re.sub(r'<.*?>', '', cleaned)
                     cleaned = cleaned.replace('**', '').replace('#', '')    # Do not speak bolded text in Markdown
+                    
                     try:                                                    # Delete previous audio file for allow the creation of a new one
                         os.remove('resposta.mp3')
                     except:
                         pass
+                    
                     if 'Portug' in selected_voice:
                         engine.setProperty('rate', 200)                     # Set rate for Portuguese voice (normal rate)
                     else:
                         engine.setProperty('rate', 115)                     # Set rate for others languages (slow down rate) 
+                    
                     for voice in voices:
                         if voice.name == selected_voice:                    # Set selected voice (interface widget) to create audio file
                             engine.setProperty('voice', voice.id)
                             print('Selected voice:', selected_voice)
                             break
+                    
                     engine.save_to_file(cleaned, 'resposta.mp3')            # Save audio file
                     engine.runAndWait()
                 
@@ -1315,7 +1245,6 @@ def text_generator(
 
                 # MAIN EXCEPT
                 except Exception as e:
-                    # resposta = resposta + '\n\n' + '********************************\n' + traceback.format_exc() + '********************************\n\n' + 'No problem! You just reached the context window limit (n_ctx). Unload the model, increase the context window limit, and try again.\n\n'
                     yield resposta                                          # Returns response with error message and display it on output interface
                     return
                 
@@ -1328,10 +1257,12 @@ def text_generator(
                 para_tudo = False                                           # Reset variable
                 
                 full_text += ultima_resposta + '\n\n'                       # Add last response to full_text variable
+                
                 with open('full_text.txt', mode='w', encoding='utf-8', errors='ignore') as f:
                     f.write(full_text)
 
                 partial_text += ultima_resposta + '\n\n'                    # Add last response to partial_text variable
+                
                 with open('partial_text.txt', mode='w', encoding='utf-8', errors='ignore') as f:
                     f.write(partial_text)
 
@@ -1363,20 +1294,7 @@ def text_generator(
                             
                 elif single_answer == True:
                     if num_of_the_prompt == 0:
-                        break # <<<<<<<<<<<< estou aqui!
-
-
-                    # if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
-                    #     continue
-                    # else:
-                    #     if num_control < num_respostas:             # Break prompt list's for loop (go back to endless where loop)
-                    #         break
-                    #     elif num_control == num_respostas:          # Decides if goes to endless where loop or to models loop
-                    #         if n_model < len(models) - 1:           # Leave prompt list's for loop (go back to endless where loop)
-                    #             break
-                    #         elif n_model == len(models) - 1:        # Leave the function
-                    #             return
- 
+                        break 
 
                 # LEAVE PROMPT LIST LOOP
                 if single_answer == False:
@@ -1398,9 +1316,7 @@ def text_generator(
                     break
                         
 
-                
-
-
+            # THIS CODE IS OK!
             #     # Controls the sequence of the four concatenated loops (MODEL -> ENDLESS -> PROMPTS -> TOKENS)
             #     if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
             #         continue
@@ -1419,12 +1335,6 @@ def text_generator(
             # if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
             #     break
 
-
-
-
-
-
-
             num_control += 1
 
     para_tudo = False                                           # Reset variable
@@ -1432,32 +1342,43 @@ def text_generator(
     gc.collect()                                                # Final cleaning (realy needed?)
 
         
-# ===================
-# AUXILIARY FUNCTIONS
-# ===================
+# =======================
+# 10) AUXILIARY FUNCTIONS
+# =======================
+
+# Include docstring and comments in all functions
 
 def random_list_fn(models): # Shuffles models list avoiding that equals itens get togueter (Created with Claude.ai)
+    
     resultado = []
     contagens = Counter(models)
     elementos = list(contagens.keys())
+    
     for elemento in elementos:
         resultado.extend([elemento] * contagens[elemento])
+    
     while True:
         random.shuffle(resultado)
         tem_repeticao = False
+        
         for i in range(len(resultado)-1):
             if resultado[i] == resultado[i+1]:
                 tem_repeticao = True
                 break
+        
         if not tem_repeticao:
             break
+    
     return resultado
 
 
 def clean_output(): # Clear Output button: clear output text
+    
     global resposta
     global ultima_resposta
+    
     click.play()
+    
     resposta = ''
     ultima_resposta = ''
 
@@ -1468,6 +1389,7 @@ def clean_output(): # Clear Output button: clear output text
     # IN TEST
     with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
         pass
+    
     # IN TEST
     with open('partial_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'partial_text.txt'
         pass
@@ -1476,6 +1398,7 @@ def clean_output(): # Clear Output button: clear output text
         os.remove('resposta.mp3')
     except:
         pass
+    
     try:
         os.remove('full_text.mp3')
     except:
@@ -1485,79 +1408,100 @@ def clean_output(): # Clear Output button: clear output text
     
 
 def stop_running(): # Stop / Next button
+    
     global para_tudo
     global audio
     global one_click
+    
     if one_click == False:
         click.play()
     else:
         one_click = False
     para_tudo = True
+    
     try:
         audio.stop() # AttributeError: 'NoneType' object has no attribute 'stop'
     except:
         pass
+    
     return para_tudo
 
 
 def stop_running_all(): # Stop All & Reset button
+    
     global stop_all
     global audio
     global one_click
+    
     if one_click == False:
         click.play()
     else:
         one_click = False
+    
     stop_all = True
+    
     try:
         audio.stop() # AttributeError: 'NoneType' object has no attribute 'stop'
     except:
         pass
+    
     return stop_all
 
 
 def update_previous_answer(): # Previous Response button
+    
     click.play()
+    
     return ultima_resposta
 
 
 def update_audio_widget(*inputs): # Load audio widget with last message audio
+    
     if os.path.isfile('resposta.mp3'):
         global engine
         click.play()
         sel_voice = inputs[10]
+        
         if 'Portug' in sel_voice: # Set rate for each voice
             engine.setProperty('rate', 200) # Slow down english speak
         else:
             engine.setProperty('rate', 115) # Normal rate for Portuguese
+        
         for voice in voices: # Set selected voice to create audio file
             if voice.name == sel_voice:
                 engine.setProperty('voice', voice.id)
                 print('Selected voice:', sel_voice)
                 break   
+        
         cleaned = re.sub(r'\[.*?\]', '', ultima_resposta)  # Text cleaning for audio reproduction. Remove characters inside [] and <>
-        
-        
         cleaned = re.sub(r'<.*?>', '', cleaned)
         cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
+        
         try: # Delete previous audio file for allow the creation of a new one
             os.remove('resposta.mp3')
         except:
             pass
+        
         engine.save_to_file(cleaned, 'resposta.mp3') # Save audio file
         engine.runAndWait()
+        
         return 'resposta.mp3'
+    
     else:
+
         return 'introducao.mp3'
 
 
 def update_barplot_widget(): # Update barplot 1 with tokens scores distribution
+    
     if fast_mode == True: # Hide barplot if fast_mode == True
         return gr.BarPlot(visible=False)
+    
     if delay_next_token == 'OFF': # Controls barplot visibility
         show = False
     else:
         show = True
+    
     df = pd.DataFrame( # Creates dataframe with Pandas
             {
                 "token": x_bar,
@@ -1565,6 +1509,7 @@ def update_barplot_widget(): # Update barplot 1 with tokens scores distribution
                 "color": color_bar
             }
         )
+    
     return gr.BarPlot( # Returns barplot element
             df,
             x='token',
@@ -1582,16 +1527,19 @@ def update_barplot_widget(): # Update barplot 1 with tokens scores distribution
         )
 
 
-# TO DO: CREATE BARPLOT THAT SEQUENCIATE ON X AXIS ALL SELECTED TOKEN WITH ITS RESPECTIVE SCORE ON Y AXIS: https://www.youtube.com/watch?v=FdTRzgbBP8o
+# TO ANALYSE: CREATE BARPLOT THAT SEQUENCIATE ON X AXIS ALL SELECTED TOKEN WITH ITS RESPECTIVE SCORE ON Y AXIS: https://www.youtube.com/watch?v=FdTRzgbBP8o
 
 
 def update_barplot_widget_2(): # Update barplot 2 with unlikelly tokens frequency
+    
     if fast_mode == True: # Hide barplot if fast_mode == True
         return gr.BarPlot(visible=False)
+    
     if delay_next_token == 'OFF': # Controls barplot visibility
         show = False
     else:
         show = True
+    
     df_2 = pd.DataFrame( # Creates dataframe with Pandas
             {
                 "occurrence_number": x_score,
@@ -1599,6 +1547,7 @@ def update_barplot_widget_2(): # Update barplot 2 with unlikelly tokens frequenc
                 # "color": color_bar
             }
         )
+    
     return gr.BarPlot( # Returns barplot element
             df_2,
             x='occurrence_number',
@@ -1617,14 +1566,17 @@ def update_barplot_widget_2(): # Update barplot 2 with unlikelly tokens frequenc
 
 
 def open_browser(): # Open default browser with Gradio server on localhost in dark mode
+    
     webbrowser.open('http://localhost:7860/?__theme=dark')
 
 
 def update_template_field(): # Update model template field
+    
     return prompt_template
 
 
 def sel_model(): # Select model
+    
     try:
         return models[0]
     except:
@@ -1632,44 +1584,58 @@ def sel_model(): # Select model
     
 
 def update_vocabulary(): # Update model's tokens vocabulary
+    
     return vocabulary
 
 
 def update_metadata(): # Shows model's metadata on interface
+    
     return model_metadata
 
 
 def text_to_speech(*inputs): # Text to speech convertion
+    
     global engine
+    
     click.play()
+    
     prompt_user = inputs[3]
     sel_voice = inputs[10]
+    
     if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
         engine.setProperty('rate', 200) # Normal rate for Portuguese
+    
     for voice in voices: # Set selected voice to create audio file
         if voice.name == sel_voice:
             engine.setProperty('voice', voice.id)
             print('Selected voice:', sel_voice)
             break   
+    
     cleaned = re.sub(r'\[.*?\]', '', prompt_user) # Text cleaning for audio reproduction. Remove characters inside [] and <>
     cleaned = re.sub(r'<.*?>', '', cleaned)
     cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
     cleaned = cleaned.replace('\n', ' ') # When copy and paste text from PDF file, the text use to come with '\n' at the end of every line
     cleaned = cleaned.replace('$$$', '')
+    
     try: # Delete previous audio file for allow the creation of a new one
         os.remove('ia_response.mp3')
     except:
         pass
+    
     engine.save_to_file(cleaned, 'ia_response.mp3') # Save audio file
     engine.runAndWait()
+    
     return 'ia_response.mp3'
 
 
 def unload_model():
+    
     global llm
+    
     click.play()
+    
     try:
         del llm
         gc.collect()    
@@ -1680,12 +1646,14 @@ def unload_model():
 
 
 def split_text(text):
+    
     text = text.replace('\n', ' ') # Paragraph
     palavras = text.split()
     tamanho_bloco = 110
     sobreposicao = 10
     partes = []
     inicio = 0 
+    
     while inicio < len(palavras):
         fim = inicio + tamanho_bloco
         if fim > len(palavras):
@@ -1693,21 +1661,26 @@ def split_text(text):
         parte = ' '.join(palavras[inicio:fim])
         partes.append(parte)
         inicio += tamanho_bloco - sobreposicao
+    
     return '\n\n'.join(partes)
 
 
 def extract_text():
+    
     try:
         del root
         del tk
     except:
         pass
+    
     import tkinter as tk
+    
     click.play()
 
     root = tk.Tk()
     root.withdraw()
     root.attributes('-topmost', True) # Root window on the topmost
+    
     while True: # IN TEST
         try:
             path = tk.filedialog.askopenfilename(
@@ -1718,12 +1691,16 @@ def extract_text():
         except Exception as e:
             print('ERROR IN tk.filedialog:', traceback.format_exc())
             return
+    
     if path == '':
         return
+    
     path = path.replace('/', '\\')
     root.destroy()
+    
     del root
     del tk
+    
     with fitz.open(path) as pdf:
         text = ""
         total_pages = len(pdf)
@@ -1733,6 +1710,7 @@ def extract_text():
         text = """[Generate a concise summary in Portuguese, one paragraph long, for the page below. Analyze carefully the textual content of the page. Generate a concise summary, faithfully capturing the main ideas. Each idea must be registered as a sentence in the paragraph. Start with the page number (ex: "Page 1:"). Generate the page summary in a single paragraph. Do not include comments and avoid unnecessary repetitions:]\n
 [[Create a summary joining the text pages below. Distribute the text into paragraphs however you see fit. Do not mention page numbers neither include comments and avoid unnecessary repetitions. Start with the topic "Summary:":]]
         """ + text
+    
     with open('text.txt', "w", errors='ignore') as f:
         f.write(text)
 
@@ -1745,17 +1723,21 @@ def extract_text():
 
 
 def extract_full_text():
+    
     try:
         del root
         del tk
     except:
         pass
+    
     import tkinter as tk
+    
     click.play()
 
     root = tk.Tk()
     root.withdraw()
     root.attributes('-topmost', True) # Root window on the topmost
+    
     while True: # IN TEST
         try:
             path = tk.filedialog.askopenfilename(
@@ -1766,12 +1748,16 @@ def extract_full_text():
         except Exception as e:
             print('ERROR IN tk.filedialog:', traceback.format_exc())
             return
+    
     if path == '':
         return
+    
     path = path.replace('/', '\\')
+    
     root.destroy()
     del root
     del tk
+    
     with fitz.open(path) as pdf:
         text = ""
         total_pages = len(pdf)
@@ -1779,6 +1765,7 @@ def extract_full_text():
             text += f"\n\nPágina {page.number+1} de {total_pages}: "
             text += page.get_text().replace('\n', ' ')
         text = """[Generate a concise summary in Portuguese, one paragraph long for each page below. Analyze carefully the textual content of the page. Generate a concise summary, faithfully capturing the main ideas. Each idea must be registered as a sentence in the paragraph. Start with the page number (ex: "Page 1:"), followed by the page summary. Generate the page summary in a single paragraph. Do not include comments and avoid unnecessary repetitions:]""" + text + '\n\n$$$'
+    
     with open('text.txt', "w", errors='ignore') as f:
         f.write(text)
 
@@ -1791,30 +1778,40 @@ def extract_full_text():
 
 
 def load_full_audio(*inputs):
+    
     global engine
+    
     click.play()
+    
     sel_voice = inputs[10]
+    
     if 'English' in sel_voice: # Set rate for each voice
         engine.setProperty('rate', 115) # Slow down english speak
     else:
         engine.setProperty('rate', 200) # Normal rate for Portuguese
+    
     for voice in voices: # Set selected voice to create audio file
         if voice.name == sel_voice:
             engine.setProperty('voice', voice.id)
             print('Selected voice:', sel_voice)
             break
+    
     with open('full_text.txt', encoding='utf-8', errors='ignore') as f:
         full_text = f.read()
+    
     cleaned = re.sub(r'\[.*?\]', '', full_text) # Text cleaning for audio reproduction. Remove characters inside [] and <>
     cleaned = re.sub(r'<.*?>', '', cleaned)
     cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
     cleaned = cleaned.replace('\n', ' ') # When copy and paste text from PDF file, the text use to come with '\n' at the end of every line
+    
     try: # Delete previous audio file for allow the creation of a new one
         os.remove('full_text.mp3')
     except:
         pass
+    
     engine.save_to_file(cleaned, 'full_text.mp3') # Save audio file
     engine.runAndWait()
+    
     return 'full_text.mp3'
  
 
@@ -1827,21 +1824,26 @@ def launch_notebook():
     and finally opens it using 'subprocess.Popen'.
     """
     click.play()                    # Play a click sound
+    
     python_path = os.path.join(fr'{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts', "jupyter-lab.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
     
     subprocess.Popen([python_path]) # Open Jupyter Lab using the specified Python environment's executable path
 
         
 def copy_code():
+    
     click.play()
+    
     padrao = r"```(.*?)\n(.*?)```"
 
     codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
 
     resultado = []
+    
     for codigo in codigos:
         linguagem, conteudo = codigo
         resultado.append(f"#{linguagem}\n{conteudo}")
+    
     temp = "\n".join(resultado)
 
     padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
@@ -1853,26 +1855,35 @@ def copy_code():
     
 
 def copy_all_responses():
+    
     click.play()
+    
     pyperclip.copy(resposta)
 
 
 def copy_last_response():
+    
     click.play()
+    
     pyperclip.copy(ultima_resposta)
 
 
 def load_prompt_txt():
+    
     try:
         del root
         del tk
     except:
         pass
+    
     import tkinter as tk
+    
     click.play()
+    
     root = tk.Tk()
     root.withdraw()
     root.attributes('-topmost', True) # Root window on the topmost
+    
     while True: # IN TEST
         try:
             path = tk.filedialog.askopenfilename(
@@ -1883,38 +1894,53 @@ def load_prompt_txt():
         except Exception as e:
             print('ERROR IN tk.filedialog:', traceback.format_exc())
             return
+    
     path = path.replace('/', '\\')
+    
     root.destroy()
     del root
     del tk
+    
     if path == '':
         return '' # Em teste
+    
     with open(path, 'r', encoding='utf-8', errors='ignore') as file:
         lines = file.readlines()
+    
     cleaned_lines = []
+    
     for line in lines:
         if not line.startswith('---'): # not line.startswith('#') and 
             cleaned_lines.append(line)
+    
     cleaned_text = ''.join(cleaned_lines)
+    
     return cleaned_text
 
 
 def go_to_next_token():
+    
     global next_token
     global one_click
+    
     click.play()
+    
     one_click = True # Used to unable click sound on STOP/NEXT and STOP ALL/RESET buttons
     next_token = True
  
 
 def click_sound(examples): # Parameter included to avoid error in 'gr.Example()' element, that needs pass a input
+    
     click.play()
 
 
 def speech_to_text(*inputs):
+    
     global engine
     global audio
-
+    
+    click.play()
+    print(inputs)
     sel_voice = inputs[10]
 
     for voice in voices: # Set selected voice to create audio file
@@ -1927,9 +1953,6 @@ def speech_to_text(*inputs):
         engine.setProperty('rate', 115) # Slow down english speak
     else:
         engine.setProperty('rate', 200) # Normal rate for Portuguese
-
-
-    click.play()
 
     q = queue.Queue()
 
@@ -1951,23 +1974,30 @@ def speech_to_text(*inputs):
         "-l", "--list-devices", action="store_true",
         help="show list of audio devices and exit")
     args, remaining = parser.parse_known_args()
+    
     if args.list_devices:
         print(sd.query_devices())
         parser.exit(0)
+    
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter,
         parents=[parser])
+    
     parser.add_argument(
         "-f", "--filename", type=str, metavar="FILENAME",
         help="audio file to store recording to")
+    
     parser.add_argument(
         "-d", "--device", type=int_or_str,
         help="input device (numeric ID or substring)")
+    
     parser.add_argument(
         "-r", "--samplerate", type=int, help="sampling rate")
+    
     parser.add_argument(
         "-m", "--model", type=str, help="language model; e.g. en-us, fr, nl; default is en-us")
+    
     args = parser.parse_args(remaining)
 
     try:
@@ -1976,15 +2006,15 @@ def speech_to_text(*inputs):
             # soundfile expects an int, sounddevice provides a float:
             args.samplerate = int(device_info["default_samplerate"])
             
-        if args.model is None:
-            if 'Portuguese' in sel_voice:
-                model = Model(lang="pt") # <<<<<<<<<<<<<<<<<<<< Language:
-            elif 'English' in sel_voice:
-                model = Model(lang="en")
-            else:
-                model = Model(lang="en")
+        # if args.model is None:
+        if 'Portuguese' in sel_voice:
+            model = Model(lang="pt") # <<<<<<<<<<<<<<<<<<<< Language:
+        elif 'English' in sel_voice:
+            model = Model(lang="en")
         else:
-            model = Model(lang=args.model)
+            model = Model(lang="en")
+        # else:
+        #     model = Model(lang=args.model)
 
         if args.filename:
             dump_fn = open(args.filename, "wb")
@@ -1994,9 +2024,9 @@ def speech_to_text(*inputs):
         with sd.RawInputStream(samplerate=args.samplerate, blocksize = 8000, device=args.device,
                 dtype="int16", channels=1, callback=callback):
             print()
-            print("=" * 80)
+            print("=" * 40)
             print("Press Ctrl+C to stop the recording")
-            print("=" * 80)
+            print("=" * 40)
 
             rec = KaldiRecognizer(model, args.samplerate)
 
@@ -2065,11 +2095,23 @@ def speech_to_text(*inputs):
                     # =================================== 
 
                     if 'Portuguese' in sel_voice:
-                        if 'samantha' in temp['text'].lower():
+                        
+                        if 'samantha fechar' in temp['text'].lower():
+                            if temp['text'].lower() == 'samantha fechar':
+                                return                      
+                        
+                        elif 'ok' in temp['text'].lower():
+                            if temp['text'].lower() == 'ok':
+                                continue                      
+                            saida = temp['text'].replace('ok', '').strip().capitalize()
+                            yield saida
+                        elif 'samantha' in temp['text'].lower():
                             if temp['text'].lower() == 'samantha':
                                 continue                      
                             saida = temp['text'].replace('samantha', '').strip().capitalize()
                             yield saida
+
+
 
                     # ====================================
                     # if 'English' in sel_voice:
@@ -2122,11 +2164,21 @@ def speech_to_text(*inputs):
                     # =================================== 
 
                     if 'English' in sel_voice:
-                        if 'samantha' in temp['text'].lower():
+                        
+                        if 'samantha close' in temp['text'].lower():
+                            if temp['text'].lower() == 'samantha close':
+                                return                      
+                        
+                        elif 'ok' in temp['text'].lower():
+                            if temp['text'].lower() == 'ok':
+                                continue                      
+                            saida = temp['text'].replace('ok', '').strip().capitalize()
+                            yield saida
+                        elif 'samantha' in temp['text'].lower():
                             if temp['text'].lower() == 'samantha':
                                 continue                      
                             saida = temp['text'].replace('samantha', '').strip().capitalize()
-                            yield saida                                                   
+                            yield saida                                               
 
                 if dump_fn is not None:
                     dump_fn.write(data)
@@ -2134,11 +2186,13 @@ def speech_to_text(*inputs):
     except KeyboardInterrupt:
         print("\nDone")
         parser.exit(0)
+    
     except Exception as e:
         parser.exit(type(e).__name__ + ": " + str(e))
 
 
 def extract_models_names(): # Load Model button: open window to choose directory with LLM files
+    
     global model_path
     global models
     global last_models_list
@@ -2154,10 +2208,13 @@ def extract_models_names(): # Load Model button: open window to choose directory
         del tk
     except:
         pass
+    
     import tkinter as tk # To create a window for selecting directories and files. Imported here to avoid "Tcl_AsyncDelete: async handler deleted by the wrong thread" error
+    
     root = tk.Tk()
     root.withdraw()
     root.attributes('-topmost', True) # Root window on the topmost
+    
     while True: # IN TEST
         try:
             diretorio = tk.filedialog.askdirectory() # Raising "RuntimeError: main thread is not in main loop"
@@ -2167,13 +2224,16 @@ def extract_models_names(): # Load Model button: open window to choose directory
             del root
             del tk
             return gr.Dropdown(choices=last_models_list, value=models[0])
+    
     root.destroy()
+    
     del root
     del tk
 
     # ==================================
 
     diretorio = diretorio.replace('/', '\\')
+    
     if diretorio == '':
         # SE TENTAR SELECIONAR DUAS VEZES E CANCELAR A SELEÇÃO, DÁ ERRO NA SEGUNDA (ERROR ONLY USING DEBUG MODE): "Tcl_AsyncDelete: async handler deleted by the wrong thread"
         try:
@@ -2183,6 +2243,7 @@ def extract_models_names(): # Load Model button: open window to choose directory
                 return gr.Dropdown(choices=last_models_list, value=last_model)
         except:
             return gr.Dropdown(choices=[''], value='') # Included to avoid 'out of range' list error
+    
     last_diretorio = diretorio
     model_path = diretorio
     temp = glob.glob(fr'{model_path}\*.gguf') # Create .uggf files path list to the selected directory. Update global variable (ok?)
@@ -2193,6 +2254,7 @@ def extract_models_names(): # Load Model button: open window to choose directory
     for n, i in enumerate(models):
         print(n + 1, i)
     print()
+    
     last_models_list = models
     
     if len(models) == 1: # Update models dropdowm widget
@@ -2219,10 +2281,12 @@ def open_dtale():
 
 
 def download_model(url):
+    
     global original_filename
 
     try:
         # Extrair o caminho completo da pasta "Downloads"
+    
         downloads_path = Path(os.path.expanduser("~")) / "Downloads"
         print('Download path:', downloads_path)
 
@@ -2230,7 +2294,8 @@ def download_model(url):
         try:
             os.remove(downloads_path / "MODEL_FOR_TESTING.gguf")
         except Exception as e:
-            print(e)
+            pass
+            #print(e)
         
         # Obter o nome original do arquivo da URL
         original_filename = os.path.basename(urlparse(url).path) # HERE THE MODEL NAME
@@ -2254,17 +2319,20 @@ def download_model(url):
     except requests.exceptions.RequestException as e:
         print(f"Erro ao baixar o arquivo: {e}")
         return None
+    
     except Exception as e:
         print(f"Erro inesperado: {e}")
         return None
 
 
 def download_model_urls():
+    
     click.play()
+    
     try:
         url = pyperclip.paste()
         if 'https://huggingface.co/' in url and '/tree/main' in url:
-            response = requests.get(url)
+            response = requests.get(url, verify=False)
             soup = BeautifulSoup(response.text, "html.parser")
             links = soup.find_all('a', href=True)
             download_links = [link['href'] for link in links if '.gguf?download' in link['href']]
@@ -2277,6 +2345,78 @@ def download_model_urls():
         print(e)
 
 
+def create_html(content):
+
+    # Quebra as linhas longas
+    # wrapped_content = '\n'.join(textwrap.wrap(content, width=100, break_long_words=False, replace_whitespace=False))
+    # <meta charset="windows-1252">
+
+    html = f"""
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Samantha</title>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                max-width: 90%;
+                margin: 0 auto;
+                font-size: 14px;
+                text-align: justify;
+                text-justify: inter-word;
+            }}
+            #content {{
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+            }}
+            pre {{
+                background-color: #f0f0f0;
+                padding: 10px;
+                border-radius: 5px;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }}
+            code {{
+                font-family: Consolas, Monaco, 'Andale Mono', monospace;
+                font-size: 0.9em;
+            }}
+        </style>
+    </head>
+    <body>
+        <h2>Output:</h2>
+        <div id="content"></div>
+        <script>
+            const content = `{content}`;
+            document.getElementById('content').innerHTML = marked.parse(content);
+        </script>
+    </body>
+    </html>
+    """
+    return html
+
+
+def open_chrome_window(file_path):
+    if sys.platform == "win32":
+        chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    elif sys.platform == "darwin":
+        chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    else:
+        chrome_path = "/usr/bin/google-chrome"
+
+    subprocess.Popen([
+        chrome_path,
+        "--new-window",
+        "--window-size=400,300",
+        "--window-position=100,100",
+        "--app=file://" + file_path
+    ])
+
+
 def open_idle():
 
     click.play()
@@ -2286,15 +2426,15 @@ def open_idle():
     print('======================')
 
     python_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe"
-    # idle_path = f"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts\idle.exe"
-    # subprocess.Popen([idle_path])
-
+    
     padrao = r"```(.*?)\n(.*?)```"
     codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
     resultado = []
+    
     for codigo in codigos:
         linguagem, conteudo = codigo
         resultado.append(f"#{linguagem}\n{conteudo}")
+    
     final_code = "\n".join(resultado)
 
     padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
@@ -2306,25 +2446,61 @@ def open_idle():
         f.write(final_code)
 
     try:
-        subprocess.run([python_path, "temp.py"], check=True)
-    except:
+        result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8')
+        output = result.stdout.strip()  # Remove espaços em branco no início e no final
         print()
-        print('Error on trying to run code.')
+        print(output)
+        print('type(output):', type(output))
+        print('len(output):', len(output))
         print()
+
+        # Response without code
+        if "```" not in ultima_resposta: # To dsiplay output in new browser tab only if there is no code
+        
+            # Criar conteúdo HTML
+            html_content = create_html(ultima_resposta)
+
+            # Criar arquivo temporário
+            with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+                f.write(html_content)
+                temp_file_name = f.name
+
+            # Abrir o arquivo no navegador
+            # webbrowser.open('file://' + os.path.realpath(temp_file_name))
+
+            # Abrir nova instância do Chrome
+            open_chrome_window(os.path.realpath(temp_file_name))
+
+        # Response with code
+        elif "```" in ultima_resposta and len(output) > 0:
+
+            html_content = create_html(output)
+
+            # Criar arquivo temporário
+            with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+                f.write(html_content)
+                temp_file_name = f.name
+
+            open_chrome_window(os.path.realpath(temp_file_name))
+
+    except subprocess.CalledProcessError as e:
+        print(f"Comando falhou com código de saída {e.returncode}")
+        print(f"Saída de erro: {e.stderr}")
         winsound.Beep(600, 300) # Signals to indicate error
         winsound.Beep(600, 300)
-    
+
 
 def change_checkbox(bool_value):
+    
     if bool_value:
         return gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=False), gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=False)
     else:
         return gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True), gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True)
 
 
-# ================
-# GRADIO INTERFACE
-# ================ 
+# ====================
+# 11) GRADIO INTERFACE
+# ==================== 
   
 # CSS code
 css = """
@@ -2335,10 +2511,26 @@ css = """
 #prompt_id textarea {border-color: #777777 !important}
 """
 
+shortcut_js = """
+<script>
+function shortcuts(e) {
+    if (e.shiftKey && e.key === "Enter"){
+        return;
+    }
 
-with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
+    if (e.key === "Enter") {
+        e.preventDefault(); // Previne o comportamento padrão do navegador
+        document.getElementById("btn_start_chat").click();
+    }
+}
+document.addEventListener('keyup', shortcuts, false);
+</script>
+"""
+
+
+with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
     
-    # Imange
+    # # Image
     # gr.HTML("""
     #         <img id="overlay-image" src="https://pngfre.com/wp-content/uploads/butterfly-27-1024x688.png" alt="Imagem no Canto Superior Esquerdo" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
     #         """)
@@ -2359,7 +2551,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
         with gr.Column(scale=1):
 
             with gr.Row(): # Input buttons
-                btn1 = gr.Button(language['btn1'], variant='primary')
+                btn1 = gr.Button(language['btn1'], variant='primary', elem_id='btn_start_chat')
                 btn2 = gr.Button(language['btn2'])
                 btn3 = gr.Button(language['btn3'])
 
@@ -2398,6 +2590,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
+                gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
 
@@ -2458,6 +2651,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
                     </ul>""")
+                        
                         # <li><a href="https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard">Big Code Models Leaderboard</a></li>
                         # <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
@@ -2477,6 +2671,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                     <li><a href="https://www.youtube.com/watch?v=XpoKB3usmKc">QLoRA—How to Fine-tune an LLM on a Single GPU</a></li>
                     <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
                     </ul>""")
+                    
                     # https://www.youtube.com/watch?v=FdTRzgbBP8o
             
             gr.HTML('<br><h6><b>Installed Python Modules to Use with JupyterLab:</b></h6>') # Exploratory Data Analysis
@@ -2529,18 +2724,33 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
                 btn_all_responses = gr.Button(language['btn_copy_all_responses'])
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
+                btn_idle = gr.Button(language['btn_idle'])
+                btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
                                 
                 # =================================
-                
-                # Voice control
-                if voice_mode == True:
+            
+            if voice_mode == True:
+
+                with gr.Row():
+                    # btn_d = gr.Button('', visible=False)
+                    # btn_d.click(fn=None, inputs=None, outputs=None)
+                    # btn_c = gr.Button('', visible=False)
+                    # btn_c.click(fn=None, inputs=None, outputs=None)
                     btn_voice = gr.Button(language['btn_voice_command'], variant='primary', visible=True)
                     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
+                    
                     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
+                    
 
-                elif voice_mode == False:
-                    btn_idle = gr.Button(language['btn_idle'])
-                    btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
+                # Voice control
+                # if voice_mode == True:
+                #     btn_voice = gr.Button(language['btn_voice_command'], variant='primary', visible=True)
+                #     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
+                #     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
+
+                # elif voice_mode == False:
+                #     btn_idle = gr.Button(language['btn_idle'])
+                #     btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
 
                 # =================================
             
@@ -2572,9 +2782,10 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a></li>
                         <br>
+                        <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
                         <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
                         <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
-                        <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
+                        
                         <li><a href="https://huggingface.co/arcee-ai/Arcee-Spark-GGUF">arcee-ai/Arcee-Spark-GGUF</a></li>
                         <li><a href="https://huggingface.co/bartowski/Replete-Coder-Qwen2-1.5b-GGUF">bartowski/Replete-Coder-Qwen2-1.5b-GGUF</a></li>
                         <li><a href="https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF">bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a></li>
@@ -2600,6 +2811,10 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Operating Tips:</h5>""")
             # with gr.Row():
             #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Key Concepts:&nbsp;&nbsp;&nbsp;Training Dataset / Prompt, Token, Token Vocabulary, Large Language Model (LLM), Training / Generation, Embedding Vectors, Embedding Matrix, Artificial Neural Networks (Layers, Weights and Bias), Ordered Token Vocabulary, Next Token Selection</span></i></h6>""")                      
+            
+            with gr.Row():
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Windows Task Manager:&nbsp;&nbsp;&nbsp;CTRL + SHIFT + ESC</span></i></h6>""")
+            
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samantha's Parts:&nbsp;&nbsp;&nbsp;Server (AI processing) <-> Browser Interface (display and configuration)</span></i></h6>""")
             with gr.Row():
@@ -2609,7 +2824,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;(Models List -> User Prompt List -> Number of Responses) -> Number of Loops</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
             with gr.Row():
@@ -2618,6 +2833,12 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), presence_penalty (0), frequency_penalty (0), repeat_penalty (1)</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
+            
+            with gr.Row():
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Vocie Commands:&nbsp;&nbsp;&nbsp;Portuguese ("ok" or "samantha", "samantha fechar"), English ("ok" or "samantha", "samantha close")</span></i></h6>')         
+            
+            
+            
             # with gr.Row():
             #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">GPT:&nbsp;&nbsp;&nbsp;Choice of the next token according to the probability patterns extracted from the training texts</span></i></h6>')                     
             # with gr.Row():
@@ -2631,7 +2852,7 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
             # with gr.Row():
             #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Transformer:&nbsp;&nbsp;&nbsp; Initial Embeddings Matrix (table) -> Neural Network (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab)</span></i></h6>')     
             # with gr.Row():
-            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samplings/Penalties:&nbsp;&nbsp;&nbsp;Samplings (temperature/top-k/top-p) -> Penalties (presence/frequency/repeat) -> Stop Conditions</span></i></h6>')         
+            #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Selection:&nbsp;&nbsp;&nbsp;Samplings (temperature/top-k/top-p) -> Penalties (presence/frequency/repeat) -> Stop Conditions</span></i></h6>')         
             # with gr.Row():
             #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Summary:&nbsp;&nbsp;&nbsp;(Context Window (text) -> Tokens (vocab) -> Initial Embeddings Matrix (table) -> Transformer (self-attention) -> Context-Aware Embeddings (table) -> Tokens Scores (vocab) -> Sampling/Penalty) -> Stop Condition</span></i></h6>')         
             
@@ -2654,19 +2875,25 @@ with gr.Blocks(css=css, title='Samantha IA') as demo: # AttributeError: Cannot c
         btn5.click(fn=stop_running_all, inputs=None, outputs=None, queue=False)
         btn6.click(fn=update_previous_answer, inputs=None, outputs=inputs[2], queue=False, show_progress='hidden')
         
-        # saida.change(fn=update_template_field, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=False, show_progress=False) 
         saida.change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=True, show_progress=False)
-        inputs[-1].change(fn=update_metadata, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=True, show_progress=False)
-        # inputs[-2].change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=False)
+        # inputs[-1].change(fn=update_metadata, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=True, show_progress=False)
 
+        saida.change(fn=update_metadata, inputs=None, outputs=inputs[-3], trigger_mode='always_last', queue=True, show_progress=False)
+
+
+# =================
+# 12) MAIN FUNCTION
+# =================
 
 def main():
-    while True:  
+
+    while True:
         try:
             demo.queue()                # Put interface on queue
             open_browser()              # Open browser before endpoint generation (wait demo launch)
             demo.launch(share=False)
-        except:
+        except Exception as e:
+            print(e)
             continue
 
 
