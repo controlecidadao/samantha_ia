@@ -73,27 +73,27 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 <!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
-✅ **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications.<br><br>
+✅ **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
 
-✅ **Customizable Parameters**: Users have control over model hyperparameters such as temperature, top-k, top-p, among others, allowing for responses that suit specific requirements.<br><br>
+✅ **Customizable Parameters**: Users have control over model hyperparameters such as **context window** length (n_ctx, max_tokens), **token sampling** (temperature, tfs_z, top-k, top-p, min_p, typical_p), **penalties** (presence_penalty, frequency_penalty, repeat_peanlty) and **stop words**, allowing for responses that suit specific requirements, with deterministic or stochastic behavior.<br><br>
 
 ✅ **Interactive Experience**: Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.<br><br>
 
 ✅ **Learning Insights**: A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings.<br><br>
 
-✅ **Voice Interaction**: Samantha supports offline text-to-speech with SAPI5 voices and speech-to-text with [Vosk](https://alphacephei.com/vosk/) (English and Portuguese), making it accessible and user-friendly for everyone.<br><br>
+✅ **Voice Interaction**: Samantha supports simple voice commands with offline speech-to-text [Vosk](https://alphacephei.com/vosk/) (English and Portuguese) and text-to-speech with SAPI5 voices, making it accessible and user-friendly.<br><br>
 
 ✅ **Audio feedback**: The interface provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.<br><br>
 
-✅ **Document Handling**: The system can load small PDF and TXT files, and chaining instructions/prompts can be inputted or loaded via a TXT file for convenience.<br><br>
+✅ **Document Handling**: The system can load small PDF and TXT files. Chaining instructions/prompts can be inputted via a TXT file for convenience.<br><br>
 
-✅ **Versatile Text Input**: Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous response and user prompt to guide the model's response.<br><br>
+✅ **Versatile Text Input**: Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous model response and user prompt to guide the model's response.<br><br>
 
 ✅ **Code Integration**: Automatic extraction of code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/) in an isolated virtual environment, enables users to execute generated code swiftly for immediate results.<br><br>
 
-✅ **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [DB Browser](https://sqlitebrowser.org/about/), [PyMuPDF](https://pypi.org/project/PyMuPDF/)  and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell).<br><br>
+✅ **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [PyMuPDF](https://pypi.org/project/PyMuPDF/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell). Integration with [DB Browser](https://sqlitebrowser.org/about/) is also available.<br><br>
 
-✅ **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size.<br>
+✅ **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size to save memory and computational resources.<br>
 
 <br>
 
@@ -103,7 +103,7 @@ Samantha is a [Open Science](https://www.unesco.org/en/open-science) movement to
 <br>
 
 **Use Responsibly:**
-The generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just a mathematical model that generates coherent texts from the sequencing of words (tokens) based on the probability extracted from the training texts.
+The generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha and for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just mathematical models that generates coherent texts from the sequencing of words (tokens) based on the probability patterns extracted from the training texts.
 
 <br>
 
