@@ -128,18 +128,18 @@ To use Samantha you will need:
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
 <br><br>
-* Download the zip file from the repository by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unzip it to your computer:
+* Download the zip file from Samantha's repository by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unzip it to your computer:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Double click on `install_samantha_ia.bat` file to start installation (Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm):
+* Double click on `install_samantha_ia.bat` file to start installation. Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm. We encorage you to inspect the code of all files:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
   >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
 
   <br>
-  The installation process takes several minutes.
+  The installation process takes several minutes and should end with the creation of the last virtual environment (jupyterlab):
 
 <br>
 
