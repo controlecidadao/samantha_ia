@@ -6,26 +6,26 @@ setlocal
 :inicio
 cls
 echo.
-echo Bem-vindo!
+echo Welcome!
 echo.
-echo Deseja instalar Samantha IA?
+echo Do you want to install Samantha Interface Assistant?
 echo.
-echo 1. Sim
-echo 2. Nao
+echo 1. Yes
+echo 2. No
 echo.
-set /p opcao="Digite sua opcao (1 ou 2): "
+set /p opcao="Select your option (1 ou 2): "
 
 if "%opcao%"=="1" (
     goto continuar
 ) else if "%opcao%"=="2" (
     echo.
-    echo Encerrando o programa...
+    echo Closing the program...
     echo.
     pause
     exit
 ) else (
     echo.
-    echo Opcao invalida!
+    echo Invalid option!
     echo.
     pause
     goto inicio
@@ -33,7 +33,7 @@ if "%opcao%"=="1" (
 
 :continuar
 echo.
-echo Continuando a execucao...
+echo Wise decision! Continuing the installation...
 echo.
 :: Coloque aqui o restante do seu código que deve ser executado
 pause
