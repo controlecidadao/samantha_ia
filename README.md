@@ -204,7 +204,7 @@ Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/m
 
 The quality of a model can be assessed using four basic criteria:
 
-  * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt, including model's decision-making to fullfill the context lacks;
+  * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
 
   * **Decision-making** process to fill in the gaps in the context of the user prompt;
 
