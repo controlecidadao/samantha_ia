@@ -206,14 +206,14 @@ The quality of a model can be assessed using four basic criteria:
 
   * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
 
-  * **Decision-making** process to fill in the gaps in the context of the user prompt, required to generate the response;
+  * **Correctness of the decision-making** process to fill in the gaps in the context of the user prompt, required to generate the response;
 
   * **Degree of adherence** to these instructions;
 
   * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
 
 <br><br>
-# 🧠 Starting Samantha
+# 🧠 Running Samantha
 
 To start running Samantha:
 
@@ -227,6 +227,8 @@ To start running Samantha:
 
 
 * Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` to monitor memory usage.
+
+* Download a `gguf` model and save it to your computer or just copy the download link and paste it inside Samantha's Download model for testing field. For more datails, watch video tutorials in the section below.
 
 <br><br>
 # ▶️ Video Tutorials
