@@ -132,7 +132,7 @@ To use Samantha you will need:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Double click on `install_samantha_ia.bat` file to start installation. Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm. We encorage you to inspect the code of all files:
+* Double click on `install_samantha_ia.bat` file to start installation. Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm. We encorage to inspect the code of all files:
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
