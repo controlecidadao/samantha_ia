@@ -145,7 +145,7 @@ To use Samantha you will need:
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the origin of the `.bat` file. Click on 'More info' and confirm:<br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the source of the '.bat' file. This process is required only the first time you run the program. Click on 'More info' and confirm:<br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
