@@ -228,7 +228,7 @@ To start running Samantha:
 
 * Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` to monitor memory usage.
 
-* Download a `gguf` model and save it to your computer or just copy the download link and paste it inside Samantha's Download model for testing field. For more datails, watch video tutorials in the section below.
+* Download a `gguf` model and **save it to your computer or just copy the download link and paste** it inside Samantha's Download model for testing field. For more datails, watch video tutorials in the section below.
 
 <br><br>
 # ▶️ Video Tutorials
