@@ -191,20 +191,22 @@ We suggest to download the model with **Q4_K_M** (4-bit quantization) in its lin
 
 If the downloaded model doesn't fit into the available RAM space, your hard drive will be used, impacting performance.
 
-Download the chosen model and save it to your computer or just copy the download link and paste it inside Samantha's _Download model for testing_ field. Watch the video tutorials in the section below for more details.
+Download the chosen model and save it to your computer or just copy the download link and paste it inside Samantha's _Download model for testing_ field. Watch video tutorials in the section below for more details.
 <br><br>
 
 ### Your First Testing Models
 
-Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. Some models may not (yet) be loaded by Samantha due to their technical characteristics.
+Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. **Some `gguf` models may not (yet) be loaded by Samantha due to their technical characteristics**.
 
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft), fine-tunned by [llmware](https://huggingface.co/llmware))
 
 Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)<br><br>
 
-The quality of a model can be assessed using three basic criteria:
+The quality of a model can be assessed using four basic criteria:
 
-  * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
+  * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt, including model's decision-making to fullfill the context lacks;
+
+  * **Decision-making** process to fill in the gaps in the context of the user prompt;
 
   * **Degree of adherence** to these instructions;
 
