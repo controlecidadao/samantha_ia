@@ -154,6 +154,8 @@ To use Samantha you will need:
 ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
 
 <br>
+Samantha's initial settings are deterministic. This means that for the same prompt, you'll get the same answer every time. For a stochastic behavior, adjust the model's hyperparameters accordingly.
+<br><br><br>
 
 # ⬇️ Downloading Large Language Models (LLM)
 
