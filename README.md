@@ -141,7 +141,7 @@ To use Samantha you will need:
   >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
 
   <br>
-  The installation process takes several minutes and should end with the creation of the last virtual environment (jupyterlab):
+  The installation process takes several minutes and should end with the creation of the last virtual environment (jupyterlab).
 
 <br>
 
@@ -184,7 +184,7 @@ After that, click on the **Files and versions** tab and download a model that fi
 ![task](https://github.com/controlecidadao/samantha_ia/blob/main/images/task_manager.png)
 <br><br>
 
-We suggest to download the model with **Q4_K_M** (4-bit quantization) in its link name (put the mouse over the download button to view the complete file name in the link like this: `https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B-GGUF/resolve/main/Hermes-2-Pro-Llama-3-8B-Q4_K_M.gguf?download=true`). As a rule, the larger the model size, the greater the accuracy of the generated text:
+We suggest to download the model with **Q4_K_M** (4-bit quantization) in its link name (put the mouse over the download button to view the complete file name in the link like this: `https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B-GGUF/resolve/main/Hermes-2-Pro-Llama-3-8B-Q4_K_M.gguf?download=true`). As a rule, the larger the model size, the greater the accuracy of the generated text.
 <br>
 
 If the downloaded model doesn't fit into the available RAM space, your hard drive will be used, impacting performance.
