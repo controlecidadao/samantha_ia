@@ -40,6 +40,10 @@ Some chaining examples _with_ response feeddback:
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models.
 <br><br>
 
+
+**Chaining Sequence:   ( [models list] -> respond -> ([user prompt list] X number of responses) ) X number of loops**
+<br><br>
+
 Sequencing of prompts and models allows the generation of long responses by fractioning the input instruction. Every partial response fits in the model' response length defined in the training process.
 <br><br>
 
