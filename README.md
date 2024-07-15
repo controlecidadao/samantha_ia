@@ -77,7 +77,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 ✅ **Extensive Model Selection:** With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
 
-✅ **Copy and paste LLM:** To try out a gguf model, simply copy its download link from any Hugging Face repository and paste it inside Samantha to run it right away.<br><br>
+✅ **Copy and paste LLM:** To try out a `gguf` model, just copy its download link from any Hugging Face repository and paste it inside Samantha to run it right away.<br><br>
 
 ✅ **Customizable Parameters:** Users have control over model hyperparameters such as **context window** length (n_ctx, max_tokens), **token sampling** (temperature, tfs_z, top-k, top-p, min_p, typical_p), **penalties** (presence_penalty, frequency_penalty, repeat_peanlty) and **stop words**, allowing for responses that suit specific requirements, with deterministic or stochastic behavior.<br><br>
 
