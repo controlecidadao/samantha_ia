@@ -162,7 +162,7 @@ Samantha's initial settings are deterministic. As a rule, this means that for th
 In turn, for stochastic behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
 <br><br>
 
-**Deterministic settings:** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1).
+**Deterministic settings (default):** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1).
 <br><br>
 
 **Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
