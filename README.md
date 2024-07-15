@@ -159,7 +159,7 @@ To use Samantha you will need:
 Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get the same answer every time. The model always selects tokens with the highest probability score.
 <br><br>
 
-In turn, for stochastic behavior, when the model selects tokens with different probability scores, adjust the hyperparameters accordingly.
+In turn, for stochastic behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
 <br><br>
 
 **Deterministic settings:** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1).
