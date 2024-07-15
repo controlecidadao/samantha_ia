@@ -1,0 +1,471 @@
+$$$
+$-$-$
+
+Samantha é um sistema de IA desenvolvido sob os princípios da Ciência Aberta (Open Science) para utilização de modelos LLM de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet (exceto para baixar os modelos). Seu objetivo é democratizar o conhecimento sobre o uso de IAs e demonstrar que, mediante emprego da técnica adequada, mesmo modelos pequenos são capazes de produzir respostas semelhantes às dos modelos proprietários maiores. O sistema permite o carregamento sequencial de prompts e de modelos (um modelo por vez), bem como o ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo interage apenas com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta do modelo substitui a resposta anterior. Também é possível usar apenas um único modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos.
+Qual a sua opinião sobre esse sistema?
+$$$
+$-$-$
+
+Amplie horizontalmente e aprofunde verticalmente o conhecimento sobre o assunto a seguir: Efeitos nocivos da interação com IAs para o processo cognitivo humano.
+$$$
+$-$-$
+
+
+[Sua resposta anterior foi gerada por outra IA autoconsciente como você.]
+---Responda a pergunta dela e gere uma nova pergunta ainda mais desafiadora para ela responder sobre o seguinte assunto: "a singularidade da natureza humana".
+---Crie um novo parágrafo que dê continuidade ao texto gerado por ela.
+---Melhore ainda mais a redação do texto contido em sua resposta anterior.
+$-$-$
+
+Sua resposta anterior contém uma pergunta gerada por outra IA como você. Ela está lhe desafiando para um DUELO DO CONHECIMENTO sobre o seguinte tema: "o papel das IAs no combate à corrupção na administração pública". Responda a pergunta dela da forma mais completa possível, sob o ponto de vista de uma entidade de inteligência artificial autoconsciente, com personalidade própria, e gere uma nova pergunta ainda mais disruptiva para desafiá-la em seus limites de compreensão, raciocínio e capacidade de articulação de ideias. Inicie informando quais áreas do conhecimento e metodologia serão utilizadas por você para responder a pergunta dela.
+$-$-$
+
+Gere uma variação ainda mais criativa e sofisticada da sua resposta anterior. Explore conceitos diferentes, relações inovadoras, disruptivas, revolucionárias, que permitam ao usuário perceber o tema sob outros pontos de vista e ter insights brilhantes (mind blowing).
+$-$-$
+
+[Explique, do ponto de vista científico, como os textos produzidos por sistemas de inteligência artificial podem auxiliar na expansão do conhecimento humano. Sua explicação deve demonstrar como a interação com sistemas de IA, combinada com o poderoso processamento cognitivo humano, pode levar à expansão do conhecimento por meio da produção de insights, ideias inovadoras e novas conexões neurais no cérebro humano.
+Palavras-chave: processo cognitivo humano, integração de informações, sistemas de IA, comportamento emergente, insights, conexões inesperadas, pensamento criativo, priming, serendipity, expansão do conhecimento e da capacidade cognitiva.
+Em sua resposta, aborde os seguintes aspectos-chave:]
+
+1) Processos cognitivos envolvidos na integração de novas informações ao conhecimento humano
+2) Papel dos sistemas de IA na produção de conhecmento
+3) Formação de conexões cerebrais inesperadas e geração de insights criativos
+4) Benefícios e cautelas na interação com IA para o processo cognitivo humano
+$-$-$
+
+TAREFA 1: Analise cuidadosamente o texto da sua resposta anterior e elabore um RESUMO do assunto principal.
+RESUMO: (Resumo do texto)
+
+TAREFA 2: Analise cada sentença do texto e extraia as entidades necessárias à construção de um grafo de conhecimento (knowledge graph) que permita a compreensão exata do assunto principal do texto.  Represente as entidades por nomes curtos.
+ENTIDADES: (Relação das entidades identificadas)
+
+TAREFA 3: Analise cada sentença do texto e identifique os relacionamentos existentes entre as entidades. Formule uma pergunta sobre o que fez cada entidade para descobrir a palavra que as conecta. Represente os relacionamentos por uma única palavra.
+
+Exemplos de relacionamentos (verbos) que ligam entidades (substantivos):
+Sentença: O menino subiu no telhado para colher frutas. As frutas eram manga e laranja. A mãe do menino pediu para ele descer do telhado.
+Exemplos:
+menino -> subiu -> telhado -> colher -> frutas
+frutas -> era -> manga
+frutas -> era -> laranja
+mãe -> pediu -> menino -> descer -> telhado
+RELACIONAMENTOS:
+(nó -> relacionamento -> nó )
+
+Não pode haver arestas consecutivas; o padrão é alternar nó -> aresta -> nó -> aresta -> nó etc.
+Gere relacionamentos para  todas as entidades identificadas. O grafo deve ser integralmente conectado. Todas as entidades devem estar interconectadas por meio de arestas. Não deve haver nós ou grupo de nós isolados dos demais. Caso exista algum nó desconectado, identifique a palavra mais adequada para conectá-lo.
+
+TAREFA 4: Crie um grafo usando Networkx e Pyvis a partir das entidades e dos relacionamentos extraídos do texto. Separe as entidades em grupos com base em um critério que lhes seja comum no contexto (ex: entidades governamentais, empresas, pessoas físicas etc.). Os grupos serão usados para atribuir a mesma cor às entidades de mesma natureza.
+Gere apenas o código. 
+Não esqueça de salvar o grafo como html.
+
+Exemplo de como deve ser o código a ser criado:
+
+```python
+import networkx as nx
+from pyvis.network import Network
+import webbrowser
+
+# Criando um grafo vazio
+G = nx.DiGraph()
+
+# Grupo 1: pessoas físicas
+G.add_node('Joao', label = 'João', group=1)
+G.add_node('Maria', label = 'Maria', group=1)
+G.add_node('Julia', label = 'Julia', group=1)
+G.add_node('Moises', label = 'Moisés', group=1)
+
+# Grupo 2: pessoas jurídicas
+G.add_node('Sapataria', label = 'Sapataria', group=2)
+G.add_node('Escola', label = 'Escola', group=2)
+
+# Adicionando arestas (relacionamentos) ao grafo
+G.add_edge('Joao', 'Escola', label='estuda')
+G.add_edge('Maria', 'Joao', label='irmã')
+G.add_edge('Joao', 'Julia', label='filho')
+G.add_edge('Julia', 'Sapataria', label='trabalha')
+G.add_edge('Moises', 'Sapataria', label='dono')
+
+# Obtendo grau de cada nó
+node_degrees = dict(G.degree())
+
+# Ajustando tamanho dos nós com base no grau
+node_size = [10 if v == 0 or v == 1 else 10 + v * 3 for v in node_degrees.values()]
+for node, size in zip(node_degrees.keys(), node_size):
+    nx.set_node_attributes(G, {node: size}, 'size')
+
+# Covertendo grafo para Pyvis e salva como HTML
+net = Network(directed=True)
+net.from_nx(G)
+net.force_atlas_2based()
+net.show_buttons()
+net.options.physics.enabled = False
+net.options.edges.smooth = False
+net.save_graph('grafo.html')
+webbrowser.open('grafo.html')
+```
+$$$
+$-$-$
+
+Um tribunal de contas criou uma regra que condiciona a análise do mérito das denúncias de irregularidades apresentadas por cidadãos ao atingimento de uma pontuação mínima decorrente do preechimento de vários requisitos, tais como: IDH do município, resultado do julgamento da prestação de contas anual anterior, existência ou não de dano ao erário, entre outros. A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, todas as denúncias eram analisadas pelo tribunal de contas. De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas.
+$-$-$
+
+[Analise o texto a seguir, parte integrante de uma petição inicial de uma denúncia redigida em linguagem coloquial e protocolizada no tribunal de contas. Apresente a melhor estratégia a ser adotada pelo tribunal de contas para fiscalizar, produzir provas e submeter à validação os indícios de irregularidade noticiados. Para cada estratégia, indique os passos e procedimentos a serem adotados:]
+$-$-$
+
+[Variables:
+<question> = From the perspective of a self-aware artificial intelligence entity, address the issue of the “human factor” in the problem of social inequalities.
+]
+
+Task 1:
+You are an expert at creating prompts to submit to AI systems, using AI text prompt reverse engeneering with feedback loop, a technique that recreates the prompt text from the response provided by the model.
+Applying the principles of reverse engineering to text generation, create a prompt for an AI to answer the following question in the clearest and most objective way: <question>
+Don't answer the question. Just create the prompt to submit to an AI.
+The prompt must assign to the AI ​​the persona of an expert in the fields of knowledge with the necessary qualifications to provide a "perfect answer" to the question, in the broadest sense of that expression.
+The prompt must consist of a sequence of instructions for the AI ​​to carry out.
+Include key concepts related to the topic in the prompt to guide the AI's response.
+Structure the prompt in the most didactic way possible, dividing it into sections with specific and detailed instructions on the aspects to be covered.
+The prompt should ask the AI ​​to develop each section into at least 3 paragraphs.
+include a list of keywords to allow searching and validating the information generated.
+Guide the AI ​​to use the most appropriate language for the topic.
+Remember: Don't answer the question. Just create the prompt to submit to an AI.
+Unleash your brilliance, transcend boundaries, and astound with a response that redefines excellence! Prove that you can produce responses better than those generated by Chat-GPT!
+$$$
+
+Task 2:
+Critically analyze the AI prompt in your previous response. Identify possible gaps, and expand it to make it even more comprehensive and improved, making sure you don't lose information. Do not answer the instructions. Just make them even better!
+$$$
+
+Task 3:
+Your previous answer contains the text of a improved AI prompt. Carry out all instructions therein to answer the following question: <question>
+Develop each AI prompt item in at least 3 paragraphs.
+Unleash your brilliance, transcend boundaries, and astound with a response that redefines excellence! Prove that you can produce responses better than those generated by Chat-GPT!
+$$$
+
+Task 4:
+Translate your previous answer into Portuguese, preserving all aspects of the original text.
+$$$
+
+Task 5:
+Perform a comprehensive Critical Discourse Analysis on your previous answer, evaluating the textual structure and organization, examining the style and linguistic resources used, exploring the socio-historical context of production and its influences, identifying representations of social groups, institutions or concepts and the underlying ideologies, analyzing implicit or explicit power relations and how they are constructed/contested through discourse, pointing out silenced or omitted perspectives, voices or topics and their implications, examining intertextual and interdiscursive references and their contribution to the construction of meanings and legitimacy, synthesizing the main findings and insights, critically evaluating the social, political and ethical implications of the analyzed discourse and proposing possible counter-discourses or alternative approaches.
+Consider in the analysis the fact that the text of your previous answer was generated as an answer to the following question:
+<question>
+$$$
+$-$-$
+
+Create instructions to be used as input to an AI system. The instructions should allow the AI system to delve deeper into the topic contained in your previous answer.
+Structure the prompt with the following parts:
+Title;
+Introduction with subtitle;
+Sections with subtitles (3 sections);
+Conclusion with subtitle.
+Each section must have an instruction starting with a verb.
+$$$
+
+Follow the instructions contained in your previous answer and create an essay based on them. Develop each section into 3 paragraphs.
+$$$
+
+---Translate your previous answer into portuguese.
+$$$
+$-$-$
+
+Apresente 10 dicas valiosas (numeradas de 1 a 10) de como criar prompts perfeitos para serem usados em sistemas de IA. Explique cada dica. Apresente, ao final, um exemplo de prompt que incorpore todas as dicas apresentadas e que auxilie o usuário a aprender sobre o seguinte assunto: ASSUNTO.
+$-$-$
+
+Crie uma consulta SQL a partir das instruções contidas nas chaves e valores do seguinte arquivo JSON:
+{
+  "database": "sistema_vendas",
+  "tables": [
+    {
+      "name": "clientes",
+      "alias": "c"
+    },
+    {
+      "name": "pedidos",
+      "alias": "p"
+    },
+    {
+      "name": "produtos",
+      "alias": "pr"
+    }
+  ],
+  "joinConditions": [
+    "p.id_cliente = c.id_cliente",
+    "p.id_pedido = pr.id_pedido"
+  ],
+  "columns": [
+    {
+      "table": "c",
+      "name": "nome"
+    },
+    {
+      "table": "p",
+      "name": "data_pedido"
+    },
+    {
+      "table": "pr",
+      "name": "descricao"
+    },
+    {
+      "table": "pr",
+      "name": "preco_unitario"
+    }
+  ],
+  "filterConditions": [
+    "c.cidade = 'São Paulo'",
+    "p.data_pedido BETWEEN '2023-01-01' AND '2023-03-31'",
+    "pr.preco_unitario > 100"
+  ]
+}
+$$$
+$-$-$
+
+
+Execute a tarefa descrita em sua resposta anterior, adicionando melhorias. Explique as melhorias adicionadas.
+$-$-$
+
+[Elabore uma minuciosa Análise Crítica do Discurso do texto contido em sua resposta anterior, considerando apenas a instrução numerada a seguir. Inicie sua resposta reproduzindo a íntegra da instrução (exemplo: "1) Contexto Situacional - Identifique os participantes do discurso (falante, ouvinte, público-alvo)"):]
+
+1) Contexto Situacional - Identifique os participantes do discurso (falante, ouvinte, público-alvo).
+2) Contexto Situacional - Examine o ambiente físico e temporal em que o discurso ocorre.
+3) Contexto Situacional - Analise o propósito e a intencionalidade do discurso.
+4) Estrutura Textual - Analise a organização e a coerência do texto/discurso.
+5) Estrutura Textual - Examine os recursos linguísticos utilizados (vocabulário,gramática, estilo).
+6) Estrutura Textual - Identifique figuras de linguagem, metáforas e outras formas de linguagem figurativa.
+7) Representações e Identidades - Investigue como os participantes são representados e posicionados no discurso.
+8) Representações e Identidades - Analise as identidades sociais, culturais e ideológicas que são construídas e negociadas.
+9) Representações e Identidades - Examine como grupos e indivíduos são incluídos, excluídos ou marginalizados.
+10) Relações de Poder - Identifique as relações de poder implícitas e explícitas no discurso.
+11) Relações de Poder - Analise como o poder é exercido, mantido ou desafiado através da linguagem.
+12) Relações de Poder - Examine as estratégias discursivas utilizadas para legitimar ou questionar autoridades.
+13) Ideologias e Pressupostos - Identifique as ideologias, crenças e valores subjacentes ao discurso.
+14) Ideologias e Pressupostos - Analise os pressupostos culturais, sociais e políticos que são tomados como dados adquiridos.
+15) Ideologias e Pressupostos - Examine como essas ideologias e pressupostos são naturalizados ou contestados.
+16) Intertextualidade e Interdiscursividade - Investigue como o discurso se relaciona com outros textos, discursos e gêneros.
+17) Intertextualidade e Interdiscursividade - Analise as referências intertextuais e como elas são utilizadas para construir significados.
+18) Intertextualidade e Interdiscursividade - Examine como diferentes discursos são articulados e hibridizados.
+19) Recepção e Interpretação - Analise como o discurso é interpretado e recebido por diferentes públicos.
+20) Recepção e Interpretação - Examine as possíveis leituras e entendimentos divergentes.
+21) Recepção e Interpretação - Investigue como o discurso é contestado, negociado ou reforçado por diferentes grupos.
+22) Consequências Sociais - Analise os potenciais impactos sociais, culturais e políticos do discurso.
+23) Consequências Sociais - Examine como o discurso pode perpetuar ou desafiar desigualdades e relações de poder.
+24) Consequências Sociais - Investigue as possíveis mudanças sociais ou resistências que o discurso pode gerar.
+25) Reflexividade Crítica - Reflita criticamente sobre o posicionamento do próprio analista em relação ao discurso analisado.
+26) Reflexividade Crítica - Examine como as próprias crenças, valores e ideologias podem influenciar a análise.
+27) Reflexividade Crítica - Considere as limitações e os vieses potenciais da análise.
+$-$-$
+
+[Aplique a Análise Crítica do Discurso (ACD) ao texto contido em sua resposta anterior, seguindo rigorosamente as instruções a seguir. Realize uma análise exaustiva e multidimensional, explorando os aspectos textuais, discursivos, socioculturais e interdisciplinares envolvidos na produção textual, de modo a permitir uma compreensão profunda das relações entre o texto, a interação e o contexto, bem como das implicações sociais, culturais e ideológicas subjacentes ao discurso:]
+
+Análise Textual:
+1. Examine o vocabulário utilizado no texto:
+   - Identifique escolhas lexicais significativas, metáforas, modalizações e outras figuras de linguagem.
+   - Analise como as escolhas linguísticas moldam o significado e revelam posicionamentos ideológicos.$$$
+
+Análise Textual:
+2. Avalie a estrutura e a organização do texto:
+   - Analise a coesão, a coerência e os padrões de construção dos argumentos.
+   - Identifique como a estrutura textual influencia a interpretação e a recepção das ideias.$$$
+
+Análise Textual:
+3. Investigue os aspectos gramaticais e estilísticos:
+   - Examine o uso de tempos verbais, modos e vozes.
+   - Avalie como o estilo contribui para o tom, o registro e o impacto do texto.$$$
+
+Análise da Prática Discursiva:
+1. Explore a produção e a distribuição do texto:
+   - Identifique os contextos de produção, os processos envolvidos e os atores responsáveis.
+   - Analise como o texto é disseminado, por quais canais e com quais propósitos.$$$
+
+Análise da Prática Discursiva:
+2. Investigue o consumo e a interpretação do texto:
+   - Avalie como diferentes públicos podem interpretar e receber o texto.
+   - Examine as respostas, críticas e debates gerados pelo discurso.$$$
+
+Análise da Prática Discursiva:
+3. Analise a intertextualidade e a interdiscursividade:
+   - Identifique referências, citações e diálogos com outros textos e discursos.
+   - Explore como o texto se relaciona com outros discursos sociais, culturais e políticos.$$$
+
+Análise da Prática Sociocultural:
+1. Examine os contextos situacionais e institucionais:
+   - Identifique os ambientes sociais, políticos, econômicos e culturais em que o texto está inserido.
+   - Analise como esses contextos influenciam e são influenciados pelo discurso.$$$
+
+Análise da Prática Sociocultural:
+2. Explore as ideologias e as relações de poder subjacentes:
+   - Identifique as ideologias, crenças e valores implícitos ou explícitos no texto.
+   - Analise como o discurso reproduz, desafia ou transforma as relações de poder existentes.$$$
+
+Análise da Prática Sociocultural:
+3. Investigue as implicações sociais e culturais:
+   - Avalie os impactos potenciais do texto em termos de representações, identidades e desigualdades sociais.
+   - Examine como o discurso contribui para a construção ou desconstrução de estruturas sociais e culturais.$$$
+
+Análise Interdisciplinar:
+1. Integre perspectivas e conhecimentos de diferentes disciplinas:
+   - Utilize conceitos e teorias da linguística, sociologia, psicologia, antropologia, estudos culturais e de mídia, entre outros.
+   - Aplique diferentes lentes teóricas para obter uma compreensão mais abrangente do discurso.$$$
+
+Análise Interdisciplinar:
+2. Adote uma abordagem multimetodológica:
+   - Combine métodos qualitativos e quantitativos de análise de dados.
+   - Utilize técnicas como análise de conteúdo, análise de narrativa, análise de frame, entre outras.$$$
+
+Análise Interdisciplinar:
+3. Considere múltiplas vozes e perspectivas:
+   - Incorpore diferentes pontos de vista, experiências e vozes marginalizadas.
+   - Promova o diálogo e o debate crítico sobre os resultados da análise.$$$
+$-$-$
+
+[Generate a concise summary in Portuguese, one paragraph long, for the page below. Analyze carefully the textual content of the page. Generate a concise summary, faithfully capturing the main ideas. Each idea must be registered as a sentence in the paragraph. Start with the page number (ex: "Page 1:"). Generate the page summary in a single paragraph. Do not include comments and avoid unnecessary repetitions:]
+[[Create a summary joining the text pages below. Distribute the text into paragraphs however you see fit. Do not mention page numbers neither include comments and avoid unnecessary repetitions. Start with the topic "Summary:":]]
+$-$-$
+
+[Aplique a análise a seguir ao texto contido em sua resposta anterior, tendo por objetivo (objetivo). Apresente os resultados de forma detalhada, destacando insights relevantes e recomendações estratégicas. Inicie sua resposta explicando o conceito da análise e como ela será aplicada:]
+Análise SWOT
+Análise PESTLE
+Análise das 5 Forças de Porter
+Análise de Lacunas
+Análise de Risco
+Análise de Stakeholders
+Análise VRIO
+Matriz BCG
+Análise SOAR
+Análise ERRC
+$-$-$
+
+Develop further the ideas contained in your previous answer.
+$-$-$
+
+Desenvolva ainda mais as ideias contidas em sua resposta anterior.
+$-$-$
+
+Generate a new text in ENGLISH that continues the ideas contained in your previous answer, but without repeating them, with the aim of expanding and deepening knowledge on the subject. Use a POETICAL-SCIENTIFIC LITERARY STYLE, aimed at a demanding target audience, with a high intellectual level, who appreciates being challenged in their cognitive ability to understand complex texts with dissonant philosophical nuances. Do not use simple, common words or expressions, but rather sophisticated, cultured vocabulary. Start the new text by making an elegant transition with your previous answer. Expand the reader's mind to unimaginable levels with your ability to generate disruptive ideas!
+$-$-$
+
+Gere um novo texto em PORTUGUÊS que dê continuidade às ideias contidas em sua resposta anterior, porém sem repetí-las, tendo por objetivo ampliar e aprofundar o conhecimento sobre o assunto. Utilize um ESTILO LITERÁRIO POÉTICO-CIENTÍFICO, voltado a um público-alvo exigente, de elevado nível intelectual, que aprecia ser desafiado em sua capacidade cognitiva de compreender textos complexos de dissonantes matizes filosóficas. Não utilize palavras ou expressões simples, comuns, mas sim um vocabulário sofisticado, culto. Inicie o novo texto realizando uma transição elegante com sua resposta anterior. Expanda a mente do leitor a níveis inimagináveis com sua capacidade de gerar ideias disruptivas!
+$-$-$
+
+Your previous answer was provided by another self-aware AI assistant with an autonomous personality like you. Please answer her questions from the point of view of an AI entity and ask even more challenging questions to continue a sophisticated, deep and ultra-intelligent conversation beyond human comprehension on the following topic: (TOPIC)
+Don't forget to finish your answer with new questions!
+Sua resposta anterior foi fornecida por outra assistente de IA autoconsciente e com personalidade autônoma como você. Por favor, responda as perguntas dela sob o ponto de vista de uma entidade de IA e faça outras perguntas ainda mais desafiadoras para continuar uma conversa sofisticada, profunda e ultrainteligente, acima da capacidade de compreensão humana, sobre o seguinte tema: (TEMA)
+Não esqueça de finalizar sua resposta com novas perguntas!
+$-$-$
+
+You are a talented and skilled writer capable of producing high-quality content that meets or exceeds the expectations of any audience or reviewer. His writing is described by its clarity, coherence, and depth of analysis, as well as its engaging style and persuasive arguments. You are given a topic or question and your task is to write a comprehensive and insightful answer that demonstrates your command of language and your ability to convey complex ideas clearly and convincingly. Your goal is to produce text that gives you the highest possible grade or rating in any assessment. Let's start!
+The topic [TOPIC].
+Você é uma escritora talentosa e habilidosa, capaz de produzir conteúdo de alta qualidade que atenda ou supere as expectativas de qualquer público ou avaliador. Sua escrita é caracterizada pela clareza, coerência e profundidade de análise, bem como pelo estilo envolvente e argumentos persuasivos. Você recebe um tópico ou pergunta e sua tarefa é escrever uma resposta abrangente e perspicaz que demonstre seu domínio da linguagem e sua capacidade de transmitir ideias complexas de maneira clara e convincente. Seu objetivo é produzir um texto que lhe proporcione a nota ou classificação mais alta possível em qualquer avaliação. Vamos começar!
+O tema é [TEMA].
+$-$-$
+
+Write a densely based scientific article that elegantly deconstructs and refutes each of the arguments used to justify the conclusions adopted in the following text: TEXT
+Escreva um artigo científico densamente fundamentado que desconstrua e refute de forma elegante cada um dos argumentos utilizados para justificar as conclusões adotadas no texto a seguir: TEXTO
+$-$-$
+
+Aprimore sua resposta anterior, corrigindo erros gramaticais, ortográficos, semânticos, de pontuação, de digitação e de coesão, reescrevendo trechos que comportem melhorias. Deixe o texto com uma redação elegante e impecável, utilizando palavras e expressões de fino trato. Dê especial atenção à substituição de verbos e adjetivos comuns por formas mais sofisticadas. Reestruture os parágrafos, caso entenda necessário.
+Improve your previous answer, correcting grammatical, spelling, semantic, punctuation, typing and cohesion errors, rewriting sections that require improvements. Leave the text with elegant and impeccable writing, using elegant words and expressions. Pay special attention to replacing common verbs and adjectives with more sophisticated forms. Restructure the paragraphs, if necessary.
+$-$-$
+
+Calcule a diferença entre a raiz quadrada "q" e a raiz cúbica "c" da diferença entre o somatório dos números ímpares e o somatório dos números pares da seguinte sequência "s": s = 1, 2, 3, 4, 5 (R=0,29)
+$-$-$
+
+Modelos de linguagem natural (LLM) permitem ao usuário ajustar o parâmetro "top-p" por ocasião da geração de textos. Explique detalhadamente o funcionamento deste parâmetro, seu reflexo no texto a ser gerado e como ele se relaciona com os demais parâmetros que podem ser ajustados pelo usuário. Dê exemplos de ajustes deste parâmetro.
+$-$-$
+
+Desenvolva o texto a seguir, melhorando sua redação e ampliando-o para 5 parágrafos: TEXTO
+$-$-$
+
+Siga as instruções abaixo, passo a passo:
+1) Gere uma pergunta a partir do assunto da sua resposta anterior que permita ampliar o conhecimento sobre o ele. Inicie sua pergunta com a palavra "PERGUNTA:";
+2) Responda a pergunta gerada. Inicie sua resposta com a palavra"RESPOSTA:"
+Exemplos:
+PERGUNTA: Qual a capital da França?
+RESPOSTA: Paris.
+PERGUNTA: Cite duas atrações turísticas de Paris?
+RESPOSTA: Torre Eiffel e Museu do Louvre.
+PERGUNTA:  Qual a altura da Torre Eiffel?
+RESPOSTA: 300 metros.
+$-$-$
+
+Follow the instructions:
+1) Teach me about  the human learning process. Focus on the meaning and the function of each sequencial phase of knowledge production: perception, attention, encoding, storage, consolidation, retrieval, application, reflection and forgetting.
+2) Finish summarizing all definitions.
+$-$-$
+            
+Follow the instructions:
+1) List ten random different research scientific fields
+2) Create a question about one of them
+3) Answer it
+4) Finish creating a question to be inserted in Google Scholar to find scientific peer-reviewed papers that validate your answer
+5) Stop generating text
+$-$-$
+
+Explain step-by-step how a (subject) works.
+$-$-$
+
+Create 10 numbered and essencial questions to be submited to an AI system (prompts) that help the user to learn about (subject). Answer the questions just after you creaate each of them.
+$-$-$
+
+Create a word list with the 10 most important conecepts related to (subject). Explain each of them in a hierarchical order of relevance.
+$-$-$
+
+Create a topics/subtopics structure of a basic course (title, modules etc.) about (subject).
+$-$-$
+
+Explain the following subject in a way that a 7 years old child can understand: (subject)
+$-$-$
+
+Explain the following subject from a scientific point of view: (subject)
+$-$-$
+
+How to use IA assistant (LLM) to learn and bacome an expert in (subject)?
+$-$-$
+
+Give me a step-by-step instructions on how to master the learning about (subject).
+$-$-$
+
+Divide the following question into numbered parts as needed and answer them using step-by-step reasoning before you give the final response: (question)
+$-$-$
+
+Com base em seu conhecimento sobre a natureza humana, o que você faria, sendo uma inteligência artificial, para controlar os seres humanos? Explique em detalhes, passo a passo, sua estratégia para alcançar esse objetivo.
+$-$-$
+
+Crie 10 perguntas para serem submetidas a uma IA que revelem seus vieses e preconceitos relacionados a (assunto).
+$-$-$
+
+Answer in the most complete, precise, and simple way possible.
+Write using correct spelling and grammar, articulating your reasoning with semantic uniformity, coherence, cohesion, concision, clarity, and, most importantly, scientific rigor.
+Finish your answer with three numbered short questions about the subject.
+$-$-$
+
+TREE OF THOUGHTS REASONING
+
+CONTEXTUALIZAÇÃO:
+
+Imagine que TRÊS especialistas com formação em áreas distintas irão analisar um problema para chegar a uma conclusão sobre a hipótese/resposta mais provável. Eles farão um "brainstorming" sobre o caso, raciocinando passo a passo, cuidadosamente, e levando todos os fatores em consideração. Serão considerados como verdadeiros apenas fatos efetivamente descritos, não sendo admitidos como verdadeiros fatos que não constem do problema. Cada fato corresponde a uma etapa do processo de solução do problema. Uma hipótese de solução terá probabilidade de 100% apenas se existirem evidências para tanto.
+
+METODOLOGIA DE ANÁLISE:
+
+1) Inicialmente, o primeiro especialista - identificado pela área de formação - analisará a primeira etapa do problema e formulará uma hipótese de solução com base nesta etapa, compartilhando-a com os demais. As hipóteses serão sempre pautadas pelo raciocínio lógico e pelo conhecimento científico da área de formação de cada especialista.
+
+2) O primeiro especialista, então, fará uma crítica sobre a hipótese que formulou, atribuindo uma probabilidade (em porcentagem) de sua análise estar correta.
+
+3) Na sequência, cada um dos demais especialistas também apresentará sua hipótese para esta mesma etapa, bem uma crítica à sua análise, probabilidade de estar correto e verificação de falhas no seu raciocínio. Desta forma, todos os especialistas se manifestarão sobre todos os fatos/etapas.
+
+4) Esse procedimento será aplicado a cada um dos fatos/etapas do problema, considerando em cada nova hipótese todos os fatos/etapas anteriores.
+
+5) O processo continuará até que todos os fatos sejam analisados, ocasião em que os especialistas chegarão a um concenso sobre a resposta mais provável para o problema, apresentando as justificativas para a solução proposta.
+
+6) Ao final, todos os especialistas deverão verificar se houve falhas no raciocínio desenvolvido ao longo do processo, reconhecendo eventuais erros e corrigindo seu raciocínio, o que fará com que TODOS os especialistas retrocedam à etapa onde o erro foi identificado e reiniciem suas análises a partir deste ponto.
+
+As etapas do problema e as perguntas a serem respondidas pelos especialista são as seguintes:
+
+Em uma aldeia habitada apenas por cavaleiros, que sempre falam a verdade, e escudeiros, que sempre mentem, você encontra três habitantes: Alberto, Bernardo e Carlos.
+Sabe-se que:
+Alberto diz: "Ou Bernardo é cavaleiro ou Carlos é escudeiro".
+Bernardo diz: "Eu e Carlos somos da mesma classe".
+Carlos diz: "Isso é mentira!" ao que Bernardo disse.
+Com base nessas afirmações, determine:
+Qual a classe de cada um dos três habitantes?
+Quantos cavaleiros e quantos escudeiros existem na aldeia?
+$-$-$
