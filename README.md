@@ -154,8 +154,19 @@ To use Samantha you will need:
 ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
 
 <br>
-Samantha's initial settings are deterministic. This means that for the same prompt, you'll get the same answer every time. For a stochastic behavior, adjust the model's hyperparameters accordingly.
+Samantha's initial settings are deterministic. This means that for the same prompt, you'll get the same answer every time. The model always selects tokens with the highest probability score.
+<br><br>
+
+In turn, for stochastic behavior, when the model selects tokens with different probability scores, adjust the hyperparameters accordingly.
+<br><br>
+
+**Deterministic settings:** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1).
+<br><br>
+
+**Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
 <br><br><br>
+
+
 
 # ⬇️ Downloading Large Language Models (LLM)
 
