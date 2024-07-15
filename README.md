@@ -1,7 +1,7 @@
 
 ![v](https://img.shields.io/badge/version-0.1.0-blue) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/updated-June%2030,%20%202024-green)
+![v](https://img.shields.io/badge/updated-July%2017,%20%202024-green)
 
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
@@ -278,8 +278,8 @@ Project version history and future improvements.
 <summary>Code Versions</summary>
 <br>
 
-**Version 0.1.0 (2024/06/30):**
-* Initial test version.
+**Version 0.1.0 (2024-07-15):**
+* Initial beta version.
 <br>
 
 **Future improvements:**
