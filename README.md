@@ -156,7 +156,7 @@ To use Samantha you will need:
 ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
 
 <br>
-Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get the same answer every time. The model always selects tokens with the highest probability score. Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) with deterministic adjustments.
+Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get the same answer every time. Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) with deterministic adjustments. The model always selects tokens with the highest probability score. 
 <br><br>
 
 In turn, for stochastic behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
