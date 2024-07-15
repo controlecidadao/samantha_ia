@@ -154,7 +154,7 @@ To use Samantha you will need:
 ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
 
 <br>
-Samantha's initial settings are deterministic. This means that for the same prompt, you'll get the same answer every time. The model always selects tokens with the highest probability score.
+Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get the same answer every time. The model always selects tokens with the highest probability score.
 <br><br>
 
 In turn, for stochastic behavior, when the model selects tokens with different probability scores, adjust the hyperparameters accordingly.
