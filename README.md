@@ -67,35 +67,37 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 <br>
 
-✅ **Open Source Foundation**: Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
+✅ **Open Source Foundation:** Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
   
-✅ **Offline Capability**: Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.<br><br>
+✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.<br><br>
 
-✅ **Unlimited and Free Use**: Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.<br><br>
+✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.<br><br>
 
 <!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
-✅ **Extensive Model Selection**: With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
+✅ **Extensive Model Selection:** With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
 
-✅ **Customizable Parameters**: Users have control over model hyperparameters such as **context window** length (n_ctx, max_tokens), **token sampling** (temperature, tfs_z, top-k, top-p, min_p, typical_p), **penalties** (presence_penalty, frequency_penalty, repeat_peanlty) and **stop words**, allowing for responses that suit specific requirements, with deterministic or stochastic behavior.<br><br>
+✅ **Copy and paste LLM:** To try out a gguf model, simply copy its download link from any Hugging Face repository and paste it inside Samantha to run it right away.<br><br>
 
-✅ **Interactive Experience**: Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.<br><br>
+✅ **Customizable Parameters:** Users have control over model hyperparameters such as **context window** length (n_ctx, max_tokens), **token sampling** (temperature, tfs_z, top-k, top-p, min_p, typical_p), **penalties** (presence_penalty, frequency_penalty, repeat_peanlty) and **stop words**, allowing for responses that suit specific requirements, with deterministic or stochastic behavior.<br><br>
 
-✅ **Learning Insights**: A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings.<br><br>
+✅ **Interactive Experience:** Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.<br><br>
 
-✅ **Voice Interaction**: Samantha supports simple voice commands with offline speech-to-text [Vosk](https://alphacephei.com/vosk/) (English and Portuguese) and text-to-speech with SAPI5 voices, making it accessible and user-friendly.<br><br>
+✅ **Learning Insights:** A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings.<br><br>
 
-✅ **Audio feedback**: The interface provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.<br><br>
+✅ **Voice Interaction:** Samantha supports simple voice commands with offline speech-to-text [Vosk](https://alphacephei.com/vosk/) (English and Portuguese) and text-to-speech with SAPI5 voices, making it accessible and user-friendly.<br><br>
 
-✅ **Document Handling**: The system can load small PDF and TXT files. Chaining instructions/prompts can be inputted via a TXT file for convenience.<br><br>
+✅ **Audio feedback:** The interface provides audible alerts to the user, signaling the beginning and end of the text generation phase by the model.<br><br>
 
-✅ **Versatile Text Input**: Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous model response and user prompt to guide the model's response.<br><br>
+✅ **Document Handling:** The system can load small PDF and TXT files. Chaining instructions/prompts can be inputted via a TXT file for convenience.<br><br>
 
-✅ **Code Integration**: Automatic extraction of code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/) in an isolated virtual environment, enables users to execute generated code swiftly for immediate results.<br><br>
+✅ **Versatile Text Input:** Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous model response and user prompt to guide the model's response.<br><br>
 
-✅ **Data Analysis Tools**: A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [PyMuPDF](https://pypi.org/project/PyMuPDF/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell). Integration with [DB Browser](https://sqlitebrowser.org/about/) is also available.<br><br>
+✅ **Code Integration:** Automatic extraction of code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/) in an isolated virtual environment, enables users to execute generated code swiftly for immediate results.<br><br>
 
-✅ **Performance Optimized**: To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size to save memory and computational resources.<br>
+✅ **Data Analysis Tools:** A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Dash](https://plotly.com/examples/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [PyMuPDF](https://pypi.org/project/PyMuPDF/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available within JupyterLab for comprehensive analysis and visualization (for a complete list of Python available libraries, type `!pip list` in a JupyterLab cell). Integration with [DB Browser](https://sqlitebrowser.org/about/) is also available.<br><br>
+
+✅ **Performance Optimized:** To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size to save memory and computational resources.<br>
 
 <br>
 
