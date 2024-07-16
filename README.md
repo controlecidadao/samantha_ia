@@ -212,7 +212,7 @@ Download the chosen model and save it to your computer or just copy the download
 
 Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. **Some `gguf` models may not (yet) be loaded by Samantha due to their technical characteristics**.
 
-* [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft), fine-tunned by [llmware](https://huggingface.co/llmware))
+* [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft) and fine-tunned by [llmware](https://huggingface.co/llmware))
 
 Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)<br><br>
 
