@@ -94,7 +94,6 @@ import gc                       # Import gc to help manage memory by automatical
 import shutil                   # Import shutil for transferring files and directories. It provides a high-level interface for working with files and directories on the local file system.
 from bs4 import BeautifulSoup   # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
 import tempfile                 # Import tempfile to create temporary files and directories.
-#from playwright.sync_api import sync_playwright # Import playwright.sync_api for web automation, allowing the script to interact with web pages as if it were a browser, useful for scraping HTML content or testing web applications. (Web Automation)
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -114,7 +113,7 @@ DIRETORIO_LOCAL = os.getcwd() # Define a constant for the current directory path
 # 3) INITIALIZE PYTHON MODULES
 # ============================
 
-# PYGAME
+# PYGAME & 2 VARIABLES
 pygame.init()                               # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
 som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response/stop notification, sourced from the specified local file path.
 som.set_volume(0.2)                         # Set the volume of the notification sound to 20% of the maximum volume.
@@ -122,7 +121,7 @@ click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a s
 click.set_volume(0.4)                       # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
 print()
 
-# PYTTSX3
+# PYTTSX3 & 3 VARIABLES
 engine = pyttsx3.init(driverName='sapi5')   # Initialize the text-to-speech engine using pyttsx3 with the 'sapi5' driver.
 voices = engine.getProperty('voices')       # Retrieve a list of available voices from the TTS engine instance.
 print('Number of voices installed on the computer:', len(voices), f'(0 a {len(voices) - 1})') # Display the total number of voices installed on the user's computer and an informational note about the count.
@@ -216,7 +215,7 @@ language = {
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
                 'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'frequency_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
-                'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada a sequências repetidas de tokens (não a sequência das próximas palavras) com base em sua presença no texto já gerado.',
+                'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada à sequências repetidas de tokens (não à sequência das próximas palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
@@ -283,7 +282,7 @@ language = {
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
                 'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'frequency_penalty (range slider). Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
-                'repeat_penalty_info': 'repeat_penalty (range slider). Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text.',
+                'repeat_penalty_info': 'repeat_penalty (range slider). Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text (repetition vs. diversity).',
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
@@ -569,7 +568,7 @@ def text_generator(
     global show_vocabulary
 
     click.play()
-    print('Starting the funtion "text_generator"...')
+    print('Starting function "text_generator"...')
     print()
     
     # Global variables bindings was necessary to avoid forbiden use of the same function parameters names
@@ -2596,12 +2595,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
-                gr.Slider(0, 10, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
+                gr.Slider(0, 10, 1.1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
-
+            # Activate / Deactivate Number of Response and Number of Loops checkboxes when Single Response per Model changes
             inputs[6].change(fn=change_checkbox, inputs=inputs[6], outputs=[inputs[13], inputs[14]])
 
             with gr.Row():
@@ -2874,12 +2873,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.Examples(fn=click_sound, run_on_click=True, examples=messages_text, label=None, examples_per_page=100, elem_id="examples", inputs=[inputs[0]])
         
-        btn1.click(fn=text_generator, inputs=inputs, outputs=outputs, queue=True) # Input buttons actions (fucntion calls)
-        btn2.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False) # Bound to STOP / NEXT button
+        btn1.click(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)   # Input buttons actions (fucntion calls)
+        btn2.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False)     # Bound to STOP / NEXT button
         btn2.click(fn=stop_running, inputs=None, outputs=None, queue=False)
         btn3.click(fn=clean_output, inputs=None, outputs=[saida], queue=True)
         btn4.click(fn=extract_models_names, inputs=None, outputs=inputs[4])
-        btn5.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False) # Bound to STOP ALL / RESET button
+        btn5.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False)     # Bound to STOP ALL / RESET button
         btn5.click(fn=stop_running_all, inputs=None, outputs=None, queue=False)
         btn6.click(fn=update_previous_answer, inputs=None, outputs=inputs[2], queue=False, show_progress='hidden')
         
