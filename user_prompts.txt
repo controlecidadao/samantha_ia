@@ -11,6 +11,40 @@ Qual a sua opinião sobre esse sistema?
 $$$
 $-$-$
 
+The quality of a AI model response can be assessed using four basic criteria:
+1) Degree of understanding of the explicit and implicit instructions contained in the user prompt;
+2) Degree of precision in the decision-making process to fill in the gaps in the context of the user prompt and to resolve ambiguities, required to generate the response;
+3) Degree of model adherence to these instructions;
+4) Quality of the response (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
+
+Using these criteria, create a prompt to submit to an AI system so that it produces the most perfect response possible to the following instructions:
+
+INSTRUCTIONS: 
+
+Don't answer the question. Simply create the prompt for another AI to respond.
+$$$
+
+Follow the instructions contained in your previous response and develop a numbered topic essay. Format the text using Markdown to be displayed on a html file.
+$$$
+
+
+A qualidade da resposta de um modelo de IA pode ser avaliada usando quatro critérios básicos:
+1) Grau de compreensão das instruções explícitas e implícitas contidas no prompt do usuário;
+2) Grau de precisão no processo de tomada de decisão para preencher as lacunas no contexto do prompt do usuário e para dirimir ambiguidades, necessário para gerar a resposta;
+3) Grau de adesão do modelo a estas instruções;
+4) Qualidade da resposta (estrutura e conteúdo) em relação às expectativas do usuário para o problema submetido ao modelo, considerando a técnica utilizada para criação do prompt e o ajuste dos hiperparâmetros do modelo.
+
+Usando esses critérios, crie um prompt para ser submetido a um sistema de IA para que ele produza a resposta mais perfeita possível para as seguintes instruções:
+
+INSTRUÇÕES: 
+
+Não responda à pergunta. Basta criar o prompt para que outra IA responda.
+$$$
+
+Siga as instruções contidas em sua resposta anterior e desenvolva um ensaio com tópicos numerados. Formate o texto usando Markdown para ser exibido em um arquivo html.
+$$$
+$-$-$
+
 Introduce 10 creative ways to use Samantha Interface Assistant to solve complex problems through automatic interaction between models without human intervention. Describe the details of how to sequence prompts and models to achieve the desired result.
 
 Apresente 10 maneiras criativas de usar Samantha Interface Assistant para resolução de problemas complexos por meio da interação automática entre modelos sem intervenção humana. Descreva os detalhes de como sequenciar prompts e modelos para alcançar o resultado desejado.
