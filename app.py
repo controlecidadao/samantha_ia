@@ -53,7 +53,7 @@
 # VSCODE DEBUG CODE EXPLORER
 # To use VSCode Debug Mode with Gradio, put a breakpoint in the first code line inside every function called by Gradio (global variable calls do not acept breakpoint)
 # Web browser must be visible on screen (some behaviors are trigered only when brwoser window is visible)
-# Windwos Keyboard Shortcuts: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
+# Windows Keyboard Shortcuts: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 # CTRL + K -> CTRL + 0 = COLLAPSE ALL ITEMS
 # CTRL + K -> CTRL + J = EXPAND ALL ITEMS
 
@@ -94,10 +94,11 @@ import gc                       # Import gc to help manage memory by automatical
 import shutil                   # Import shutil for transferring files and directories. It provides a high-level interface for working with files and directories on the local file system.
 from bs4 import BeautifulSoup   # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
 import tempfile                 # Import tempfile to create temporary files and directories.
+import markdown
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # Desable warning messages in terminal
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # Desable warning messages displayed in terminal
 
 print('Inside the app.py...')
 
@@ -106,7 +107,7 @@ print('Inside the app.py...')
 # 2) GET LOCAL DIRECTORY PATH
 # ===========================
 
-DIRETORIO_LOCAL = os.getcwd() # Define a constant for the current directory path
+DIRETORIO_LOCAL = os.getcwd()                   # Define a constant to store the current directory path
 
 
 # ============================
@@ -114,21 +115,21 @@ DIRETORIO_LOCAL = os.getcwd() # Define a constant for the current directory path
 # ============================
 
 # PYGAME & 2 VARIABLES
-pygame.init()                               # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
+pygame.init()                                   # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
 som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response/stop notification, sourced from the specified local file path.
-som.set_volume(0.2)                         # Set the volume of the notification sound to 20% of the maximum volume.
+som.set_volume(0.2)                             # Set the volume of the notification sound to 20% of the maximum volume.
 click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a sound object for a click event, sourced from another local file path, intended to be used for interactive elements like buttons.
-click.set_volume(0.4)                       # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
+click.set_volume(0.4)                           # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
 print()
 
 # PYTTSX3 & 3 VARIABLES
-engine = pyttsx3.init(driverName='sapi5')   # Initialize the text-to-speech engine using pyttsx3 with the 'sapi5' driver.
-voices = engine.getProperty('voices')       # Retrieve a list of available voices from the TTS engine instance.
+engine = pyttsx3.init(driverName='sapi5')       # Initialize the text-to-speech engine using pyttsx3 with the 'sapi5' driver.
+voices = engine.getProperty('voices')           # Retrieve a list of available voices from the TTS engine instance.
 print('Number of voices installed on the computer:', len(voices), f'(0 a {len(voices) - 1})') # Display the total number of voices installed on the user's computer and an informational note about the count.
-for i in voices:                            # Iterate over the list of voices and print each voice's name to the console.
+for i in voices:                                # Iterate over the list of voices and print each voice's name to the console.
     print(i.name)
 print()
-selected_voice = voices[0].name             # Set the initial selected voice that will be used by the Gradio interface when it is first initialized.
+selected_voice = voices[0].name                 # Set the initial selected voice that will be used by the Gradio interface when it is first initialized.
 
 
 def read_aloud_fn(text: str):
@@ -177,7 +178,7 @@ language = {
                 'subtitle_1': 'Ambiente de Interface Experimental Desenvolvido para Democratizar o Uso de Modelos de Inteligência Artificial de Código Aberto (Versão 0.1.0)',
                 'warning': 'ATENÇÃO',
                 'subtitle_2': 'O texto gerado pelos modelos reflete os vieses, erros e impropriedades do conteúdo das bases de dados utilizadas nos treinamentos (pré-treinamento e ajuste fino). Use com responsabilidade e apenas para insights!',
-                'subtitle_3': 'Projeto de <a href="https://www.unesco.org/en/open-science">Ciência Aberta</a> compartilhado no <a href="https://github.com/controlecidadao/samantha_ia/tree/main">Github</a> sob <a href="https://opensource.org/license/mit">Licença MIT</a> (Código Aberto). Desenvolvido com <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a> para uso apenas com CPU.',
+                'subtitle_3': 'Projeto de <a href="https://www.unesco.org/en/open-science">Ciência Aberta</a> compartilhado no <a href="https://github.com/controlecidadao/samantha_ia/tree/main">Github</a> sob <a href="https://opensource.org/license/mit">Licença MIT</a> (Código Aberto). Desenvolvido com <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a> para uso com CPU',
                 'btn1': 'Iniciar Chat',
                 'btn2': 'Parar / Próximo',
                 'btn3': 'Limpar Histórico',
@@ -187,7 +188,7 @@ language = {
                 'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
                 'initial_system_prompt': '',
                 'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response".',
-                'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat).',
+                'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). "---" ignora resposta anterior.',
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
@@ -230,9 +231,9 @@ language = {
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
-                'btn_copy_last_response': 'Copiar Resposta (last)',
-                'btn_copy_all_responses': 'Copiar Respostas (all)',
-                'btn_voice_command': 'Ativar Controle por Voz',
+                'btn_copy_last_response': 'Copiar Resposta',
+                'btn_copy_all_responses': 'Copiar Respostas',
+                'btn_voice_command': 'Controle por Voz',
                 'btn_idle': 'Executar Código',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
@@ -244,7 +245,7 @@ language = {
                 'subtitle_1': 'Experimental Interface Environment Designed to Democratize the Use of Open Source Artificial Intelligence Models (Version 0.1.0)',
                 'warning': 'WARNING',
                 'subtitle_2': 'The text generated by the models reflects the biases, errors and improprieties of the content of the databases used in training (pre-training and fine-tuning). Use them responsibly and for insights only!',
-                'subtitle_3': '<a href="https://www.unesco.org/en/open-science">Open Science</a> project shared on <a href="https://github.com/waltervix/samantha_ia">Github</a> under <a href="https://opensource.org/license/mit"> MIT License</a> (Open Source). Powered by <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a> for use with CPU only',
+                'subtitle_3': '<a href="https://www.unesco.org/en/open-science">Open Science</a> project shared on <a href="https://github.com/waltervix/samantha_ia">Github</a> under <a href="https://opensource.org/license/mit"> MIT License</a> (Open Source). Powered by <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a> for use with CPU',
                 'btn1': 'Start Chat',
                 'btn2': 'Stop / Next',
                 'btn3': 'Clear History',
@@ -254,7 +255,7 @@ language = {
                 'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
                 'initial_system_prompt': '',
                 'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""",
-                'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline).',
+                'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline). "---" ignore previous response.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
@@ -299,7 +300,7 @@ language = {
                 'btn_open_jupyterlab': 'Open JupyterLab',
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Response',
-                'btn_voice_command': 'Activate Voice Control',
+                'btn_voice_command': 'Voice Control',
                 'btn_idle': 'Run Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
@@ -308,7 +309,7 @@ language = {
             }
 
 # prompt the user to select their preferred language for the interface interaction, with a default option for Portuguese or English
-# read_aloud_fn desabled
+# read_aloud_fn desabled in the code
 
 if 'portuguese' in voices[0].name.lower(): # Check if the name of the voice contains the substring 'portuguese'. If it does, proceed to offer language selection.
     print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language by pressing ENTER for Portuguese or any other key plus ENTER for English.
@@ -498,7 +499,7 @@ with open('system_prompts.txt', encoding='utf-8', errors='ignore') as f:    # Op
 # Observations: To monitor inner function variables behavior, remember to select the corresponding mode (Lerning Mode, Fast Mode) before. Each mode has its exclusive pathway inside the code.
                         
 def text_generator(
-        system_prompt_p, # All '_p' parameters are binded to global variables
+        system_prompt_p,        # All '_p' parameters are binded to global variables
         infinite_loop_p,
         prev_answer,
         prompt_p,
@@ -530,7 +531,7 @@ def text_generator(
         vocabulary_p,
         ):
           
-    # Global variables (used outside the function)
+    # Global variables (used outside this function)
     global last_model
     global llm
     global resposta
@@ -568,11 +569,10 @@ def text_generator(
     global show_vocabulary
 
     click.play()
-    print('Starting function "text_generator"...')
-    print()
+    print('\nStarting "text_generator" function...\n')
     
     # Global variables bindings was necessary to avoid forbiden use of the same function parameters names
-    fast_mode = fast_mode_p # '_p' is from text_generator function 'p'arameter
+    fast_mode = fast_mode_p         # '_p' is from text_generator function 'p'arameter
     delay_next_token = delay_next_token_p
     system_prompt = system_prompt_p
     prompt = prompt_p
@@ -589,7 +589,7 @@ def text_generator(
     show_vocabulary = show_vocabulary_p
 
 
-    # Initial conditional settings
+    # INITIAL CONDITIONAL SETTINGS
     if prompt == '':                # To use in case of empty user prompt
         prompt = 'Hello!'
 
@@ -605,6 +605,23 @@ def text_generator(
     else:
         previous_answer = prev_answer
 
+    # Ignore previous response
+    if previous_answer[:3] == '---':
+        previous_answer = ''
+
+
+
+    # print()
+    # print('prompt_text:', type(prompt_text))
+    # if prompt[:3] == '---':
+    #     print('User prompt field is empty. Inserting dummy message "Hello!"...')
+    #     prompt = 'Hello!'
+
+
+
+
+
+
 
     # Check if no model is selected and if 'Download model for testing' field is not empty
     if models == [] or models == None:
@@ -619,11 +636,6 @@ def text_generator(
             return
     
     else:
-        # Models handling block. 'models' vairable must be passed forward as a list
-        # if models == None:              # When selected a directory without GGUF file
-        #     yield 'Select a directory containing UGGF file.' # Use simple sentence
-        #     return                      # Leaves the function
-        
         if isinstance(models, str):
             models = [models]
 
@@ -632,14 +644,14 @@ def text_generator(
         # FIFTH LOOP - NUMBER OF SEQUENCES
         # ================================
         
-        if loop_models > 1:             # Multiply number of loops by the number of models sequence (Checkbox)
+        if loop_models > 1:                     # Multiply number of loops by the number of models sequence (Checkbox)
             models = models * loop_models
         
         # ================================
         
 
         if random_list == True and len(set(models)) >= 3: # Shuffles models order if >= 3 (Checkbox)
-            models = random_list_fn(models) # Auxiliary function
+            models = random_list_fn(models)     # Auxiliary function
 
     if models == []:                            # For the case when model is not selected
         yield 'Model not selected.'             # Use simple sentence
@@ -653,6 +665,7 @@ def text_generator(
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
     prompt_split = []
     count_prompt = 0
+
 
     # =================
     # LOOPS DESCRIPTION
@@ -673,14 +686,14 @@ def text_generator(
     # FIRST LOOP - FOR LOOP OVER SELECTED MODELS
     # ==========================================
 
-    for n_model, model in enumerate(models):    # Loop over models list
+    for n_model, model in enumerate(models):        # Loop over models list
 
 
         # ==============================
         # SINGLE ANSWER CONTROL - PART 1
         # ==============================
 
-        # # Return on the last prompt when number of models is greater
+        # Return on the last prompt when number of models is greater
         if single_answer == True:                   # Single_answer activated
 
             if len(models) <= len(prompt_split):    # If number of models is minus or equal to number of prompts
@@ -699,7 +712,7 @@ def text_generator(
         # Model is downloaded and saved with the same file name, replacing the previous one
 
         if 'http' in model and previous_model_url == model:
-            model = 'MODEL_FOR_TESTING.gguf' # If .gguf file was downloaded partially, system will raise 'ValueError: Failed to load model from file:...\MODEL_FOR_TESTING.gguf'
+            model = 'MODEL_FOR_TESTING.gguf'    # If .gguf file was downloaded partially, system will raise 'ValueError: Failed to load model from file:...\MODEL_FOR_TESTING.gguf'
         
         # Check if "Model's URL for testing" field is filled
         elif 'http' in model and previous_model_url != model: # True if the models's url (previous_model)url) is replaced by a different model url
@@ -786,7 +799,6 @@ def text_generator(
                     yield resposta
                     print(traceback.format_exc())
                     break
-                    # return
 
                 print()
                 print('SAMANTHA: llm object created with llama.cpp. Loading model...')
@@ -809,8 +821,10 @@ def text_generator(
             previous_token = [] # Stores 10 last tokens. Displayed on top of the output field
 
             if 'MODEL_FOR_TESTING' in model:
+                # header_model_1 = f'\n\n==========================================\n{num_control}) {original_filename}  ***  URL  ***\n==========================================\n'
                 resposta += f'\n\n==========================================\n{num_control}) {original_filename}  ***  URL  ***\n==========================================\n'
             else:
+                # header_model_2 = f'\n\n==========================================\n{num_control}) {model}\n==========================================\n'
                 # Adds model name to the current response. Text response starts here. 'resposta' is a cummulative text variable
                 resposta += f'\n\n==========================================\n{num_control}) {model}\n==========================================\n'
 
@@ -860,24 +874,27 @@ def text_generator(
                 # Final cleanning process. Some codes works only in specific prompts (press Step-Over in VSCODE)
                 prompt_split = [x.strip() for x in prompt_split]            # Delete empty items from the prompt list
                 prompt_split = [x for x in prompt_split if x != '']         # Delete empty items
-                prompt_split = [x for x in prompt_split if x[:3] != '---']  # Delete items beginning wiht '---'
+                prompt_split = [x for x in prompt_split if x[:3] != '---']  # Delete items beginning with '---'
                 prompt_split = [pre_prompt + x for x in prompt_split]       # Add pre-prompt at the beginning of each prompt in the list
                 prompt_split = [x.replace('$$$', '').strip() for x in prompt_split] # Delete '$$$' and leading spaces and new lines characters
 
+                # User prompt can't be empty.
+                if prompt_split == []:
+                    prompt_split = ['Hello!']
 
                 # MECANISMO QUE PERMITE A ELABORAÇÃO DE UMA RESPOSTA FINAL BASEADA EM TODAS AS RESPOSTAS ANTERIORES DOS MODELOS (FINAL-PROMPT)
                 if final_prompt != '': # There is text between [[]]
 
-                    with open('full_text.txt', 'r', errors='ignore') as f: # Delete content of the file 'full_text.txt'
+                    with open('full_text.txt', 'r', errors='ignore') as f:  # Delete content of the file 'full_text.txt'
                         temp = f.read()
                     
                     prompt_split.append(final_prompt + 'full_text')
                     
-                    # prompt_split.append(final_prompt + 'partial_text') # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
+                    # prompt_split.append(final_prompt + 'partial_text')    # Add word 'full_text' to the variable 'final_prompt'. This word 'full_text' will be replaced by variable 'full_text'
 
             partial_text = ''
             
-            with open('partial_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
+            with open('partial_text.txt', 'w', errors='ignore') as f:       # Delete content of the file 'full_text.txt'
                 pass
 
 
@@ -910,8 +927,6 @@ def text_generator(
                 if 'full_text' in prompt_text:       # Check for replacing last prompt
                     prompt_text = prompt_text.replace('full_text', full_text + '\n$$$')
 
-                print()
-
                 # =============================
 
                 # MAIN TRY BLOCK
@@ -919,7 +934,7 @@ def text_generator(
                     if reset_mode == True:
                         llm.reset()         # Reset model's internal parameters without unload it from memory.
                     start = 0
-                    ultima_resposta = ''    # Restart variable for each new text generation cicle
+                    # ultima_resposta = ''    # Restart variable for each new text generation cycle
                     
                     # After tests performed in JupyterLab with 'prompt_text' always present. If the field is empty, the correspendent role is not inserted
                     # If needed, you can add a user role before assistant role to insert previous text in models that has no system prompt
@@ -954,7 +969,6 @@ def text_generator(
                         for n, k in enumerate(messages):                # Loop over messages
                             temp = next(iter(k))
                             if k[temp] == 'user':
-                                # print(n, k[temp])
                                 messages.insert(n, {'role': 'user', 'content': ''}) # IN TEST
                                 messages.insert(n + 1, {'role': 'assistant', 'content': previous_answer}) # IN TEST
                                 break
@@ -973,6 +987,7 @@ def text_generator(
                     y_score = []
                     count = 1
                     total_time_start = time.time()
+                    unlikely_tokens = ''
 
 
                     # ========================================
@@ -996,7 +1011,7 @@ def text_generator(
                             frequency_penalty = frequency_penalty, # default: 0
                             repeat_penalty = repeat_penalty,       # default: 1.1
                             tfs_z = tfs_z,                         # default: 1
-                            mirostat_mode = 0,                     # default: 0
+                            mirostat_mode = 0,
                             mirostat_tau = 5,
                             mirostat_eta = 0.1,
                             model = None,
@@ -1027,6 +1042,10 @@ def text_generator(
                         # }
 
 
+                        if nu == 0:                 # Restart variable for each new text generation cycle
+                            ultima_resposta = ''    # To avoid delete last response text berofe the next generation cycle
+
+
                         # =========
                         # FAST MODE
                         # ========= 
@@ -1034,7 +1053,7 @@ def text_generator(
                         if fast_mode == True:
 
                             try:
-                                if nu == 0: # To sound only once at the beginning of text generation
+                                if nu == 0:                 # To sound only once at the beginning of text generation
                                     winsound.Beep(600, 500)
                                 
                                 # Print token on terminal. # The first and last 'i' has no 'content' key and raise an error.
@@ -1059,7 +1078,7 @@ def text_generator(
                             
                             except:
                                 print()
-                                print("EXCEPTION:", i) # The first and last 'i' has no 'content' key and raise an error
+                                print("EXCEPTION:", i)      # The first and last 'i' has no 'content' key and raise an error
                                 print()
                                 continue
 
@@ -1126,7 +1145,7 @@ def text_generator(
                                 if l[2] == current_token and n != 0:
                                     x_score.append(str(count))
                                     y_score.append(n + 1)
-                                    count += 1 # Count exceptions to the most likely token
+                                    count += 1          # Count exceptions to the most likely token
                                     break
                                 else:
                                     continue   
@@ -1136,6 +1155,22 @@ def text_generator(
                             except:
                                 pass
                             
+
+                            for n1, k in enumerate(token_score_sorted):
+                                if nu == 0:
+                                    unlikely_tokens = 'Unlikely tokens: '
+                                if 'Selected' in k[1] and n1 == 0:
+                                    break
+                                elif 'Selected' in k[1] and n1 != 0:
+                                    print('    Order:', n1 + 1)
+                                    try:
+                                        temp = re.search(r"('.*?')", k[0]).group(1)
+                                    except:
+                                        break
+                                    unlikely_tokens += f"{temp} {n1 + 1}, "
+                                    break
+
+
                             token_score_sorted = token_score_sorted[:top_k] # top_k, 10
                             
                             try:
@@ -1165,7 +1200,7 @@ def text_generator(
                             # <<<<<<<<<<<<<<<<
 
                             # Retorna resposta (já com o último token) e número parcial de tokens
-                            yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)""" # nu - 1: first index has no token
+                            yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score}\n{unlikely_tokens}\n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)""" # nu - 1: first index has no token
                                                         
                             # <<<<<<<<<<<<<<<<
 
@@ -1202,11 +1237,11 @@ def text_generator(
                         resposta = resposta + f'\n---------- ({nu - 1} tokens, {tt}s)\n' # number of tokens from context window: llm.n_tokens len(llm.n_tokens) - len(llm._input_ids)
                         yield resposta
                     else:                           # Returns text in Learning Mode
-                        yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score} \n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)\n---------- ({tt}s)\n"""
+                        yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score}\n{unlikely_tokens}\n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)\n---------- ({tt}s)\n"""
                     
                     som.play()                      # Play notification sound to warn the end of response generation
-                    while pygame.mixer.get_busy():  # Wait until notification sound ends to play (comment to make it assyncronous)
-                        pass
+                    # while pygame.mixer.get_busy():  # Wait until notification sound ends to play (comment to make it assyncronous)
+                    #     pass
                 
 
                     # ==============
@@ -1244,6 +1279,7 @@ def text_generator(
 
                 # MAIN EXCEPT
                 except Exception as e:
+                    print(traceback.format_exc())
                     yield resposta                                          # Returns response with error message and display it on output interface
                     return
                 
@@ -1274,7 +1310,6 @@ def text_generator(
                 # CRITICAL LOOPS CONTROL
                 # ======================
 
-                # TEST - TEST - TEST - TEST
                 # num_control:   Stores number of responses generated by each mode
                 # num_respostas: Number of responses set by the user in the interface
 
@@ -1345,9 +1380,9 @@ def text_generator(
 # 10) AUXILIARY FUNCTIONS
 # =======================
 
-# Include docstring and comments in all functions
+# TO DO: Include docstring and comments in all functions
 
-def random_list_fn(models): # Shuffles models list avoiding that equals itens get togueter (Created with Claude.ai)
+def random_list_fn(models):         # Shuffles models list avoiding that equals itens get togueter (Created with Claude.ai)
     
     resultado = []
     contagens = Counter(models)
@@ -1371,7 +1406,7 @@ def random_list_fn(models): # Shuffles models list avoiding that equals itens ge
     return resultado
 
 
-def clean_output(): # Clear Output button: clear output text
+def clean_output():                 # Clear Output button: clear output text
     
     global resposta
     global ultima_resposta
@@ -1406,7 +1441,7 @@ def clean_output(): # Clear Output button: clear output text
     return ''
     
 
-def stop_running(): # Stop / Next button
+def stop_running():                 # Stop / Next button
     
     global para_tudo
     global audio
@@ -1426,7 +1461,7 @@ def stop_running(): # Stop / Next button
     return para_tudo
 
 
-def stop_running_all(): # Stop All & Reset button
+def stop_running_all():             # Stop All & Reset button
     
     global stop_all
     global audio
@@ -1447,14 +1482,14 @@ def stop_running_all(): # Stop All & Reset button
     return stop_all
 
 
-def update_previous_answer(): # Previous Response button
+def update_previous_answer():       # Previous Response button
     
     click.play()
     
     return ultima_resposta
 
 
-def update_audio_widget(*inputs): # Load audio widget with last message audio
+def update_audio_widget(*inputs):   # Load audio widget with last message audio
     
     if os.path.isfile('resposta.mp3'):
         global engine
@@ -1491,7 +1526,7 @@ def update_audio_widget(*inputs): # Load audio widget with last message audio
         return 'introducao.mp3'
 
 
-def update_barplot_widget(): # Update barplot 1 with tokens scores distribution
+def update_barplot_widget():        # Update barplot 1 with tokens scores distribution
     
     if fast_mode == True: # Hide barplot if fast_mode == True
         return gr.BarPlot(visible=False)
@@ -1525,11 +1560,10 @@ def update_barplot_widget(): # Update barplot 1 with tokens scores distribution
             y_title="Probability Score"
         )
 
+    # TO ANALYSE: CREATE BARPLOT THAT SEQUENCIATE ON X AXIS ALL SELECTED TOKEN WITH ITS RESPECTIVE SCORE ON Y AXIS: https://www.youtube.com/watch?v=FdTRzgbBP8o
 
-# TO ANALYSE: CREATE BARPLOT THAT SEQUENCIATE ON X AXIS ALL SELECTED TOKEN WITH ITS RESPECTIVE SCORE ON Y AXIS: https://www.youtube.com/watch?v=FdTRzgbBP8o
 
-
-def update_barplot_widget_2(): # Update barplot 2 with unlikelly tokens frequency
+def update_barplot_widget_2():      # Update barplot 2 with unlikelly tokens frequency
     
     if fast_mode == True: # Hide barplot if fast_mode == True
         return gr.BarPlot(visible=False)
@@ -1564,17 +1598,17 @@ def update_barplot_widget_2(): # Update barplot 2 with unlikelly tokens frequenc
         )
 
 
-def open_browser(): # Open default browser with Gradio server on localhost in dark mode
+def open_browser():                 # Open default browser with Gradio server on localhost in dark mode
     
     webbrowser.open('http://localhost:7860/?__theme=dark')
 
 
-def update_template_field(): # Update model template field
+def update_template_field():        # Update model template field
     
     return prompt_template
 
 
-def sel_model(): # Select model
+def sel_model():                    # Select model
     
     try:
         return models[0]
@@ -1582,17 +1616,17 @@ def sel_model(): # Select model
         return last_model
     
 
-def update_vocabulary(): # Update model's tokens vocabulary
+def update_vocabulary():            # Update model's tokens vocabulary
     
     return vocabulary
 
 
-def update_metadata(): # Shows model's metadata on interface
+def update_metadata():              # Shows model's metadata on interface
     
     return model_metadata
 
 
-def text_to_speech(*inputs): # Text to speech convertion
+def text_to_speech(*inputs):        # Text to speech convertion
     
     global engine
     
@@ -1928,7 +1962,7 @@ def go_to_next_token():
     next_token = True
  
 
-def click_sound(examples): # Parameter included to avoid error in 'gr.Example()' element, that needs pass a input
+def click_sound(examples):          # Parameter included to avoid error in 'gr.Example()' element, that needs pass a input
     
     click.play()
 
@@ -2190,7 +2224,7 @@ def speech_to_text(*inputs):
         parser.exit(type(e).__name__ + ": " + str(e))
 
 
-def extract_models_names(): # Load Model button: open window to choose directory with LLM files
+def extract_models_names():         # Load Model button: open window to choose directory with LLM files
     
     global model_path
     global models
@@ -2350,13 +2384,22 @@ def create_html(content):
     # wrapped_content = '\n'.join(textwrap.wrap(content, width=100, break_long_words=False, replace_whitespace=False))
     # <meta charset="windows-1252">
 
+    # Converte o markdown para HTML
+    html_content = markdown.markdown(content)
+
+    # # Escape special Markdown characters
+    # escaped_content = escape_markdown(content)
+    
+    # # Escape HTML special characters
+    # escaped_content = escape(escaped_content)
+
     html = f"""
     <!DOCTYPE html>
     <html lang="pt-BR">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Samantha</title>
+        <title>Samantha Interface Assistant</title>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <style>
             body {{
@@ -2382,30 +2425,36 @@ def create_html(content):
             }}
             code {{
                 font-family: Consolas, Monaco, 'Andale Mono', monospace;
-                font-size: 0.9em;
+                font-size: 12px;
+                background-color: #d0d0d0;
             }}
         </style>
     </head>
     <body>
-        <h2>Output:</h2>
-        <div id="content"></div>
-        <script>
-            const content = `{content}`;
-            document.getElementById('content').innerHTML = marked.parse(content);
-        </script>
+
+        <h3>Assistant output:</h3>
+
+        <div id="content">{html_content}</div>
+
+    
     </body>
     </html>
     """
     return html
 
+# <script>
+#     const content = `{html_content}`;
+#     document.getElementById('content').innerHTML = marked.parse(content);
+# </script>
+
 
 def open_chrome_window(file_path):
     if sys.platform == "win32":
         chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    elif sys.platform == "darwin":
-        chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-    else:
-        chrome_path = "/usr/bin/google-chrome"
+    # elif sys.platform == "darwin":
+    #     chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    # else:
+    #     chrome_path = "/usr/bin/google-chrome"
 
     subprocess.Popen([
         chrome_path,
@@ -2420,17 +2469,26 @@ def open_idle():
 
     click.play()
 
+    print()
     print('======================')
-    print('Running Python code...')
+    print('Running Python Code...')
     print('======================')
+    print()
 
+
+    if "```" not in ultima_resposta:
+        print(f"No Markdown Python code in the response.")
+        winsound.Beep(600, 300) # Signals to indicate error
+        winsound.Beep(600, 300)
+        return
+        
 
     # GET PYTHON PATH
     python_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe"
     
 
     # EXTRACT CODE FROM LAST REPONSE
-    padrao = r"```(.*?)\n(.*?)```"
+    padrao = r"```python(.*?)\n(.*?)```"
     codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
     resultado = []
     
@@ -2444,57 +2502,117 @@ def open_idle():
 
     # Divide o código em linhas, filtra as linhas que não correspondem ao padrão e junta novamente
     final_code = '\n'.join([linha for linha in final_code.split('\n') if not re.match(padrao, linha)])
-        
+    print(final_code)
+    
+    # if "```python" in final_code.lower():
     
     # CREATE PYTHON FILE
     with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
         f.write(final_code)
 
-
     # RUN PYTHON FILE
     try:
-        result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8')
-        output = result.stdout.strip()  # Remove espaços em branco no início e no final
-        print()
-        print(output)
-        print('type(output):', type(output))
-        print('len(output):', len(output))
-        print()
 
-        # Response without code
-        if "```" not in ultima_resposta: # To dsiplay output in new browser tab only if there is no code
+            result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8')
+            output = result.stdout.strip()  # Remove espaços em branco no início e no final
+            print()
+            print(output)
+            print('type(output):', type(output))
+            print('len(output):', len(output))
+            print()
+
+        # # Response without code
+        # if "```" not in ultima_resposta: # To dsiplay output in new browser tab only if there is no code
         
-            # Criar conteúdo HTML
-            html_content = create_html(ultima_resposta)
+        #     # Criar conteúdo HTML
+        #     html_content = create_html(ultima_resposta)
 
-            # Criar arquivo temporário
-            with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
-                f.write(html_content)
-                temp_file_name = f.name
+        #     # Criar arquivo temporário
+        #     with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+        #         f.write(html_content)
+        #         temp_file_name = f.name
 
-            # Abrir o arquivo no navegador
-            # webbrowser.open('file://' + os.path.realpath(temp_file_name))
+        #     # Abrir o arquivo no navegador
+        #     # webbrowser.open('file://' + os.path.realpath(temp_file_name))
 
-            # Abrir nova instância do Chrome
-            open_chrome_window(os.path.realpath(temp_file_name))
+        #     # Abrir nova instância do Chrome
+        #     open_chrome_window(os.path.realpath(temp_file_name))
 
         # Response with code
-        elif "```" in ultima_resposta and len(output) > 0:
+        # if "```" in ultima_resposta and len(output) > 0:
 
-            html_content = create_html(output)
+        #     html_content = create_html(output)
 
-            # Criar arquivo temporário
-            with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
-                f.write(html_content)
-                temp_file_name = f.name
+        #     # Criar arquivo temporário
+        #     with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+        #         f.write(html_content)
+        #         temp_file_name = f.name
 
-            open_chrome_window(os.path.realpath(temp_file_name))
+            # open_chrome_window(os.path.realpath(temp_file_name))
+
+        # else:
+        #     winsound.Beep(600, 300) # Signals to indicate error
+        #     winsound.Beep(600, 300)
 
     except subprocess.CalledProcessError as e:
         print(f"Comando falhou com código de saída {e.returncode}")
         print(f"Saída de erro: {e.stderr}")
         winsound.Beep(600, 300) # Signals to indicate error
         winsound.Beep(600, 300)
+
+    # else:
+    #     print(f"No Python code in the response.")
+    #     winsound.Beep(600, 300) # Signals to indicate error
+    #     winsound.Beep(600, 300)
+
+
+def exibir_resposta_html():
+
+    click.play()
+
+    # temp = ultima_resposta.replace('\n', '\n\n')
+
+    # Criar conteúdo HTML
+    html_content = create_html(ultima_resposta)
+
+    # html_content = html_content.replace('\n', '<br>')
+
+    # Criar arquivo temporário
+    with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+        f.write(html_content)
+        temp_file_name = f.name
+
+    # Abrir o arquivo no navegador
+    # webbrowser.open('file://' + os.path.realpath(temp_file_name))
+
+    # Abrir nova instância do Chrome
+    open_chrome_window(os.path.realpath(temp_file_name))
+
+
+def exibir_respostas_html():
+
+    click.play()
+
+    # temp = full_text.replace('\n', '\n\n')
+    # temp = temp.replace('\n', '\n\n')
+    # temp = temp.replace('xXx', '\n\n')
+
+
+    # Criar conteúdo HTML
+    html_content = create_html(full_text)
+
+    # html_content = html_content.replace('\n', '<br>')
+
+    # Criar arquivo temporário
+    with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+        f.write(html_content)
+        temp_file_name = f.name
+
+    # Abrir o arquivo no navegador
+    # webbrowser.open('file://' + os.path.realpath(temp_file_name))
+
+    # Abrir nova instância do Chrome
+    open_chrome_window(os.path.realpath(temp_file_name))
 
 
 def change_checkbox(bool_value):
@@ -2537,7 +2655,7 @@ document.addEventListener('keyup', shortcuts, false);
 
 with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
     
-    # # Image
+    # # Page image
     # gr.HTML("""
     #         <img id="overlay-image" src="https://pngfre.com/wp-content/uploads/butterfly-27-1024x688.png" alt="Imagem no Canto Superior Esquerdo" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
     #         """)
@@ -2600,7 +2718,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
-            # Activate / Deactivate Number of Response and Number of Loops checkboxes when Single Response per Model changes
+
+            # Activate / Deactivate Number of Response and Number of Loops checkboxes when "Single Response per Model" chackbox changes
             inputs[6].change(fn=change_checkbox, inputs=inputs[6], outputs=[inputs[13], inputs[14]])
 
             with gr.Row():
@@ -2695,12 +2814,13 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     <li><a href="https://pandas.pydata.org/">Pandas</a></li>
                     <li><a href="https://pymupdf.readthedocs.io/en/latest/">PyMuPDF</a></li>
                     <li><a href="https://pypi.org/project/beautifulsoup4/">Beautifulsoup4</a></li>
+                    <li><a href="https://selenium-python.readthedocs.io/index.html">Selenium</a></li>
                     </ul>""")
                     
                     #<li><a href="https://playwright.dev/python/docs/intro">Playwright</a></li>
                     #<li><a href="https://github.com/ydataai/ydata-profiling">Pandas Profiling</a></li>
             
-            gr.HTML('<br><h6><b>Accessibility:</b></h6>') # Exploratory Data Analysis
+            gr.HTML('<br><h6><b>Accessibility:</b></h6>')
             
             gr.HTML("""<ul>
                     <li><a href="https://support.microsoft.com/en-us/windows/windows-keyboard-shortcuts-for-accessibility-021bcb62-45c8-e4ef-1e4f-41b8c1fc87fd">Windows keyboard shortcuts for accessibility</a></li>
@@ -2733,34 +2853,32 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
                 btn_idle = gr.Button(language['btn_idle'])
                 btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
-                                
+
+
                 # =================================
             
-            if voice_mode == True:
+            with gr.Row():
 
-                with gr.Row():
-                    # btn_d = gr.Button('', visible=False)
-                    # btn_d.click(fn=None, inputs=None, outputs=None)
-                    # btn_c = gr.Button('', visible=False)
-                    # btn_c.click(fn=None, inputs=None, outputs=None)
+                btn_d = gr.Button('Exibir Resposta HTML')
+                btn_d.click(fn=exibir_resposta_html, inputs=None, outputs=None)
+                btn_c = gr.Button('Exibir Respostas HTML')
+                btn_c.click(fn=exibir_respostas_html, inputs=None, outputs=None)
+
+                if voice_mode == True:
                     btn_voice = gr.Button(language['btn_voice_command'], variant='primary', visible=True)
                     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
-                    
+
                     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
-                    
 
-                # Voice control
-                # if voice_mode == True:
-                #     btn_voice = gr.Button(language['btn_voice_command'], variant='primary', visible=True)
-                #     btn_voice.click(fn=speech_to_text, inputs=inputs, outputs=inputs[3], queue=True, show_progress='hidden')
-                #     inputs[3].change(fn=text_generator, inputs=inputs, outputs=outputs, queue=True)
-
-                # elif voice_mode == False:
-                #     btn_idle = gr.Button(language['btn_idle'])
-                #     btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
+                else:
+                    btn_voice = gr.Button('')
+                    btn_voice.click(fn=None, inputs=None, outputs=None)
+                
+                
 
                 # =================================
             
+
             with gr.Row():
                 plot_1 = gr.BarPlot(visible=False) # Creates first plot that is updeted in the sequence (https://www.gradio.app/docs/barplot)
                 demo.load(fn=update_barplot_widget, inputs=None, outputs=plot_1)
@@ -2792,7 +2910,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
                         <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
                         <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
-                        
                         <li><a href="https://huggingface.co/arcee-ai/Arcee-Spark-GGUF">arcee-ai/Arcee-Spark-GGUF</a></li>
                         <li><a href="https://huggingface.co/bartowski/Replete-Coder-Qwen2-1.5b-GGUF">bartowski/Replete-Coder-Qwen2-1.5b-GGUF</a></li>
                         <li><a href="https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF">bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a></li>
@@ -2816,18 +2933,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Operating Tips:</h5>""")
-            # with gr.Row():
-            #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Key Concepts:&nbsp;&nbsp;&nbsp;Training Dataset / Prompt, Token, Token Vocabulary, Large Language Model (LLM), Training / Generation, Embedding Vectors, Embedding Matrix, Artificial Neural Networks (Layers, Weights and Bias), Ordered Token Vocabulary, Next Token Selection</span></i></h6>""")                      
-            
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Windows Task Manager:&nbsp;&nbsp;&nbsp;CTRL + SHIFT + ESC</span></i></h6>""")
-            
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samantha's Parts:&nbsp;&nbsp;&nbsp;Server (AI processing) <-> Browser Interface (display and configuration)</span></i></h6>""")
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File</span></i></h6>', elem_classes='prompt')
-            # with gr.Row():
-            #     gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Model Prompt Template:&nbsp;&nbsp;&nbsp;special characters + {system_prompt} + {prompt}</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
@@ -2840,12 +2951,13 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1)</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
-            
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Vocie Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: "ok" or "samantha" inside a prompt to submit it. "samantha fechar" or "samantha close" to stop listening</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha fechar" or "samantha close" to stop listening</span></i></h6>')         
             
-            
-            
+            # with gr.Row():
+            #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Key Concepts:&nbsp;&nbsp;&nbsp;Training Dataset / Prompt, Token, Token Vocabulary, Large Language Model (LLM), Training / Generation, Embedding Vectors, Embedding Matrix, Artificial Neural Networks (Layers, Weights and Bias), Ordered Token Vocabulary, Next Token Selection</span></i></h6>""")                      
+            # with gr.Row():
+            #     gr.HTML(r'<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">4) Model Prompt Template:&nbsp;&nbsp;&nbsp;special characters + {system_prompt} + {prompt}</span></i></h6>', elem_classes='prompt')
             # with gr.Row():
             #     gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">GPT:&nbsp;&nbsp;&nbsp;Choice of the next token according to the probability patterns extracted from the training texts</span></i></h6>')                     
             # with gr.Row():
