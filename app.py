@@ -199,10 +199,10 @@ language = {
                 'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
-                'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa modo de aprendizagem.',
+                'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizado.',
                 'voice_selection_info': 'Voice selection (caixa de seleção). Seleciona voz SAPI5 no computador.',
                 'read_aloud_info': 'Read aloud (caixa de seleção). Lê automaticamente a última resposta do Assistente com a voz SAPI5 selecionada.',
-                'learning_mode_info': 'Learning mode (caixa de seleção). Ativa o Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado. Tempo em segundos.',
+                'learning_mode_info': 'Learning mode (caixa de seleção). Ativa Modo de Aprendizado. Funciona apenas se Fast Mode estiver desmarcado. Tempo em segundos.',
                 'number_of_loops_info': 'Number of loops (caixa de seleção). Controla o número de loops da sequência de modelos selecionada.',
                 'number_of_responses_info': 'Number of responses (caixa de seleção). Controla o número de respostas para cada modelo selecionado.',
                 'n_ctx_info': 'n_ctx (ajuste deslizante). Número de tokens da janela de contexto (0 = máximo do modelo). Aumenta uso da memória RAM. Antes de ajustar, descarregue o modelo.',
@@ -220,7 +220,7 @@ language = {
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
-                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo.",
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizado.",
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
@@ -287,7 +287,7 @@ language = {
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
-                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time.",
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'PDF Full',
@@ -805,15 +805,17 @@ def text_generator(
                 print()
                      
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
-                
-                if show_vocabulary == True:
-                    temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
-                    vocabulary = ''
-                    for n, x in enumerate(temp):
-                        try:
-                            vocabulary += f'{n})    {repr(x.decode())}\n'
-                        except:
-                            vocabulary += f'{n})    {repr(x)}\n'
+
+            if show_vocabulary == True and delay_next_token != 'OFF':
+                temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
+                vocabulary = ''
+                for n, x in enumerate(temp):
+                    try:
+                        vocabulary += f'{n})    {repr(x.decode())}\n'
+                    except:
+                        vocabulary += f'{n})    {repr(x)}\n'
+            else:
+                vocabulary = ''
             
             if max_tokens == 0:
                 max_tokens = None   
@@ -2993,11 +2995,13 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
         btn5.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False)     # Bound to STOP ALL / RESET button
         btn5.click(fn=stop_running_all, inputs=None, outputs=None, queue=False)
         btn6.click(fn=update_previous_answer, inputs=None, outputs=inputs[2], queue=False, show_progress='hidden')
-        
-        saida.change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=True, show_progress=False)
-        # inputs[-1].change(fn=update_metadata, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=True, show_progress=False)
 
+        # if show_vocabulary == True:
+        saida.change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=True, show_progress=False)
+            
         saida.change(fn=update_metadata, inputs=None, outputs=inputs[-3], trigger_mode='always_last', queue=True, show_progress=False)
+
+        # inputs[-1].change(fn=update_metadata, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=True, show_progress=False)
 
 
 # =================
