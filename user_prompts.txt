@@ -1,6 +1,54 @@
 $$$
 $-$-$
 
+O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma regra que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados na unidade gestora (UG) alvo da denúncia:
+* Valor associado ao objeto fiscalizado (mínimo R$ 90 mil)
+* Índice de Desenvolvimento Humano (IDH) do município
+* Resultado do julgamento da prestação de contas anual anterior da UG
+* Avaliação do controle interno da UG
+* Nível de transparência ativa da UG
+* Data da última auditoria pelo tribunal de contas
+* Histórico de condenações em multas e danos ao erário da UG
+* Existência de indícios de fraude e corrupção na denúncia
+* Porte da população do município
+* Área temática (saúde, educação etc.)
+* Origem da informação (anônima, identificada etc.)
+* Histórico do número de denúncias
+* Data do fato denunciado
+* Materialidade (valor associado ao objeto a ser fiscalizado)
+* Impacto orçamentário da denúncia
+* Impacto da denúncia em parte relevante da população
+* Impacto financeiro da denúncia superior a 0,3% do orçamentário
+* Risco de dano ao erário
+* Comprometimento da prestação de serviço público
+* Tempo para início da fiscalização pelo tribunal de contas
+* Tendência de agravamento da situação denunciada
+* Existência ou não de dano ao erário
+
+A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas. 
+
+De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. 
+
+O TCE-ES possui a seguinte identidade institucional:
+Nosso Propósito: Contribuir para a melhoria da gestão pública.
+Nossa Missão: Promover o aperfeiçoamento da gestão pública, por meio do controle externo, visando à melhoria da qualidade de vida das pessoas.
+Nossa Visão: Ser reconhecida como instituição estratégica para o desenvolvimento sustentável do Espírito Santo.
+Nosso Negócio: Controle externo da administração pública.
+Nossos Princípios:
+* Independência e harmonia – Exercer a independência com autonomia e imparcialidade, bem como cultivar a harmonia com o diálogo institucional interno e externo, privilegiando a solução consensual de conflitos para o pleno exercício da missão institucional.
+* Transparência – Comunicar à sociedade os atos, as ações e os resultados de forma ativa, clara, objetiva, tempestiva e acessível.
+* Responsabilidade sustentável – Agir para que as dimensões ambiental, econômica e social estejam em equilíbrio, de modo a promover o desenvolvimento sustentável.
+Inovação – Promover a contínua inovação com o objetivo de aumentar a eficiência, a eficácia e a qualidade do desempenho organizacional.
+* Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
+* Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.
+
+Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas. 
+
+Analise esse confronto entre o controle institucional realizado pelo TCE-ES e o controle social realizado pelo cidadão sob o ponto de vista da camada mais vulnerável da sociedade, normalmente mais afetada por deficiências, irregularidades e corrupção nos serviços públicos fiscalizados pelo tribunal de contas.
+
+$$$
+$-$-$
+
 Samantha is an AI system developed under the principles of Open Science for the use of open-source LLMs on common computers (without GPUs). The program executes the LLM locally, free and unlimited, without the need for internet connection (except for downloading the models). Its goal is to democratize knowledge about the use of AI and demonstrate that, through proper technique, even small models can produce responses similar to those of larger proprietary models.
 The system allows sequential loading of prompts and models (one model at a time), as well as adjustment of their hyperparameters, enabling the previous model's response to be analyzed by the subsequent model for the generation of the next response, in an unlimited number of cycles of interaction between models without human intervention. Each model interacts only with the response provided by the immediately preceding model. Each new response from the model replaces the previous response. It is also possible to use only a single model and have it interact with its own previous response in an unlimited number of cycles.
 What is your opinion about this system?
@@ -397,9 +445,6 @@ $-$-$
 Answer the questions in your previous response in the most complete, precise, and simple way possible.
 Write using correct spelling and grammar, articulating your reasoning with semantic uniformity, coherence, cohesion, concision, clarity, and, most importantly, scientific rigor.
 Finish your answer with three new numbered questions about the same subject.
-$-$-$
-
-Um tribunal de contas criou uma regra que condiciona a análise do mérito das denúncias de irregularidades apresentadas por cidadãos ao atingimento de uma pontuação mínima decorrente do preechimento de vários requisitos, tais como: IDH do município, resultado do julgamento da prestação de contas anual anterior, existência ou não de dano ao erário, entre outros. A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas. De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. Considerando esse contexto, crie um texto jurídico argumentativo que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas.
 $-$-$
 
 [Analise o texto a seguir, parte integrante de uma petição inicial de uma denúncia redigida em linguagem coloquial e protocolizada no tribunal de contas. Apresente a melhor estratégia a ser adotada pelo tribunal de contas para fiscalizar, produzir provas e submeter à validação os indícios de irregularidade noticiados. Para cada estratégia, indique os passos e procedimentos a serem adotados:]
