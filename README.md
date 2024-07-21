@@ -9,7 +9,7 @@
 
 ## Samantha Interface Assistant: Experimental Environment Designed to Democratize the Use of Open Source Large Language Models (LLM)
 
-### Welcome to Samantha: The Interface Assistant for Open Source Artificial Intelligence Models
+### Welcome to Samantha: The Interface Assistant for Open Source Artificial Intelligence
 
 <br>
 
