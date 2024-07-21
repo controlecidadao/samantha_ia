@@ -2517,12 +2517,28 @@ def open_idle():
 
             result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8')
             output = result.stdout.strip()  # Remove espaços em branco no início e no final
-            print()
             print(output)
+            print()
             print('type(output):', type(output))
             print('len(output):', len(output))
             print()
 
+            if len(output) > 0:
+                
+                # Criar conteúdo HTML
+                html_content = create_html(output)
+
+                # html_content = html_content.replace('\n', '<br>')
+
+                # Criar arquivo temporário
+                with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+                    f.write(html_content)
+                    temp_file_name = f.name
+
+                # Abrir nova instância do Chrome
+                open_chrome_window(os.path.realpath(temp_file_name))
+        
+        
         # # Response without code
         # if "```" not in ultima_resposta: # To dsiplay output in new browser tab only if there is no code
         
