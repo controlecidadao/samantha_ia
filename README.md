@@ -260,7 +260,7 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 <summary>Click to open</summary>
 
 <br><br>
-Execute the following steps to test a model:
+Execute the following steps to test a model with Samantha:
 
 1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
 
