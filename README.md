@@ -113,7 +113,7 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 
 ✅ **Interactive Experience:** Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.<br><br>
 
-✅ **Learning Insights:** A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings.<br><br>
+✅ **Learning Insights:** A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings. A list of the least likely selected tokens is also generated.<br><br>
 
 ✅ **Voice Interaction:** Samantha supports simple voice commands with offline speech-to-text [Vosk](https://alphacephei.com/vosk/) (English and Portuguese) and text-to-speech with SAPI5 voices, making it accessible and user-friendly.<br><br>
 
