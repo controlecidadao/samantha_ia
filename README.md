@@ -50,7 +50,7 @@ The system allows the sequential loading of a list of prompts and models (one mo
 👉 **Chaining Sequence Template:   ( [models list] -> respond -> ( [user prompt list] X number of responses) ) X number of loops**
 <br><br>
 
-Sequencing of prompts and models allows the generation of long responses by fractioning the input instruction 🧩. Every partial response fits in the model' response length defined in the training process.
+Sequencing of prompts and models allows the generation of long responses by fractioning the user input instruction 🧩. Every partial response fits in the model' response length defined in the training process.
 <br><br>
 
 As an open source tool for automatic self-interaction between AI models, Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop** 🔁. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial imprecise instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
