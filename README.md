@@ -179,7 +179,32 @@ To use Samantha you will need:
   With the browser window opened, Samantha is ready to go.
 
 </details>
- 
+
+<br><br>
+## 👟 Testing a Model in 5 Steps
+
+<details>
+<summary>Click to open</summary>
+
+<br><br>
+Follow these steps to perform a simple model test with Samantha:
+
+1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
+
+2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
+
+3) Right click over the selected model download link icon and copy its url.
+
+4) Paste the model url into Samantha's _Download Models for Testing_ field.
+
+5) Insert a prompt into _USER Prompt_ field and press `Enter` (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
+
+Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
+
+You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
+
+</details>
+
 <br><br>
 ## ⬇️ Downloading Large Language Models (LLM)
 
@@ -261,31 +286,6 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 
 **Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
 
-</details>
-<br><br>
-
-
-## 👟 Testing a Model in 5 Steps
-
-<details>
-<summary>Click to open</summary>
-
-<br><br>
-Follow these steps to perform a simple model test with Samantha:
-
-1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
-
-2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
-
-3) Right click over the selected model download link icon and copy its url.
-
-4) Paste the model url into Samantha's _Download Models for Testing_ field.
-
-5) Insert a prompt into _USER Prompt_ field and press `Enter` (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
-
-Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
-
-You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
 </details>
 
 <br><br>
