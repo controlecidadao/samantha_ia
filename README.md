@@ -123,9 +123,12 @@ The primary objective with Samantha is to inspire others to create similar syste
 🙏 **Special Thanks** to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible, as well to [Andrei Bleten](https://github.com/abetlen/llama-cpp-python) by his amazing Python bidings for the Gerganov C++ library.
 
 <br><br>
-
 ## 🛠️ Installing Samantha
 
+<details>
+<summary>Click to open</summary>
+
+<br><br>
 To use Samantha you will need:
 <br><br>
 * Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
@@ -159,13 +162,15 @@ To use Samantha you will need:
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
 
-<br>
-
-
-
-
+</details>
+ 
+<br><br>
 ## ⬇️ Downloading Large Language Models (LLM)
 
+<details>
+<summary>Click to open</summary>
+
+<br><br>
 Samantha needs just a `.gguf` model file to generate text.
 <br>
 
@@ -218,10 +223,15 @@ The quality of a model can be assessed using four basic criteria:
   * **Degree of adherence** to these instructions;
 
   * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
+</details>
 
 <br><br>
-## 🧠 Running Samantha
+## 🧠 Samantha's Settings
 
+<details>
+<summary>Click to open</summary>
+
+<br><br>
 
 Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
 Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
@@ -234,37 +244,41 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 <br><br>
 
 **Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
-<br><br><br>
+
+</details>
+<br><br>
 
 
 ## 👟 Testing a Model in 5 Steps
 
+<details>
+<summary>Click to open</summary>
 
-**1)** Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
+<br><br>
+Execute the following steps to test a model:
 
-**2)** Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
+1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
 
-**3)** Right click over the selected model download link and copy its url.
+2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
 
-**4)** Paste the model url into Samantha's _Download Models for Testing_ field.
+3) Right click over the selected model download link and copy its url.
 
-**5)** Insert a prompt into _USER Prompt_ field and press Enter (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
+4) Paste the model url into Samantha's _Download Models for Testing_ field.
+
+5) Insert a prompt into _USER Prompt_ field and press Enter (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
 
 Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
 
 You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
+</details>
 
 <br><br>
 ## ▶️ Video Tutorials
 
-Learn how to use Samantha.<br>
-
-<br>
-
 <details>
-<summary>Installing Samantha</summary>
+<summary>Click to open</summary>
 
-<br>
+<br><br>
 You can add text within a collapsed section. 
 <br><br>
   
@@ -283,21 +297,21 @@ You can add text within a collapsed section.
 <details>
 <summary>Click to open</summary>
 
+<br><br>
+* Tip 1
 </details>
 
 
 <br><br>
-## 📝 Version History
-
-Project version history and future improvements.
-
-<br>
+## 📝 Version History and Future Improvements
 
 <details>
-<summary>Code Versions</summary>
-<br>
+<summary>Click to open</summary>
 
-**Version 0.1.0 (2024-07-15):**
+ <br><br>
+**Code Versions:**
+
+Version 0.1.0 (2024-07-15):
 * Initial beta version.
 <br>
 
