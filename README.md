@@ -271,13 +271,13 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 <summary>Click to open</summary>
 
 <br><br>
-Execute the following steps to test a model with Samantha:
+Follow these steps to perform a simple model test with Samantha:
 
-1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
+1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
 
 2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
 
-3) Right click over the selected model download link and copy its url.
+3) Right click over the selected model download link icon and copy its url.
 
 4) Paste the model url into Samantha's _Download Models for Testing_ field.
 
