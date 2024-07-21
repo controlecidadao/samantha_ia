@@ -124,7 +124,7 @@ The primary objective with Samantha is to inspire others to create similar syste
 
 <br><br>
 
-# 🛠️ Installing and Running Samantha
+# 🛠️ Installing Samantha
 
 To use Samantha you will need:
 <br><br>
@@ -151,23 +151,16 @@ To use Samantha you will need:
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
+  A terminal window will open. This is the Samantha's **server-side**.
+
+  After answering the initial questions (interface language and voice control options), the interface will open in a new browser tab. This is the Samantha's **browser-side**:
+
+  <br>
+
+  ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
+
 <br>
 
-![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
-
-<br>
-Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
-Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
-<br><br>
-
-In turn, for stochastic behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
-<br><br>
-
-**Deterministic settings (default):** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
-<br><br>
-
-**Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
-<br><br><br>
 
 
 
@@ -229,15 +222,26 @@ The quality of a model can be assessed using four basic criteria:
 <br><br>
 # 🧠 Running Samantha
 
+
+
+# 👟 Step-by-Step
+
+Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
+Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
+<br><br>
+
+In turn, for stochastic behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
+<br><br>
+
+**Deterministic settings (default):** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
+<br><br>
+
+**Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
+<br><br><br>
+
+
+
 To start running Samantha:
-
-* Double click on `open_samantha_ia.bat` file (Windows may ask you to confirm the origin of the `.bat` file) located inside the unziped folder and wait a few seconds:
-
-   ![run](https://github.com/controlecidadao/samantha_ia/blob/main/images/run.png)
-
-  A terminal window will open. This is the Samantha's **server-side**.
-
-  After answering the initial questions (interface language and voice control options), the interface will open in a new browser tab. This is the Samantha's **browser-side**.
 
 
 * Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` to monitor memory usage.
