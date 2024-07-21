@@ -13,7 +13,7 @@
 
 <br>
 
-Samantha is an interface assistant for open source artificial intelligence models developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://pypi.org/project/llama-cpp-python/) models. Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger proprietary ones. Her mission is to help explore the boundaries of (realy) open AI models.
+Samantha is an interface assistant for open source artificial intelligence models developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://pypi.org/project/llama-cpp-python/) models or when required by the codes created by the models (i.e. data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger proprietary ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
 <br>
 
@@ -203,7 +203,7 @@ Download the chosen model and save it to your computer or just copy the download
 
 ### Your First Testing Models
 
-Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. **Some `gguf` models may not (yet) be loaded due to their technical characteristics or incompatibility with the current version of the [llama.cpp Python binding](https://github.com/abetlen/llama-cpp-python) used by Samantha**.
+Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. **Some models may not (yet) be loaded due to their technical characteristics or incompatibility with the current version of the [llama.cpp Python binding](https://github.com/abetlen/llama-cpp-python) used by Samantha**.
 
 * [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft) and fine-tunned by [llmware](https://huggingface.co/llmware))
 
@@ -223,9 +223,6 @@ The quality of a model can be assessed using four basic criteria:
 # 🧠 Running Samantha
 
 
-
-# 👟 Step-by-Step
-
 Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
 Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
 <br><br>
@@ -240,13 +237,22 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 <br><br><br>
 
 
+# 👟 Run a Model in 5 Steps
 
-To start running Samantha:
 
+**1)** Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
 
-* Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` to monitor memory usage.
+**2)** Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
 
-* Download a `gguf` model and **save it to your computer or just copy the download link and paste** it inside Samantha's Download model for testing field. For more datails, watch video tutorials in the section below.
+**3)** Right click over the selected model download link and copy its url.
+
+**4)** Paste the model url into Samantha's _Download Models for Testing_ field.
+
+**5)** Insert a prompt into _USER Prompt_ field and press Enter. The model will be downloaded and the response will be generated using a deterministic settings.
+
+Every new model downloaded via copy and paste procedure will replace the previous one to save hard drive space.
+
+You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
 
 <br><br>
 # ▶️ Video Tutorials
