@@ -56,7 +56,7 @@ Sequencing of prompts and models allows the generation of long responses by frac
 As an open source tool for automatic self-interaction between AI models, Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop** 🔁. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial imprecise instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
 <br><br>
 
-Thanks to **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models can generate big responses!
+🎲 Thanks to **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models working together can generate big responses!
 <br><br><br>
 
 <p align="center">
@@ -91,7 +91,7 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 
 <br><br>
 
-## ✅ Key Features of Samantha
+## 📌 Key Features of Samantha
 
 <details>
 <summary>Click to open</summary>
