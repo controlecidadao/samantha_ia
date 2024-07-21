@@ -22,7 +22,7 @@ The system allows the sequential loading of a list of prompts and models (one mo
 
 Some chaining examples _without_ response feeddback:
 
-  * **(model_1) responds (prompt_1) X number of responses:** used to adjust model's deterministic or stochastic behavior with Learning Mode, as well as to generate multiple diverse responses with stochastic settings.
+  * **(model_1) responds (prompt_1) X number of responses:** used to monitor model's deterministic or stochastic behavior with help of the Learning Mode, as well as to generate multiple diverse responses with stochastic settings.
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model.
 
