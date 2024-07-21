@@ -63,8 +63,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 <br>
 
-**Our Vision:**
-Samantha is a [Open Science](https://www.unesco.org/en/open-science) movement towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers. Join us in this journey to democratize AI and make it a force for good in our daily lives.
+Samantha is just a small step towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers, wlaking a journey to democratize AI and make it a force for good in our daily lives.
 
 <br>
 
