@@ -17,7 +17,7 @@ Samantha is an interface assistant for open source artificial intelligence model
 
 <br>
 
-Samantha is being developed 🧬 to assist in the exercise of social control of the public administration, considering the growing loss of citizen confidence in the institutions of external control, resulting from the programmed destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open-source artificial intelligence models, especially programmers.
+Samantha is being developed 🧬 to assist in the exercise of social control of the public administration 🔍, considering the growing loss of citizen confidence in the institutions of external control, resulting from the programmed destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open-source artificial intelligence models, especially programmers.
 
 <br>
 
@@ -47,7 +47,7 @@ The system allows the sequential loading of a list of prompts and models (one mo
 <br><br>
 
 
-**Chaining Sequence:   ( [models list] -> respond -> ([user prompt list] X number of responses) ) X number of loops**
+**Chaining Sequence Template:   ( [models list] -> respond -> ([user prompt list] X number of responses) ) X number of loops**
 <br><br>
 
 Sequencing of prompts and models allows the generation of long responses by fractioning the input instruction. Every partial response fits in the model' response length defined in the training process.
