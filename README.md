@@ -63,7 +63,7 @@ Thanks to **emergent behavior**, with the right prompt and proper hyperparameter
 
 <br><br>
 
-# 🎯 Key Features of Samantha
+## 🎯 Key Features of Samantha
 
 <br>
 
@@ -124,7 +124,7 @@ The primary objective with Samantha is to inspire others to create similar syste
 
 <br><br>
 
-# 🛠️ Installing Samantha
+## 🛠️ Installing Samantha
 
 To use Samantha you will need:
 <br><br>
@@ -164,7 +164,7 @@ To use Samantha you will need:
 
 
 
-# ⬇️ Downloading Large Language Models (LLM)
+## ⬇️ Downloading Large Language Models (LLM)
 
 Samantha needs just a `.gguf` model file to generate text.
 <br>
@@ -220,7 +220,7 @@ The quality of a model can be assessed using four basic criteria:
   * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
 
 <br><br>
-# 🧠 Running Samantha
+## 🧠 Running Samantha
 
 
 Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
@@ -237,7 +237,7 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 <br><br><br>
 
 
-# 👟 Testing a Model in 5 Steps
+## 👟 Testing a Model in 5 Steps
 
 
 **1)** Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
@@ -255,7 +255,7 @@ Every new model downloaded via this copy and paste procedure will replace the pr
 You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
 
 <br><br>
-# ▶️ Video Tutorials
+## ▶️ Video Tutorials
 
 Learn how to use Samantha.<br>
 
@@ -277,9 +277,17 @@ You can add text within a collapsed section.
 
 </details>
 
+<br><br>
+## 🪄 Samantha's Tips and Tricks
+
+<details>
+<summary>Click to open</summary>
+
+</details>
+
 
 <br><br>
-# 📝 Version History
+## 📝 Version History
 
 Project version history and future improvements.
 
