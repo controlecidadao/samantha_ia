@@ -248,9 +248,9 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 
 **4)** Paste the model url into Samantha's _Download Models for Testing_ field.
 
-**5)** Insert a prompt into _USER Prompt_ field and press Enter (put a $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
+**5)** Insert a prompt into _USER Prompt_ field and press Enter (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
 
-Every new model downloaded via copy and paste procedure will replace the previous one to save hard drive space.
+Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
 
 You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
 
