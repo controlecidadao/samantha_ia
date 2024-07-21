@@ -95,7 +95,7 @@ The primary objective with Samantha is to **inspire** others to create similar -
 <br><br>
 ✅ **Open Source Foundation:** Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
   
-✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files. This ensures privacy and security for your data processing needs.<br><br>
+✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files or when required by the codes created by the models. This ensures privacy and security for your data processing needs. Your sensitive data is not shared via the internet with companies through confidentiality agreements.<br><br>
 
 ✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.<br><br>
 
