@@ -159,21 +159,24 @@ To use Samantha you will need:
   >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
 
   <br>
-  The installation process takes several minutes and should end with the creation of the last virtual environment (jupyterlab).
+  
+  The installation process takes several minutes and should end with the creation of two virtual environments: `samantha` and `jupyterlab`.
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the source of the `.bat` file. This process is required only the first time you run the program. Click on 'More info' and confirm:<br>
+* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the source of the `.bat` file. This authorisation is required only the first time you run the program. Click on 'More info' and confirm:<br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
   A terminal window will open. This is the Samantha's **server-side**.
 
-  After answering the initial questions (interface language and voice control options), the interface will open in a new browser tab. This is the Samantha's **browser-side**:
+  After answering the initial questions (interface language and voice control options - voice control is not suitable for first use), the interface will open in a new browser tab. This is the Samantha's **browser-side**:
 
   <br>
 
   ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
+
+  With the browser window opened, Samantha is ready to go.
 
 </details>
  
