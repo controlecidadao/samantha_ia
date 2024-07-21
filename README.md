@@ -323,6 +323,7 @@ Version 0.1.0 (2024-07-15):
 * Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
 * Refactor the code to make it more accessible.
 <br>
+Suggestions are always welcome!
 
 </details>
 <br><br>
