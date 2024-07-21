@@ -237,7 +237,7 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 <br><br><br>
 
 
-# 👟 Run a Model in 5 Steps
+# 👟 Testing a Model in 5 Steps
 
 
 **1)** Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory.
@@ -248,7 +248,7 @@ In turn, for stochastic behavior, suited for creative content, in which model se
 
 **4)** Paste the model url into Samantha's _Download Models for Testing_ field.
 
-**5)** Insert a prompt into _USER Prompt_ field and press Enter. The model will be downloaded and the response will be generated using a deterministic settings.
+**5)** Insert a prompt into _USER Prompt_ field and press Enter (put a $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
 
 Every new model downloaded via copy and paste procedure will replace the previous one to save hard drive space.
 
