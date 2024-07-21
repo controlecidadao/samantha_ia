@@ -101,11 +101,11 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
   
 ✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files or when required by the codes created by the models. This ensures privacy and security for your data processing needs. Your sensitive data is not shared via the internet with companies through confidentiality agreements.<br><br>
 
-✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone.<br><br>
+✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone in everywhere.<br><br>
 
 <!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
-✅ **Extensive Model Selection:** With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
+✅ **Extensive Model Selection:** With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of foundation and fine-tuned open-source models (Microsoft, Google, Meta etc.), users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
 
 ✅ **Copy and paste LLMs:** To try out a sequence of `gguf` models, just copy their download links from any Hugging Face repository and paste inside Samantha to run them right away.<br><br>
 
