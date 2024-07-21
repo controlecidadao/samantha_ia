@@ -37,9 +37,9 @@ The system allows the sequential loading of a list of prompts and models (one mo
 
 🔗 Some chaining examples **_using_** Samantha's response Feedback Loop feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** Used to improve model's previous response through a fixed instruction using the same model, as well as to generate a dialog using a single model.
+  * **(model_1) responds (prompt_1) X number of responses:** Used to improve model's previous response through a fixed user instruction using the same model, as well as to generate a continuous dialog using a single model.
 
-  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples instructions sequencially with the same model. Each prompt is used to refine the previous model response.
+  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples user instructions sequencially with the same model. Each prompt is used to refine the previous model response.
 
   * **(model_1, model_2, model_n) respond (prompt_1):** Used to improve previous model's response using disctinct models, as well as to generate a dialog between different models.
 
