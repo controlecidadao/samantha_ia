@@ -270,7 +270,7 @@ Execute the following steps to test a model with Samantha:
 
 4) Paste the model url into Samantha's _Download Models for Testing_ field.
 
-5) Insert a prompt into _USER Prompt_ field and press Enter (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
+5) Insert a prompt into _USER Prompt_ field and press `Enter` (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings.
 
 Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
 
