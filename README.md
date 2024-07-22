@@ -192,13 +192,13 @@ Samantha needs just a `.gguf` model file to generate text. Follow these steps to
 
 1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
 
-2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and choose a `gguf` model that fits in your available memory.
+2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and click on the card to open the corresponding page. Locate the _Files and versions_ tab and choose a `gguf` model that fits in your available memory.
+   
+4) Right click over the model download link icon and copy its url.
 
-3) Right click over the selected model download link icon and copy its url.
+5) Paste the model url into Samantha's _Download Models for Testing_ field.
 
-4) Paste the model url into Samantha's _Download Models for Testing_ field.
-
-5) Insert a prompt into _USER Prompt_ field and press `Enter` (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
+6) Insert a prompt into _USER Prompt_ field and press `Enter` (keep the $$$ sign at the end of your prompt). The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
 
 <br>
 
@@ -218,7 +218,7 @@ You can also download the model and save it permanently to your computer. For mo
 
 ### Downloading Open Source Model Files (.gguf)
 
-Open souce model files can be downloaded from the [Hugging Face's model search engine](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code`.
+Open souce model can be downloaded from [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code`.
 
 You can also go to a specific repository and see all the `.gguf` models available for downloading and testing, like [https://huggingface.co/bartowski](https://huggingface.co/bartowski)
 <br><br>
