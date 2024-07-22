@@ -204,7 +204,7 @@ Samantha needs just a `.gguf` model file to generate text. Follow these steps to
 
 Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
 
-You can also download the model and save it permanently to your computer. For more datails, watch video tutorials in the section below.
+You can also download the model and save it permanently to your computer. For more datails, see the section below.
 
 </details>
 
@@ -273,19 +273,188 @@ The quality of a model can be assessed using four basic criteria:
 <details>
 <summary>Click to open</summary>
 
+
+<br><br>
+### **SYSTEM prompt:**
+
+<br>
+
+In the context of Large Language Models (LLMs), a **system prompt** is a special type of instruction given to the model at the beginning of a conversation or task. 
+
+Think of it as setting the stage for the interaction. It provides the LLM with crucial information about its role, the desired persona, and the overall context of the conversation.
+
+Here's how it works:
+
+1. **Defining the Role:** The system prompt clearly defines the LLM's role in the interaction. 
+    * For example, it might instruct the model to act as a helpful assistant, a creative writer, a factual summarizer, or even a character in a story.
+
+2. **Setting the Tone and Persona:**  The system prompt can also establish the desired tone and persona for the LLM's responses. 
+    * It could be formal, informal, humorous, serious, or any other style depending on the intended use case.
+
+3. **Providing Contextual Information:** The system prompt can offer background information relevant to the conversation or task. 
+    * This helps the LLM understand the user's needs and provide more accurate and relevant responses.
+
+**Benefits of Using System Prompts:**
+
+* **Improved Consistency:** System prompts ensure that the LLM consistently adheres to a specific role and style throughout the interaction.
+* **Enhanced Accuracy:** By providing context and instructions, system prompts help the LLM generate more accurate and relevant responses.
+* **Tailored Experiences:** Different system prompts can be used to create tailored experiences for users based on their needs and preferences.
+
+**Example:**
+
+Let's say you want to use an LLM to write a poem in the style of Shakespeare. A suitable system prompt would be:
+
+"You are William Shakespeare, a renowned poet from Elizabethan England. Write a sonnet about the beauty of a summer day."
+
+By providing this system prompt, you guide the LLM to generate a response that reflects Shakespeare's language, style, and thematic interests.
+
+Not all models support system prompt. Test to find out. Put "x = 2 + 2" in the system prompt field and ask the model the value of "x" in the user prompt field. If the model gets the value of "x" right, system prompt is available.
+
+<br><br>
+### **Feedback Loop:**
+
+
+<br><br>
+**ASSISTANT previous response:**
+
+
+<br><br>
+**USER prompt:**
+
+
+<br><br>
+**Models selection:**
+
+
+<br><br>
+**Download model for testing**
+
+
+<br><br>
+**Single response per model:**
+
+
+<br><br>
+**Reset model:**
+
+
+<br><br>
+**Shuffle models**
+
+
+<br><br>
+**Fast Mode:**
+
+
+<br><br>
+**Voice selection:**
+
+
+<br><br>
+**Read response aloud:**
+
+
+<br><br>
+**Learning Mode:**
+
+
+<br><br>
+**Number of loops:**
+
+
+<br><br>
+**Number of responses:**
+
+
+<br><br>
+**n_ctx:**
+
+
+<br><br>
+**max_tokens:**
+
+
+<br><br>
+**stop:**
+
+
+<br><br>
+**temperature:**
+
+
+<br><br>
+**tfs_z:**
+
+
+<br><br>
+**top_p:**
+
+
+<br><br>
+**min_p:**
+
+
+<br><br>
+**typical_p:**
+
+
+<br><br>
+**top_k:**
+
+
+<br><br>
+**presence_penalty:**
+
+
+<br><br>
+**frequency_penalty:**
+
+
+<br><br>
+**repeat_penalty:**
+
+
+<br><br>
+**Show model's vocabulary:**
+
+
+
+context window length (n_ctx, max_tokens), token sampling (temperature, tfs_z, top-k, top-p, min_p, typical_p), penalties (presence_penalty, frequency_penalty, repeat_peanlty) and stop words,
+
+
+### Initial Settings
+
+Samantha's initial settings is **deterministic**. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
+
+Used to assess training database biases. 
+
+Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
+
+In turn, for **stochastic* behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
 <br><br>
 
-Samantha's initial settings are deterministic. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
-Used to assess training database biases. Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
+**Deterministic settings (default):**<br>
+* temperature (0)
+* tfs_z (0)
+* top_p (0)
+* min_p (1)
+* typical_p (0)
+* top_k (40)
+* presence_penalty (0)
+* frequency_penalty (0)
+* repeat_penalty (1.1).
 <br><br>
 
-In turn, for stochastic behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
-<br><br>
-
-**Deterministic settings (default):** temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
-<br><br>
-
-**Stochastic settings:** temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1).
+**Stochastic settings:** <br>
+* temperature (0.2)
+* tfs_z (1)
+* top_p (0.9)
+* min_p (0.05)
+* typical_p (1)
+* top_k (40)
+* presence_penalty (0)
+* frequency_penalty (0)
+* repeat_penalty (1.1)
 
 </details>
 
