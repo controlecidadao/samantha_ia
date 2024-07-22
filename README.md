@@ -98,7 +98,7 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 ## 📌 Samantha's Key Features
 
 <details>
-<summary>Click to open</summary>
+<summary>Features</summary>
 
 <br><br>
 ✅ **Open Source Foundation:** Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
@@ -139,7 +139,7 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 ## 🛠️ Installing Samantha
 
 <details>
-<summary>Click to open</summary>
+<summary>Instructions</summary>
 
 <br><br>
 To use Samantha you will need:
@@ -184,7 +184,7 @@ To use Samantha you will need:
 ## 👟 Testing a Model in 5 Steps
 
 <details>
-<summary>Click to open</summary>
+<summary>Instructions</summary>
 
 <br><br>
 Samantha needs just a `.gguf` model file to generate text. Follow these steps to perform a simple model test with Samantha:
@@ -212,7 +212,7 @@ You can also download the model and save it permanently to your computer. For mo
 ## ⬇️ Downloading Large Language Models (LLM)
 
 <details>
-<summary>Click to open</summary>
+<summary>Instructions</summary>
 
 <br>
 
@@ -271,12 +271,7 @@ The quality of a model can be assessed using four basic criteria:
 ## 🧠 Samantha's Settings
 
 <details>
-<summary>Click to open</summary>
-
-
-<br><br>
-### **SYSTEM prompt:**
-
+<summary>System prompt</summary>
 <br>
 
 In the context of Large Language Models (LLMs), a **system prompt** is a special type of instruction given to the model at the beginning of a conversation or task. 
@@ -311,8 +306,15 @@ By providing this system prompt, you guide the LLM to generate a response that r
 Not all models support system prompt. Test to find out. Put "x = 2 + 2" in the system prompt field and ask the model the value of "x" in the user prompt field. If the model gets the value of "x" right, system prompt is available.
 
 <br><br>
-### **Feedback Loop:**
+</details>
 
+<details>
+<summary>Feedback loop</summary>
+
+
+<br>
+
+</details>
 
 <br><br>
 **ASSISTANT previous response:**
