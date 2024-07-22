@@ -310,114 +310,246 @@ Not all models support system prompt. Test to find out. Put "x = 2 + 2" in the s
 
 <details>
 <summary>Feedback loop</summary>
-
-
 <br>
 
+Teste
+
+<br><br>
 </details>
 
-<br><br>
-**ASSISTANT previous response:**
+<details>
+<summary>Assistant previous response loop</summary>
+<br>
 
-
-<br><br>
-**USER prompt:**
-
+Teste
 
 <br><br>
-**Models selection:**
+</details>
 
+<details>
+<summary>User prompt</summary>
+<br>
 
-<br><br>
-**Download model for testing**
-
-
-<br><br>
-**Single response per model:**
-
+Teste
 
 <br><br>
-**Reset model:**
+</details>
 
+<details>
+<summary>Model selection</summary>
+<br>
 
-<br><br>
-**Shuffle models**
-
-
-<br><br>
-**Fast Mode:**
-
+Teste
 
 <br><br>
-**Voice selection:**
+</details>
 
+<details>
+<summary>Download model for testing</summary>
+<br>
 
-<br><br>
-**Read response aloud:**
-
-
-<br><br>
-**Learning Mode:**
-
+Teste
 
 <br><br>
-**Number of loops:**
+</details>
 
+<details>
+<summary>Single response per model</summary>
+<br>
 
-<br><br>
-**Number of responses:**
-
-
-<br><br>
-**n_ctx:**
-
+Teste
 
 <br><br>
-**max_tokens:**
+</details>
 
+<details>
+<summary>Reset model</summary>
+<br>
 
-<br><br>
-**stop:**
-
-
-<br><br>
-**temperature:**
-
+Teste
 
 <br><br>
-**tfs_z:**
+</details>
 
+<details>
+<summary>Shuffle models</summary>
+<br>
 
-<br><br>
-**top_p:**
-
-
-<br><br>
-**min_p:**
-
+Teste
 
 <br><br>
-**typical_p:**
+</details>
 
+<details>
+<summary>Fast mode</summary>
+<br>
 
-<br><br>
-**top_k:**
-
-
-<br><br>
-**presence_penalty:**
-
+Teste
 
 <br><br>
-**frequency_penalty:**
+</details>
 
+<details>
+<summary>Voice selection</summary>
+<br>
+
+Teste
 
 <br><br>
-**repeat_penalty:**
+</details>
 
+<details>
+<summary>Read response aloud</summary>
+<br>
+
+Teste
 
 <br><br>
-**Show model's vocabulary:**
+</details>
+
+<details>
+<summary>Learning mode</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Number of loops</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Number of responses</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>n_ctx</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>max_tokens</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Stop</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>temperature</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>tfs_z</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>top_p</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>min_p</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>typical_p</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>top_k</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>presence_penalty</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>frequency_penalty</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>repeat_penalty</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Show model's vocabulary</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
 
 
 
