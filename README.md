@@ -853,7 +853,41 @@ Teste
 <br><br>
 </details>
 
+<details>
+<summary>Models repositories (links)</summary>
+<br>
 
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Operating tips (tips)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>User prompt examples (prompts)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>System prompt examples (prompts)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
 
 
 
