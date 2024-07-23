@@ -722,11 +722,24 @@ Teste
 
 <br>
 
+
+
+
+
 ### Interface Right Column (output):
 ---
 
 <details>
 <summary>Assistant output (textbox)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Next token (button)</summary>
 <br>
 
 Teste
@@ -807,7 +820,7 @@ Teste
 </details>
 
 <details>
-<summary>Assistant output (textbox)</summary>
+<summary>Audio player (widget)</summary>
 <br>
 
 Teste
@@ -815,6 +828,32 @@ Teste
 <br><br>
 </details>
 
+<details>
+<summary>Text to speech (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Last response (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>All responses (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
 
 
 
