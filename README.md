@@ -67,7 +67,7 @@ As an open source tool for automatic self-interaction between AI models, Samanth
 
 <br>
 
-🌎 **A Small Step for Man:** Samantha is just a movement towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers, walking a journey to democratize AI and make it a force for good in our daily lives.
+🌎 **A Small Step:** Samantha is just a movement towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers, walking a journey to democratize AI and make it a force for good in our daily lives.
 
 <br>
 
