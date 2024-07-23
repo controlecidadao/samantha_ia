@@ -194,15 +194,15 @@ language = {
                 'text_to_speech': 'Texto para Voz',
                 'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) 'STOP_SAMANTHA' (sair do loop). É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
-                'models_selection_info': 'Models selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
+                'models_selection_info': 'Model selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignora URL.",
                 'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
-                'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizado.',
+                'fast_mode_info': 'Fast mode (caixa de seleção). Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizagem.',
                 'voice_selection_info': 'Voice selection (caixa de seleção). Seleciona voz SAPI5 no computador.',
                 'read_aloud_info': 'Read aloud (caixa de seleção). Lê automaticamente a última resposta do Assistente com a voz SAPI5 selecionada.',
-                'learning_mode_info': 'Learning mode (caixa de seleção). Ativa Modo de Aprendizado. Funciona apenas se Fast Mode estiver desmarcado. Tempo em segundos.',
+                'learning_mode_info': 'Learning mode (caixa de seleção). Ativa Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado. Tempo em segundos.',
                 'number_of_loops_info': 'Number of loops (caixa de seleção). Controla o número de loops da sequência de modelos selecionada.',
                 'number_of_responses_info': 'Number of responses (caixa de seleção). Controla o número de respostas para cada modelo selecionado.',
                 'n_ctx_info': 'n_ctx (ajuste deslizante). Número de tokens da janela de contexto (0 = máximo do modelo). Aumenta uso da memória RAM. Antes de ajustar, descarregue o modelo.',
@@ -220,7 +220,7 @@ language = {
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
-                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizado.",
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
@@ -234,6 +234,8 @@ language = {
                 'btn_copy_last_response': 'Copiar Resposta',
                 'btn_copy_all_responses': 'Copiar Respostas',
                 'btn_voice_command': 'Controle por Voz',
+                'display_response': 'Resposta em HTML',
+                'display_responses': 'Respostas em HTML',
                 'btn_idle': 'Executar Código',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
@@ -261,7 +263,7 @@ language = {
                 'text_to_speech': 'Text to Speech',
                 'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Hello!\n\n\n$$$',
-                'models_selection_info': 'Models selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
+                'models_selection_info': 'Model selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
                 'single_answer_info': 'Single response (checkbox). Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
@@ -301,6 +303,8 @@ language = {
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Response',
                 'btn_voice_command': 'Voice Control',
+                'display_response': 'Response in HTML',
+                'display_responses': 'Responses in HTML',
                 'btn_idle': 'Run Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
@@ -609,20 +613,6 @@ def text_generator(
     if previous_answer[:3] == '---':
         previous_answer = ''
 
-
-
-    # print()
-    # print('prompt_text:', type(prompt_text))
-    # if prompt[:3] == '---':
-    #     print('User prompt field is empty. Inserting dummy message "Hello!"...')
-    #     prompt = 'Hello!'
-
-
-
-
-
-
-
     # Check if no model is selected and if 'Download model for testing' field is not empty
     if models == [] or models == None:
 
@@ -823,10 +813,8 @@ def text_generator(
             previous_token = [] # Stores 10 last tokens. Displayed on top of the output field
 
             if 'MODEL_FOR_TESTING' in model:
-                # header_model_1 = f'\n\n==========================================\n{num_control}) {original_filename}  ***  URL  ***\n==========================================\n'
                 resposta += f'\n\n==========================================\n{num_control}) {original_filename}  ***  URL  ***\n==========================================\n'
             else:
-                # header_model_2 = f'\n\n==========================================\n{num_control}) {model}\n==========================================\n'
                 # Adds model name to the current response. Text response starts here. 'resposta' is a cummulative text variable
                 resposta += f'\n\n==========================================\n{num_control}) {model}\n==========================================\n'
 
@@ -2444,11 +2432,6 @@ def create_html(content):
     """
     return html
 
-# <script>
-#     const content = `{html_content}`;
-#     document.getElementById('content').innerHTML = marked.parse(content);
-# </script>
-
 
 def open_chrome_window(file_path):
     if sys.platform == "win32":
@@ -2633,12 +2616,20 @@ def exibir_respostas_html():
     open_chrome_window(os.path.realpath(temp_file_name))
 
 
-def change_checkbox(bool_value):
+def change_checkbox_single_response(bool_value):
     
     if bool_value:
         return gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=False), gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=False)
     else:
         return gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True), gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True)
+
+
+def change_checkbox_learning_mode(value):
+    
+    if value == 'OFF':
+        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False)
+    else:
+        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
 
 
 # ====================
@@ -2709,7 +2700,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Checkbox(value=infinite_loop, label='Feedback Loop', info=language["feedback_loop_info"], interactive=True),
                 gr.Textbox(value=previous_answer, lines=1, label="ASSISTANT previous response (" + language['changeble'] + ")", info=language['assistant_previous_response_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Textbox(value=prompt, lines=1, label="USER prompt (" + language['text_to_speech'] + ")", info=language['user_prompt_info'], elem_classes='prompt', elem_id='prompt_id', interactive=True, show_copy_button=True),
-                gr.Dropdown(choices=models * 2, value=None, multiselect=True, allow_custom_value=True, label="Models selection", info=language['models_selection_info'], interactive=True),
+                gr.Dropdown(choices=models * 2, value=None, multiselect=True, allow_custom_value=True, label="Model selection", info=language['models_selection_info'], interactive=True),
                 gr.Textbox(value=None, lines=1, label="Download model for testing", info=language['model_url_info'], elem_classes='prompt', interactive=True, show_copy_button=True),
                 gr.Checkbox(value=single_answer, label="Single response per model", info=language['single_answer_info'], interactive=True),
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
@@ -2733,12 +2724,16 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 1.1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
-                gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True),
+                gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
 
             # Activate / Deactivate Number of Response and Number of Loops checkboxes when "Single Response per Model" chackbox changes
-            inputs[6].change(fn=change_checkbox, inputs=inputs[6], outputs=[inputs[13], inputs[14]])
+            inputs[6].change(fn=change_checkbox_single_response, inputs=inputs[6], outputs=[inputs[13], inputs[14]])
+            
+            # Activate / Deactivate display model vocabulary when "Leraning Mode" chackbox changes
+            inputs[12].change(fn=change_checkbox_learning_mode, inputs=inputs[12], outputs=[inputs[-2]])
+
 
             with gr.Row():
                 btn_unload = gr.Button(language['btn_unload_model'])
@@ -2877,9 +2872,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             
             with gr.Row():
 
-                btn_d = gr.Button('Exibir Resposta HTML')
+                btn_d = gr.Button(language['display_response']) # 'Exibir Resposta HTML'
                 btn_d.click(fn=exibir_resposta_html, inputs=None, outputs=None)
-                btn_c = gr.Button('Exibir Respostas HTML')
+                btn_c = gr.Button(language['display_responses']) # 'Exibir Respostas HTML'
                 btn_c.click(fn=exibir_respostas_html, inputs=None, outputs=None)
 
                 if voice_mode == True:
@@ -2919,7 +2914,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_full_audio.click(fn=load_full_audio, inputs=inputs, outputs=audio_widget, queue=False)
             
             with gr.Row():
-                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Models Repository:</h5>""")
+                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Models Repositories:</h5>""")
             
             with gr.Row():
                 gr.HTML("""<ul>
