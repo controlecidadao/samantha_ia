@@ -289,7 +289,6 @@ The quality of a model can be assessed using four basic criteria:
 
 <br><br>
 ## 🧠 Samantha's Controls & Settings
-<br>
 
 ### Interface Left Column (input):
 
