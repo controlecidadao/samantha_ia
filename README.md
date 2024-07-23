@@ -95,6 +95,10 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 
 <br><br>
 
+
+
+
+
 ## 📌 Samantha's Key Features
 
 <details>
@@ -134,6 +138,10 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 ✅ **Performance Optimized:** To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size to save memory and computational resources.<br>
 
 </details>
+
+
+
+
 
 <br><br>
 ## 🛠️ Installing Samantha
@@ -180,6 +188,10 @@ To use Samantha you will need:
 
 </details>
 
+
+
+
+
 <br><br>
 ## 👟 Testing a Model in 5 Steps
 
@@ -207,6 +219,10 @@ Every new model downloaded via this copy and paste procedure will replace the pr
 You can also download the model and save it permanently to your computer. For more datails, see the section below.
 
 </details>
+
+
+
+
 
 <br><br>
 ## ⬇️ Downloading Large Language Models (LLM)
@@ -267,6 +283,10 @@ The quality of a model can be assessed using four basic criteria:
   * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
 </details>
 
+
+
+
+
 <br><br>
 ## 🧠 Samantha's Controls & Settings
 <br>
@@ -278,7 +298,9 @@ The quality of a model can be assessed using four basic criteria:
 <summary>Start chat (button)</summary>
 <br>
 
-Teste
+Starts a chat session, sending all input texts (system prompt, assistant previous response and user prompt) to the server, as well as the settings adjusted by the user.
+
+Keyboard shortcut: Press "Enter" anywhere on the page.
 
 <br><br>
 </details>
