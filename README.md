@@ -292,7 +292,6 @@ The quality of a model can be assessed using four basic criteria:
 <br>
 
 ### Interface Left Column (input):
----
 
 <details>
 <summary>Start chat (button)</summary>
@@ -727,7 +726,6 @@ Teste
 
 
 ### Interface Right Column (output):
----
 
 <details>
 <summary>Assistant output (textbox)</summary>
