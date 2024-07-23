@@ -291,7 +291,7 @@ The quality of a model can be assessed using four basic criteria:
 ## 🧠 Samantha's Controls & Settings
 <br>
 
-### Interface Left Column:
+### Interface Left Column (input):
 ---
 
 <details>
@@ -722,7 +722,7 @@ Teste
 
 <br>
 
-### Interface Right Column:
+### Interface Right Column (output):
 ---
 
 <details>
@@ -733,6 +733,102 @@ Teste
 
 <br><br>
 </details>
+
+<details>
+<summary>Copy code blocks (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Open Jupyterlab (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Copy last response (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Copy all response (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Run code (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Response in HTML (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Responses in HTML (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Voice control (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+<details>
+<summary>Assistant output (textbox)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
