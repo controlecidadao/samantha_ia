@@ -442,7 +442,7 @@ If the model generates "STOP_SAMANTHA", it stops token generation and exits the 
 Create a sentence about love<br>
 Create a sentence about life<br>
 ---Create a sentence about time (_this instruction is ignored_)<br>
-[[Create a paragraph that summarizes the ideas contained in the following sentences:]]<br>
+[[Create a paragraph in English that summarizes the ideas contained in the following sentences:]]<br>
 (_previous responses are concatenated here_)<br>
 
 **Model responses sequence:**<br>
