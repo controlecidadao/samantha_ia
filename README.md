@@ -617,7 +617,7 @@ Controls maximum number of tokens to be generated in the response.
 <summary>Stop (textbox)</summary>
 <br>
 
-Teste
+List of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]
 
 <br><br>
 </details>
@@ -626,7 +626,36 @@ Teste
 <summary>temperature (slider)</summary>
 <br>
 
-Teste
+Temperature is a hyperparameter that controls the randomness of the text generation process in LLMs. It affects the probability distribution of the model's next-token predictions.
+
+**Controlling Creativity:**
+
+Use higher temperatures when you want the model to generate more creative, unexpected, and varied responses. This is useful for creative writing, brainstorming, and exploring multiple ideas.
+
+Use lower temperatures when you need more predictable and focused output. This is useful for tasks requiring precise and reliable information, such as summarization or answering factual questions.
+
+**High Temperature (T > 1):**
+
+When T > 1, the logits are divided by a number greater than 1, making the differences between logits smaller.
+This flattens the probability distribution, making the model more likely to sample less probable tokens.
+The generated text becomes more diverse and creative, but potentially less coherent.
+
+**Low Temperature (T < 1):**
+
+When T<1, the logits are divided by a number less than 1, making the differences between logits larger.
+This sharpens the probability distribution, making the model more likely to sample the most probable tokens.
+The generated text becomes more focused and deterministic, but potentially less creative.
+
+**Temperature = 1:**
+
+When T = 1, the logits remain unchanged, and the model samples tokens based on the original probability distribution.
+This is a balanced setting, maintaining a mix of coherence and diversity.
+
+**Avoiding Repetition:**
+
+Higher temperatures can help reduce repetitive patterns in the generated text by promoting diversity.
+
+Very low temperatures can sometimes lead to repetitive and deterministic outputs, as the model might keep choosing the highest-probability tokens.
 
 <br><br>
 </details>
