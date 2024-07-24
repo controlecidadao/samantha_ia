@@ -291,7 +291,9 @@ The quality of a model can be assessed using four basic criteria:
 ## 🧠 Samantha's Controls & Settings
 
 ### Interface Left Column (input):
+<br>
 
+**Main Controls:**
 <details>
 <summary>Start chat (button)</summary>
 <br>
