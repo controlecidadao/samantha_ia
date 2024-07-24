@@ -331,6 +331,8 @@ Allows you to select the directory where the models available for loading are sa
 
 Default: "Downloads" folder
 
+You can select any directory that contains models. In this case, the models contained in the selected directory will be listed in the _Model selection_ dropdown field.
+
 <br><br>
 </details>
 
@@ -457,16 +459,26 @@ Love and life are intertwined forces that shape our existence. Love burns within
 <summary>Model selection (dropdown)</summary>
 <br>
 
-Teste
+Dropdown list of models saved on the computer and available for text generation.
+
+The default location for saving models is the "Downloads" directory.
+
+You can select multiples models (even repeated) to create a sequence of models to respond the user prompts.
+
+The last model downloaded from a link is saved as _MODEL_FOR_TESTING_ and is displayed in this list.
 
 <br><br>
 </details>
 
 <details>
-<summary>Download model for testing (checkbox)</summary>
+<summary>Download model for testing (textbox)</summary>
 <br>
 
-Teste
+Receives a list of links to the models that will be downloaded and executed sequencially.
+
+Works only if no model is selected in _Model selection_ field.
+
+Links preceded by "---" will be ignored.
 
 <br><br>
 </details>
