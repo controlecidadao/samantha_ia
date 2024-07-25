@@ -798,6 +798,26 @@ Teste
 **Other**
 
 <details>
+<summary>Run code automatically (checkbox)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+
+<details>
+<summary>Model metadata (textbox)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+
+<details>
 <summary>Show model's vocabulary (checkbox)</summary>
 <br>
 
