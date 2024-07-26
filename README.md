@@ -280,7 +280,7 @@ The quality of a model can be assessed using four basic criteria:
 
   * **Degree of adherence** to these instructions;
 
-  * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
+  * **Quality of the response** (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt (prompt engineering) and the adjustment of the model's hyperparameters.
 </details>
 
 
