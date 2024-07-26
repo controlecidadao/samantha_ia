@@ -520,6 +520,7 @@ def text_generator(
         delay_next_token_p,
         loop_models_p,
         num_respostas,
+        run_code_p,
         n_ctx, 
         max_tokens,
         stop_generation, 
@@ -531,8 +532,7 @@ def text_generator(
         top_k, 
         presence_penalty, 
         frequency_penalty, 
-        repeat_penalty,
-        run_code_p,
+        repeat_penalty,  
         prompt_template_p,
         show_vocabulary_p,
         vocabulary_p,
@@ -2431,7 +2431,7 @@ def create_html(content):
             code {{
                 font-family: Consolas, Monaco, 'Andale Mono', monospace;
                 font-size: 12px;
-                background-color: #ffffff;
+                background-color: #d9d9d9;
             }}
         </style>
     </head>
@@ -2577,6 +2577,18 @@ def open_idle():
         print(f"Saída de erro: {e.stderr}")
         winsound.Beep(600, 300) # Signals to indicate error
         winsound.Beep(600, 300)
+
+        # Criar conteúdo HTML
+        temp = e.returncode + '\n' + e.stderr
+        html_content = create_html(temp)
+
+        # Criar arquivo temporário
+        with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+            f.write(html_content)
+            temp_file_name = f.name
+
+        # Abrir nova instância do Chrome
+        open_chrome_window(os.path.realpath(temp_file_name))
 
     # else:
     #     print(f"No Python code in the response.")
@@ -2728,6 +2740,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
+                gr.Checkbox(value=False, label="Run code automatically", info=language['run_code_info'], interactive=True),                 
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
@@ -2740,9 +2753,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 1.1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
-                
-                gr.Checkbox(value=False, label="Run code automatically", info=language['run_code_info'], interactive=True),
-                
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
