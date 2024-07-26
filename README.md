@@ -13,11 +13,11 @@
 
 <br>
 
-Samantha is an interface assistant for open source artificial intelligence models developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://pypi.org/project/llama-cpp-python/) models or when required by the execution of the code created by the models (i.e. for data analysis 📊). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger proprietary ones. Her mission is to help explore the boundaries of (realy) open AI models.
+💻 Samantha is an interface assistant for open source artificial intelligence models developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://pypi.org/project/llama-cpp-python/) models or when required by the execution of the code created by the models (i.e. for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger proprietary ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
 <br>
 
-Samantha is being developed 🧬 to assist in the exercise of social control of the public administration 🔍, considering the worrisome current scenario of the growing loss of citizens' trust in external control institutions, resulting from the destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open-source artificial intelligence models, especially programmers.
+🕵️‍♀️ It is being developed to assist in the exercise of social control of the public administration, considering the worrisome current scenario of the growing loss of citizens' trust in external control institutions, resulting from the destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open-source artificial intelligence models, especially programmers.
 
 <br>
 
