@@ -808,7 +808,7 @@ Teste
 </details>
 
 <br><br>
-**Other**
+**Others:**
 
 <details>
 <summary>Model metadata (textbox)</summary>
