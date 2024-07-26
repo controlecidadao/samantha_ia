@@ -1131,7 +1131,7 @@ Some models tend to loop (repeat the same text indefinitely) when using highly d
 In turn, for **stochastic* behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
 <br><br>
 
-**Deterministic settings (default):**<br>
+📐 **Deterministic settings (default):**<br>
 * temperature (0)
 * tfs_z (0)
 * top_p (0)
@@ -1143,7 +1143,7 @@ In turn, for **stochastic* behavior, suited for creative content, in which model
 * repeat_penalty (1.1).
 <br><br>
 
-**Stochastic settings:** <br>
+🎨 **Stochastic settings:** <br>
 * temperature (0.2)
 * tfs_z (1)
 * top_p (0.9)
