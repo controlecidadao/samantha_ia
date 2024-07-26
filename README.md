@@ -91,7 +91,7 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 <br>
 
 **On the Shoulders of Giants:**
- Special thanks 🙏 to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible, as well as to [Andrei Bleten](https://github.com/abetlen/llama-cpp-python) by his amazing Python bidings for the Gerganov C++ library.
+🙏 Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible, as well as to [Andrei Bleten](https://github.com/abetlen/llama-cpp-python) by his amazing Python bidings for the Gerganov C++ library.
 
 <br><br>
 
