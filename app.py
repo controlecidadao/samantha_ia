@@ -1446,11 +1446,16 @@ def stop_running():                 # Stop / Next button
     global para_tudo
     global audio
     global one_click
+
+    # if run_code == True: # new
+    #     para_tudo = True # new
+    #     return para_tudo # new
     
     if one_click == False:
-        click.play()
+        click.play()   
     else:
         one_click = False
+
     para_tudo = True
     
     try:
@@ -2426,7 +2431,7 @@ def create_html(content):
             code {{
                 font-family: Consolas, Monaco, 'Andale Mono', monospace;
                 font-size: 12px;
-                background-color: #d0d0d0;
+                background-color: #ffffff;
             }}
         </style>
     </head>
@@ -2444,6 +2449,7 @@ def create_html(content):
 
 
 def open_chrome_window(file_path):
+
     if sys.platform == "win32":
         chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     # elif sys.platform == "darwin":
@@ -2462,7 +2468,8 @@ def open_chrome_window(file_path):
 
 def open_idle():
 
-    click.play()
+    if run_code == False: # To avoid double click when pressing stop / next button
+        click.play()
 
     print()
     print('======================')
