@@ -1118,22 +1118,7 @@ Teste
 <br><br>
 </details>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-context window length (n_ctx, max_tokens), token sampling (temperature, tfs_z, top-k, top-p, min_p, typical_p), penalties (presence_penalty, frequency_penalty, repeat_peanlty) and stop words,
-
+<br>
 
 ### Initial Settings
 
