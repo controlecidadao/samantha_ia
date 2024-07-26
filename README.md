@@ -631,7 +631,7 @@ List of characters that interrupt text generation, in the format ["$$$", ".", ".
 </details>
 
 <br><br>
-**Model Hyperparameters:**
+**Token Sampling:**
 
 <details>
 <summary>temperature (slider)</summary>
@@ -766,6 +766,10 @@ Teste
 
 <br><br>
 </details>
+
+<br><br>
+**Token Penalties:**
+
 
 <details>
 <summary>presence_penalty (slider)</summary>
