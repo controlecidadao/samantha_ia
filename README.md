@@ -631,7 +631,7 @@ Controls maximum number of tokens to be generated in the response.
 **Stop Words:**
 
 <details>
-<summary>Stop (textbox)</summary>
+<summary>stop (textbox)</summary>
 <br>
 
 List of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]
