@@ -168,7 +168,7 @@ To use Samantha you will need:
 
   <br>
   
-  The installation process takes several minutes and should end with the creation of two virtual environments: `samantha` and `jupyterlab`.
+  The installation process takes about **50 minutes** and should end with the creation of two virtual environments: `samantha` and `jupyterlab`. It will take up about **5 GB** of your hard drive.
 
 <br>
 
