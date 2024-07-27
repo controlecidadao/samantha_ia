@@ -278,7 +278,7 @@ The quality of a model can be assessed using some basic criteria, such as:
 
   * **Degree of obedience** to these instructions;
 
-  * **Degree of precision in the decision-making** process to fill in the gaps in the context of the user prompt and to resolve ambiguities, required to generate the response;
+  * **Degree of precision in the decision-making** process to fill in the gaps in the context of the user prompt and to resolve ambiguities;
 
   * **Degree of coherence of the bias adopted by the model** with the bias (or lack thereof) contained in the user's prompt;
 
