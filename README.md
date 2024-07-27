@@ -272,7 +272,7 @@ Note that each model has its own characteristics, presenting significantly diffe
 
 Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)<br><br>
 
-The quality of a model can be assessed using this basic criteria:
+The quality of a model can be assessed using some basic criteria, such as:
 
   * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
 
