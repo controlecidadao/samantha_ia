@@ -272,13 +272,19 @@ Note that each model has its own characteristics, presenting significantly diffe
 
 Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)<br><br>
 
-The quality of a model can be assessed using four basic criteria:
+The quality of a model can be assessed using seven basic criteria:
 
   * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
 
-  * **Degree of adherence** to these instructions;
+  * **Degree of obedience** to these instructions;
 
   * **Degree of precision in the decision-making** process to fill in the gaps in the context of the user prompt and to resolve ambiguities, required to generate the response;
+
+  * **Degree of coherence of the bias adopted by the model** with the bias (or lack thereof) contained in the user's prompt;
+
+  * **Degree of breadth and depth of approach to topics**;
+
+  * **Degree of sintatic and semantic precision** of the response;
 
   * **Quality of the response** (structure and content) in relation to the user's expectations (and their overcoming) for the problem submitted to the model, considering the technique used to create the prompt (prompt engineering) and the adjustment of the model's hyperparameters.
 </details>
