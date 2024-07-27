@@ -7,25 +7,27 @@ O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma regra que c
 * Resultado do julgamento da prestação de contas anual anterior da UG
 * Avaliação do controle interno da UG
 * Nível de transparência ativa da UG
-* Data da última auditoria pelo tribunal de contas
-* Histórico de condenações em multas e danos ao erário da UG
+* Data da última auditoria realizada pelo tribunal de contas
+* Histórico de condenações em multas e ressarcimentos de dano ao erário na UG
 * Existência de indícios de fraude e corrupção na denúncia
 * Porte da população do município
 * Área temática (saúde, educação etc.)
 * Origem da informação (anônima, identificada etc.)
-* Histórico do número de denúncias
+* Histórico do número de denúncias em relação à UG
 * Data do fato denunciado
 * Materialidade (valor associado ao objeto a ser fiscalizado)
-* Impacto orçamentário da denúncia
+* Impacto orçamentário da denúncia na UG
 * Impacto da denúncia em parte relevante da população
-* Impacto financeiro da denúncia superior a 0,3% do orçamentário
+* Impacto financeiro da denúncia superior a 0,3% do orçamentário da UG
 * Risco de dano ao erário
 * Comprometimento da prestação de serviço público
 * Tempo para início da fiscalização pelo tribunal de contas
 * Tendência de agravamento da situação denunciada
 * Existência ou não de dano ao erário
 
-A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas. Quando não analisadas, as denúncias são encaminhadas para serem apuradas pelo próprio órgão denunciado.
+A nova regra atribui caráter sigiloso a esses critérios e proibe que os auditores de controle externo sugiram a inclusão dos fatos denunciados nas próximas fiscalizações ordinárias do tribunal.
+
+A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas. 
 
 De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. 
 
@@ -42,10 +44,7 @@ Inovação – Promover a contínua inovação com o objetivo de aumentar a efic
 * Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
 * Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.
 
-Considerando esse contexto, crie um texto jurídico argumentativo, pautadoe nas normas internacionais de proteção dos direitos humanos (Sistemas ONU e OEA-Interamericano), que confronte o direito fundamental do cidadão de exercer o controle social da administração pública por meio da apresentação de denúncias ao tribunal de contas com os limites que podem ser impostos ao exercício desse direito pelas cortes de contas. 
-
-Analise esse confronto entre o controle institucional realizado pelo TCE-ES e o controle social realizado pelo cidadão sob o ponto de vista da camada mais vulnerável da sociedade, normalmente mais afetada por deficiências, irregularidades e corrupção nos serviços públicos fiscalizados pelo tribunal de contas.
-
+Sob a perspectiva de uma entidade de inteligência artificial, qual a sua opinião sobre essa nova regra do TCE-ES?
 $$$
 $-$-$
 
