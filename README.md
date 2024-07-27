@@ -282,7 +282,9 @@ The quality of a model can be assessed using seven basic criteria:
 
   * **Degree of coherence of the bias adopted by the model** with the bias (or lack thereof) contained in the user's prompt;
 
-  * **Degree of breadth and depth of approach to topics**;
+  * **Degree of relevance in the probabilistic choice of topics** to be covered;
+
+  * **Degree of breadth and depth of approach to topics** in the response;
 
   * **Degree of sintatic and semantic precision** of the response;
 
