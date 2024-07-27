@@ -276,9 +276,9 @@ The quality of a model can be assessed using four basic criteria:
 
   * **Degree of understanding** of the explicit and implicit instructions contained in the user prompt;
 
-  * **Degree of precision in the decision-making** process to fill in the gaps in the context of the user prompt and to resolve ambiguities, required to generate the response;
-
   * **Degree of adherence** to these instructions;
+
+  * **Degree of precision in the decision-making** process to fill in the gaps in the context of the user prompt and to resolve ambiguities, required to generate the response;
 
   * **Quality of the response** (structure and content) in relation to the user's expectations (and their overcoming) for the problem submitted to the model, considering the technique used to create the prompt (prompt engineering) and the adjustment of the model's hyperparameters.
 </details>
