@@ -91,7 +91,7 @@ The primary objective with Samantha is to **inspire** 💡 others to create simi
 <br>
 
 🚨 **The Human Cost of Innovation:**
-While this system aims to empower users and democratize access to AI, it's crucial to acknowledge the ethical implications of this technology. The development of powerful AI systems often relies on the exploitation of human labor, particularly in data annotation and training processes. This can perpetuate existing inequalities and create new forms of digital divide. **As users of AI, we have a responsibility to be aware of these issues** and advocate for fairer practices within the industry. By supporting ethical AI development and promoting transparency in data sourcing, we can contribute to a more inclusive and equitable future for all.
+While this system aims to empower users and democratize access to AI, it's crucial to acknowledge the ethical implications of this technology. The development of powerful AI systems often relies on the exploitation of human labor, particularly in data annotation and training processes. This can perpetuate existing inequalities and create new forms of digital divide. **As users of AI, we have a responsibility to be aware of these issues and advocate for fairer practices within the industry**. By supporting ethical AI development and promoting transparency in data sourcing, we can contribute to a more inclusive and equitable future for all.
 
   * [Como funciona o trabalho humano por trás da inteligência artificial](https://www.youtube.com/watch?v=F0M9OH5n-hg)
 
