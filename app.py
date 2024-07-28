@@ -228,7 +228,7 @@ language = {
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
                 'btn_copy_model_url': 'Copiar HF Links',
-                'assistant_raw_output_info': 'Histórico de respostas',
+                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE, edite o código e execute com o botão Executar Código.',
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
@@ -298,7 +298,7 @@ language = {
                 'btn_system_prompt': 'TXT System Prompt',
                 'btn_user_prompt': 'TXT User Prompt',
                 'btn_copy_model_url': 'Copy HF Links',
-                'assistant_raw_output_info': 'Response history',
+                'assistant_raw_output_info': 'Response history. Add #IDE, edit the code and run with Run Code button.',
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Code Blocks',
                 'btn_open_jupyterlab': 'Open JupyterLab',
@@ -423,6 +423,7 @@ original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Stores model's token vocabulary
 run_code = False
+# saida = ''
 
 # ===================================
 # 7) INTERFACE VOICE CONTROL SETTINGS
@@ -1746,7 +1747,7 @@ def extract_text():
             text += f"\n\nPágina {page.number+1} de {total_pages}: "
             text += page.get_text().replace('\n', ' ')
         text = """[Generate a concise summary in Portuguese, one paragraph long, for the page below. Analyze carefully the textual content of the page. Generate a concise summary, faithfully capturing the main ideas. Each idea must be registered as a sentence in the paragraph. Start with the page number (ex: "Page 1:"). Generate the page summary in a single paragraph. Do not include comments and avoid unnecessary repetitions:]\n
-[[Create a summary joining the text pages below. Distribute the text into paragraphs however you see fit. Do not mention page numbers neither include comments and avoid unnecessary repetitions. Start with the topic "Summary:":]]
+[[Create a summary in Portuguese joining the text pages below. Distribute the text into paragraphs however you see fit. Do not mention page numbers neither include comments and avoid unnecessary repetitions. Start with the topic "Summary:":]]
         """ + text
     
     with open('text.txt', "w", errors='ignore') as f:
@@ -2385,18 +2386,13 @@ def download_model_urls():
 
 def create_html(content):
 
-    # Quebra as linhas longas
-    # wrapped_content = '\n'.join(textwrap.wrap(content, width=100, break_long_words=False, replace_whitespace=False))
     # <meta charset="windows-1252">
 
     # Converte o markdown para HTML
     html_content = markdown.markdown(content)
 
-    # # Escape special Markdown characters
-    # escaped_content = escape_markdown(content)
-    
-    # # Escape HTML special characters
-    # escaped_content = escape(escaped_content)
+    html_content = html_content.replace('\n', r'<br>')
+    html_content = html_content.replace(r'><br><', r'><') # Makes the HTML popup output the same as the Samantha browser output
 
     html = f"""
     <!DOCTYPE html>
@@ -2404,6 +2400,7 @@ def create_html(content):
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="{DIRETORIO_LOCAL}/images/s.ico" type="image/x-icon">
         <title>Samantha Interface Assistant</title>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <style>
@@ -2436,12 +2433,8 @@ def create_html(content):
         </style>
     </head>
     <body>
-
         <h3>Assistant output:</h3>
-
         <div id="content">{html_content}</div>
-
-    
     </body>
     </html>
     """
@@ -2478,7 +2471,22 @@ def open_idle():
     print()
 
 
-    if "```" not in ultima_resposta:
+
+    global ultima_resposta
+    text_1 = ultima_resposta
+    copied_text = pyperclip.paste()
+    if "#IDE" in copied_text:
+        text_1 = copied_text
+        pyperclip.copy('') # Copy '' to clipboard to clean it
+        copied_text = ''
+    else:
+        pyperclip.copy('') # Copy '' to clipboard to clean it
+        copied_text = ''
+
+
+
+    # if "```" not in ultima_resposta:
+    if "```" not in text_1: # <<<<<<<<<< REPLACED
         print(f"No Markdown Python code in the response.")
         winsound.Beep(600, 300) # Signals to indicate error
         winsound.Beep(600, 300)
@@ -2490,8 +2498,10 @@ def open_idle():
     
 
     # EXTRACT CODE FROM LAST REPONSE
-    padrao = r"```python(.*?)\n(.*?)```"
-    codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
+    # padrao = r"```python(.*?)\n(.*?)```"
+    padrao = r"```(.*?)\n(.*?)```"
+    # codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
+    codigos = re.findall(padrao, text_1, re.DOTALL) # <<<<<<<< REPLACED
     resultado = []
     
     for codigo in codigos:
@@ -2507,6 +2517,14 @@ def open_idle():
     print(final_code)
     
     # if "```python" in final_code.lower():
+
+    # Insert code for changing title and icon of the matplotlib popup window
+    c1 = "from tkinter import PhotoImage\n"
+    c2 = "from matplotlib import pyplot as plt\n"
+    c3 = "plt.gcf().canvas.manager.set_window_title('Samantha Interface Assistant')\n"
+    c4 = "root = plt.gcf().canvas.manager.window\n"
+    c5 = r"root.iconbitmap('images\s.ico')"
+    final_code = c1 + c2 + c3 + c4 + c5 + '\n\n' + final_code
     
     # CREATE PYTHON FILE
     with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
@@ -2515,28 +2533,28 @@ def open_idle():
     # RUN PYTHON FILE
     try:
 
-            result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8')
-            output = result.stdout.strip()  # Remove espaços em branco no início e no final
-            print(output)
-            print()
-            print('type(output):', type(output))
-            print('len(output):', len(output))
-            print()
+        result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8')
+        output = result.stdout.strip()  # Remove espaços em branco no início e no final
+        print(output)
+        print()
+        print('type(output):', type(output))
+        print('len(output):', len(output))
+        print()
 
-            if len(output) > 0:
-                
-                # Criar conteúdo HTML
-                html_content = create_html(output)
+        if len(output) > 0 or '#IDE' in final_code:
+            
+            # Criar conteúdo HTML
+            html_content = create_html(output)
 
-                # html_content = html_content.replace('\n', '<br>')
+            # html_content = html_content.replace('\n', '<br>')
 
-                # Criar arquivo temporário
-                with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
-                    f.write(html_content)
-                    temp_file_name = f.name
+            # Criar arquivo temporário
+            with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+                f.write(html_content)
+                temp_file_name = f.name
 
-                # Abrir nova instância do Chrome
-                open_chrome_window(os.path.realpath(temp_file_name))
+            # Abrir nova instância do Chrome
+            open_chrome_window(os.path.realpath(temp_file_name))
         
         
         # # Response without code
@@ -2579,8 +2597,7 @@ def open_idle():
         winsound.Beep(600, 300)
 
         # Criar conteúdo HTML
-        temp = e.returncode + '\n' + e.stderr
-        html_content = create_html(temp)
+        html_content = create_html(e.stderr)
 
         # Criar arquivo temporário
         with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
@@ -2687,17 +2704,30 @@ function shortcuts(e) {
     }
 }
 document.addEventListener('keyup', shortcuts, false);
+
+
+//function changeFavicon(newFaviconUrl) {
+//    let link = document.querySelector("link[rel~='icon']");
+//    if (!link) {
+//        link = document.createElement('link');
+//        link.rel = 'icon';
+//        document.getElementsByTagName('head')[0].appendChild(link);
+//    }
+//    link.href = newFaviconUrl;
+//}
+//changeFavicon('images/s.ico');
+
 </script>
 """
 
 
 with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
     
-    # # Page image
-    # gr.HTML("""
-    #         <img id="overlay-image" src="https://pngfre.com/wp-content/uploads/butterfly-27-1024x688.png" alt="Imagem no Canto Superior Esquerdo" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
+    # Page image
+    # gr.HTML(fr"""
+    #         <img id="overlay-image" src="{DIRETORIO_LOCAL}\samantha.png" alt="" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
     #         """)
-    
+        
     # Page title
     gr.HTML(f'<h1 style="text-align: center; margin: -5px 0 0; color: #f3813f">{language["title"]}</h1>')
     gr.HTML(f'<h5 style="text-align: center; margin: -7px 0 0px"><b><span style="color: #9CA3AF;">{language["subtitle_1"]}</span></b></h5>')
@@ -2879,7 +2909,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
         with gr.Column(scale=1):
 
             with gr.Row():
-                saida = gr.Textbox(value='', label="Assistant output", info=language['assistant_raw_output_info'], show_copy_button=True)
+                saida = gr.Textbox(value='', label="Assistant output", info=language['assistant_raw_output_info'], show_copy_button=True, interactive=True)
                 outputs = [saida] # Primeiro elemento da tupla de saída da função 'text_generator' (token)
 
             with gr.Row():
@@ -2951,6 +2981,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a></li>
                         <br>
+                        <li><a href="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF">bartowski/gemma-2-9b-it-GGUF</a></li>
+                        <li><a href="https://huggingface.co/bartowski/gemma-2-27b-it-GGUF">bartowski/gemma-2-27b-it-GGUF</a></li>
+
                         <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
                         <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
                         <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
@@ -3056,7 +3089,7 @@ def main():
         try:
             demo.queue()                # Put interface on queue
             open_browser()              # Open browser before endpoint generation (wait demo launch)
-            demo.launch(share=False)
+            demo.launch(share=False, favicon_path=fr"{DIRETORIO_LOCAL}\images\s.ico")
         except Exception as e:
             print(e)
             continue
