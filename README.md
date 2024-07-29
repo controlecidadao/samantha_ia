@@ -1194,7 +1194,7 @@ You can add text within a collapsed section.
 <summary>Click to open</summary>
 
 <br><br>
-* Keep only one interface window open. Multiple open windows block the buttons from working properly.
+* Keep only one interface window open at a time. Multiple open windows prevent the buttons from working properly.
 * It is not possible to interrupt the program during the model loading and thinking phases. Pressing the stop buttons during these phases will only take effect when the token generation phase begins.
 </details>
 
