@@ -1196,6 +1196,8 @@ You can add text within a collapsed section.
 <br><br>
 * Keep only one interface window open at a time. Multiple open windows prevent the buttons from working properly.
 * It is not possible to interrupt the program during the model loading and thinking phases. Pressing the stop buttons during these phases will only take effect when the token generation phase begins.
+<br>
+
 </details>
 
 
@@ -1213,10 +1215,14 @@ Version 0.1.0 (2024-07-15):
 <br>
 
 **Future improvements:**
+<br>
+
 * Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
 * Refactor the code to make it more accessible.
 <br>
+
 Suggestions are always welcome!
+<br>
 
 </details>
 <br><br>
