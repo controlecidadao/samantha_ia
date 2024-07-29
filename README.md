@@ -1172,7 +1172,7 @@ Teste
 ## ▶️ Video Tutorials
 
 <details>
-<summary>Click to open</summary>
+<summary>Watch</summary>
 
 <br><br>
 You can add text within a collapsed section. 
@@ -1196,6 +1196,7 @@ You can add text within a collapsed section.
 <br><br>
 * Keep only one interface window open at a time. Multiple open windows prevent the buttons from working properly.
 * It is not possible to interrupt the program during the model loading and thinking phases, except by closing it. Pressing the stop buttons during these phases will only take effect when the token generation phase begins.
+* You can select the same model more than once, in any sequence you prefer. To do so, select additional models at the bottom of the dropdown menu. When deleting a model, all of the same type will be excluded from the selection.
 <br>
 
 </details>
@@ -1205,7 +1206,7 @@ You can add text within a collapsed section.
 ## 📝 Version History and Future Improvements
 
 <details>
-<summary>Click to open</summary>
+<summary>Versions</summary>
 
  <br><br>
 **Code Versions:**
