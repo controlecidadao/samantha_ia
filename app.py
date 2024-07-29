@@ -780,9 +780,9 @@ def text_generator(
                             embedding=False,
                             flash_attn=True,                        # default False <<<<<<<<<<<<<<<<<<<<< IN TEST
                             last_n_tokens_size=64,                  # default 64. Estava em 512
-                            lora_base=None,
-                            lora_scale=1.0,
-                            lora_path=None,
+                            # lora_base=None,
+                            # lora_scale=1.0,
+                            # lora_path=None,
                             numa=False,
                             chat_format=None,                       # 'llama-2' (padrão), 'alpaca', 'vicuna', 'oasst_llama', 'openbuddy', 'redpajama-incite', 'snoozy', 'phind', 'open-orca'
                             chat_handler=None,
@@ -2433,7 +2433,7 @@ def create_html(content):
         </style>
     </head>
     <body>
-        <h3>Assistant output:</h3>
+        <h3 style="color:#ff3300;">Assistant output:</h3>
         <div id="content">{html_content}</div>
     </body>
     </html>
@@ -2874,7 +2874,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     
                     # https://www.youtube.com/watch?v=FdTRzgbBP8o
             
-            gr.HTML('<br><h6><b>Installed Python Modules to Use with JupyterLab:</b></h6>') # Exploratory Data Analysis
+            gr.HTML('<br><h6><b>Installed Python Modules to Use with Samantha and Jupyterlab:</b></h6>') # Exploratory Data Analysis
             
             gr.HTML("""<ul>
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
@@ -3003,11 +3003,13 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+hermes">Hermes</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+arcee">Arcee</a></li>
                         <br>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
                         </ul>""")
-            
+
+                        # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
+                        # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
+                        
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Operating Tips:</h5>""")
             with gr.Row():
@@ -3017,19 +3019,19 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Processing (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling methods and penalties.</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (100), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha fechar" or "samantha close" to stop listening</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha close" or "samantha fechar" to stop listening</span></i></h6>')         
             
             # with gr.Row():
             #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Key Concepts:&nbsp;&nbsp;&nbsp;Training Dataset / Prompt, Token, Token Vocabulary, Large Language Model (LLM), Training / Generation, Embedding Vectors, Embedding Matrix, Artificial Neural Networks (Layers, Weights and Bias), Ordered Token Vocabulary, Next Token Selection</span></i></h6>""")                      
