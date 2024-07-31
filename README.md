@@ -13,7 +13,7 @@
 
 <br>
 
-💻 Samantha is an interface assistant for open source artificial intelligence models developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://huggingface.co/docs/hub/gguf) models or when required by the execution of the code created by the models (i.e. for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger proprietary ones. Her mission is to help explore the boundaries of (realy) open AI models.
+💻 Samantha is an interface assistant for open source artificial intelligence models developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://huggingface.co/docs/hub/gguf) models or when required by the execution of the code created by the models (g.e. for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger proprietary ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
 <br>
 
@@ -26,7 +26,7 @@
 
 🔗 Some chaining examples **_without using_** Samantha's response **Feedback Loop** feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** used to monitor model's deterministic or stochastic behavior with help of the Learning Mode, as well as to generate multiple diverse responses with stochastic settings.
+  * **(model_1) responds (prompt_1) X number of responses:** used to analyze model's deterministic and stochastic behavior with help of the Learning Mode, as well as to generate multiple diverse responses with stochastic settings.
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model.
 
@@ -76,7 +76,7 @@ The generated text reflects the content, biases, errors and improprieties presen
 
 <br>
 
-🦾 **The Instrumental Nature of AI:** Recognizing the technological monopoly of artificial intelligence as a possible instrument of domination and the expansion of social inequalities represents a challenge at this inflection point in history. Noting the flaws of the smaller models during the text generation process aids in this understanding by comparing them with the claimed perfection of the larger proprietary models. It is necessary to reposition things in their proper places and question the romantic reductionist view of attributing human characteristics - such as intelligence - to a technology produced by the human intellect. For this reason, it is essential to demystify artificial intelligence through a didactic approach to how this novel "word calculator" works. Certainly, the dopamine of the initial charm artificially created by the market will not withstand the generation of a few hundred tokens (token is the name given to the basic building block of texts that an LLM uses to understand and generate text. A token may be an entire word or part of a word).
+🦾 **The Instrumental Nature of AI:** Recognizing the technological monopoly of artificial intelligence as a possible instrument of domination and the expansion of social inequalities represents a challenge at this inflection point in history. Noting the flaws of the smaller models during the text generation process aids in this understanding by comparing them with the claimed perfection of the larger proprietary models. It is necessary to reposition things in their proper places and question the romantic reductionist view of attributing human characteristics - such as intelligence (Anthropomorphization caused by Pareidolia) - to a technology produced by the human intellect. For this reason, it is essential to demystify artificial intelligence through a didactic approach to how this novel "word calculator" works. Certainly, the dopamine of the initial charm artificially created by the market will not withstand the generation of a few hundred tokens (token is the name given to the basic building block of texts that an LLM uses to understand and generate text. A token may be an entire word or part of a word).
 
 <br>
 
