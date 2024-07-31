@@ -423,7 +423,7 @@ original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Stores model's token vocabulary
 run_code = False
-# saida = ''
+counter_run = 1
 
 # ===================================
 # 7) INTERFACE VOICE CONTROL SETTINGS
@@ -576,6 +576,7 @@ def text_generator(
     global single_answer
     global show_vocabulary
     global run_code
+    global counter_run
 
     click.play()
     print('\nStarting "text_generator" function...\n')
@@ -661,6 +662,7 @@ def text_generator(
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
     prompt_split = []
     count_prompt = 0
+    counter_run = 1
 
 
     # =================
@@ -780,9 +782,9 @@ def text_generator(
                             embedding=False,
                             flash_attn=True,                        # default False <<<<<<<<<<<<<<<<<<<<< IN TEST
                             last_n_tokens_size=64,                  # default 64. Estava em 512
-                            # lora_base=None,
-                            # lora_scale=1.0,
-                            # lora_path=None,
+                            lora_base=None,
+                            lora_scale=1.0,
+                            lora_path=None,
                             numa=False,
                             chat_format=None,                       # 'llama-2' (padrão), 'alpaca', 'vicuna', 'oasst_llama', 'openbuddy', 'redpajama-incite', 'snoozy', 'phind', 'open-orca'
                             chat_handler=None,
@@ -791,7 +793,7 @@ def text_generator(
 
                 except Exception as e:
                     model = ''                                      # Restart variable just to force new download
-                    resposta += f'\n\n==========================================\nError loading {original_filename}. Try another model.\n==========================================\n'
+                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not (yet) be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.\nTry another model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
                     break
@@ -2433,7 +2435,7 @@ def create_html(content):
         </style>
     </head>
     <body>
-        <h3 style="color:#ff3300;">Assistant output:</h3>
+        <h3 style="color:#ff3300;">Assistant output ({last_model}):</h3>
         <div id="content">{html_content}</div>
     </body>
     </html>
@@ -2461,8 +2463,23 @@ def open_chrome_window(file_path):
 
 def open_idle():
 
+    global ultima_resposta
+    global counter_run
+
+    copied_text = pyperclip.paste()
+
+    # click.play()
+
+    # if '#IDE' in copied_text: # Play click if run code automatically checkbox is selected and user is editing code and pushing Run Code button
+    #     click.play()
+
     if run_code == False: # To avoid double click when pressing stop / next button
         click.play()
+
+    elif run_code == True:
+        if counter_run > 1:
+            click.play()
+            
 
     print()
     print('======================')
@@ -2472,9 +2489,9 @@ def open_idle():
 
 
 
-    global ultima_resposta
+    
     text_1 = ultima_resposta
-    copied_text = pyperclip.paste()
+    # copied_text = pyperclip.paste()
     if "#IDE" in copied_text:
         text_1 = copied_text
         pyperclip.copy('') # Copy '' to clipboard to clean it
@@ -2516,15 +2533,12 @@ def open_idle():
     final_code = '\n'.join([linha for linha in final_code.split('\n') if not re.match(padrao, linha)])
     print(final_code)
     
-    # if "```python" in final_code.lower():
-
     # Insert code for changing title and icon of the matplotlib popup window
-    c1 = "from tkinter import PhotoImage\n"
-    c2 = "from matplotlib import pyplot as plt\n"
-    c3 = "plt.gcf().canvas.manager.set_window_title('Samantha Interface Assistant')\n"
-    c4 = "root = plt.gcf().canvas.manager.window\n"
-    c5 = r"root.iconbitmap('images\s.ico')"
-    final_code = c1 + c2 + c3 + c4 + c5 + '\n\n' + final_code
+    # c1 = "from matplotlib import pyplot as plt\n"
+    # c2 = "plt.gcf().canvas.manager.set_window_title('Samantha Interface Assistant')\n"
+    # c3 = "root = plt.gcf().canvas.manager.window\n"
+    # c4 = r"root.iconbitmap('images\s.ico')"
+    # final_code = c1 + c2 + c3 + c4 + '\n\n' + final_code
     
     # CREATE PYTHON FILE
     with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
@@ -2607,10 +2621,7 @@ def open_idle():
         # Abrir nova instância do Chrome
         open_chrome_window(os.path.realpath(temp_file_name))
 
-    # else:
-    #     print(f"No Python code in the response.")
-    #     winsound.Beep(600, 300) # Signals to indicate error
-    #     winsound.Beep(600, 300)
+    counter_run += 1
 
 
 def exibir_resposta_html():
@@ -2724,9 +2735,11 @@ document.addEventListener('keyup', shortcuts, false);
 with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
     
     # Page image
-    # gr.HTML(fr"""
-    #         <img id="overlay-image" src="{DIRETORIO_LOCAL}\samantha.png" alt="" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
+    # gr.HTML("""
+    #         <img id="overlay-image" src="images/s2.png" alt="Overlay Image" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
     #         """)
+
+    # gr.Image("images/s2.png", show_label=False, show_download_button=False, height=40, width=40, min_width=40)
         
     # Page title
     gr.HTML(f'<h1 style="text-align: center; margin: -5px 0 0; color: #f3813f">{language["title"]}</h1>')
