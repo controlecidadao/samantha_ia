@@ -5,9 +5,9 @@ O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma regra que c
 * Valor associado ao objeto fiscalizado (mínimo R$ 90 mil)
 * Índice de Desenvolvimento Humano (IDH) do município
 * Resultado do julgamento da prestação de contas anual anterior da UG
-* Avaliação do controle interno da UG
+* Avaliação do tribunal sobre o funcionamento do controle interno da UG
 * Nível de transparência ativa da UG
-* Data da última auditoria realizada pelo tribunal de contas
+* Data da última auditoria realizada pelo tribunal de contas na UG
 * Histórico de condenações em multas e ressarcimentos de dano ao erário na UG
 * Existência de indícios de fraude e corrupção na denúncia
 * Porte da população do município
