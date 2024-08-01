@@ -220,6 +220,9 @@ language = {
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
+                
+                #'add_output_info': 'Add output (caixa de seleção). Adiciona saída do interpretador Python ao final da resposta anterior do model.',
+                
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
                 'btn_unload_model': 'Descarregar Modelo',
@@ -290,6 +293,9 @@ language = {
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'run_code_info': 'Run code automatically (checkbox). Automatically executes the generated Python code.',
+                
+                # 'add_output_info': 'Add output (checkbox). Adds Python interpreter output to the end of the previous model response.',
+                
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
                 'btn_unload_model': 'Unload Model',
@@ -423,6 +429,7 @@ original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Stores model's token vocabulary
 run_code = False
+# add_output = False
 counter_run = 1
 
 # ===================================
@@ -522,6 +529,7 @@ def text_generator(
         loop_models_p,
         num_respostas,
         run_code_p,
+        # add_output_p,
         n_ctx, 
         max_tokens,
         stop_generation, 
@@ -576,6 +584,7 @@ def text_generator(
     global single_answer
     global show_vocabulary
     global run_code
+    # global add_output
     global counter_run
 
     click.play()
@@ -598,6 +607,7 @@ def text_generator(
     single_answer = single_answer_p
     show_vocabulary = show_vocabulary_p
     run_code = run_code_p
+    # add_output = add_output_p
 
 
     # INITIAL CONDITIONAL SETTINGS
@@ -1243,7 +1253,7 @@ def text_generator(
                     
 
                     if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                        open_idle()
+                        dummy_var = open_idle()
                 
 
                     # ==============
@@ -2488,8 +2498,6 @@ def open_idle():
     print()
 
 
-
-    
     text_1 = ultima_resposta
     # copied_text = pyperclip.paste()
     if "#IDE" in copied_text:
@@ -2623,6 +2631,11 @@ def open_idle():
 
     counter_run += 1
 
+    # CRITICAL CODE FEEDBACK
+    if run_code == True and len(output) > 0: # Add the result of the code execution to the variable 'ultima_resposta' when Run Code Automatically is selected
+        ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + output
+        # ultima_resposta = output
+
 
 def exibir_resposta_html():
 
@@ -2738,7 +2751,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
     # gr.HTML("""
     #         <img id="overlay-image" src="images/s2.png" alt="Overlay Image" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
     #         """)
-
+    
     # gr.Image("images/s2.png", show_label=False, show_download_button=False, height=40, width=40, min_width=40)
         
     # Page title
@@ -2784,6 +2797,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Checkbox(value=False, label="Run code automatically", info=language['run_code_info'], interactive=True),                 
+                
+                # gr.Checkbox(value=False, label="Add interpreter output to previous response", info=language['add_output_info'], interactive=True),                 
+                
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
@@ -2893,6 +2909,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
                     <li><a href="https://altair-viz.github.io/">Vega-Altair</a></li>
                     <li><a href="https://plotly.com/python/">Plotly</a></li>
+                    <li><a href="https://docs.bokeh.org/en/latest/index.html">Bokeh</a></li>
                     <li><a href="https://pyvis.readthedocs.io/en/latest/">Pyvis</a></li>
                     <li><a href="https://networkx.org/documentation/stable/index.html">NetworkX</a></li>
                     <li><a href="https://github.com/fbdesignpro/sweetviz">Sweetviz</a></li>
@@ -3032,7 +3049,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Processing (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops</span></i></h6>')         
             with gr.Row():
