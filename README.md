@@ -114,7 +114,7 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 <summary>Features</summary>
 
 <br><br>
-✅ **Open Source Foundation:** Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
+✅ **Open Source Foundation:** Built upon [Llama.cpp](https://github.com/ggerganov/llama.cpp) / [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) and [Gradio](https://www.gradio.app/) , under [MIT license](https://opensource.org/license/mit), Samantha runs on standard computers, even without a dedicated Graphics Processing Unit (GPU).<br><br>
   
 ✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files or when required by the execution of the code created by the models. This ensures privacy and security for your data processing needs. Your sensitive data is not shared via the internet with companies through confidentiality agreements.<br><br>
 
