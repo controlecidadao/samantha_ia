@@ -684,9 +684,9 @@ It presents a series of features that help in understanding the token selection 
 
 * Model metadata
 * Tokens vocabulary
-* k-tokens of the model output with the position of the selected token
-* barplot of the logits scores
-* barplot of the selected unlikely tokens
+* Top-k tokens sorted by logits score with vocabulary position and selected token indication
+* Barplot of the top-k tokens sorted by logits scores
+* Cummulative barplot of the selected unlikely tokens
 
 Only works if Fast Mode is unchecked. 
 
