@@ -414,11 +414,12 @@ This replaced text is not visible. It does not erase text from the _Previous Ass
 
 <details>
 <summary>System prompt (textbox)</summary>
-<br>
 
-In the context of Large Language Models (LLMs), a **system prompt** is a special type of instruction given to the model at the beginning of a conversation or task. 
+---
 
-Think of it as setting the stage for the interaction. It provides the LLM with crucial information about its role, the desired persona, and the overall context of the conversation.
+In the context of Large Language Models (LLMs), a system prompt is a special type of instruction given to the model at the beginning of a conversation or task. It is considered in all interactions with the model.
+
+Think of it as setting the stage for the interaction. It provides the LLM with crucial information about its role, the desired persona, behavior, and the overall context of the conversation.
 
 Here's how it works:
 
@@ -445,7 +446,9 @@ Let's say you want to use an LLM to write a poem in the style of Shakespeare. A 
 
 By providing this system prompt, you guide the LLM to generate a response that reflects Shakespeare's language, style, and thematic interests.
 
-Not all models support system prompt. Test to find out. Put "x = 2 + 2" in the system prompt field and ask the model the value of "x" in the user prompt field. If the model gets the value of "x" right, system prompt is available.
+Not all models support system prompt. Test to find out. Fill in "x = 2" in the system prompt field and ask the model the value of "x" in the user prompt field. If the model gets the value of "x", system prompt is available in the model.
+
+---
 
 <br><br>
 </details>
