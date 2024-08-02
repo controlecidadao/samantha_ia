@@ -509,6 +509,7 @@ Text positioned within double square brackets (`[[` and `]]`) is added as the la
 If the model generates the word `STOP_SAMANTHA`, it stops token generation and exits the loop.
 
 Example:<br>
+
 _[You are a poet that writes only in Portuguese]_<br>
 _Create a sentence about love_<br>
 _Create a sentence about life_<br>
@@ -517,6 +518,7 @@ _[[Create a paragraph in English that summarizes the ideas contained in the foll
 (_previous responses are concatenated here_)<br>
 
 Model responses sequence:<br>
+
 _"O amor é um fogo que arde no meu peito, uma chama que me guia através da vida."_<br>
 _"A vida é um rio que flui sem parar, levando-nos para além do que conhecemos."_<br>
 _Love and life are intertwined forces that shape our existence. Love burns within us like a fire, guiding us through life's journey with passion and purpose. Meanwhile, life itself is a dynamic and ever-changing river, constantly flowing and carrying us beyond the familiar and into the unknown. Together, love and life create a powerful current that propels us forward, urging us to explore, discover, and grow._
