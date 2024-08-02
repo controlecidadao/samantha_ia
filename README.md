@@ -337,11 +337,16 @@ A model must be pre-selected in _Model selection_ field or a URL must be provide
 
 <details>
 <summary>Stop / Next (button)</summary>
-<br>
+
+---
 
 Interrupts the token generation process for the current model, starting the execution of the next model in the sequence, if any.
 
 It also stops playback of the currently playing audio when in speech autoplay mode (_Read response aloud_ checkbox selected).
+
+Samantha has 3 phases: loading model (non stop), thinking (non stop) and next token selection (stop). This button works only when the next token selection phase is started, even if it was pressed previously.
+
+---
 
 <br><br>
 </details>
