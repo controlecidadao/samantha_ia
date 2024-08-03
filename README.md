@@ -1344,7 +1344,7 @@ User prompt:
 
 ```
 Translate to English and refine the following instruction:
-"Crie um prompt para gerar um gráfico de barras com Plotly Express usando dados aleatórios contextualizados."
+"Crie um prompt para uma IA gerar um gráfico de barras empilhadas usando dados aleatórios contextualizados."
 DO NOT EXECUTE THE CODE!
 $$$
 
