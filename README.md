@@ -285,11 +285,9 @@ If the downloaded model doesn't fit into the available RAM space, your hard driv
 Download the chosen model and save it to your computer or just copy the download link and paste it inside Samantha's _Download model for testing_ field. Watch video tutorials in the section below for more details.
 <br><br>
 
-### Your First Testing Models
+Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task.
 
-Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task. **Some models may not (yet) be loaded due to their technical characteristics or incompatibility with the current version of the [llama.cpp Python binding](https://github.com/abetlen/llama-cpp-python) used by Samantha**.
-
-* [llmware/bling-phi-3-gguf](https://huggingface.co/llmware/bling-phi-3-gguf) (**3.8 billion** parameters model created by [Microsoft](https://huggingface.co/microsoft) and fine-tunned by [llmware](https://huggingface.co/llmware))
+**Some models may not be loaded due to their technical characteristics or incompatibility with the current version of the [llama.cpp Python binding](https://github.com/abetlen/llama-cpp-python) used by Samantha**.
 
 Where to find models to test: [Huggingface GGUF Models](https://huggingface.co/models?sort=trending&search=gguf)<br><br>
 
@@ -829,9 +827,12 @@ How `max_tokens` Works:
 
 <details>
 <summary>stop (textbox)</summary>
-<br>
 
-List of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]
+---
+
+List of characters that interrupts text generation, in the format `["$$$", ".", ".\n"]` (Python list).
+
+---
 
 <br><br>
 </details>
