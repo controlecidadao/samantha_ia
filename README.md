@@ -1329,6 +1329,50 @@ You can change this list of prompts by editing the `system_prompts.txt` file. Sa
 <br><br>
 </details>
 
+
+<br><br>
+## ✏ Prompt Engineering with Samantha
+
+<details>
+<summary>Examples</summary>
+
+---
+
+* **Sequence of prompts with single model:**
+
+User prompt:
+```
+Translate to English and refine the following instruction:
+"Crie um prompt para gerar um gráfico de barras com Plotly Express usando dados aleatórios contextualizados."
+DO NOT EXECUTE THE CODE!
+$$$
+
+Refine even more the prompt in your previous response.
+DO NOT EXECUTE THE CODE!
+$$$
+
+Execute the prompt in your previous response.
+$$$
+
+Correct the errors in your previous response.
+$$$
+```
+Settings:<br>
+* Model: https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true
+* Feedback loop: activated
+* Run code automatically: activated
+
+Press _Clear history_ button before start chat to clear assistant previous response.
+
+
+
+---
+
+<br><br>
+</details>
+
+
+
 <br><br>
 ## ▶️ Video Tutorials
 
