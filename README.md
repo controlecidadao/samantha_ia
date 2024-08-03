@@ -1352,21 +1352,21 @@ Refine even more the prompt in your previous response.
 DO NOT EXECUTE THE CODE!
 $$$
 
-Execute the prompt in your previous response, if any.
+Execute the prompt in your previous response.
 $$$
 
-Correct the errors in your previous response.
+Correct the errors in your previous response, if any.
 $$$
 ```
 
 Settings:<br>
-* Model: https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true
+* Model: https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true (you can just paste the URL in _Download model for testing_ field)
 * Feedback loop: activated
 * Run code automatically: activated
 
 Press _Clear history_ button before start chat to clear assistant previous response.
 
-This prompt transfers the task of refining the user's initial prompt to the model, generating a more elaborate prompt.
+This prompt transfers the task of refining the user's initial prompt to the model, generating a more elaborate prompt. Each prompt is executed automatically and the model's response, as well as the output of the Python interpreter (if existing), are fed back to the model to generate the next response.
 
 Experiment with other models to test their behaviors. Change the initial prompt slightly to test the model's adherence.
 
