@@ -1369,7 +1369,8 @@ Version 0.1.0 (2024-08-05):
 <br>
 
 * Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
-* Refactor the code to make it more accessible.
+* Add Retrieval-Augmented Generation (RAG) feature
+* Refactor the code to make it more manteinable.
 <br>
 
 Suggestions are always welcome!
