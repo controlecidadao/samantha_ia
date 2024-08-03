@@ -1301,7 +1301,7 @@ Teste
 
 A collection of user prompts.
 
-Just click to select a prompt and send it to _user prompt_ field.
+Just click to select a prompt and send it to the _user prompt_ field.
 
 You can change this list of prompts by editing the `user_prompts.txt` file. Samantha must be restarted.
 
@@ -1317,7 +1317,7 @@ You can change this list of prompts by editing the `user_prompts.txt` file. Sama
 
 A collection of system prompts.
 
-Just click to select a prompt and send it to _system prompt_ field.
+Just click to select a prompt and send it to the _system prompt_ field.
 
 You can change this list of prompts by editing the `system_prompts.txt` file. Samantha must be restarted.
 
