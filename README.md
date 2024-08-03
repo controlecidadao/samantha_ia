@@ -1338,9 +1338,10 @@ You can change this list of prompts by editing the `system_prompts.txt` file. Sa
 
 ---
 
-* **Sequence of prompts with single model:**
+* **List of prompts with single model:**
 
 User prompt:
+
 ```
 Translate to English and refine the following instruction:
 "Crie um prompt para gerar um gráfico de barras com Plotly Express usando dados aleatórios contextualizados."
@@ -1351,12 +1352,13 @@ Refine even more the prompt in your previous response.
 DO NOT EXECUTE THE CODE!
 $$$
 
-Execute the prompt in your previous response.
+Execute the prompt in your previous response, if any.
 $$$
 
 Correct the errors in your previous response.
 $$$
 ```
+
 Settings:<br>
 * Model: https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true
 * Feedback loop: activated
@@ -1364,6 +1366,9 @@ Settings:<br>
 
 Press _Clear history_ button before start chat to clear assistant previous response.
 
+This prompt transfers the task of refining the user's initial prompt to the model, generating a more elaborate prompt.
+
+Experiment with other models to test their behaviors. Change the initial prompt slightly to test the model's adherence.
 
 
 ---
