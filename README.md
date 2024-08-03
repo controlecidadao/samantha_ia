@@ -1366,7 +1366,7 @@ Settings:<br>
 
 Press _Clear history_ button before start chat to clear assistant previous response.
 
-This prompt transfers the task of refining the user's initial prompt to the model, generating a more elaborate prompt. Each prompt is executed automatically and the model's response, as well as the output of the Python interpreter (if existing), are fed back to the model to generate the next response.
+This prompt translate the initial instruction from Portuguese to English (instructions in English use to generate more accurate responses), transfers the task of refining the user's initial prompt to the model (models add detailed instructions), generating a more elaborate prompt. Each prompt is executed automatically and the model's response, as well as the output of the Python interpreter (if existing), are fed back to the model to generate the next response.
 
 Experiment with other models to test their behaviors. Change the initial prompt slightly to test the model's adherence.
 
