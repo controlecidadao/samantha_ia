@@ -1115,18 +1115,19 @@ Teste
 
 <details>
 <summary>Settings</summary>
-<br>
+
+---
 
 Samantha's initial settings is **deterministic**. As a rule, this means that for the same prompt, you'll get always the same answer, even when applying penalties to exclude repeated tokens (penalties does not affect the model deterministic behavior).<br> 
 
-Used to assess training database biases. 
+Deterministic settings is used to assess training database biases. 
 
 Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
 
-In turn, for **stochastic* behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
+In turn, for **stochastic** behavior, suited for creative content, in which model selects tokens with different probability scores, adjust the hyperparameters accordingly.
 <br><br>
 
-📐 **Deterministic settings (default):**<br>
+📐 **Deterministic settings (default):** <br>
 * temperature (0)
 * tfs_z (0)
 * top_p (0)
@@ -1138,7 +1139,7 @@ In turn, for **stochastic* behavior, suited for creative content, in which model
 * repeat_penalty (1.1).
 <br><br>
 
-🎨 **Stochastic settings:** <br>
+🎨 **Stochastic settings (example):** <br>
 * temperature (0.2)
 * tfs_z (1)
 * top_p (0.9)
@@ -1148,6 +1149,8 @@ In turn, for **stochastic* behavior, suited for creative content, in which model
 * presence_penalty (0)
 * frequency_penalty (0)
 * repeat_penalty (1.1)
+
+---
 
 <br><br>
 </details>
