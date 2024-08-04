@@ -1367,7 +1367,7 @@ User prompt:
 
 ```
 Translate to English and refine the following instruction:
-"Crie um prompt para uma IA gerar um gráfico de barras empilhadas usando dados aleatórios contextualizados."
+"Crie um prompt para uma IA gerar um código em Python que exiba um gráfico de barras usando dados aleatórios contextualizados."
 DO NOT EXECUTE THE CODE!
 $$$
 
@@ -1396,7 +1396,31 @@ Each prompt is executed automatically and the model's response, as well as the o
 To create a prompt list like this, add one prompt at a time and test it. If the code runs correctly, add the next prompt considering the output of the previous one. Since you are using deterministic settings, the model output will be the same for the same input text.
 
 Experiment with other models to test their behaviors. Change the initial prompt slightly to test the model's adherence.
+<br><br><br>
 
+
+* **Stop condition with single model:**
+
+User prompt:
+```
+Follow the instructions below step by step:
+1) Create a Python function that generates a random number between 1 and 10. If the number returned is less than 4, print that number. Otherwise, print ''.
+2) Execute the function.
+Attention: Write only the code. Do not include comments.
+$$$
+```
+
+Settings:<br>
+* Model: https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true (you can just paste the URL in _Download model for testing_ field)
+* Number of reponses: 100
+* Run code automatically: activated
+* Stop condition: activated
+
+Press _Clear history_ button before start chat to clear assistant previous response.
+
+This prompt creates and executes Python code sequentially until a condition is met (random number < 4), stopping Samantha.
+
+You can ask the model to create any Python code and specify any condition to stop Samantha.
 
 ---
 
