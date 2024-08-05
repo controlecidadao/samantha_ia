@@ -221,7 +221,7 @@ language = {
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
                 
-                #'add_output_info': 'Add output (caixa de seleção). Adiciona saída do interpretador Python ao final da resposta anterior do model.',
+                'stop_condition_info': 'Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia).',
                 
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
@@ -294,7 +294,7 @@ language = {
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'run_code_info': 'Run code automatically (checkbox). Automatically executes the generated Python code.',
                 
-                # 'add_output_info': 'Add output (checkbox). Adds Python interpreter output to the end of the previous model response.',
+                'stop_condition_info': 'Stop condition (checkbox). Stops Samantha if the Python interpreter prints (in the terminal) a value other than '' (empty string).',
                 
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
@@ -431,6 +431,7 @@ show_vocabulary = False         # Stores model's token vocabulary
 run_code = False
 # add_output = False
 counter_run = 1
+stop_condition = ''
 
 # ===================================
 # 7) INTERFACE VOICE CONTROL SETTINGS
@@ -529,7 +530,9 @@ def text_generator(
         loop_models_p,
         num_respostas,
         run_code_p,
-        # add_output_p,
+        
+        stop_condition_p,
+        
         n_ctx, 
         max_tokens,
         stop_generation, 
@@ -584,7 +587,9 @@ def text_generator(
     global single_answer
     global show_vocabulary
     global run_code
-    # global add_output
+    
+    global stop_condition
+    
     global counter_run
 
     click.play()
@@ -607,7 +612,7 @@ def text_generator(
     single_answer = single_answer_p
     show_vocabulary = show_vocabulary_p
     run_code = run_code_p
-    # add_output = add_output_p
+    stop_condition = stop_condition_p
 
 
     # INITIAL CONDITIONAL SETTINGS
@@ -1252,8 +1257,12 @@ def text_generator(
 
                     
 
-                    if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                        dummy_var = open_idle()
+                    # if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
+                    #     pyperclip.copy('')
+                    #     dummy_var = open_idle()
+                    #     if dummy_var == '':
+                    #         return
+                    
                 
 
                     # ==============
@@ -1319,6 +1328,15 @@ def text_generator(
                     return
 
 
+                if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
+                        pyperclip.copy('')
+                        dummy_var = open_idle()
+                        
+                        if stop_condition == True:
+                            if dummy_var == 'STOP_SAMANTHA':
+                                return
+                    
+                
                 # ======================
                 # CRITICAL LOOPS CONTROL
                 # ======================
@@ -2476,14 +2494,16 @@ def open_idle():
     global ultima_resposta
     global counter_run
 
+    click.play()
+
     copied_text = pyperclip.paste()
 
-    if run_code == False: # To avoid double click when pressing stop / next button
-        click.play()
+    # if run_code == False: # To avoid double click when pressing stop / next button
+    #     click.play()
 
-    elif run_code == True:
-        if counter_run > 1:
-            click.play()
+    # elif run_code == True:
+    #     if counter_run > 1:
+    #         click.play()
             
     print()
     print('======================')
@@ -2497,9 +2517,16 @@ def open_idle():
         text_1 = copied_text
         pyperclip.copy('') # Copy '' to clipboard to clean it
         copied_text = ''
+    
     else:
+
+        if copied_text != '':
+            text_1 = "#```python\n" + copied_text + "\n```" # <<<<<<<<<<<<<< IN TEST
+
         pyperclip.copy('') # Copy '' to clipboard to clean it
         copied_text = ''
+
+    # =============================
 
     # if "```" not in ultima_resposta:
     if "```python" not in text_1: # <<<<<<<<<< REPLACED
@@ -2565,7 +2592,8 @@ def open_idle():
 
             # Abrir nova instância do Chrome
             open_chrome_window(os.path.realpath(temp_file_name))
-        
+
+            
         
         # # Response without code
         # if "```" not in ultima_resposta: # To dsiplay output in new browser tab only if there is no code
@@ -2627,6 +2655,12 @@ def open_idle():
     if run_code == True and len(output) > 0: # Add the result of the code execution to the variable 'ultima_resposta' when Run Code Automatically is selected
         ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + output
         # ultima_resposta = output
+
+    
+    if len(output) > 0:
+        return 'STOP_SAMANTHA'
+
+
 
 
 def exibir_resposta_html():
@@ -2786,11 +2820,11 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
                 gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
-                gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
-                gr.Radio([1, 2, 3, 4, 5, 10, 100, 1000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
+                gr.Radio([1, 2, 3, 5, 10, 100, 1000000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
+                gr.Radio([1, 2, 3, 5, 10, 100, 1000000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Checkbox(value=False, label="Run code automatically", info=language['run_code_info'], interactive=True),                 
                 
-                # gr.Checkbox(value=False, label="Add interpreter output to previous response", info=language['add_output_info'], interactive=True),                 
+                gr.Checkbox(value=stop_condition, label="Stop condition", info=language['stop_condition_info'], interactive=True),                 
                 
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
@@ -2898,6 +2932,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             gr.HTML('<br><h6><b>Installed Python Modules to Use with Samantha and Jupyterlab:</b></h6>') # Exploratory Data Analysis
             
             gr.HTML("""<ul>
+                    <li><a href="https://matplotlib.org/">Matplotlib</a></li>
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
                     <li><a href="https://altair-viz.github.io/">Vega-Altair</a></li>
                     <li><a href="https://plotly.com/python/">Plotly</a></li>
