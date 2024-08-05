@@ -221,7 +221,7 @@ language = {
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
                 
-                'stop_condition_info': 'Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia).',
+                'stop_condition_info': "Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia).",
                 
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
@@ -294,7 +294,7 @@ language = {
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'run_code_info': 'Run code automatically (checkbox). Automatically executes the generated Python code.',
                 
-                'stop_condition_info': 'Stop condition (checkbox). Stops Samantha if the Python interpreter prints (in the terminal) a value other than '' (empty string).',
+                'stop_condition_info': "Stop condition (checkbox). Stops Samantha if the Python interpreter prints (in the terminal) a value other than '' (empty string).",
                 
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
