@@ -1242,6 +1242,17 @@ Teste
 </details>
 
 <details>
+<summary>Run Code (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+
+
+<details>
 <summary>Response in HTML (button)</summary>
 <br>
 
