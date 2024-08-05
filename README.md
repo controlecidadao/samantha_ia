@@ -1497,3 +1497,4 @@ Suggestions are always welcome!
 <br><br>
 
 <!--https://github.com/matiassingers/awesome-readme?tab=readme-ov-file#Examples-->
+<!--https://huggingface.co/spaces/SoulAbi/text-to-voice-->
