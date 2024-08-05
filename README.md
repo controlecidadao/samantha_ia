@@ -282,6 +282,8 @@ To download the model, click on the card to open the corresponding page. Locate 
 ![tabs](https://github.com/controlecidadao/samantha_ia/blob/main/images/tabs.png)
 <br><br>
 
+To download some models, you must agree to the terms of use.
+
 After that, click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC`, click on **Performance** tab (1) and select **Memory** (2):
 
 <br>
