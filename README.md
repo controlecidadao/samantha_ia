@@ -1161,6 +1161,8 @@ To use DB Browser, [download](https://sqlitebrowser.org/dl/) the `.zip`(no insta
 
 Opens [D-Tale](https://github.com/man-group/dtale) in a new browser tab with a example dataset (titanic.csv).
 
+A Windows terminal window will also open.
+
 ---
 
 <br><br>
