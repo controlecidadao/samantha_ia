@@ -1035,9 +1035,12 @@ Teste
 
 <details>
 <summary>Model metadata (textbox)</summary>
-<br>
 
-Teste
+---
+
+Display model metadata.
+
+---
 
 <br><br>
 </details>
