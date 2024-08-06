@@ -1081,18 +1081,29 @@ Teste
 
 <details>
 <summary>TXT system prompt (button)</summary>
-<br>
 
-Teste
+---
+
+Fills _System prompt_ field with a prompt saved in a TXT file.
+
+Click the button to select the TXT file.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>TXT user prompt (button)</summary>
-<br>
 
-Teste
+---
+
+Fills _User prompt_ field with a list of prompt saved in a TXT file.
+
+Click the button to select the TXT file.
+
+
+---
 
 <br><br>
 </details>
