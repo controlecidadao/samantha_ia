@@ -1102,9 +1102,9 @@ Teste
 
 ---
 
-Copy a Hugging Face model URL and extract all links to `.gguf` files.
+Copy a Hugging Face download model URL (Files and versions tab) and extract all links to `.gguf` files.
 
-You can paste the links into the _Dowonload models for testing_ field.
+You can paste all the copied links into the _Dowonload models for testing_ field at once.
 
 ---
 
