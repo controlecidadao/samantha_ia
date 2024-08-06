@@ -724,8 +724,6 @@ Set the number of repetitions of the selected model sequence in the following te
 
 Chaining Sequence Template: ( [models list] -> respond -> ( [user prompt list] X number of responses) ) X **_number of loops_**
 
-Explanation:
-
 Each model in the _models list_ responds to all prompts in the _user prompt list_ for the selected _number of responses_. This block is repeated for the selected _number of loops_.
 
 ---
