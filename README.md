@@ -296,7 +296,7 @@ We suggest to download the model with **Q4_K_M** (4-bit quantization) in its lin
 
 If the downloaded model doesn't fit into the available RAM space, your hard drive will be used, impacting performance.
 
-Download the chosen model and save it to your computer or just copy the download link and paste it inside Samantha's _Download model for testing_ field. Watch video tutorials in the section below for more details.
+Download the chosen model and save it to your computer or just copy the download link and paste it into Samantha's _Download model for testing_ field. Watch video tutorials in the section below for more details.
 <br><br>
 
 Note that each model has its own characteristics, presenting significantly different responses depending on its size, internal architecture, training method, predominant language of the training database, user prompt and hyperparameter adjustment, and it is necessary to test its performance for the desired task.
@@ -1099,18 +1099,28 @@ Teste
 
 <details>
 <summary>Copy HF links (button)</summary>
-<br>
 
-Teste
+---
+
+Copy a Hugging Face model URL and extract all links to `.gguf` files.
+
+You can paste the links into the _Dowonload models for testing_ field.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>TXT Load URLs (button)</summary>
-<br>
 
-Teste
+---
+
+Fills _Download model for testing_ field with a list of model URLs saved in a TXT file.
+
+Click the button to select the TXT file.
+
+---
 
 <br><br>
 </details>
@@ -1118,18 +1128,26 @@ Teste
 
 <details>
 <summary>DB Browser (button)</summary>
-<br>
 
-Teste
+---
+
+Opens [DB Browser](https://sqlitebrowser.org/) if its directory is into Samantha's directory.
+
+To use DB Browser, [download](https://sqlitebrowser.org/dl/) the `.zip`(no installer) version and unpack it into Samantha's directory: `samantha-ia-main\DB Browser for SQLite`.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>D-Tale (button)</summary>
-<br>
 
-Teste
+---
+
+Opens [D-Tale](https://github.com/man-group/dtale) in a new browser tab with a example dataset (titanic.csv).
+
+---
 
 <br><br>
 </details>
