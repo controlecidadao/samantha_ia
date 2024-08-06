@@ -707,7 +707,7 @@ Only works if Fast Mode is unchecked.
 Radio buttons options:<br>
 
 * OFF: Learning mode disabled.<br>
-* 0, 0.3, 1, 3, 10: Time delay in seconds.<br>
+* 0, 0.3, 1, 3, 10: Generation time delay in seconds.<br>
 * NEXT TOKEN: Allows you to control the response generation process, token by token, via _NEXT TOKEN_ button.<br>
 
 ---
