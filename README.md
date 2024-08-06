@@ -1107,7 +1107,7 @@ Teste
 </details>
 
 <details>
-<summary>TXT Model URL (button)</summary>
+<summary>TXT Load URLs (button)</summary>
 <br>
 
 Teste
