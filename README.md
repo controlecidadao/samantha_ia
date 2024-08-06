@@ -1107,6 +1107,16 @@ Teste
 </details>
 
 <details>
+<summary>TXT Model URL (button)</summary>
+<br>
+
+Teste
+
+<br><br>
+</details>
+
+
+<details>
 <summary>DB Browser (button)</summary>
 <br>
 
