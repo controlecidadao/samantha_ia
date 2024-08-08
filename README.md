@@ -867,30 +867,31 @@ List of characters that interrupts text generation, in the format `["$$$", ".", 
 
 <details>
 <summary>temperature (slider)</summary>
-<br>
 
-Temperature is a hyperparameter that controls the randomness of the text generation process in LLMs. It affects the probability distribution of the model's next-token predictions.
+---
+
+🌡 Temperature is a hyperparameter that controls the randomness of the text generation process in LLMs. It affects the probability distribution of the model's next-token predictions.
 
 **Controlling Creativity:**
 
-Use higher temperatures when you want the model to generate more creative, unexpected, and varied responses. This is useful for creative writing, brainstorming, and exploring multiple ideas.
-
-Use lower temperatures when you need more predictable and focused output. This is useful for tasks requiring precise and reliable information, such as summarization or answering factual questions.
-
-**High Temperature:**
-
+🔥 Use **higher temperatures** when you want the model to generate more creative, unexpected, and varied responses. This is useful for creative writing, brainstorming, and exploring multiple ideas.<br>
 This flattens the probability distribution, making the model more likely to sample less probable tokens.<br>
 The generated text becomes more diverse and creative, but potentially less coherent.<br>
 
-**Low Temperature:**
-
+❄ Use **lower temperatures** when you need more predictable and focused output. This is useful for tasks requiring precise and reliable information, such as summarization or answering factual questions.<br>
 This sharpens the probability distribution, making the model more likely to sample the most probable tokens.<br>
 The generated text becomes more focused and deterministic, but potentially less creative.
 
 **Avoiding Repetition:**
 
 Higher temperatures can help reduce repetitive patterns in the generated text by promoting diversity.<br>
-Very low temperatures can sometimes lead to repetitive and deterministic outputs, as the model might keep choosing the highest-probability tokens.
+Very low temperatures can sometimes lead to repetitive and deterministic outputs, as the model might keep choosing the highest-probability tokens.<br>
+
+[temperature shorts 1](https://www.youtube.com/shorts/XsLK3tPy9SI)
+
+[temperature shorts 2](https://www.youtube.com/shorts/0Bw95ILozjY)
+
+---
 
 <br><br>
 </details>
