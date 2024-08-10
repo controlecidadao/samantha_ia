@@ -2,7 +2,7 @@
 # SAMANTHA INTERFACE ASSISTANT
 # =================================
 
-# This is an experimental project developed solely with the aim of encouraging the creation of similar works.
+# This is an experimental project developed with the aim of encouraging the creation of similar works.
 
 
 # =============
@@ -94,7 +94,7 @@ import gc                       # Import gc to help manage memory by automatical
 import shutil                   # Import shutil for transferring files and directories. It provides a high-level interface for working with files and directories on the local file system.
 from bs4 import BeautifulSoup   # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
 import tempfile                 # Import tempfile to create temporary files and directories.
-import markdown
+import markdown                 # Import the markdown library for converting Markdown text to HTML.
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -187,7 +187,7 @@ language = {
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
                 'initial_system_prompt': '',
-                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response".',
+                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response". Sempre limpe o histórico antes de cada uso.',
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). "---" ignora resposta anterior.',
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
@@ -220,27 +220,26 @@ language = {
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
-                
                 'stop_condition_info': "Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia).",
-                
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
-                'btn_system_prompt': 'TXT System Prompt',
-                'btn_user_prompt': 'TXT User Prompt',
+                'btn_system_prompt': 'System Prompt TXT',
+                'btn_user_prompt': 'User Prompt TXT',
                 'btn_copy_model_url': 'Copiar HF Links',
-                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE, edite o código e execute com o botão Executar Código.',
+                'btn_load_models_urls_info': 'Carregar URLs TXT',
+                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE, edite o código, copie e execute com o botão Executar Código.',
                 'btn_next_token': 'Próximo Token',
-                'btn_copy_code_blocks': 'Copiar Código',
+                'btn_copy_code_blocks': 'Copiar Código Python',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
                 'btn_copy_last_response': 'Copiar Resposta',
                 'btn_copy_all_responses': 'Copiar Respostas',
                 'btn_voice_command': 'Controle por Voz',
                 'display_response': 'Resposta em HTML',
                 'display_responses': 'Respostas em HTML',
-                'btn_idle': 'Executar Código',
+                'btn_idle': 'Exec. Código Copiado',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
                 'btn_all_responses': 'Todas as Respostas',
@@ -254,13 +253,13 @@ language = {
                 'subtitle_3': '<a href="https://www.unesco.org/en/open-science">Open Science</a> project shared on <a href="https://github.com/waltervix/samantha_ia">Github</a> under <a href="https://opensource.org/license/mit"> MIT License</a> (Open Source). Powered by <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and <a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python</a> for use with CPU',
                 'btn1': 'Start Chat',
                 'btn2': 'Stop / Next',
-                'btn3': 'Clear History',
+                'btn3': 'Clean History',
                 'btn4': 'Load Model',
                 'btn5': 'Stop All & Reset',
                 'btn6': 'Replace Response',
                 'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
                 'initial_system_prompt': '',
-                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""",
+                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field. Always clean history before each use.""",
                 'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline). "---" ignore previous response.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
@@ -293,27 +292,26 @@ language = {
                 'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'run_code_info': 'Run code automatically (checkbox). Automatically executes the generated Python code.',
-                
                 'stop_condition_info': "Stop condition (checkbox). Stops Samantha if the Python interpreter prints (in the terminal) a value other than '' (empty string).",
-                
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'PDF Full',
-                'btn_system_prompt': 'TXT System Prompt',
-                'btn_user_prompt': 'TXT User Prompt',
+                'btn_system_prompt': 'System Prompt TXT',
+                'btn_user_prompt': 'User Prompt TXT',
                 'btn_copy_model_url': 'Copy HF Links',
-                'assistant_raw_output_info': 'Response history. Add #IDE, edit the code and run with Run Code button.',
+                'btn_load_models_urls_info': 'Load URLs TXT',
+                'assistant_raw_output_info': 'Response history. Add #IDE, edit the code, copy and run with Run Code button.',
                 'btn_next_token': 'Next Token',
-                'btn_copy_code_blocks': 'Copy Code Blocks',
+                'btn_copy_code_blocks': 'Copy Python Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Response',
                 'btn_voice_command': 'Voice Control',
                 'display_response': 'Response in HTML',
                 'display_responses': 'Responses in HTML',
-                'btn_idle': 'Run Code',
+                'btn_idle': 'Run Copied Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
                 'btn_all_responses': 'All Responses',
@@ -1257,12 +1255,13 @@ def text_generator(
 
                     
 
-                    # if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                    #     pyperclip.copy('')
-                    #     dummy_var = open_idle()
-                    #     if dummy_var == '':
-                    #         return
-                    
+                    if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
+                        pyperclip.copy('')
+                        pyrhon_return = open_idle()
+                        
+                        if stop_condition == True:
+                            if python_return == 'STOP_SAMANTHA':
+                                return
                 
 
                     # ==============
@@ -1328,13 +1327,13 @@ def text_generator(
                     return
 
 
-                if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                        pyperclip.copy('')
-                        dummy_var = open_idle()
+                # if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
+                #         pyperclip.copy('')
+                #         dummy_var = open_idle()
                         
-                        if stop_condition == True:
-                            if dummy_var == 'STOP_SAMANTHA':
-                                return
+                #         if stop_condition == True:
+                #             if dummy_var == 'STOP_SAMANTHA':
+                #                 return
                     
                 
                 # ======================
@@ -2511,20 +2510,19 @@ def open_idle():
     print('======================')
     print()
 
-    text_1 = ultima_resposta
+    text_1 = ultima_resposta # Model response was already generated
 
     if "#IDE" in copied_text:
         text_1 = copied_text
-        pyperclip.copy('') # Copy '' to clipboard to clean it
-        copied_text = ''
-    
+        #pyperclip.copy('') # Copy '' to clipboard to clean it
+        # copied_text = ''
+
     else:
+        if copied_text != '' and "```python" not in copied_text:
+            text_1 = "```python\n" + copied_text + "\n```" # <<<<<<<<<<<<<< IN TEST
 
-        if copied_text != '':
-            text_1 = "#```python\n" + copied_text + "\n```" # <<<<<<<<<<<<<< IN TEST
-
-        pyperclip.copy('') # Copy '' to clipboard to clean it
-        copied_text = ''
+        #pyperclip.copy('') # Copy '' to clipboard to clean it
+        # copied_text = ''
 
     # =============================
 
@@ -2592,6 +2590,8 @@ def open_idle():
 
             # Abrir nova instância do Chrome
             open_chrome_window(os.path.realpath(temp_file_name))
+
+            # ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + e.stderr
 
             
         
@@ -2726,6 +2726,58 @@ def change_checkbox_learning_mode(value):
         return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False)
     else:
         return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
+
+
+def load_models_urls():
+    
+    try:
+        del root
+        del tk
+    except:
+        pass
+    
+    import tkinter as tk
+    
+    click.play()
+    
+    root = tk.Tk()
+    root.withdraw()
+    root.attributes('-topmost', True) # Root window on the topmost
+    
+    while True: # IN TEST
+        try:
+            path = tk.filedialog.askopenfilename(
+                title="Select a TXT file",
+                filetypes=[("TXT Files", "*.txt")]
+            ) # Raising "RuntimeError: main thread is not in main loop"
+            break
+        except Exception as e:
+            print('ERROR IN tk.filedialog:', traceback.format_exc())
+            return
+    
+    path = path.replace('/', '\\')
+    
+    root.destroy()
+    del root
+    del tk
+    
+    if path == '':
+        return '' # Em teste
+    
+    with open(path, 'r', encoding='utf-8', errors='ignore') as file:
+        lines = file.readlines()
+    
+    cleaned_lines = []
+    
+    for line in lines:
+        if not line.startswith('---'): # not line.startswith('#') and 
+            cleaned_lines.append(line)
+    
+    cleaned_text = ''.join(cleaned_lines)
+    
+    return cleaned_text
+
+
 
 
 # ====================
@@ -2865,8 +2917,16 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_load_user_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[3], queue=False)
                 btn_download_model_url = gr.Button(language['btn_copy_model_url'])
                 btn_download_model_url.click(fn=download_model_urls, inputs=None, outputs=None, queue=True)
+
+            with gr.Row():
+                btn_load_urls_txt = gr.Button(language['btn_load_models_urls_info'])
+                btn_load_urls_txt.click(fn=load_models_urls, inputs=None, outputs=inputs[5], queue=False)
+                btn_yy = gr.Button('')
+                btn_yy.click(fn=None, inputs=None, outputs=None, queue=False)
+                btn_xx = gr.Button('')
+                btn_xx.click(fn=None, inputs=None, outputs=None, queue=True)
             
-            gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA):</b></h6>') # Useful Links
+            gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA):</b></h6>')
 
             with gr.Row():
                 btn_x1 = gr.Button('DB Browser')
@@ -2883,9 +2943,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             #     btn_x5.click(fn=None, inputs=None, outputs=None)
             #     btn_x6 = gr.Button('')
             #     btn_x6.click(fn=None, inputs=None, outputs=None)
-
-            gr.HTML('<br><h6><b>Useful links:</b></h6>') # Useful Links
-
+            
+            gr.HTML('<br><h6><b>Useful links:</b></h6>')
             gr.HTML("""<ul>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
                         <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Benchmark</a></li>
@@ -2896,6 +2955,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://github.com/OpenAccess-AI-Collective/axolotl">Axolotl</a></li>
                         <li><a href="https://huggingface.co/autotrain">AutoTrain Finetuning LLM</a></li>
                         <li><a href="https://huggingface.co/spaces/Xenova/the-tokenizer-playground">Tokenizer Playground</a></li>
+                        <li><a href="https://platform.openai.com/tokenizer">OpenAI Tokenizer</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
                         <li><a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python pypi</a></li>
                         <li><a href="https://llama-cpp-python.readthedocs.io/en/latest/api-reference/">llama-cpp-python API Reference</a></li>
@@ -2912,25 +2972,10 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
                         # <li><a href="https://huggingface.co/spaces/eduagarcia/open_pt_llm_leaderboard">Portuguese LLM Leaderboard</a></li>
                         # <li><a href="https://nulpointerexception.com/2017/12/16/a-tutorial-to-understand-decision-tree-id3-learning-algorithm/">Decision Tree - Play Tennis Dataset</a></li>
-                        
-            gr.HTML('<br><h6><b>Tutorials:</b></h6>') # Tutorials
-
-            gr.HTML("""<ul>
-                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT? (3Blue 1Brown)</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=xU_MFS_ACrU">How do LLMs like ChatGPT work?</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Visualizing Attention, a Transformer's Heart</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=rEDzUT3ymw4">Neural Network in 1 Minute</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a></li>
-                    <li><a href="https://www.promptingguide.ai/">Prompt Engineering Guide</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=XpoKB3usmKc">QLoRA—How to Fine-tune an LLM on a Single GPU</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
-                    </ul>""")
-                    
+                                
                     # https://www.youtube.com/watch?v=FdTRzgbBP8o
             
             gr.HTML('<br><h6><b>Installed Python Modules to Use with Samantha and Jupyterlab:</b></h6>') # Exploratory Data Analysis
-            
             gr.HTML("""<ul>
                     <li><a href="https://matplotlib.org/">Matplotlib</a></li>
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
@@ -2951,8 +2996,40 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     #<li><a href="https://playwright.dev/python/docs/intro">Playwright</a></li>
                     #<li><a href="https://github.com/ydataai/ydata-profiling">Pandas Profiling</a></li>
             
-            gr.HTML('<br><h6><b>Accessibility:</b></h6>')
+            gr.HTML('<br><h6><b>Tutorials:</b></h6>') # Tutorials
+            gr.HTML("""<ul>
+                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT? (3Blue 1Brown)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=xU_MFS_ACrU">How do LLMs like ChatGPT work?</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Visualizing Attention, a Transformer's Heart</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=rEDzUT3ymw4">Neural Network in 1 Minute</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a></li>
+                    <li><a href="https://www.promptingguide.ai/">Prompt Engineering Guide</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=XpoKB3usmKc">QLoRA—How to Fine-tune an LLM on a Single GPU</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
+                    </ul>""")
             
+            
+            gr.HTML('<br><h6><b>Offline AI Systems:</b></h6>')
+            gr.HTML("""<ul>
+                        <li><a href="https://ollama.com/">Ollama</a></li>
+                        <li><a href="https://lmstudio.ai/">LM Studio</a></li>
+                    </ul>""")
+            
+            gr.HTML('<br><h6><b>Online AI Systems:</b></h6>')
+            gr.HTML("""<ul>
+                        <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
+                        <li><a href="https://huggingface.co/spaces">Hugging Face Spaces</a></li>
+                        <li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a></li>
+                        <li><a href="https://claude.ai/new">Claude</a></li>
+                        <li><a href="https://chatgpt.com/">ChatGPT</a></li>
+                        <li><a href="https://copilot.microsoft.com/">Perplexity AI</a></li>
+                        <li><a href="https://www.perplexity.ai/">Perplexity AI</a></li>
+                        <li><a href="https://labs.perplexity.ai/">Perplexity Labs Playground</a></li>
+                        <li><a href="https://www.blackbox.ai/">Blackbox AI</a></li>
+                    </ul>""")
+            
+            gr.HTML('<br><h6><b>Accessibility:</b></h6>')
             gr.HTML("""<ul>
                     <li><a href="https://support.microsoft.com/en-us/windows/windows-keyboard-shortcuts-for-accessibility-021bcb62-45c8-e4ef-1e4f-41b8c1fc87fd">Windows keyboard shortcuts for accessibility</a></li>
                     <li><a href="https://support.microsoft.com/en-us/windows/appendix-b-narrator-keyboard-commands-and-touch-gestures-8bdab3f4-b3e9-4554-7f28-8b15bd37410a#WindowsVersion=Windows_11">Narrator keyboard commands and touch gestures</a></li>
@@ -3038,22 +3115,10 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML("""<ul>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a></li>
                         <br>
-                        <li><a href="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF">bartowski/gemma-2-9b-it-GGUF</a></li>
-                        <li><a href="https://huggingface.co/bartowski/gemma-2-27b-it-GGUF">bartowski/gemma-2-27b-it-GGUF</a></li>
-
-                        <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
-                        <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
-                        <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
-                        <li><a href="https://huggingface.co/arcee-ai/Arcee-Spark-GGUF">arcee-ai/Arcee-Spark-GGUF</a></li>
-                        <li><a href="https://huggingface.co/bartowski/Replete-Coder-Qwen2-1.5b-GGUF">bartowski/Replete-Coder-Qwen2-1.5b-GGUF</a></li>
-                        <li><a href="https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF">bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a></li>
-                        <li><a href="https://huggingface.co/Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix">Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix</a></li>
-                        <li><a href="https://huggingface.co/NousResearch/Nous-Hermes-2-Mistral-7B-DPO-GGUF">NousResearch/Nous-Hermes-2-Mistral-7B-DPO-GGUF</a></li>
-                        <br>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+phi">Phi</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+gemma">Gemma</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+llama">Llama</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+qwen">Qwen</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+gemma">Gemma</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+wizard">WizardLM</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+dolphin">Dolphin</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+mistral">Mistral</a></li>
@@ -3061,10 +3126,25 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+arcee">Arcee</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+magnum">Magnum</a></li>
                         <br>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
                         </ul>""")
 
-                        # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
+                        # <li><a href="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF">bartowski/gemma-2-9b-it-GGUF</a></li>
+                        # <li><a href="https://huggingface.co/bartowski/gemma-2-27b-it-GGUF">bartowski/gemma-2-27b-it-GGUF</a></li>
+                        # <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
+                        # <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf">microsoft/Phi-3-mini-4k-instruct-gguf</a></li>
+                        # <li><a href="https://huggingface.co/llmware/bling-phi-3-gguf">llmware/bling-phi-3-gguf</a></li>
+                        # <li><a href="https://huggingface.co/arcee-ai/Arcee-Spark-GGUF">arcee-ai/Arcee-Spark-GGUF</a></li>
+                        # <li><a href="https://huggingface.co/bartowski/Replete-Coder-Qwen2-1.5b-GGUF">bartowski/Replete-Coder-Qwen2-1.5b-GGUF</a></li>
+                        # <li><a href="https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF">bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a></li>
+                        # <li><a href="https://huggingface.co/Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix">Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix</a></li>
+                        # <li><a href="https://huggingface.co/NousResearch/Nous-Hermes-2-Mistral-7B-DPO-GGUF">NousResearch/Nous-Hermes-2-Mistral-7B-DPO-GGUF</a></li>
+                        # <br>
+                        
+
+                        
                         # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
                         
             with gr.Row():
