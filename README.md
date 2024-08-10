@@ -37,13 +37,15 @@
 
 🔗 Some chaining examples **_using_** Samantha's response **Feedback Loop** feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** Used to improve model's previous response through a fixed user instruction using the same model, as well as to generate a continuous dialog using a single model.
+  * **(model_1) responds (prompt_1) X number of responses:** Used to improve model's previous response through a fixed user instruction using the same model, as well as to generate a continuous dialog using a single model (model talking to itself).
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples user instructions sequencially with the same model. Each prompt is used to refine the previous response.
 
   * **(model_1, model_2, model_n) respond (prompt_1):** Used to improve previous model's response using disctinct models, as well as to generate a dialog between different models.
 
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models (Single Response per Model feature).
+
+Each of these model and prompt sequences can be executed more than once via the **_Number of loops_** feature.
 <br><br>
 
 
