@@ -1527,6 +1527,7 @@ You can add text within a collapsed section.
 * You can use Windows keyboard shortcuts inside fields: `CTRL + A` (select all text)`, CTRL + C` (copy text), `CTRL + V` (paste copied text)  and `CTRL + Z` (undo) etc.
 * To reload the browser tab, press `F5` and _Clear history_ button. This procedure will reset all fields and settings of the interface. If there was a model loaded via URL, it will remain loaded and accessible in the _Select model_ dropdown list as `MODEL_FOR_TESTING` (no need to re-download).
 * If you accidentally close Samantha's browser tab, open a new tab and type `localhost` to display the full local URL: `http://localhost:7860/?__theme=dark`. In this case, Samantha's server must be running.
+* When generating code incrementally, divide the user prompt into parts separated by `$$$` that generate blocks of code that complement each other.
 
 <br>
 
