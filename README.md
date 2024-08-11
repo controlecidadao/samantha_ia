@@ -362,7 +362,12 @@ A model must be pre-selected in _Model selection_ field or a URL must be provide
 
 It also stops playback of the currently playing audio when in speech autoplay mode (_Read response aloud_ checkbox selected).
 
-Samantha has 3 phases: loading model (non stop), thinking (non stop) and next token selection (stop). This button works only when the next token selection phase is started, even if it was pressed previously.
+Samantha has 3 phases:<br>
+1) Loading model (non stop)
+2) Thinking (non stop)
+3) Next token selection (stop).
+
+This button works only when the next token selection phase is started, even if it was pressed previously.
 
 ---
 
@@ -370,11 +375,11 @@ Samantha has 3 phases: loading model (non stop), thinking (non stop) and next to
 </details>
 
 <details>
-<summary>Clear history (button)</summary>
+<summary>Clean history (button)</summary>
 
 ---
 
-Clears the history of the current chat session, erasing the assistant output field as well as all internal logs, previous response etc.
+🧹​ Clears the history of the current chat session, erasing the assistant output field as well as all internal logs, previous response etc.
 
 ---
 
@@ -386,11 +391,11 @@ Clears the history of the current chat session, erasing the assistant output fie
 
 ---
 
-Allows you to select the directory where the models available for loading are saved.
+✅​ Allows you to select the directory where the models available for loading are saved.
 
 Default: Windows "Downloads" folder
 
-You can select any directory that contains GGUF models. In this case, the models contained in the selected directory will be listed in the _Model selection_ dropdown list.
+You can select any directory that contains `GGUF` models. In this case, the models contained in the selected directory will be listed in the _Model selection_ dropdown list.
 
 When the pop-up window opens, make sure to click on the folder you want to select.
 
@@ -404,7 +409,7 @@ When the pop-up window opens, make sure to click on the folder you want to selec
 
 ---
 
-Stops the sequence of running models and resets internal settings of the last loaded model.
+🛑 Stops the sequence of running models and resets internal settings of the last loaded model.
 
 After resetting, models take some time to restart text generation, depending on the size of the input text.
 
