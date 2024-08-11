@@ -243,7 +243,7 @@ Samantha needs just a `.gguf` model file to generate text. Follow these steps to
 
 5) Paste the model URL into Samantha's _Download models for testing_ field.
 
-6) Insert a prompt into _User prompt_ field and press `Enter`. Keep the `$$$` sign at the end of your prompt. The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
+6) Insert a prompt into _User prompt_ field and press `Enter`. Keep the `$$$` sign at the end of your prompt. The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Windows Task Management.
 
 <br>
 
