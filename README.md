@@ -232,18 +232,18 @@ To use Samantha you will need:
 <summary>Instructions</summary>
 
 <br><br>
-Samantha needs just a `.gguf` model file to generate text. Follow these steps to perform a simple model test with Samantha:
+Samantha needs just a `.gguf` model file to generate text. Follow these steps to perform a simple model test:
 <br><br>
 
 1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
 
 2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and click on the card to open the corresponding page. Locate the _Files and versions_ tab and choose a `gguf` model that fits in your available memory.
    
-4) Right click over the model download link icon and copy its url.
+4) Right click over the model download link icon and copy its URL.
 
-5) Paste the model url into Samantha's _Download Models for Testing_ field.
+5) Paste the model URL into Samantha's _Download models for testing_ field.
 
-6) Insert a prompt into _USER Prompt_ field and press `Enter`. Keep the `$$$` sign at the end of your prompt. The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
+6) Insert a prompt into _User prompt_ field and press `Enter`. Keep the `$$$` sign at the end of your prompt. The model will be downloaded and the response will be generated using a deterministic settings. You can track this process via Task Management.
 
 <br>
 
