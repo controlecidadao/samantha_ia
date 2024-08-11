@@ -39,11 +39,11 @@
 
   * **(model_1) responds (prompt_1) X number of responses:** Used to improve model's previous response through a fixed user instruction using the same model, as well as to generate a continuous dialog using a single model (model talking to itself).
 
-  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples user instructions sequencially with the same model. Each prompt is used to refine the previous response.
+  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples user instructions sequencially with the same model. Each prompt is used to refine or complete the previous response, as well as to execute a sequence of prompts that depend on the previous response.
 
   * **(model_1, model_2, model_n) respond (prompt_1):** Used to improve previous model's response using disctinct models, as well as to generate a dialog between different models.
 
-  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models (Single Response per Model feature).
+  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models and _Single response per model_ feature.
 
 Each of these model and prompt sequences can be executed more than once via the **_Number of loops_** feature.
 <br><br>
@@ -60,7 +60,7 @@ Each of these model and prompt sequences can be executed more than once via the 
 
 <br>
 
-🧩 Sequencing of prompts and models allows the generation of long responses by fractioning the user input instruction. Every partial response fits in the model's response length defined in the training process.
+🧩 Sequencing of prompts and models allows the generation of long responses by fractioning the user input instruction. Every partial response fits in the model's response length defined in the model training process.
 <br><br>
 
 🔧 As an open source tool for automatic self-interaction between AI models, Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop** 🔁. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial imprecise instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user.
@@ -104,7 +104,7 @@ While this system aims to empower users and democratize access to AI, it's cruci
 <br>
 
 🙏 **On the Shoulders of Giants:**
-Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible, as well as to [Andrei Bleten](https://github.com/abetlen/llama-cpp-python) by his amazing Python bidings for the Gerganov C++ library.
+Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](https://github.com/ggerganov/llama.cpp) for making all of this possible, as well as to [Andrei Bleten](https://github.com/abetlen/llama-cpp-python) by his amazing Python bidings for the Gerganov C++ library ([llama-cpp-python](https://pypi.org/project/llama-cpp-python/)).
 
 <br><br>
 
@@ -122,7 +122,7 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
   
 ✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files or when required by the execution of the code created by the models. This ensures privacy and security for your data processing needs. Your sensitive data is not shared via the internet with companies through confidentiality agreements.<br><br>
 
-✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone in everywhere.<br><br>
+✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to everyone, everywhere, everytime.<br><br>
 
 <!-- **Accessibility for People with Disabilities**: The system is designed to be user-friendly and accessible for people with physical disabilities. With features like voice interaction through text-to-speech and speech-to-text, users can interact with Samantha without relying solely on visual interfaces. This inclusive design ensures that AI technology is available to everyone, regardless of their abilities.-->
 
@@ -130,17 +130,17 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Copy and paste LLMs:** To try out a sequence of `gguf` models, just copy their download links from any Hugging Face repository and paste inside Samantha to run them right away in sequence.<br><br>
 
-✅ **Customizable Parameters:** Users have control over model hyperparameters such as **context window** length (n_ctx, max_tokens), **token sampling** (temperature, tfs_z, top-k, top-p, min_p, typical_p), **penalties** (presence_penalty, frequency_penalty, repeat_penalty) and **stop words**, allowing for responses that suit specific requirements, with deterministic or stochastic behavior.<br><br>
+✅ **Customizable Parameters:** Users have control over model hyperparameters such as **context window** length (_n_ctx_, _max_tokens_), **token sampling** (_temperature_, _tfs_z_, _top-k_, _top-p_, _min_p_, _typical_p_), **penalties** (_presence_penalty_, _frequency_penalty_, _repeat_penalty_) and **stop words** (_stop_), allowing for responses that suit specific requirements, with deterministic or stochastic behavior.<br><br>
 
 ✅ **Interactive Experience:** Samantha's chaining functionality enables users to generate endless texts by chaining prompts and models, facilitating complex interactions between different LLMs without human intervention.<br><br>
 
 ✅ **Feedback Loop:** This feature allows you to capture the response generated by the model and feed it back into the next cycle of the conversation.<br><br>
 
-✅ **Prompt List:** You can add any number of prompts (separated by $$$) to control the sequence of instructions to be executed by the models.It is possible to import a TXT file with a predefined sequence of prompts.<br><br>
+✅ **Prompt List:** You can add any number of prompts (separated by `$$$`) to control the sequence of instructions to be executed by the models. It is possible to import a TXT file with a predefined sequence of prompts.<br><br>
 
 ✅ **Model List:** You can select any number of models and in any order to control which model responds to the next prompt.<br><br>
 
-✅ **Learning Insights:** A feature called 'Learning Mode' lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings. A list of the least likely selected tokens is also generated.<br><br>
+✅ **Learning Insights:** A feature called _Learning Mode_ lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings. A list of the least likely selected tokens is also generated.<br><br>
 
 ✅ **Voice Interaction:** Samantha supports simple voice commands with offline speech-to-text [Vosk](https://alphacephei.com/vosk/) (English and Portuguese) and text-to-speech with SAPI5 voices, making it accessible and user-friendly.<br><br>
 
@@ -150,13 +150,13 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Versatile Text Input:** Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous model response and user prompt to guide the model's response.<br><br>
 
-✅ **Code Integration:** Automatic extraction of code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/) in an isolated virtual environment, enables users to execute generated code swiftly for immediate results.<br><br>
+✅ **Code Integration:** Automatic extraction of Python code blocks from model's response, along with pre-installed [JupyterLab](https://jupyter.org/) in an isolated virtual environment, enables users to execute generated code swiftly for immediate results.<br><br>
 
-✅ **Run Code Button:** The system allows the user to edit and run the code generated by the model simply by clicking the “Run Code” button.<br><br>
+✅ **Run Copied Code Button:** The system allows the user to edit and run the code generated by the model simply by clicking the _Copy Python Code_ and _Run Copied Code_ buttons.<br><br>
+
+✅ **Copy and Run:** Copy a Python code anywhere (e.g. from internet) and run it just by pressing _Run Copied Code_ button.<br><br>
 
 ✅ **HTML output:** Display Python interpreter output in an HTML pop-up window when text printed in the terminal is other than '' (empty string). This feature allows, for example, to execute a script unlimitedly and only display the result when a certain condition is met;<br><br>
-
-✅ **Copy and Run:** Copy a Python code and run it just by pressing a button.<br><br>
 
 ✅ **Automatic Code Execution:** Samantha features the option to automatically run the Python code generated by the models sequentially.<br><br>
 
