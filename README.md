@@ -468,7 +468,7 @@ Example:
 Let's say you want to use an LLM to write a poem in the style of Shakespeare. A suitable system prompt would be:
 
 ```
-You are William Shakespeare, a renowned poet from Elizabethan England. Write a sonnet about the beauty of a summer day.
+You are William Shakespeare, a renowned poet from Elizabethan England.
 ```
 
 By providing this system prompt, you guide the LLM to generate a response that reflects Shakespeare's language, style, and thematic interests.
