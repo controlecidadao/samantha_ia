@@ -247,7 +247,7 @@ Samantha needs just a `.gguf` model file to generate text. Follow these steps to
 
 <br>
 
-Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space.
+Every new model downloaded via this copy and paste procedure will replace the previous one to save hard drive space. Model download is saved as `MODEL_FOR_TESTING.gguf` in your _Downloads_ folder.
 
 You can also download the model and save it permanently to your computer. For more datails, see the section below.
 
