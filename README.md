@@ -868,7 +868,7 @@ How `max_tokens` Works:
 
 ---
 
-List of characters that interrupts text generation, in the format `["$$$", ".", ".\n"]` (Python list).
+🔤​ List of characters that interrupt text generation by the model, in the format `["$$$", ".", ".\n"]` (Python list).
 
 ---
 
