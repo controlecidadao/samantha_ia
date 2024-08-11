@@ -473,9 +473,9 @@ You are William Shakespeare, a renowned poet from Elizabethan England.
 
 By providing this system prompt, you guide the LLM to generate a response that reflects Shakespeare's language, style, and thematic interests.
 
-Not all models support system prompt. Test to find out: fill in "x = 2" in the system prompt field and ask the model the value of "x" in the user prompt field. If the model gets the value of "x", system prompt is available in the model.
+Not all models support system prompt. Test to find out: fill in "x = 2" in the _System prompt_ field and ask the model the value of "x" in the _User prompt_ field. If the model gets the value of "x", system prompt is available in the model.
 
-You can simulate the effect of the system prompt by adding text in square brackets in the user prompt field: [This text acts as a system prompt] or adding the system prompt text into the _Assistant previous response_ field (do not use Feedback loop).
+You can simulate the effect of the system prompt by adding text in square brackets in the beginning of the _User prompt_ field: ```[This text acts as a system prompt]``` or adding the system prompt text into the _Assistant previous response_ field (do not use Feedback loop).
 
 ---
 
