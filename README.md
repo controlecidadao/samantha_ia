@@ -562,15 +562,15 @@ _Love and life are intertwined forces that shape our existence. Love burns withi
 
 ---
 
-Dropdown list of models saved on the computer and available for text generation.
+✅ ​Dropdown list of models saved on the computer and available for text generation.
 
 To view models in this field, click the _Load model_ button and select the folder containing the models.
 
-The default location for saving models is the Windows "Downloads" directory.
+The default location for saving models is the Windows _Downloads_ directory.
 
 You can select multiples models (even repeated) to create a sequence of models to respond the user prompts.
 
-The last model downloaded from a URL is saved as _MODEL_FOR_TESTING.gguf_ and is also displayed in this list.
+The last model downloaded from a URL is saved as `MODEL_FOR_TESTING.gguf` and is also displayed in this list.
 
 ---
 
@@ -582,7 +582,7 @@ The last model downloaded from a URL is saved as _MODEL_FOR_TESTING.gguf_ and is
 
 ---
 
-Receives a list of Hugging Face links to the models that will be downloaded and executed sequencially.
+​⬇️​ Receives a list of Hugging Face links to the models that will be downloaded and executed sequencially.
 
 Example: 
 
