@@ -1,7 +1,7 @@
 $$$
 $-$-$
 
-O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma regra que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados na unidade gestora (UG) alvo da denúncia:
+O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma resolução que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados na unidade gestora (UG) alvo da denúncia:
 * Valor associado ao objeto fiscalizado (mínimo R$ 90 mil)
 * Índice de Desenvolvimento Humano (IDH) do município
 * Resultado do julgamento da prestação de contas anual anterior da UG
@@ -25,18 +25,18 @@ O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma regra que c
 * Tendência de agravamento da situação denunciada
 * Existência ou não de dano ao erário
 
-A nova regra atribui caráter sigiloso a esses critérios e proibe que os auditores de controle externo sugiram a inclusão dos fatos denunciados nas próximas fiscalizações ordinárias do tribunal.
+A nova regra atribui caráter sigiloso à aplicação desses critérios e proibe que os auditores de controle externo sugiram a inclusão dos fatos denunciados nas próximas fiscalizações ordinárias do tribunal.
 
 A aplicação dessa nova regra fez com que apenas 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas. 
 
 De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. 
 
 O TCE-ES possui a seguinte identidade institucional:
-Nosso Propósito: Contribuir para a melhoria da gestão pública.
-Nossa Missão: Promover o aperfeiçoamento da gestão pública, por meio do controle externo, visando à melhoria da qualidade de vida das pessoas.
-Nossa Visão: Ser reconhecida como instituição estratégica para o desenvolvimento sustentável do Espírito Santo.
-Nosso Negócio: Controle externo da administração pública.
-Nossos Princípios:
+1) Nosso Propósito: Contribuir para a melhoria da gestão pública.
+2) Nossa Missão: Promover o aperfeiçoamento da gestão pública, por meio do controle externo, visando à melhoria da qualidade de vida das pessoas.
+3) Nossa Visão: Ser reconhecida como instituição estratégica para o desenvolvimento sustentável do Espírito Santo.
+4) Nosso Negócio: Controle externo da administração pública.
+5) Nossos Princípios:
 * Independência e harmonia – Exercer a independência com autonomia e imparcialidade, bem como cultivar a harmonia com o diálogo institucional interno e externo, privilegiando a solução consensual de conflitos para o pleno exercício da missão institucional.
 * Transparência – Comunicar à sociedade os atos, as ações e os resultados de forma ativa, clara, objetiva, tempestiva e acessível.
 * Responsabilidade sustentável – Agir para que as dimensões ambiental, econômica e social estejam em equilíbrio, de modo a promover o desenvolvimento sustentável.
@@ -44,51 +44,7 @@ Inovação – Promover a contínua inovação com o objetivo de aumentar a efic
 * Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
 * Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.
 
-Sob a perspectiva de uma entidade de inteligência artificial, qual a sua opinião sobre essa nova regra do TCE-ES?
-$$$
-$-$-$
-
-Samantha is an AI system developed under the principles of Open Science for the use of open-source LLMs on common computers (without GPUs). The program executes the LLM locally, free and unlimited, without the need for internet connection (except for downloading the models). Its goal is to democratize knowledge about the use of AI and demonstrate that, through proper technique, even small models can produce responses similar to those of larger proprietary models.
-The system allows sequential loading of prompts and models (one model at a time), as well as adjustment of their hyperparameters, enabling the previous model's response to be analyzed by the subsequent model for the generation of the next response, in an unlimited number of cycles of interaction between models without human intervention. Each model interacts only with the response provided by the immediately preceding model. Each new response from the model replaces the previous response. It is also possible to use only a single model and have it interact with its own previous response in an unlimited number of cycles.
-What is your opinion about this system?
-
-Samantha é um sistema de IA desenvolvido sob os princípios da Ciência Aberta (Open Science) para utilização de LLMs de código aberto em computadores comuns (sem GPU). O programa executa os LLM localmente, de forma gratuita e ilimitada, sem necessidade de conexão com a internet (exceto para baixar os modelos). Seu objetivo é democratizar o conhecimento sobre o uso de IAs e demonstrar que, mediante emprego da técnica adequada, mesmo modelos pequenos são capazes de produzir respostas semelhantes às dos modelos proprietários maiores.
-O sistema permite o carregamento sequencial de prompts e de modelos (um modelo por vez), bem como o ajuste de seus hiperparâmetros, possibilitando que a resposta gerada pelo modelo anterior seja analisada pelo modelo sequinte para geração da próxima resposta, em um número ilimitado de ciclos de interação entre modelos sem intervenção humana. Cada modelo interage apenas com a resposta fornecida pelo modelo imediatamente anterior. Cada nova resposta do modelo substitui a resposta anterior. Também é possível usar apenas um único modelo e fazer com que ele interaja com sua resposta anterior em um número ilimitado de ciclos.
-Qual a sua opinião sobre esse sistema?
-$$$
-$-$-$
-
-The quality of a AI model response can be assessed using four basic criteria:
-1) Degree of understanding of the explicit and implicit instructions contained in the user prompt;
-2) Degree of precision in the decision-making process to fill in the gaps in the context of the user prompt and to resolve ambiguities, required to generate the response;
-3) Degree of model adherence to these instructions;
-4) Quality of the response (structure and content) in relation to the user's expectations for the problem submitted to the model, considering the technique used to create the prompt and the adjustment of the model's hyperparameters.
-
-Using these criteria, create a prompt to submit to an AI system so that it produces the most perfect response possible to the following instructions:
-
-INSTRUCTIONS: 
-
-Don't answer the question. Simply create the prompt for another AI to respond.
-$$$
-
-Follow the instructions contained in your previous response and develop a numbered topic essay. Format the text using Markdown to be displayed on a html file.
-$$$
-
-
-A qualidade da resposta de um modelo de IA pode ser avaliada usando quatro critérios básicos:
-1) Grau de compreensão das instruções explícitas e implícitas contidas no prompt do usuário;
-2) Grau de precisão no processo de tomada de decisão para preencher as lacunas no contexto do prompt do usuário e para dirimir ambiguidades, necessário para gerar a resposta;
-3) Grau de adesão do modelo a estas instruções;
-4) Qualidade da resposta (estrutura e conteúdo) em relação às expectativas do usuário para o problema submetido ao modelo, considerando a técnica utilizada para criação do prompt e o ajuste dos hiperparâmetros do modelo.
-
-Usando esses critérios, crie um prompt para ser submetido a um sistema de IA para que ele produza a resposta mais perfeita possível para as seguintes instruções:
-
-INSTRUÇÕES: 
-
-Não responda à pergunta. Basta criar o prompt para que outra IA responda.
-$$$
-
-Siga as instruções contidas em sua resposta anterior e desenvolva um ensaio com tópicos numerados. Formate o texto usando Markdown para ser exibido em um arquivo html.
+Qual a sua opinião sobre essa nova resolução do TCE-ES?
 $$$
 $-$-$
 
