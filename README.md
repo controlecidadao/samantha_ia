@@ -1516,7 +1516,7 @@ You can add text within a collapsed section.
 <summary>Tips & Tricks</summary>
 
 <br><br>
-* Keep only one interface window open at a time. Multiple open windows prevent the buttons from working properly.
+* Keep only one interface window open at a time. Multiple open windows prevent the buttons from working properly. If there is more than one Samantha tab open, only one must be executed at a time (server side and browser side are independent).
 * It is not possible to interrupt the program during the model loading and thinking phases, except by closing it. Pressing the stop buttons during these phases will only take effect when the token generation phase begins.
 * You can select the same model more than once, in any sequence you prefer. To do so, select additional models at the bottom of the dropdown list. When deleting a model, all of the same type will be excluded from the selection.
 * To create a new line in a field, press `SHIFT + ENTER`. If only the `ENTER` key is pressed, anywhere in the Samantha interface, the loading/processing/generation phases will begin.
