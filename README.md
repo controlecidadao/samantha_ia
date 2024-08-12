@@ -930,44 +930,53 @@ It's important to note that temperature is just one of several sampling hyperpar
 
 <details>
 <summary>tfs_z (slider)</summary>
-<br>
 
-`tfs_z` stands for **Tail-free sampling with z-score**. It's a hyperparameter used in a text generation technique designed to balance the trade-off between diversity and quality in generated text.
+---
+
+`tfs_z` stands for **tail-free sampling with z-score**. It's a hyperparameter used in a text generation technique designed to balance the trade-off between diversity and quality in generated text.
+<br><br>
 
 **Context and purpose:**
 
 Tail-free sampling was introduced as an alternative to other sampling methods like `top-k` or nucleus (`top-p`) sampling. Its goal is to remove the arbitrary "tail" of the probability distribution while maintaining a dynamic threshold.
+<br><br>
 
-**Technical Details of tfs_z in LLM Text Generation**
+**Technical Details of `tfs_z` in LLM Text Generation**
+<br><br>
 
 **Probability distribution analysis:**
 
 The method examines the probability distribution of the next token predictions.
 It focuses on the "tail" of this distribution - the less likely tokens.
+<br><br>
 
 **Z-score calculation:**
 
 For each token in the sorted (descending) probability distribution, a z-score is calculated.
 The z-score represents how many standard deviations a token's probability is from the mean.
+<br><br>
 
 **Cutoff determination:**
 
 The `tfs_z` parameter sets the z-score threshold.
 Tokens with a z-score below this threshold are removed from consideration.
+<br><br>
 
 **Dynamic thresholding:**
 
 Unlike fixed methods like `top-k`, the number of tokens retained can vary based on the shape of the distribution.
 This allows for more flexibility in different contexts.
+<br><br>
 
 **Sampling process:**
 
 After applying the `tfs_z` cutoff, sampling occurs from the remaining tokens.
 This can be done using various methods (e.g., temperature-adjusted sampling).
 
-In the context of Large Language Models (LLMs) like Transformers, `tfs_z` is a hyperparameter that controls the **temperature scaling** of the output logits during text generation.
+`tfs_z` is a hyperparameter that controls the **temperature scaling** of the output logits during text generation.
+<br><br>
 
-Here's what it does:
+**Here's what it does:**
 
 1. **Logits**: When an LLM generates text, it produces a probability distribution over all possible tokens in the vocabulary. This distribution is represented as a vector of logits (unnormalized log probabilities).
    
@@ -980,10 +989,27 @@ When you set `tfs_z > 0`, the model first normalizes the logits by subtracting t
 * **Reduced variance**: By normalizing the logits, you reduce the variance of the output distribution, which can help stabilize the generation process.
   
 * **Increased uncertainty**: By scaling the normalized logits with a temperature factor, you increase the uncertainty of the output distribution, which can lead to more diverse and creative text generations.
+<br><br>
+
+**Practical example:**
+
+Imagine that the model is trying to complete the sentence "The sky is..."<br>
+
+Without `tfs_z`, the model could consider:<br>
+blue (30%), cloudy (25%), clear (20%), dark (15%), green (5%), singing (3%), salty (2%)
+
+With TFS-Z (cut by 10%):<br>
+blue (30%), cloudy (25%), light (20%), dark (15%)
+
+This eliminates less likely and potentially meaningless options, such as "The sky is salty."
+
+By adjusting the Z-score, we can control how "conservative" or "creative" we want the model to be. A higher Z-score will result in fewer but more "safe" options, while a lower Z-score will allow for more variety but with a greater risk of inconsistencies.
 
 In summary, `tfs_z` controls how much to scale the output logits after normalizing them. A higher value of `tfs_z` will produce more uncertain and potentially more creative text generations.
 
 Keep in mind that this is a relatively advanced hyperparameter, and its optimal value may depend on the specific LLM architecture, dataset, and task at hand.
+
+---
 
 <br><br>
 </details>
