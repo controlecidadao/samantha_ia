@@ -187,12 +187,12 @@ language = {
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
                 'initial_system_prompt': '',
-                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response". Sempre limpe o histórico antes de cada uso.',
+                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). "---" ignora resposta anterior.',
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) 'STOP_SAMANTHA' (sair do loop). É possível importar um arquivo TXT contendo uma lista de prompts.",
+                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) Return 'STOP_SAMANTHA' (sair do loop). 6) Return '' (string vazia, não exibe pop-up HTML). É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Olá!\n\n\n$$$',
                 'models_selection_info': 'Model selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignora URL.",
@@ -239,7 +239,7 @@ language = {
                 'btn_voice_command': 'Controle por Voz',
                 'display_response': 'Resposta em HTML',
                 'display_responses': 'Respostas em HTML',
-                'btn_idle': 'Exec. Código Copiado',
+                'btn_idle': 'Executar Código',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
                 'btn_all_responses': 'Todas as Respostas',
@@ -259,12 +259,12 @@ language = {
                 'btn6': 'Replace Response',
                 'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
                 'initial_system_prompt': '',
-                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field. Always clean history before each use.""",
+                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
                 'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline). "---" ignore previous response.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) 'STOP_SAMANTHA' (stop loop). It is possible to import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Hello!\n\n\n$$$',
                 'models_selection_info': 'Model selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
@@ -311,7 +311,7 @@ language = {
                 'btn_voice_command': 'Voice Control',
                 'display_response': 'Response in HTML',
                 'display_responses': 'Responses in HTML',
-                'btn_idle': 'Run Copied Code',
+                'btn_idle': 'Run Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
                 'btn_all_responses': 'All Responses',
@@ -418,7 +418,7 @@ read_aloud = False              # Read last model response aloud automatically (
 infinite_loop = False           # Transpose current response automatically to the model previous response variable (Checkbox)
 fast_mode = False               # Select Fast Mode for text generation without showing on interface (Checkbox)
 random_list = False             # Shuffle models order (if number of models >= 3) (Checkbox)
-reset_mode = False              # Reset model for each prompt run of the chaining (Checkbox)
+reset_mode = True               # Reset model for each prompt run of the chaining (Checkbox)
 audio = None                    # Stores pygame audio object
 model_metadata = ''             # Stores llm metadata to show on interface
 model_url = ''                  # Stores the model url for downloading
@@ -620,12 +620,18 @@ def text_generator(
     if stop_generation == '':       # To avoid error, set the variable with an impossible character sequence
         stop_generation = "['$$$']"
 
+
+
+    ultima_resposta = '' # Always reset this variable in the beginning of every new chat cycle
+
+
+
     # Set the previous response sequence (in test)
     if infinite_loop == True:
         if ultima_resposta == '':   # This variable is set to '' when Clear Button is pressed (clean_output function)
             previous_answer = prev_answer
         else:
-            previous_answer = ultima_resposta
+            previous_answer = ultima_resposta # ultima_resposta refers to the current response
     else:
         previous_answer = prev_answer
 
@@ -812,7 +818,7 @@ def text_generator(
                     break
 
                 print()
-                print('SAMANTHA: llm object created with llama.cpp. Loading model...')
+                print('SAMANTHA: llm object created with llama.cpp. Loading model...\n\n\n')
                 print()
                      
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
@@ -1257,7 +1263,7 @@ def text_generator(
 
                     if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
                         pyperclip.copy('')
-                        pyrhon_return = open_idle()
+                        python_return = open_idle()
                         
                         if stop_condition == True:
                             if python_return == 'STOP_SAMANTHA':
@@ -1323,8 +1329,8 @@ def text_generator(
                     f.write(partial_text)
 
                 # Leaves function if reponse contains this stop words
-                if 'STOP_SAMANTHA' in ultima_resposta:
-                    return
+                # if 'STOP_SAMANTHA' in ultima_resposta:
+                #     return
 
 
                 # if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
@@ -1592,7 +1598,7 @@ def update_barplot_widget():        # Update barplot 1 with tokens scores distri
             interactive=True,
             visible= show,
             x_title="Top-k Tokens",
-            y_title="Probability Score"
+            y_title="Logits Score"
         )
 
     # TO ANALYSE: CREATE BARPLOT THAT SEQUENCIATE ON X AXIS ALL SELECTED TOKEN WITH ITS RESPECTIVE SCORE ON Y AXIS: https://www.youtube.com/watch?v=FdTRzgbBP8o
@@ -1628,8 +1634,8 @@ def update_barplot_widget_2():      # Update barplot 2 with unlikelly tokens fre
             height=150,
             interactive=True,
             visible= show,
-            x_title="Number of Occurrences",
-            y_title="Probability Score"
+            x_title="Occurrences",
+            y_title="Tokens Position"
         )
 
 
@@ -2404,7 +2410,8 @@ def download_model_urls():
             soup = BeautifulSoup(response.text, "html.parser")
             links = soup.find_all('a', href=True)
             download_links = [link['href'] for link in links if '.gguf?download' in link['href']]
-            temp = ''.join([f'---https://huggingface.co{x}\n\n' for x in download_links if 'download' in x])
+            # temp = ''.join([f'---https://huggingface.co{x}\n\n' for x in download_links if 'download' in x])
+            temp = ''.join([f'https://huggingface.co{x}\n\n' for x in download_links if 'download' in x])
             pyperclip.copy(temp)
             print(temp)
         else:
@@ -2529,8 +2536,8 @@ def open_idle():
     # if "```" not in ultima_resposta:
     if "```python" not in text_1: # <<<<<<<<<< REPLACED
         print(f"No Markdown Python code in the response.")
-        winsound.Beep(600, 300) # Signals to indicate error
-        winsound.Beep(600, 300)
+        # winsound.Beep(600, 300) # Signals to indicate that there is no markdown python code
+        # winsound.Beep(600, 300)
         return
         
     # GET PYTHON PATH
@@ -2881,15 +2888,15 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(0, 5, 0, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
-                gr.Slider(0.00001, 1, 0.00001, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
-                gr.Slider(0.000001, 1, 0.000001, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
-                gr.Slider(0, 1, 1, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
-                gr.Slider(0.00001, 1, 0.00001, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
+                gr.Slider(0, 2, 0, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0.00001, 1, 1, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
+                gr.Slider(0.000001, 1, 0.95, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
+                gr.Slider(0, 1, 0.05, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
+                gr.Slider(0.00001, 1, 1, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
-                gr.Slider(0, 10, 1.1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
+                gr.Slider(0, 10, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False),
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
@@ -2947,7 +2954,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             gr.HTML('<br><h6><b>Useful links:</b></h6>')
             gr.HTML("""<ul>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
-                        <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Benchmark</a></li>
                         <li><a href="https://huggingface.co/spaces/ggml-org/gguf-my-repo">GGUF My Repository</a></li>
                         <li><a href="https://huggingface.co/spaces/arcee-ai/mergekit-gui">arcee-ai/mergekit-gui</a></li>
                         <li><a href="https://github.com/cg123/mergekit">LLM Mergekit</a></li>
@@ -2956,6 +2962,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/autotrain">AutoTrain Finetuning LLM</a></li>
                         <li><a href="https://huggingface.co/spaces/Xenova/the-tokenizer-playground">Tokenizer Playground</a></li>
                         <li><a href="https://platform.openai.com/tokenizer">OpenAI Tokenizer</a></li>
+                        <li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
                         <li><a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python pypi</a></li>
                         <li><a href="https://llama-cpp-python.readthedocs.io/en/latest/api-reference/">llama-cpp-python API Reference</a></li>
@@ -2967,6 +2974,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
                     </ul>""")
                         
+                        # <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Benchmark</a></li>
                         # <li><a href="https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard">Big Code Models Leaderboard</a></li>
                         # <li><a href="https://huggingface.co/TheBloke">Hugging Face / TheBloke - LLM Repository</a></li>
                         # <li><a href="https://llm-leaderboard.streamlit.app/">LLM Leaderboard Unification</a></li>         
@@ -3164,9 +3172,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (1), top_p (0.95), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1), reset_model (True)</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.2), tfs_z (1), top_p (0.9), min_p (0.05), typical_p (1), top_k (100), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.8), tfs_z (1), top_p (0.95), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1), reset_model (True)</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha close" or "samantha fechar" to stop listening</span></i></h6>')         
             
