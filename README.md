@@ -884,6 +884,7 @@ How `max_tokens` Works:
 ---
 
 🌡 Temperature is a hyperparameter that controls the randomness of the text generation process in LLMs. It affects the probability distribution of the model's next-token predictions.
+<br><br>
 
 **Controlling Creativity:**
 
@@ -894,12 +895,14 @@ The generated text becomes more diverse and creative, but potentially less coher
 ❄ Use **lower temperatures** when you need more predictable and focused output. This is useful for tasks requiring precise and reliable information, such as summarization or answering factual questions.<br>
 This sharpens the probability distribution, making the model more likely to sample the most probable tokens.<br>
 The generated text becomes more focused and deterministic, but potentially less creative.
+<br><br>
 
 **How it works:**
 
 🧮 ​Mathematically, the temperature (T) is applied by dividing the logits (raw scores from the model) by T before applying the softmax function.<br>
 A lower temperature makes the distribution more "peaked," favoring high-probability options.<br>
 A higher temperature "flattens" the distribution, giving more chance to lower-probability options.<br>
+<br><br>
 
 **Temperature scale:**
 
@@ -907,6 +910,7 @@ Generally ranges from 0 to 2, with 1 being the default (no modification).<br>
 T < 1: Makes the text more deterministic, focused, and "safe."<br>
 T > 1: Makes the text more random, diverse, and potentially more creative.<br>
 T = 0: Equivalent to greedy selection, always choosing the most probable option.<br>
+<br><br>
 
 **Avoiding Repetition:**
 
