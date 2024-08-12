@@ -895,10 +895,25 @@ The generated text becomes more diverse and creative, but potentially less coher
 This sharpens the probability distribution, making the model more likely to sample the most probable tokens.<br>
 The generated text becomes more focused and deterministic, but potentially less creative.
 
+**How it works:**
+
+🧮 ​Mathematically, the temperature (T) is applied by dividing the logits (raw scores from the model) by T before applying the softmax function.<br>
+A lower temperature makes the distribution more "peaked," favoring high-probability options.<br>
+A higher temperature "flattens" the distribution, giving more chance to lower-probability options.<br>
+
+**Temperature scale:**
+
+Generally ranges from 0 to 2, with 1 being the default (no modification).<br>
+T < 1: Makes the text more deterministic, focused, and "safe."<br>
+T > 1: Makes the text more random, diverse, and potentially more creative.<br>
+T = 0: Equivalent to greedy selection, always choosing the most probable option.<br>
+
 **Avoiding Repetition:**
 
 Higher temperatures can help reduce repetitive patterns in the generated text by promoting diversity.<br>
 Very low temperatures can sometimes lead to repetitive and deterministic outputs, as the model might keep choosing the highest-probability tokens.<br>
+
+It's important to note that temperature is just one of several sampling hyperparameters available. Others include top-k sampling, nucleus sampling (or top-p), and the TFS-Z. Each of these methods has its own characteristics and may be more suitable for different tasks or generation styles.
 
 [temperature shorts 1](https://www.youtube.com/shorts/XsLK3tPy9SI)
 
