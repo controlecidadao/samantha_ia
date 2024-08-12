@@ -1196,15 +1196,16 @@ Samantha's initial settings is **deterministic**. As a rule, this means that for
 <br>
 
 📐 **Deterministic settings (default):** <br>
+* reset_model (True)
 * temperature (0)
-* tfs_z (0)
-* top_p (0)
-* min_p (1)
-* typical_p (0)
+* tfs_z (1)
+* top_p (0.95)
+* min_p (0.05)
+* typical_p (1)
 * top_k (40)
 * presence_penalty (0)
 * frequency_penalty (0)
-* repeat_penalty (1.1)
+* repeat_penalty (1)
 <br><br>
 
 Deterministic settings is used to assess training database biases.
@@ -1216,9 +1217,10 @@ In turn, for **stochastic** behavior, suited for creative content, in which mode
 <br><br>
 
 🎨 **Stochastic settings (example):** <br>
-* temperature (0.2)
+* reset_model (True)
+* temperature (0.8)
 * tfs_z (1)
-* top_p (0.9)
+* top_p (0.95)
 * min_p (0.05)
 * typical_p (1)
 * top_k (40)
