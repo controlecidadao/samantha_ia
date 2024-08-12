@@ -1,7 +1,7 @@
 #  gradio==4.25.0
 markdown==3.6
 selenium==4.22.0
-llama-cpp-python==0.2.85
+llama-cpp-python==0.2.87
 seaborn==0.12.2
 altair==5.3.0
 plotly==5.20.0
