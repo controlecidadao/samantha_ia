@@ -45,7 +45,7 @@
 
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models and _Single response per model_ feature.
 
-Each of these models and prompt sequences can be executed more than once via the **_Number of loops_** feature.
+Each of these models and prompts sequences can be executed more than once via the **_Number of loops_** feature.
 <br><br>
 
 
