@@ -1048,7 +1048,7 @@ Keep in mind that this is a relatively advanced hyperparameter, and its optimal 
 
 **Top-p scale:**
 
-Generally ranges from 0 to 1, with common values between 0.1 (10%) and 0.9 (90%).<br>
+Generally ranges from 0 to 1, with common values between 0.1 (10% most likely) and 0.9 (90% most likely).<br>
 p = 1: Equivalent to unmodified sampling from the full vocabulary.<br>
 p → 0: Increasingly deterministic, focusing on the highest probability tokens.<br>
 p = 0.9: A common choice that balances quality and diversity.
