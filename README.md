@@ -28,11 +28,11 @@
 
   * **(model_1) responds (prompt_1) X number of responses:** used to analyze model's deterministic and stochastic behavior with help of the Learning Mode, as well as to generate multiple diverse responses with stochastic settings.
 
-  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model.
+  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model (prompt chaining).
 
-  * **(model_1, model_2, model_n) respond (prompt_1):** used to compare models' responses for the same single prompt. Useful for comparing different models, as well as quantized versions of the same model.
+  * **(model_1, model_2, model_n) respond (prompt_1):** used to compare models' responses for the same single prompt (model chaining). Useful for comparing different models, as well as quantized versions of the same model.
 
-  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** used to compare models' responses for a list of prompts, as well as to execute a sequence of instructions using disctinct models (each model respond all prompts). By using the Single Response per Model feature, each model can also respond to only one specific prompt.
+  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** used to compare models' responses for a list of prompts, as well as to execute a sequence of instructions using disctinct models (model and prompt chaining). Each model respond all prompts. In turn, when using the _Single Response per Model_ feature, each model respond to only one specific prompt.
 <br><br>
 
 🔗 Some chaining examples **_using_** Samantha's response **Feedback Loop** feature:
