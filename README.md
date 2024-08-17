@@ -891,6 +891,10 @@ _[Is Temperature the Creativity Parameter of Large Language Models?](https://arx
 
 <br>
 
+[The Effect of Sampling Temperature on Problem Solving in Large Language Models](https://arxiv.org/pdf/2402.05201)
+
+<br>
+
 **Controlling Creativity:**
 
 🔥 Use **higher temperatures** when you want the model to generate more creative, unexpected, and varied responses. This is useful for creative writing, brainstorming, and exploring multiple ideas.<br>
@@ -1024,9 +1028,44 @@ Keep in mind that this is a relatively advanced hyperparameter, and its optimal 
 
 <details>
 <summary>top_p (slider)</summary>
-<br>
 
-Teste
+---
+
+⭕​ `Top-p` (nucleus sampling) is a hyperparameter that controls the diversity and quality of text generation in LLMs. It affects the selection of tokens during the generation process by dynamically limiting the vocabulary based on cumulative probability.
+<br><br>
+
+**Controlling Output Quality:**
+
+🔮 Use **higher `top-p` values** (closer to 1) when you want the model to consider a wider range of possibilities, potentially leading to more diverse and creative outputs. This is useful for open-ended tasks, storytelling, or generating multiple alternatives. Higher values allow for more low-probability tokens to be included in the sampling pool.
+
+🎯 Use **lower `top-p` values** (closer to 0) when you need more focused and high-quality output. This is beneficial for tasks requiring precise information or coherent responses, such as answering specific questions or generating formal text. Lower values restrict the sampling to only the most probable tokens.
+<br><br>
+
+**How it works:**
+
+🧮 Mathematically, `top-p` sampling selects the smallest possible set of words whose cumulative probability exceeds the chosen p-value. The model then samples from this reduced set of tokens. This approach adapts to the confidence of the model's predictions, unlike fixed methods like `top-k` sampling.
+<br><br>
+
+**Top-p scale:**
+
+Generally ranges from 0 to 1, with common values between 0.1 (10%) and 0.9 (90%).<br>
+p = 1: Equivalent to unmodified sampling from the full vocabulary.<br>
+p → 0: Increasingly deterministic, focusing on the highest probability tokens.<br>
+p = 0.9: A common choice that balances quality and diversity.
+<br><br>
+
+**Balancing Coherence and Diversity:**
+
+`Top-p` sampling helps maintain coherence while allowing for diversity. It adapts to the model's confidence, using a smaller set of tokens when the model is very certain and a larger set when it's less certain. This can lead to more natural-sounding text compared to fixed cutoff methods.
+<br><br>
+
+**Comparison with Temperature:**
+
+While temperature modifies the entire probability distribution, `top-p` directly limits the vocabulary considered. Top-p can be more effective at preventing low-quality outputs while still allowing for creativity, as it dynamically adjusts based on the model's confidence.
+
+It's worth noting that `top-p` is often used in combination with other sampling methods, such as `temperature` adjustment or `top-k` sampling. The optimal choice of hyperparameters often depends on the specific task and desired output characteristics.
+
+---
 
 <br><br>
 </details>
