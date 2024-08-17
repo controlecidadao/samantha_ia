@@ -1673,12 +1673,21 @@ You can add text within a collapsed section.
 
 
 <br><br>
+## 🙏​ Help Improve Samantha
+
+<details>
+<summary>Your suggestions are welcome!</summary>
+
+</details>
+
+
+<br><br>
 ## 📝 Version History and Future Improvements
 
 <details>
 <summary>Versions</summary>
 
- <br><br>
+<br><br>
 🗓️ **Code Versions:**
 
 Version 0.1.0 (2024-08-05):
