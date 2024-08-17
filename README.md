@@ -69,6 +69,10 @@ Each of these models and prompts sequences can be executed more than once via th
 🎲 Thanks to **emergent behavior**, with the right prompt and proper hyperparameter configuration, even small models working together can generate big responses!
 <br><br>
 
+> _The intelligence of the human species is not based on a single intelligent being, but based on a collective intelligence. Individually, we are actually not that intelligent or capable. Our society and economic system is based on having a vast range of institutions made up of diverse individuals with different specializations and expertise. This vast collective intelligence shapes who we are as individuals, and each of us follows our own path in life to become the unique individual, and in turn, contribute back to being part of our ever-expanding collective intelligence as a species. We believe that the development of artificial intelligence will follow a similar, collective path. The future of AI will not consist of a single, gigantic, all-knowing AI system that requires enormous energy to train, run, and maintain, but rather a vast collection of small AI systems–each with their own niche and specialty, interacting with each other, with newer AI systems developed to fill a particular niche._ [Sakana AI](https://sakana.ai/evolutionary-model-merge/)
+
+<br>
+
 🌎 **A Small Step:** Samantha is just a movement towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers, walking a journey to democratize AI and make it a force for good in our daily lives.
 
 <br>
