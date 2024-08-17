@@ -886,6 +886,11 @@ How `max_tokens` Works:
 🌡 Temperature is a hyperparameter that controls the randomness of the text generation process in LLMs. It affects the probability distribution of the model's next-token predictions.
 <br><br>
 
+>_Temperature is a hyperparameter t that we find in stochastic models to regulate the randomness in a sampling process (Ackley, Hinton, and Sejnowski 1985). The softmax function (Equation 1) applies a non-linear transformation to the output logits of the network, turning it into a probability distribution (i.e. they sum to 1). The temperature parameter regulates its shape, redistributing the output probability mass, flattening the distribution proportional to the chosen temperature. This means that for t > 1, high probabilities are decreased, while low probabilities are increased, and vice versa for t < 1. Higher temperatures increase entropy and perplexity, leading to more randomness and uncertainty in the generative process. Typically, values for t are in the range of [0, 2] and t = 0, in practice, means greedy sampling, i.e. always taking the token with the highest probability._
+_[Is Temperature the Creativity Parameter of Large Language Models?](https://arxiv.org/pdf/2405.00492)_
+
+<br>
+
 **Controlling Creativity:**
 
 🔥 Use **higher temperatures** when you want the model to generate more creative, unexpected, and varied responses. This is useful for creative writing, brainstorming, and exploring multiple ideas.<br>
@@ -918,6 +923,7 @@ Higher temperatures can help reduce repetitive patterns in the generated text by
 Very low temperatures can sometimes lead to repetitive and deterministic outputs, as the model might keep choosing the highest-probability tokens.<br>
 
 It's important to note that temperature is just one of several sampling hyperparameters available. Others include top-k sampling, nucleus sampling (or top-p), and the TFS-Z. Each of these methods has its own characteristics and may be more suitable for different tasks or generation styles.
+<br><br>
 
 **Videos:**
 
