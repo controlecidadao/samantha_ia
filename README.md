@@ -1138,6 +1138,8 @@ During the penalty process (>1), there is a variation in syntactic and semantic 
 
 Practical observations showed that increasing the token penalty (>1) generates syntactic and semantic diversity in the response, as well as promoting a variation in the response length until stabilization, when increasing the value no longer generates variation in the output.
 
+The `repeat_penalty` hyperparameter has a deterministic nature.
+
 ---
 
 </details>
