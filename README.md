@@ -13,7 +13,7 @@
 
 <br>
 
-💻 Samantha is just a simple interface assistant for open source artificial intelligence models, developed in their spare time by the team of Ministério Público de Contas do Estado do Espírito Santo ([MPC-ES](https://www.mpc.es.gov.br/)) under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://huggingface.co/docs/hub/gguf) models or when required by the execution of the code created by the models (g.e. for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger ones. Her mission is to help explore the boundaries of (realy) open AI models.
+💻 Samantha is just a simple interface assistant for open source artificial intelligence models, developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://huggingface.co/docs/hub/gguf) models or when required by the execution of the code created by the models (g.e. for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
 <br>
 
@@ -1294,10 +1294,10 @@ Samantha's initial settings is **deterministic**. As a rule, this means that for
 📐 **Deterministic settings (default):** <br>
 * reset_model (True)
 * temperature (0)
-* tfs_z (1)
-* top_p (0.95)
-* min_p (0.05)
-* typical_p (1)
+* tfs_z (0)
+* top_p (0)
+* min_p (1)
+* typical_p (0)
 * top_k (40)
 * presence_penalty (0)
 * frequency_penalty (0)
