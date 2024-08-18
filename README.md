@@ -1107,18 +1107,24 @@ Teste
 
 <details>
 <summary>presence_penalty (slider)</summary>
-<br>
 
-Under construction.
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>frequency_penalty (slider)</summary>
-<br>
 
-Under construction.
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
@@ -1128,9 +1134,9 @@ Under construction.
 
 ---
 
-**How token penalization works:**
+**How `repeat_penalty` works:**
 
-📈 Starting from the default value (=1), as we reduce this value (<1) the text starts to present more and more repeated words (tokens), to the point where the model starts to repeat a certain passage or word indefinitely.
+📊 Starting from the default value (=1), as we reduce this value (<1) the text starts to present more and more repeated words (tokens), to the point where the model starts to repeat a certain passage or word indefinitely.
 
 In turn, as we increase this value (>1), the model starts to penalize repeated words (tokens) more heavily, up to the point where the input text no longer generates penalties in the output text.
 
@@ -1139,6 +1145,11 @@ During the penalty process (>1), there is a variation in syntactic and semantic 
 Practical observations showed that increasing the token penalty (>1) generates syntactic and semantic diversity in the response, as well as promoting a variation in the response length until stabilization, when increasing the value no longer generates variation in the output.
 
 The `repeat_penalty` hyperparameter has a deterministic nature.
+<br><br>
+
+**Adjustment tip:**
+
+📈 increase this value until the generated text reaches the desired level of diversity and does not present syntactic errors (depends on the model).
 
 ---
 
