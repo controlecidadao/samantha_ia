@@ -78,7 +78,7 @@ Each of these models and prompts sequences can be executed more than once via th
 <br>
 
 ⚠️ **Use Responsibly:**
-The generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha and for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are complex mathematical models that generates coherent texts from the sequencing of words (tokens) based on the probability patterns extracted from the training texts.
+The generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha and for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just complex mathematical models that generates coherent texts from the sequencing of words (tokens) based on the probability patterns extracted from the training texts.
 
 <br>
 
@@ -1701,8 +1701,9 @@ Version 0.1.0 (2024-08-05):
 🚀 **Future improvements:**
 <br>
 
-* Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
+* Add a scatterplot for displaying the semantic diversity of the topics covered in the model response.
 * Add Retrieval-Augmented Generation (RAG) feature
+* Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
 * Refactor the code to make it more manteinable.
 <br>
 
