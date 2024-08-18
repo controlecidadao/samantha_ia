@@ -1109,7 +1109,7 @@ Teste
 <summary>presence_penalty (slider)</summary>
 <br>
 
-Teste
+Under construction.
 
 <br><br>
 </details>
@@ -1118,7 +1118,7 @@ Teste
 <summary>frequency_penalty (slider)</summary>
 <br>
 
-Teste
+Under construction.
 
 <br><br>
 </details>
