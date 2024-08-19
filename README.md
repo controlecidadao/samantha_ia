@@ -1147,6 +1147,29 @@ It's worth noting that `top-p` is often used in combination with other sampling 
 <br><br>
 **Token Penalties:**
 
+<details>
+<summary>General instructions</summary>
+
+---
+
+**Deterministic Behavior:**
+
+To obtain a deterministic text (same input, same output), but without repeating words (tokens), increase the values ​​of the penalty hyperparameters.
+
+However, if it proves necessary to allow the model to reselect already generated tokens, keep these settings at their default values.
+<br><br>
+
+| Hyperparameter      | Default Values   | Text Diversity |
+| :-----------------: | :--------------: | :------------: |
+| _presence_penalty_  | 0                | > 0            |
+| _frequency_penalty_ | 0                | > 0            |
+| _repeat_penalty_    | 1                | > 1            |
+
+---
+
+<br><br>
+</details>
+
 
 <details>
 <summary>presence_penalty (slider)</summary>
