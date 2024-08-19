@@ -1455,7 +1455,7 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 
 ---
 
-🚧 Under construction.
+Adds the next token to the model response when `Learning Mode` is enabled.
 
 ---
 
