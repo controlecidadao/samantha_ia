@@ -883,6 +883,40 @@ How `max_tokens` Works:
 **Token Sampling:**
 
 <details>
+<summary>General instructions</summary>
+
+---
+
+**Deterministic Behavior:**
+
+To check the deterministic impact of each hyperparameter on the model's behavior, set all others hyperparameters to their maximum stochastic values ​​and execute a prompt more than once. Repeat this procedure for each token sampling hyperparameter.
+<br><br>
+
+**Stochastic Behavior:**
+
+To check the stochastic reflection of a hyperparameter on the model's behavior, set all other hyperparameters to their maximum stochastic values ​​and gradually vary the selected hyperparameter based on its deterministic value. Repeat this procedure for each token sampling hyperparameter.
+
+You can combine stochastic tuning of different hyperparameters.
+<br><br>
+
+
+| Hyperparameter | Deterministic    | Stochastic    |
+| :------------: | :--------------: | :-----------: |
+| _temperature_  | 0                | > 0           |
+| _tfs_z_        | 0                | > 0           |
+| _top_p_        | 0                | > 0           |
+| _min_p_        | 1                | < 1           |
+| _typical_p_    | 0                | > 0           |
+| _top_k_        | 1                | > 1           |
+
+
+---
+
+<br><br>
+</details>
+
+
+<details>
 <summary>temperature (slider)</summary>
 
 ---
