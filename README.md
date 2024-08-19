@@ -1440,7 +1440,7 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 </details>
 
 <details>
-<summary>Copy code blocks (button)</summary>
+<summary>Copy Python code (button)</summary>
 
 ---
 
