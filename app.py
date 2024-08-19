@@ -193,7 +193,7 @@ language = {
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
                 'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) Return 'STOP_SAMANTHA' (sair do loop). 6) Return '' (string vazia, não exibe pop-up HTML). É possível importar um arquivo TXT contendo uma lista de prompts.",
-                'user_prompt_value': 'Olá!\n\n\n$$$',
+                'user_prompt_value': 'Quem é você!\n\n\n$$$',
                 'models_selection_info': 'Model selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignora URL.",
                 'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
@@ -207,13 +207,15 @@ language = {
                 'number_of_responses_info': 'Number of responses (caixa de seleção). Controla o número de respostas para cada modelo selecionado.',
                 'n_ctx_info': 'n_ctx (ajuste deslizante). Número de tokens da janela de contexto (0 = máximo do modelo). Aumenta uso da memória RAM. Antes de ajustar, descarregue o modelo.',
                 'max_tokens_info': 'max_tokens (ajuste de faixa de valores). Controla número máximo de tokens a serem gerados na resposta. Selecione 0 para o máximo possível.',
-                'temperature_info': 'temperature (ajuste de faixa de valores). Controla o grau de criatividade versus previsibilidade das respostas.',
+                
+                'temperature_info': 'temperature (ajuste de faixa de valores). Controla o grau de aleatoriedade na escolha do próximo token (logits / t).',
                 'stop_info': r'stop (caixa de texto). Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',                
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
-                'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p”.',
+                'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p” (1 = 100%).',
                 'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "m".', 
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estão abaixo de um limiar de tipicidade, calculado como entropia x typical_p, e então renormaliza as probabilidades deste subconjunto para amostragem',
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
+                
                 'presence_penalty_info': 'presence_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'frequency_penalty (ajuste deslizante). Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
                 'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada à sequências repetidas de tokens (não à sequência das próximas palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
@@ -230,7 +232,7 @@ language = {
                 'btn_user_prompt': 'User Prompt TXT',
                 'btn_copy_model_url': 'Copiar HF Links',
                 'btn_load_models_urls_info': 'Carregar URLs TXT',
-                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE, edite o código, copie e execute com o botão Executar Código.',
+                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE, edite o código, selecione, CTRL + C e execute com o botão Executar Código.',
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código Python',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
@@ -265,7 +267,7 @@ language = {
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
                 'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
-                'user_prompt_value': 'Hello!\n\n\n$$$',
+                'user_prompt_value': 'Who are you!\n\n\n$$$',
                 'models_selection_info': 'Model selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
                 'single_answer_info': 'Single response (checkbox). Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
@@ -279,13 +281,15 @@ language = {
                 'number_of_responses_info': 'Number of responses (select box). Controls the number of responses for each selected model.',
                 'n_ctx_info': 'n_ctx (range slider). Number of context window tokens (0 = from model). Increases RAM memory usage. Before adjusting, unload the model.',
                 'max_tokens_info': 'max_tokens (range slider). Controls maximum number of tokens that will be generated in the response. Set 0 for maximum possible.',
-                'temperature_info': 'temperature (range slider). Controls the degree of creativity versus predictability of responses.',
+                
+                'temperature_info': 'temperature (range slider). Controls the degree of randomness in choosing the next token (logits / t).',
                 'stop_info': r'stop (text box). Contains list of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]',
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
-                'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p".',
+                'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p" (1 = 100%).',
                 'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "m".', 
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limits the selection of the next token to a subset whose individual probabilities are below a typicality threshold, calculated as entropy x typical_p, and then renormalizes the probabilities of this subset for sampling.',
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
+                
                 'presence_penalty_info': 'presence_penalty (range slider). Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'frequency_penalty (range slider). Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
                 'repeat_penalty_info': 'repeat_penalty (range slider). Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text (repetition vs. diversity).',
@@ -302,7 +306,7 @@ language = {
                 'btn_user_prompt': 'User Prompt TXT',
                 'btn_copy_model_url': 'Copy HF Links',
                 'btn_load_models_urls_info': 'Load URLs TXT',
-                'assistant_raw_output_info': 'Response history. Add #IDE, edit the code, copy and run with Run Code button.',
+                'assistant_raw_output_info': 'Response history. Add #IDE, edit the code, select, CTRL + C and run with Run Code button.',
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Python Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
@@ -1617,7 +1621,7 @@ def update_barplot_widget_2():      # Update barplot 2 with unlikelly tokens fre
     df_2 = pd.DataFrame( # Creates dataframe with Pandas
             {
                 "occurrence_number": x_score,
-                "score": y_score,
+                "Position": y_score,
                 # "color": color_bar
             }
         )
@@ -1625,17 +1629,17 @@ def update_barplot_widget_2():      # Update barplot 2 with unlikelly tokens fre
     return gr.BarPlot( # Returns barplot element
             df_2,
             x='occurrence_number',
-            y='score',
-            color='score',
+            y='Position',
+            color='Position',
             title="Exceptions to the Most Likely Token",
-            tooltip=["occurrence_number", "score"],
+            tooltip=["occurrence_number", "Position"],
             y_lim=[0, 30],
             width=500,
             height=150,
             interactive=True,
             visible= show,
             x_title="Occurrences",
-            y_title="Tokens Position"
+            y_title="Token Position"
         )
 
 
@@ -1764,14 +1768,16 @@ def extract_text():
             break
         except Exception as e:
             print('ERROR IN tk.filedialog:', traceback.format_exc())
+            del root
+            del tk
             return
     
     if path == '':
         return
     
     path = path.replace('/', '\\')
+
     root.destroy()
-    
     del root
     del tk
     
@@ -1821,6 +1827,8 @@ def extract_full_text():
             break
         except Exception as e:
             print('ERROR IN tk.filedialog:', traceback.format_exc())
+            del root
+            del tk
             return
     
     if path == '':
@@ -2300,7 +2308,6 @@ def extract_models_names():         # Load Model button: open window to choose d
             return gr.Dropdown(choices=last_models_list, value=models[0])
     
     root.destroy()
-    
     del root
     del tk
 
@@ -2888,11 +2895,11 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(0, 2, 0, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
-                gr.Slider(0.00001, 1, 1, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
-                gr.Slider(0.000001, 1, 0.95, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
-                gr.Slider(0, 1, 0.05, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
-                gr.Slider(0.00001, 1, 1, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
+                gr.Slider(0, 2, 0.0, 0.01, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0, 1, 1, 0.01, label='tfs_z', info=language['tfs_z_info'], interactive=True),
+                gr.Slider(0, 1, 0.0, 0.01, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
+                gr.Slider(0, 1, 0, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
+                gr.Slider(0, 1, 1, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
@@ -2953,6 +2960,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             
             gr.HTML('<br><h6><b>Useful links:</b></h6>')
             gr.HTML("""<ul>
+                        <li><a href="https://arxiv.org/list/cs.AI/recent">AI Arxiv Articles</a></li>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
                         <li><a href="https://huggingface.co/spaces/ggml-org/gguf-my-repo">GGUF My Repository</a></li>
                         <li><a href="https://huggingface.co/spaces/arcee-ai/mergekit-gui">arcee-ai/mergekit-gui</a></li>
@@ -2963,6 +2971,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/spaces/Xenova/the-tokenizer-playground">Tokenizer Playground</a></li>
                         <li><a href="https://platform.openai.com/tokenizer">OpenAI Tokenizer</a></li>
                         <li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a></li>
+                        <li><a href="https://context.ai/compare/gpt-4o-2024-05-13/claude-3-opus">Compare Models</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
                         <li><a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python pypi</a></li>
                         <li><a href="https://llama-cpp-python.readthedocs.io/en/latest/api-reference/">llama-cpp-python API Reference</a></li>
@@ -3031,7 +3040,11 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a></li>
                         <li><a href="https://claude.ai/new">Claude</a></li>
                         <li><a href="https://chatgpt.com/">ChatGPT</a></li>
-                        <li><a href="https://copilot.microsoft.com/">Perplexity AI</a></li>
+                        <li><a href="https://aistudio.google.com/app/prompts/new_chat?hl=pt-br">Google AI Studio</a></li>
+                    
+
+                    
+                        <li><a href="https://copilot.microsoft.com/">Copilot</a></li>
                         <li><a href="https://www.perplexity.ai/">Perplexity AI</a></li>
                         <li><a href="https://labs.perplexity.ai/">Perplexity Labs Playground</a></li>
                         <li><a href="https://www.blackbox.ai/">Blackbox AI</a></li>
@@ -3059,16 +3072,18 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_next_token.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False) 
                 btn_copy_code = gr.Button(language['btn_copy_code_blocks'])
                 btn_copy_code.click(fn=copy_code, inputs=None, outputs=None, queue=False)
-                btn_notebook = gr.Button(language['btn_open_jupyterlab'])
-                btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
+                btn_idle = gr.Button(language['btn_idle'])
+                btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)                
 
             with gr.Row():
                 btn_last_response = gr.Button(language['btn_copy_last_response'])
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
                 btn_all_responses = gr.Button(language['btn_copy_all_responses'])
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
-                btn_idle = gr.Button(language['btn_idle'])
-                btn_idle.click(fn=open_idle, inputs=None, outputs=None, queue=False)
+                btn_notebook = gr.Button(language['btn_open_jupyterlab'])
+                btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
+                
+                
 
 
                 # =================================
@@ -3169,6 +3184,10 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
+            
+            with gr.Row():
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Diversity:&nbsp;&nbsp;&nbsp;Generates syntactic (words) and semantic (meaning) diversity</span></i></h6>')
+            
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
