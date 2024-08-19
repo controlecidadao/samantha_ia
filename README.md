@@ -1452,11 +1452,17 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 </details>
 
 <details>
-<summary>Open Jupyterlab (button)</summary>
+<summary>Run Code (button)</summary>
 
 ---
 
-🚧 Under construction.
+This button executes any Python code copied to the clipboard that uses the libraries installed in the `jupterlab` virtual environment. Just select the code (even outside of Samantha), press `CTRL + C` and click the button.
+
+Use it in combination with _Copy Python Code_ button.
+
+The `pip` and `!pip` instructions lines present in the code are ignored.
+
+The Python interpreter output is displayed in a web browser pop-up window, if any.
 
 ---
 
@@ -1476,7 +1482,7 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 </details>
 
 <details>
-<summary>Copy all response (button)</summary>
+<summary>Copy all responses (button)</summary>
 
 ---
 
@@ -1488,17 +1494,11 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 </details>
 
 <details>
-<summary>Run Code (button)</summary>
+<summary>Open Jupyterlab (button)</summary>
 
 ---
 
-This button executes any Python code copied to the clipboard that uses the libraries installed in the `jupterlab` virtual environment. Just select the code (even outside of Samantha), press `CTRL + C` and click the button.
-
-Use it in combination with _Copy Python Code_ button.
-
-The `pip` and `!pip` instructions lines present in the code are ignored.
-
-The Python interpreter output is displayed in a web browser pop-up window, if any.
+🚧 Under construction.
 
 ---
 
