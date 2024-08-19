@@ -1362,7 +1362,13 @@ To use DB Browser, [download](https://sqlitebrowser.org/dl/) the `.zip`(no insta
 
 ---
 
-Opens [D-Tale](https://github.com/man-group/dtale) in a new browser tab with a example dataset (titanic.csv).
+Opens [D-Tale](https://github.com/man-group/dtale) library interface in a new browser tab with a example dataset (titanic.csv).
+<br><br>
+
+**Web Client for Visualizing Pandas Objects**
+
+>D-Tale is the combination of a Flask back-end and a React front-end to bring you an easy way to view & analyze Pandas data structures. It integrates seamlessly with ipython notebooks & python/ipython terminals. Currently this tool supports such Pandas objects as DataFrame, Series, MultiIndex, DatetimeIndex & RangeIndex. [D-Tale Project](https://pypi.org/project/dtale/#description)
+<br><br>
 
 A Windows terminal will also open.
 
