@@ -1110,27 +1110,36 @@ It's worth noting that `top-p` is often used in combination with other sampling 
 
 <details>
 <summary>min_p (slider)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>typical_p (slider)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>top_k (slider)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
@@ -1207,36 +1216,48 @@ Display model metadata.
 
 <details>
 <summary>Show model's vocabulary (checkbox)</summary>
-<br>
 
-Teste
+ ---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Unload model (button)</summary>
-<br>
 
-Teste
+ ---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>PDF pages (button)</summary>
-<br>
 
-Teste
+ ---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>PDF full (button)</summary>
-<br>
 
-Teste
+ ---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
@@ -1396,54 +1417,72 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 
 <details>
 <summary>Assistant output (textbox)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Next token (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Copy code blocks (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Open Jupyterlab (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Copy last response (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Copy all response (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
@@ -1468,81 +1507,108 @@ The Python interpreter output is displayed in a web browser pop-up window, if an
 
 <details>
 <summary>Response in HTML (button)</summary>
-<br>
- 
-teste
+
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Responses in HTML (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Voice control (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Audio player (widget)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Text to speech (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Last response (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>All responses (button)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Models repositories (links)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
 
 <details>
 <summary>Operating tips (tips)</summary>
-<br>
 
-Teste
+---
+
+🚧 Under construction.
+
+---
 
 <br><br>
 </details>
@@ -1554,9 +1620,9 @@ Teste
 
 A collection of user prompts.
 
-Just click to select a prompt and send it to the _user prompt_ field.
+Just click to select a prompt and send it to the _User prompt_ field.
 
-You can change this list of prompts by editing the `user_prompts.txt` file. Samantha must be restarted.
+You can change this list of prompts by editing the `user_prompts.txt` file. Samantha must be restarted to display the changes.
 
 ---
 
@@ -1570,9 +1636,9 @@ You can change this list of prompts by editing the `user_prompts.txt` file. Sama
 
 A collection of system prompts.
 
-Just click to select a prompt and send it to the _system prompt_ field.
+Just click to select a prompt and send it to the _System prompt_ field.
 
-You can change this list of prompts by editing the `system_prompts.txt` file. Samantha must be restarted.
+You can change this list of prompts by editing the `system_prompts.txt` file. Samantha must be restarted to display the changes.
 
 ---
 
