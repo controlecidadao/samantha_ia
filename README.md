@@ -1390,7 +1390,7 @@ Teste
 </details>-->
 
 <br><br>
-**Initial Settings:**
+**Default Settings:**
 
 <details>
 <summary>Settings</summary>
