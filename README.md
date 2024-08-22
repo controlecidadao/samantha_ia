@@ -237,7 +237,7 @@ To use Samantha you will need:
 Samantha needs just a `.gguf` model file to generate text. Follow these steps to perform a simple model test:
 <br><br>
 
-1) Open Microsoft Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
+1) Open Windows Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
 
 2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and click on the card to open the corresponding page. Locate the _Files and versions_ tab and choose a `.gguf` model that fits in your available memory.
    
@@ -286,7 +286,7 @@ To download the model, click on the card to open the corresponding page. Locate 
 
 To download some models, you must agree to the terms of use.
 
-After that, click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Task Manager by pressing `CTRL + SHIFT + ESC`, click on **Performance** tab (1) and select **Memory** (2):
+After that, click on the **Files and versions** tab and download a model that fits in your available RAM space. To check your available memory, open Windows Task Manager by pressing `CTRL + SHIFT + ESC`, click on **Performance** tab (1) and select **Memory** (2):
 
 <br>
 
