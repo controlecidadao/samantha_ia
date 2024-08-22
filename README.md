@@ -269,7 +269,7 @@ You can also download the model and save it permanently to your computer. For mo
 
 ### Downloading Open Source Model Files (.gguf)
 
-Open souce model can be downloaded from [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code`.
+Open souce model can be downloaded from [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code` or `gguf portuguese`.
 
 You can also go to a specific repository and see all the `.gguf` models available for downloading and testing, like [https://huggingface.co/bartowski](https://huggingface.co/bartowski)
 <br><br>
