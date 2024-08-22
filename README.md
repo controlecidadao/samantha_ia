@@ -271,7 +271,7 @@ You can also download the model and save it permanently to your computer. For mo
 
 Open souce model can be downloaded from [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code` or `gguf portuguese`.
 
-You can also go to a specific repository and see all the `.gguf` models available for downloading and testing, like [https://huggingface.co/bartowski](https://huggingface.co/bartowski)
+You can also go to a specific repository and see all the `.gguf` models available for downloading and testing, like [https://huggingface.co/bartowski](https://huggingface.co/bartowski) or [NousResearch](https://huggingface.co/NousResearch).
 <br><br>
 
 The models are displayed on cards like this:
