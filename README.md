@@ -203,7 +203,7 @@ To use Samantha you will need:
 
   <br>
   
-  The installation process takes about _**50 minutes**_ and should end with the creation of two virtual environments: `samantha` and `jupyterlab`. It will take up about _**5 GB**_ of your hard drive.
+  The installation process takes about _**50 minutes**_ and should end with the creation of two virtual environments: `samantha`, to run just the AI ​​model and `jupyterlab`, to run the other installed programs. It will take up about _**5 GB**_ of your hard drive.
 
 <br>
 
