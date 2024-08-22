@@ -1,6 +1,6 @@
 
 ![v](https://img.shields.io/badge/version-0.1.0-blue) 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<!--[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)-->
 ![v](https://img.shields.io/badge/updated-August%2018,%20%202024-green)
 
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
