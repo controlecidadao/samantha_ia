@@ -1703,10 +1703,12 @@ You can change this list of prompts by editing the `system_prompts.txt` file. Sa
 
 ---
 
-[Prompt engineering guide](https://www.promptingguide.ai/pt)<br>
-[OpenAI prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering)<br>
-[Anthropic prompt engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview#prompting-vs-finetuning)<br>
-[Google prompt engineering](https://ai.google.dev/gemini-api/docs/prompting-intro)
+**Prompt engineering guides:**
+
+* [Prompt engineering guide](https://www.promptingguide.ai/pt)<br>
+* [OpenAI prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering)<br>
+* [Anthropic prompt engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview#prompting-vs-finetuning)<br>
+* [Google prompt engineering](https://ai.google.dev/gemini-api/docs/prompting-intro)
 <br><br>
 
 
