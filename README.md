@@ -529,6 +529,8 @@ To ignore the text present in this field, include `---` at the beginning.
 
 Each item in the list must be separated from the next one by a line break (`SHIFT + ENTER` or `\n`) or by the symbols `$$$` (triple dollar signal), if the items are made up of text with line breaks.
 
+When present in the user prompt, the `$$$` separator takes precedence over the `\n` separator. In other words, `\n` is ignored.
+
 You can import a TXT file containing a list of prompts.
 
 `---` before a prompt list item causes the system to ignore that item.
