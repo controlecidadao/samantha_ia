@@ -1235,13 +1235,46 @@ The `repeat_penalty` hyperparameter has a deterministic nature.
 
 ---
 
-Display model metadata.
+Displays model's metadata.
+<br><br>
+
+
+**Example:**
+
+Model: https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/main/Hermes-3-Llama-3.1-8B.Q8_0.gguf?download=true
+<br><br>
+
+```
+{'general.name': 'Hermes 3 Llama 3.1 8B'
+  'general.architecture': 'llama'
+  'general.type': 'model'
+  'general.organization': 'NousResearch'
+  'llama.context_length': '131072'
+  'llama.block_count': '32'
+  'general.basename': 'Hermes-3-Llama-3.1'
+  'general.size_label': '8B'
+  'llama.embedding_length': '4096'
+  'llama.feed_forward_length': '14336'
+  'llama.attention.head_count': '32'
+  'tokenizer.ggml.eos_token_id': '128040'
+  'general.file_type': '7'
+  'llama.attention.head_count_kv': '8'
+  'llama.rope.freq_base': '500000.000000'
+  'llama.attention.layer_norm_rms_epsilon': '0.000010'
+  'llama.vocab_size': '128256'
+  'llama.rope.dimension_count': '128'
+  'tokenizer.ggml.model': 'gpt2'
+  'tokenizer.ggml.pre': 'llama-bpe'
+  'general.quantization_version': '2'
+  'tokenizer.ggml.bos_token_id': '128000'
+  'tokenizer.ggml.padding_token_id': '128040'
+  'tokenizer.chat_template': "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"}
+```
 
 ---
 
 <br><br>
 </details>
-
 
 <details>
 <summary>Show model's vocabulary (checkbox)</summary>
@@ -1249,6 +1282,131 @@ Display model metadata.
  ---
 
 🚧 Under construction.
+
+---
+
+<br><br>
+</details>
+
+
+
+
+<details>
+<summary>Model's vocabulary (textbox)</summary>
+
+ ---
+
+Displays model's vocabulary when _Learning Mode_ and _Show Model Vocabulary_ are selected simultaneously.
+
+**Example (from token 2000 to 2100):**
+
+Model: https://huggingface.co/Triangle104/Mistral-7B-Instruct-v0.3-Q5_K_M-GGUF/resolve/main/mistral-7b-instruct-v0.3-q5_k_m.gguf?download=true
+<br><br>
+
+
+```
+2000)    'ility'
+2001)    ' é'
+2002)    ' er'
+2003)    ' does'
+2004)    ' here'
+2005)    'the'
+2006)    'ures'
+2007)    ' %'
+2008)    'min'
+2009)    ' null'
+2010)    'rap'
+2011)    '")'
+2012)    'rr'
+2013)    'List'
+2014)    'right'
+2015)    ' User'
+2016)    'UL'
+2017)    'ational'
+2018)    ' being'
+2019)    'AN'
+2020)    'sk'
+2021)    ' car'
+2022)    'ole'
+2023)    ' dist'
+2024)    'plic'
+2025)    'ollow'
+2026)    ' pres'
+2027)    ' such'
+2028)    'ream'
+2029)    'ince'
+2030)    'gan'
+2031)    ' For'
+2032)    '":'
+2033)    'son'
+2034)    'rivate'
+2035)    ' years'
+2036)    ' serv'
+2037)    ' made'
+2038)    'def'
+2039)    ';\r'
+2040)    ' gl'
+2041)    ' bel'
+2042)    ' list'
+2043)    ' cor'
+2044)    ' det'
+2045)    'ception'
+2046)    'egin'
+2047)    ' б'
+2048)    ' char'
+2049)    'trans'
+2050)    ' fam'
+2051)    ' !='
+2052)    'ouse'
+2053)    ' dec'
+2054)    'ica'
+2055)    ' many'
+2056)    'aking'
+2057)    ' à'
+2058)    ' sim'
+2059)    'ages'
+2060)    'uff'
+2061)    'ased'
+2062)    'man'
+2063)    ' Sh'
+2064)    'iet'
+2065)    'irect'
+2066)    ' Re'
+2067)    ' differ'
+2068)    ' find'
+2069)    'ethod'
+2070)    ' \r'
+2071)    'ines'
+2072)    ' inv'
+2073)    ' point'
+2074)    ' They'
+2075)    ' used'
+2076)    'ctions'
+2077)    ' still'
+2078)    'ió'
+2079)    'ined'
+2080)    ' while'
+2081)    'It'
+2082)    'ember'
+2083)    ' say'
+2084)    ' help'
+2085)    ' cre'
+2086)    ' x'
+2087)    ' Tr'
+2088)    'ument'
+2089)    ' sk'
+2090)    'ought'
+2091)    'ually'
+2092)    'message'
+2093)    ' Con'
+2094)    ' mon'
+2095)    'ared'
+2096)    'work'
+2097)    '):'
+2098)    'ister'
+2099)    'arn'
+2100)    'ized'
+```
 
 ---
 
