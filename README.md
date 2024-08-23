@@ -1281,7 +1281,7 @@ Model: https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/ma
 
  ---
 
-🚧 Under construction.
+✅ Displays model's metadata when selected.
 
 ---
 
@@ -1296,7 +1296,7 @@ Model: https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/ma
 
  ---
 
-Displays model's vocabulary when _Learning Mode_ and _Show Model Vocabulary_ are selected simultaneously.
+🔠 Displays model's vocabulary when _Learning Mode_ and _Show Model Vocabulary_ are selected simultaneously.
 
 **Example (from token 2000 to 2100):**
 
