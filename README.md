@@ -1905,7 +1905,7 @@ Whatever you don't specify, if it required to generate the response, the model w
 
 ---
 
-User prompt:
+**User prompt:**
 
 ```
 You are the AI ​​Judge of an INTELLIGENCE CHALLENGE between two other AIs (AI 1 and AI 2). Your task is to create a challenging question about HUMAN NATURE that tests the reasoning skills, creativity and knowledge of the two AIs. The question must be open-ended, allowing for varied and complex answers. Start by identifying yourself as "IA Judge" and informing who created you. AIs 1 and 2 will respond next.
@@ -1940,7 +1940,7 @@ Prompts are separated by `$$$`. Prompts beginning with `---` are ignored.
 * Model 1 (AI Judge): https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/main/Hermes-3-Llama-3.1-8B.Q4_K_M.gguf?download=true 
 * Model 2 (AI 1): https://huggingface.co/bartowski/Phi-3.5-mini-instruct-GGUF/resolve/main/Phi-3.5-mini-instruct-Q4_K_M.gguf?download=true
 * Model 3 (AI 2): https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/main/gemma-2-9b-it-Q4_K_M.gguf?download=true
-* Model 1 (AI Judege): https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/main/gemma-2-9b-it-Q4_K_M.gguf?download=true
+* Model 1 (AI Judege): https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/main/Hermes-3-Llama-3.1-8B.Q4_K_M.gguf?download=true 
 <br><br>
 
 **Settings:<br>**
