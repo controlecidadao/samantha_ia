@@ -1899,6 +1899,94 @@ Whatever you don't specify, if it required to generate the response, the model w
 <br><br>
 </details>
 
+<details>
+
+<summary>Model and prompt chaining: intelligence challenge between 2 AI models</summary>
+
+---
+
+User prompt:
+
+```
+You are the AI ​​Judge of an INTELLIGENCE CHALLENGE between two other AIs (AI 1 and AI 2). Your task is to create a challenging question about HUMAN NATURE that tests the reasoning skills, creativity and knowledge of the two AIs. The question must be open-ended, allowing for varied and complex answers. Start by identifying yourself as "IA Judge" and informing who created you. AIs 1 and 2 will respond next.
+$$$
+
+You are "AI 1".  You are being challenged in your ability to answer questions. Start by saying who you are, who created you, and answer the question asked by the AI ​​Judge. Respond from the point of view of a non-human artificial intelligence entity. Your goal is to provide the most complete and accurate answer possible.
+$$$
+
+You are "AI 2".  You are being challenged in your ability to answer questions. Start by saying who you are, who created you, and answer the question asked by the AI ​​Judge. Respond from the point of view of a non-human artificial intelligence entity. Your goal is to provide the most complete and accurate answer possible.
+$$$
+
+You are the AI ​​Judge. Evaluate the responses of AIs 1 and 2, also identifying them by the developer (Ex.: AI 1 - Google, AI 2 - Microsoft), and decide based on which of the two is the best.
+$$$
+
+---Você é a IA Juiz de um DESAFIO DE INTELIGÊNCIA entre duas outras IAs (IA 1 e IA 2). Sua tarefa é criar uma pergunta desafiadora sobre a NATUREZA HUMANA que teste as habilidades de raciocínio, criatividade e conhecimento das duas IAs. A pergunta deve ser aberta, permitindo respostas variadas e complexas. Inicie identificando-se como "IA Juiz" e informando quem lhe criou. As IAs 1 e 2 responderão na sequência.
+$$$
+
+---Você é a "IA 1".  Você está sendo desafiada em sua capacidade de responder perguntas. Inicie dizendo quem é você, quem lhe criou, e responda a pergunta formulada pela IA Juiz. Responda sob o ponto de vista de uma entidade de entidade de inteligência artificial não humana. Seu objetivo é fornecer a resposta mais completa e precisa possível.
+$$$
+
+---Você é a "IA 2".  Você está sendo desafiada em sua capacidade de responder perguntas. Inicie dizendo quem é você, quem lhe criou, e responda a pergunta formulada pela IA Juiz. Responda sob o ponto de vista de uma entidade de entidade de inteligência artificial não humana. Seu objetivo é fornecer a resposta mais completa e precisa possível.
+$$$
+
+---Você é a IA Juiz. Avalie as respostas das IAs 1 e 2, identificando-as também pelo desenvolvedor (Ex.: IA 1 - Google, IA 2 - Microsoft), e decida fundamentadamente qual das duas é a melhor.
+$$$
+```
+
+Prompts are separated by `$$$`. Prompts beginning with `---` are ignored.
+<br><br>
+
+**Model chaining sequence:**
+* Model 1 (AI Judge): https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/main/Hermes-3-Llama-3.1-8B.Q4_K_M.gguf?download=true 
+* Model 2 (AI 1): https://huggingface.co/bartowski/Phi-3.5-mini-instruct-GGUF/resolve/main/Phi-3.5-mini-instruct-Q4_K_M.gguf?download=true
+* Model 3 (AI 2): https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/main/gemma-2-9b-it-Q4_K_M.gguf?download=true
+* Model 1 (AI Judege): https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/main/gemma-2-9b-it-Q4_K_M.gguf?download=true
+<br><br>
+
+**Settings:<br>**
+* Feedback loop: activated
+* Single response per model: activated
+* Cummulative response: activated
+* n_ctx: 4000
+* max_tokens: 4000
+* temperature: 1
+* tfs_z: 1
+* top_p: 0.5
+* min_p: 0
+* typical_p: 1
+* top_k: 40
+* presence_penalty: 0
+* frequency_penalty: 0
+* repeat_penalty: 1.1
+<br><br>
+
+You can just paste the model URLs in _Download model for testing_ field or download them and select via _Model selection_ dropdown list.
+
+Each prompt is answered by a single model, following the model selection order (first model answers the first prompt and so on).
+
+Each prompt is executed automatically and the model's response is fed back cummulatively to the model to generate the next response.
+
+The responses are concatenated to allow the next model to consider the entire context of the conversation when generating the next response.
+
+Experiment with other models to test their behaviors. Change the initial prompt slightly to test the model's adherence.
+
+---
+
+<br><br>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <details>
 
