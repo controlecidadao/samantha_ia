@@ -114,7 +114,7 @@ DIRETORIO_LOCAL = os.getcwd()                   # Define a constant to store the
 # 3) INITIALIZE PYTHON MODULES
 # ============================
 
-# PYGAME AND 2 OBJECTS
+# PYGAME: 2 OBJECTS
 pygame.init()                                   # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
 som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response/stop notification, sourced from the specified local file path.
 som.set_volume(0.2)                             # Set the volume of the notification sound to 20% of the maximum volume.
@@ -122,7 +122,7 @@ click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a s
 click.set_volume(0.4)                           # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
 print()
 
-# PYTTSX3, 2 OBJECTS AND 1 VARIABLE
+# PYTTSX3: 2 OBJECTS AND 1 VARIABLE
 engine = pyttsx3.init(driverName='sapi5')       # Initialize the text-to-speech engine using pyttsx3 with the 'sapi5' driver.
 voices = engine.getProperty('voices')           # Retrieve a list of available voices from the TTS engine instance.
 print('Number of voices installed on the computer:', len(voices), f'(0 a {len(voices) - 1})') # Display the total number of voices installed on the user's computer and an informational note about the count.
@@ -225,6 +225,9 @@ language = {
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
                 'stop_condition_info': "Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia).",
+                
+                'cummulative_response_info': 'Cummulative response (checkbox). Concatena a resposta atual do modelo com as respostas anteriores.',
+                
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
                 'btn_unload_model': 'Descarregar Modelo',
@@ -299,6 +302,9 @@ language = {
                 'model_vocabulary': 'model_vocabulary (text box). List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
                 'run_code_info': 'Run code automatically (checkbox). Automatically executes the generated Python code.',
                 'stop_condition_info': "Stop condition (checkbox). Stops Samantha if the Python interpreter prints (in the terminal) a value other than '' (empty string).",
+                
+                'cummulative_response_info': "Cummulative response (checkbox). Concatenates the model's current response with previous responses.",
+
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
                 'btn_unload_model': 'Unload Model',
@@ -433,9 +439,9 @@ original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Stores model's token vocabulary
 run_code = False
-# add_output = False
 counter_run = 1
-stop_condition = ''
+stop_condition = ''             # 
+cummulative_response = False    # Stores all responses of the chat session cummulatively in previous response
 
 # ===================================
 # 7) INTERFACE VOICE CONTROL SETTINGS
@@ -536,6 +542,7 @@ def text_generator(
         run_code_p,
         
         stop_condition_p,
+        cummulative_response_p,
         
         n_ctx, 
         max_tokens,
@@ -593,6 +600,7 @@ def text_generator(
     global run_code
     
     global stop_condition
+    global cummulative_response
     
     global counter_run
 
@@ -617,6 +625,7 @@ def text_generator(
     show_vocabulary = show_vocabulary_p
     run_code = run_code_p
     stop_condition = stop_condition_p
+    cummulative_response = cummulative_response_p
 
 
     # INITIAL CONDITIONAL SETTINGS
@@ -1316,11 +1325,21 @@ def text_generator(
 
                     return
                 
-                # ============================= 
-            
-                if infinite_loop == True:                                   # Update previous response. The existance of text in previous response affects the next text generation time
+                # =============================
+
+                # cummulative_response = True
+
+                if infinite_loop == True and cummulative_response == True:                                      # Update previous response cummulatively. The existance of text in previous response affects the next text generation time
+                    previous_answer += f'\n\n{ultima_resposta}'
+                    messages[1] = {'role': 'assistant', 'content': previous_answer}
+
+                elif infinite_loop == True and cummulative_response == False:                                   # Update previous response. The existance of text in previous response affects the next text generation time
                     previous_answer = ultima_resposta
                     messages[1] = {'role': 'assistant', 'content': previous_answer}
+
+                # if infinite_loop == True:                                   # Update previous response. The existance of text in previous response affects the next text generation time
+                #     previous_answer = ultima_resposta
+                #     messages[1] = {'role': 'assistant', 'content': previous_answer}
                 
                 para_tudo = False                                           # Reset variable
                 
@@ -1574,12 +1593,13 @@ def update_audio_widget(*inputs):   # Load audio widget with last message audio
 
 
 def update_barplot_widget():        # Update barplot 1 with tokens scores distribution
-    
-    if fast_mode == True: # Hide barplot if fast_mode == True
+
+    if fast_mode == True:           # Hide barplot if fast_mode == True
         return gr.BarPlot(visible=False)
     
-    if delay_next_token == 'OFF': # Controls barplot visibility
+    if delay_next_token == 'OFF':   # Controls barplot visibility
         show = False
+        return gr.BarPlot(visible=False)
     else:
         show = True
     
@@ -1617,6 +1637,7 @@ def update_barplot_widget_2():      # Update barplot 2 with unlikelly tokens fre
     
     if delay_next_token == 'OFF': # Controls barplot visibility
         show = False
+        return gr.BarPlot(visible=False)
     else:
         show = True
     
@@ -2864,14 +2885,14 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
         with gr.Column(scale=1):
 
             with gr.Row(): # Input buttons
-                btn1 = gr.Button(language['btn1'], variant='primary', elem_id='btn_start_chat')
-                btn2 = gr.Button(language['btn2'])
-                btn3 = gr.Button(language['btn3'])
+                btn1 = gr.Button(language['btn1'], variant='primary', elem_id='btn_start_chat') # Start Chat
+                btn2 = gr.Button(language['btn2'])                                              # Stop / Next
+                btn3 = gr.Button(language['btn3'])                                              # Clean History
 
             with gr.Row():
-                btn4 = gr.Button(language['btn4'])
-                btn5 = gr.Button(language['btn5'])
-                btn6 = gr.Button(language['btn6'])
+                btn4 = gr.Button(language['btn4'])                                              # Load Model
+                btn5 = gr.Button(language['btn5'])                                              # Stop All & Reset
+                btn6 = gr.Button(language['btn6'])                                              # Replace Response
 
             # ATENTION! This list MUST follows the function 'text_generator' parameters sequence
             inputs = [
@@ -2892,8 +2913,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Radio([1, 2, 3, 5, 10, 100, 1000000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
                 gr.Checkbox(value=False, label="Run code automatically", info=language['run_code_info'], interactive=True),                 
                 
-                gr.Checkbox(value=stop_condition, label="Stop condition", info=language['stop_condition_info'], interactive=True),                 
-                
+                gr.Checkbox(value=stop_condition, label="Stop condition", info=language['stop_condition_info'], interactive=True), 
+                gr.Checkbox(value=cummulative_response, label="Cummulative response", info=language['cummulative_response_info'], interactive=True), 
+                                
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
@@ -3028,7 +3050,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
                     </ul>""")
             
-            
             gr.HTML('<br><h6><b>Offline AI Systems:</b></h6>')
             gr.HTML("""<ul>
                         <li><a href="https://ollama.com/">Ollama</a></li>
@@ -3043,9 +3064,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://claude.ai/new">Claude</a></li>
                         <li><a href="https://chatgpt.com/">ChatGPT</a></li>
                         <li><a href="https://aistudio.google.com/app/prompts/new_chat?hl=pt-br">Google AI Studio</a></li>
-                    
-
-                    
                         <li><a href="https://copilot.microsoft.com/">Copilot</a></li>
                         <li><a href="https://www.perplexity.ai/">Perplexity AI</a></li>
                         <li><a href="https://labs.perplexity.ai/">Perplexity Labs Playground</a></li>
@@ -3086,8 +3104,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
                 
                 
-
-
                 # =================================
             
             with gr.Row():
@@ -3107,8 +3123,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     btn_voice = gr.Button('')
                     btn_voice.click(fn=None, inputs=None, outputs=None)
                 
-                
-
                 # =================================
             
 
@@ -3155,6 +3169,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+mamba">Mamba</a></li>
                         <br>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
                         </ul>""")
 
                         # <li><a href="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF">bartowski/gemma-2-9b-it-GGUF</a></li>
@@ -3168,9 +3183,6 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         # <li><a href="https://huggingface.co/Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix">Lewdiculous/L3-8B-Stheno-v3.3-32K-GGUF-IQ-Imatrix</a></li>
                         # <li><a href="https://huggingface.co/NousResearch/Nous-Hermes-2-Mistral-7B-DPO-GGUF">NousResearch/Nous-Hermes-2-Mistral-7B-DPO-GGUF</a></li>
                         # <br>
-                        
-
-                        
                         # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
                         
             with gr.Row():
