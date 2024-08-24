@@ -442,6 +442,8 @@ run_code = False
 counter_run = 1
 stop_condition = ''             # 
 cummulative_response = False    # Stores all responses of the chat session cummulatively in previous response
+browser_file = 'msedge.exe'     # Edge has high quality Text-to-Speech engine. But you can use 'chrome.exe'
+
 
 # ===================================
 # 7) INTERFACE VOICE CONTROL SETTINGS
@@ -2507,14 +2509,37 @@ def create_html(content):
     return html
 
 
+def find_chrome_exe():
+
+    # Lista de unidades comuns no Windows
+    drives = ['C:', 'D:', 'E:', 'F:']
+
+    print(f"Iniciando a pesquisa por {browser_file}...")
+    
+    for drive in drives:
+        for root, dirs, files in os.walk(drive + '\\'):
+            if browser_file in files:
+                return os.path.join(root, browser_file)
+    
+    return None
+
+chrome_path = find_chrome_exe()
+
+
 def open_chrome_window(file_path):
 
-    if sys.platform == "win32":
-        chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    # if sys.platform == "win32":
+    #     chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    
     # elif sys.platform == "darwin":
     #     chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     # else:
     #     chrome_path = "/usr/bin/google-chrome"
+
+
+
+
+
 
     subprocess.Popen([
         chrome_path,
