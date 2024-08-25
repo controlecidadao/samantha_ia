@@ -1952,7 +1952,7 @@ Prompts are separated by `$$$`. Prompts beginning with `---` are ignored.
 * temperature: 1
 * tfs_z: 1
 * top_p: 0.5
-* min_p: 0
+* min_p: 1
 * typical_p: 1
 * top_k: 40
 * presence_penalty: 0
