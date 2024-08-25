@@ -909,6 +909,16 @@ How `max_tokens` Works:
 **Deterministic Behavior:**
 
 To check the deterministic impact of each hyperparameter on the model's behavior, set all others hyperparameters to their maximum stochastic values ​​and execute a prompt more than once. Repeat this procedure for each token sampling hyperparameter.
+
+| Hyperparameter | Deterministic    | Stochastic    | Selected               |
+| :------------: | :--------------: | :-----------: | :--------------------: |
+| _temperature_  | 0                | > 0           | 2 (stochastic)         |
+| _tfs_z_        | 0                | > 0           | 1 (stochastic)         |
+| _top_p_        | 0                | > 0           | 1 (stochastic)         |
+| _min_p_        | 1                | < 1           | **1 (deterministic)**  |
+| _typical_p_    | 0                | > 0           | 1 (stochastic)         |
+| _top_k_        | 1                | > 1           | 40 (stochastic)        |
+
 <br><br>
 
 **Stochastic Behavior:**
@@ -919,14 +929,14 @@ You can combine stochastic tuning of different hyperparameters.
 <br><br>
 
 
-| Hyperparameter | Deterministic    | Stochastic    |
-| :------------: | :--------------: | :-----------: |
-| _temperature_  | 0                | > 0           |
-| _tfs_z_        | 0                | > 0           |
-| _top_p_        | 0                | > 0           |
-| _min_p_        | 1                | < 1           |
-| _typical_p_    | 0                | > 0           |
-| _top_k_        | 1                | > 1           |
+| Hyperparameter | Deterministic    | Stochastic    | Selected                      |
+| :------------: | :--------------: | :-----------: | :---------------------------: |
+| _temperature_  | 0                | > 0           | 2 (stochastic)                |
+| _tfs_z_        | 0                | > 0           | 1 (stochastic)                |
+| _top_p_        | 0                | > 0           | 1 (stochastic)                |
+| _min_p_        | 1                | < 1           | **1 (reduce progressively)**  |
+| _typical_p_    | 0                | > 0           | 1 (stochastic)                |
+| _top_k_        | 1                | > 1           | 40 (stochastic)               |
 
 
 ---
