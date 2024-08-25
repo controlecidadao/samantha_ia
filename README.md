@@ -1901,7 +1901,7 @@ Whatever you don't specify, if it required to generate the response, the model w
 
 <details>
 
-<summary>Model and prompt chaining: intelligence challenge between 2 AI models</summary>
+<summary>Model and prompt chaining: intelligence challenge between 2 AI models (Microsoft vs Google, judged by Meta)</summary>
 
 ---
 
@@ -1932,6 +1932,7 @@ $$$
 ---Você é a IA Juiz. Avalie as respostas das IAs 1 e 2, identificando-as também pelo desenvolvedor (Ex.: IA 1 - Google, IA 2 - Microsoft), e decida fundamentadamente qual das duas é a melhor.
 $$$
 ```
+<br>
 
 Prompts are separated by `$$$`. Prompts beginning with `---` are ignored.
 <br><br>
@@ -1999,8 +2000,10 @@ $$$
 Correct the errors in your previous response, if any.
 $$$
 ```
+<br>
 
 **Model:**
+
 https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true (you can just paste the URL in _Download model for testing_ field)
 <br><br>
 
