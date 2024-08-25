@@ -918,6 +918,11 @@ To check the deterministic impact of each hyperparameter on the model's behavior
 | _min_p_        | 1                | < 1           | **1 (deterministic)**  |
 | _typical_p_    | 0                | > 0           | 1 (stochastic)         |
 | _top_k_        | 1                | > 1           | 40 (stochastic)        |
+<br>
+
+In other words, the hyperparameter with deterministic adjustment prevails over all other hyperparameters with stochastic adjustments.
+
+As the hyperparameter with deterministic tuning loses this condition, interaction between all hyperparameters with stochastic tuning occurs.
 
 <br><br>
 
@@ -2110,22 +2115,37 @@ You can submit any initial prompt to the model.
 </details>
 <br><br>
 
+
+
+
+## 📊 Data Analysis with Samantha
+
+<details>
+
+<summary>General instructions</summary>
+
+---
+
+🚧 Under construction.
+
+---
+
+</details>
+<br><br>
+
+
 ## ▶️ Video Tutorials
 
 <details>
 <summary>Watch the videos</summary>
 
-<br><br>
-You can add text within a collapsed section. 
-<br><br>
-  
-```python
-   print("Hello World")
-```
-<br>
+---
 
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
+🚧 Under construction.
 
+---
+
+<br><br>
 </details>
 
 <br><br>
