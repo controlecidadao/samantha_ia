@@ -929,7 +929,6 @@ In other words, the hyperparameter with deterministic adjustment prevails over a
 As the hyperparameter with deterministic tuning loses this condition, interaction between all hyperparameters with stochastic tuning occurs.
 
 <br><br>
-
 **Stochastic Behavior:**
 
 To check the stochastic reflection of a hyperparameter on the model's behavior, set all other hyperparameters to their maximum stochastic values ​​and gradually vary the selected hyperparameter based on its deterministic value. Repeat this procedure for each token sampling hyperparameter.
@@ -947,6 +946,74 @@ You can combine stochastic tuning of different hyperparameters.
 | _typical_p_    | 0                | > 0           | 1 (stochastic)                |
 | _top_k_        | 1                | > 1           | 40 (stochastic)               |
 
+<br>
+
+The text generation hyperparameters in language models, such as _top_k_, _top_p_, _tfs-z_, _typical_p_, _min_p_, and _temperature_, interact in a **complementary way** to control the process of choosing the next token. Each affects token selection in different ways, but there is an order of prevalence in terms of influence on the final set of tokens that can be selected. Let's examine how these hyperparameters relate to each other and who "prevails" over whom.
+
+<br><br>
+**Order of Prevalence**
+
+1 **_top_k_, _top-p_, _tfs_z_, _typical_p_, _min_p_:** These **delimit** the space of possible tokens that can be selected.
+
+* **_top_k_** restricts the number of available tokens to the **_k_** most likely ones. For example, if **_k_ = 50**, the model will only consider the 50 most likely tokens for the next word. Tokens outside of these **50 most likely** are completely discarded, which can help avoid unlikely or very risky choices.
+
+* **_top-p_** defines a threshold based on the sum of cumulative probabilities. If **_p_ = 0.9**, the model will include the most likely tokens until the sum of their probabilities reaches **90%**. Unlike **_top_k_**, the number of tokens considered is dynamic, varying according to the probability distribution.
+
+* **_tfs_z_** aims to eliminate the "tail" of the tokens' probability distribution. It works by discarding tokens whose cumulative probability (from the tail of the distribution) is less than a certain threshold z. The idea is to keep only the **most informative** tokens and eliminate those with less relevance, regardless of how many tokens this leaves in the set.
+So, instead of simply truncating the distribution at the top (as **_top_k_** or **_top_p_** does), **_tfs_z_** makes the model get rid of the tokens at the tail of the distribution. This creates a more adaptive way of filtering the least likely tokens, promoting the most important ones without strictly limiting the number of tokens, as with **_top_k_**. **_tfs_z_** discards the "tail" of the token distribution, eliminating those with cumulative probabilities below a certain threshold z.
+
+* **_typical_p_** selects tokens based on their divergence from the mean entropy of the distribution, i.e. how "typical" the token is. **_typical-p_** is a more sophisticated sampling technique that aims to maintain the "naturalness" of text generation, based on the notion of entropy, i.e. how "surprising" or predictable is the choice of a token compared to the what the model expects. **How Typical-p Works:** Instead of focusing only on the absolute probabilities of tokens, as **_top_k_** or **_top_p_** do, **_typical_p_** selects tokens based on their deviation from the mean entropy of the probability distribution.
+
+**Here is the _typical_p_ process:**
+
+**a) Average Entropy:** The average entropy of a token distribution reflects the average level of uncertainty or surprise associated with choosing a token. Tokens with a very high (expected) or very low (rare) probability may be less "typical" in terms of entropy. 
+
+**b) Divergence Calculation:** Each token has its probability compared to the average entropy of the distribution. Divergence measures how far the probability of that token is from the average. The idea is that tokens with a smaller divergence from average entropy are more "typical" or natural within the context. 
+
+**c) Sampling:** **_typical_p_** defines a fraction p of the accumulated entropy to consider tokens. Tokens are ordered based on their divergence and those that fall within a portion p (e.g., 90% of the most "typical" distribution) are considered for selection. The model chooses tokens in a way that favors those that represent the average uncertainty well, promoting naturalness in text generation.
+
+* **_min_p_** discards tokens whose absolute probability is less than the minimum value defined by p. **_min-p_** (least common) sets a minimum absolute probability threshold for any token. This method forces the model not to choose very low probability options.
+
+<br><br>
+**Prevalence:** These parameters define the **set of candidate tokens**. They are first used to restrict the number of possible tokens before any other adjustments are applied. The way they are combined can be cumulative, where applying multiples of these filters progressively reduces the number of available tokens. The final set is the **intersection set** between the tokens that pass all these checks.
+
+* If you use **_top_k_** and **_top_p_** at the same time, both must be respected. For example, if **_top_k = 50_** and **_top_p = 0.9_**, the model first limits the choice to the 50 most likely tokens and, within these, considers those whose probability sum reaches 90%.
+  
+* If you add **_typical_p_** or **_tfs_z_** to the equation, the model will apply these additional filters over the same set, further reducing the options.
+
+<br><br>
+2 **_temperature:_** Adjusts the randomness **within the set of already filtered tokens**.
+
+* After the model restricts the universe of tokens based on cutoff hyperparameters like _top-k_, _top_p_, _tfs_z_, etc., **_temperature_** comes into play.
+
+* **_temperature_** changes the smoothness or rigidity of the probability distribution of the remaining tokens. A **_temperature_ lower than 1** concentrates the probabilities, causing the model to prefer the most likely tokens. A **_temperature_ greater than 1** flattens the distribution, allowing less likely tokens to have a greater chance of being selected.
+  
+**Prevalence:** **_temperature_** does not change the set of available tokens, but **adjusts the relative probability of already filtered tokens**. Thus, it **does not prevail** over the _top_k_, _top_p_, etc. filters, but acts after them, influencing the final selection within the remaining option space.
+
+<br><br>
+**General Hierarchy**
+
+**_top_k, top_p, tfs_z, typical_p, min_p_:** These parameters act first, restricting the number of possible tokens.
+
+**_temperature_:** After the selection filters are applied, temperature adjusts the probabilities of the remaining tokens, controlling the randomness in the final choice.
+
+<br><br>
+**Combination Scenario**
+
+* **_top_k + _top_p_:** If _top_k_ is less than the number of tokens selected by _top_p_, _top_k_ prevails as it limits the number of tokens to k. If _top_p_ is more restrictive (e.g. only considers 5 tokens with p=0.9), then it prevails over _top_k_.
+
+* **_typical_p_ + _top_p_:** Both apply filters, but in different directions. _typical_p_ selects based on entropy, while _top_p_ selects based on cumulative probability. If used together, the end result is the intersection set of these filters.
+
+* **_Temperature_:** It is always applied last, modulating the randomness in the final selection, but without changing the limits imposed by previous filters.
+
+<br><br>
+**Prevalence Summary**
+
+* **Filters** (**_top_k, top_p, tfs_z, typical_p, min_p_**) define the set of candidate tokens.
+
+* **_temperature_** adjusts the relative probability within the filtered set.
+
+* The end result is a combination of these filters, where the set of tokens eligible for selection is defined first, and then the randomness is adjusted with temperature.
 
 ---
 
