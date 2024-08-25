@@ -1952,7 +1952,7 @@ Prompts are separated by `$$$`. Prompts beginning with `---` are ignored.
 * temperature: 1
 * tfs_z: 1
 * top_p: 0.5
-* min_p: 1
+* min_p: 0
 * typical_p: 1
 * top_k: 40
 * presence_penalty: 0
@@ -1975,26 +1975,13 @@ Experiment with other models to test their behaviors. Change the initial prompt 
 <br><br>
 </details>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <details>
 
 <summary>Prompt chaining with single model</summary>
 
 ---
 
-User prompt:
+**User prompt:**
 
 ```
 Translate to English and refine the following instruction:
@@ -2013,10 +2000,25 @@ Correct the errors in your previous response, if any.
 $$$
 ```
 
-Settings:<br>
-* Model: https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true (you can just paste the URL in _Download model for testing_ field)
+**Model:**
+https://huggingface.co/chatpdflocal/llama3.1-8b-gguf/resolve/main/ggml-model-Q4_K_M.gguf?download=true (you can just paste the URL in _Download model for testing_ field)
+<br><br>
+
+**Settings:<br>**
 * Feedback loop: activated
 * Run code automatically: activated
+* n_ctx: 4000
+* max_tokens: 4000
+* temperature: 0
+* tfs_z: 0
+* top_p: 0
+* min_p: 1
+* typical_p: 0
+* top_k: 40
+* presence_penalty: 0
+* frequency_penalty: 0
+* repeat_penalty: 1
+<br><br>
 
 This prompt translate the initial instruction from Portuguese to English (instructions in English use to generate more accurate responses), transfers the task of refining the user's initial prompt to the model (models add detailed instructions), generating a more elaborate prompt. 
 
