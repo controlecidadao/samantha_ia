@@ -144,7 +144,7 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Model List:** You can select any number of models and in any order to control which model responds to the next prompt.<br><br>
 
-✅ **Cummulative Response:** You can concatenate each new response by adding it to the previous response to be considered when generating the next response by the model. It is important to highlight that the set of concatenated responses must fit in the model's context window.<br><br>
+✅ **Cumulative Response:** You can concatenate each new response by adding it to the previous response to be considered when generating the next response by the model. It is important to highlight that the set of concatenated responses must fit in the model's context window.<br><br>
 
 ✅ **Learning Insights:** A feature called _Learning Mode_ lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logistic units or just _logits_) and hyperparameter settings. A list of the least likely selected tokens is also generated.<br><br>
 
@@ -725,7 +725,7 @@ It presents a series of features that help in understanding the token selection 
 * Tokens vocabulary
 * Top-k tokens sorted by logits score with token position in the vocabulary and selected token indication
 * Barplot of the top-k tokens sorted by logits scores
-* Cummulative barplot of the selected unlikely tokens
+* Cumulative barplot of the selected unlikely tokens
 
 Only works if _Fast Mode_ is unchecked. 
 
@@ -802,7 +802,7 @@ Use it to stop a generation loop when a condition is met.
 </details>
 
 <details>
-<summary>Cummulative response (checkbox)</summary>
+<summary>Cumulative response (checkbox)</summary>
 
 ---
 
@@ -948,16 +948,16 @@ You can combine stochastic tuning of different hyperparameters.
 
 <br>
 
-The text generation hyperparameters in language models, such as _top_k_, _top_p_, _tfs-z_, _typical_p_, _min_p_, and _temperature_, interact in a **complementary way** to control the process of choosing the next token. Each affects token selection in different ways, but there is an order of prevalence in terms of influence on the final set of tokens that can be selected. Let's examine how these hyperparameters relate to each other and who "prevails" over whom.
+The text generation hyperparameters in language models, such as **_top_k_, _top_p_, _tfs-z_, _typical_p_, _min_p_, and _temperature_**, interact in a **complementary way** to control the process of choosing the next token. Each affects token selection in different ways, but there is an order of prevalence in terms of influence on the final set of tokens that can be selected. Let's examine how these hyperparameters relate to each other and who "prevails" over whom.
 
 <br><br>
 **Order of Prevalence**
 
-1 **_top_k_, _top-p_, _tfs_z_, _typical_p_, _min_p_:** These **delimit** the space of possible tokens that can be selected.
+1 **_top_k_, _top_p_, _tfs_z_, _typical_p_, _min_p_:** These **delimit** the space of possible tokens that can be selected.
 
-* **_top_k_** restricts the number of available tokens to the **_k_** most likely ones. For example, if **_k_ = 50**, the model will only consider the 50 most likely tokens for the next word. Tokens outside of these **50 most likely** are completely discarded, which can help avoid unlikely or very risky choices.
+* **_top_k_** restricts the number of available tokens to the **_k_** most likely ones. For example, if **_k_ = 50**, the model will only consider the **50 most likely tokens** for the next word. Tokens outside of these 50 most likely are completely discarded, which can help avoid unlikely or very risky choices.
 
-* **_top-p_** defines a threshold based on the sum of cumulative probabilities. If **_p_ = 0.9**, the model will include the most likely tokens until the sum of their probabilities reaches **90%**. Unlike **_top_k_**, the number of tokens considered is dynamic, varying according to the probability distribution.
+* **_top-p_** defines a threshold based on the sum of **cumulative probabilities**. If **_p_ = 0.9**, the model will include the most likely tokens until the sum of their probabilities reaches **90%**. Unlike **_top_k_**, the number of tokens considered is dynamic, varying according to the probability distribution.
 
 * **_tfs_z_** aims to eliminate the "tail" of the tokens' probability distribution. It works by discarding tokens whose cumulative probability (from the tail of the distribution) is less than a certain threshold z. The idea is to keep only the **most informative** tokens and eliminate those with less relevance, regardless of how many tokens this leaves in the set.
 So, instead of simply truncating the distribution at the top (as **_top_k_** or **_top_p_** does), **_tfs_z_** makes the model get rid of the tokens at the tail of the distribution. This creates a more adaptive way of filtering the least likely tokens, promoting the most important ones without strictly limiting the number of tokens, as with **_top_k_**. **_tfs_z_** discards the "tail" of the token distribution, eliminating those with cumulative probabilities below a certain threshold z.
@@ -2039,7 +2039,7 @@ Prompts are separated by `$$$`. Prompts beginning with `---` are ignored.
 **Settings:<br>**
 * Feedback loop: activated
 * Single response per model: activated
-* Cummulative response: activated
+* Cumulative response: activated
 * n_ctx: 4000
 * max_tokens: 4000
 * temperature: 1
@@ -2057,7 +2057,7 @@ You can just paste the model URLs in _Download model for testing_ field or downl
 
 Each prompt is answered by a single model, following the model selection order (first model answers the first prompt and so on).
 
-Each prompt is executed automatically and the model's response is fed back cummulatively to the model to generate the next response.
+Each prompt is executed automatically and the model's response is fed back cumulatively to the model to generate the next response.
 
 The responses are concatenated to allow the next model to consider the entire context of the conversation when generating the next response.
 
