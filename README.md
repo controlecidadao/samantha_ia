@@ -1750,7 +1750,9 @@ Whenever Python code returns a value other than `''` (empty string), an HTML pop
 
 ---
 
-Displays the model's latest response in a pop-up browser window.
+Displays the model's latest response in a HTML pop-up browser window.
+
+Also displays the output of the Python interpreter when it is other than '' (empty string).
 
 The first time the button is pressed, it takes a few seconds for the window to appear.
 
@@ -1764,7 +1766,7 @@ The first time the button is pressed, it takes a few seconds for the window to a
 
 ---
 
-Displays the all the current chat session responses in a pop-up browser window.
+Displays the all the current chat session responses in a HTML pop-up browser window.
 
 The first time the button is pressed, it takes a few seconds for the window to appear.
 
