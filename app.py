@@ -2944,11 +2944,11 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(0, 2, 0.0, 0.01, label='temperature', info=language['temperature_info'], interactive=True),
-                gr.Slider(0, 1, 1, 0.01, label='tfs_z', info=language['tfs_z_info'], interactive=True),
-                gr.Slider(0, 1, 0.0, 0.01, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
-                gr.Slider(0, 1, 0, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
-                gr.Slider(0, 1, 1, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
+                gr.Slider(0, 2, 0, 0.01, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0, 1, 0, 0.01, label='tfs_z', info=language['tfs_z_info'], interactive=True),
+                gr.Slider(0, 1, 0, 0.01, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
+                gr.Slider(0, 1, 1, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
+                gr.Slider(0, 1, 0, 0.01, label='typical_p', info=language['typical_p_info'], interactive=True), # 
                 gr.Slider(1, 200_000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 10, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
@@ -3231,7 +3231,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (1), top_p (0.95), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1), reset_model (True)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1), reset_model (True)</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.8), tfs_z (1), top_p (0.95), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1), reset_model (True)</span></i></h6>')         
             with gr.Row():
