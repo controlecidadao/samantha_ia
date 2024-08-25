@@ -146,7 +146,7 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Cummulative Response:** You can concatenate each new response by adding it to the previous response to be considered when generating the next response by the model. It is important to highlight that the set of concatenated responses must fit in the model's context window.<br><br>
 
-✅ **Learning Insights:** A feature called _Learning Mode_ lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logits) and hyperparameter settings. A list of the least likely selected tokens is also generated.<br><br>
+✅ **Learning Insights:** A feature called _Learning Mode_ lets users observe the model's decision-making process, providing insights into how it selects output tokens based on their probability scores (logistic units or just _logits_) and hyperparameter settings. A list of the least likely selected tokens is also generated.<br><br>
 
 ✅ **Voice Interaction:** Samantha supports simple voice commands with offline speech-to-text [Vosk](https://alphacephei.com/vosk/) (English and Portuguese) and text-to-speech with SAPI5 voices, making it accessible and user-friendly.<br><br>
 
