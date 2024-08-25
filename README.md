@@ -2207,7 +2207,7 @@ Version 0.1.0 (2024-08-05):
 <br>
 
 * Add a scatterplot for displaying the semantic diversity of the topics covered in the model response.
-* Add Retrieval-Augmented Generation (RAG) feature
+* Add Retrieval-Augmented Generation (RAG) feature to overcome context window limitations.
 * Try other lightweight offline Speech-to-Text libraries with better speech recognition accuracy.
 * Refactor the code to make it more manteinable.
 <br>
