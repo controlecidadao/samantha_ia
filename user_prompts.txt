@@ -1,7 +1,7 @@
 $$$
 $-$-$
 
-O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma resolução que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados em relação ao gestor e à unidade gestora (UG) alvo da denúncia:
+[CONTEXTO: O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) publicou a Resolução 375/2023, que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados em relação ao gestor e à unidade gestora (UG) alvo da denúncia:
 * Valor associado ao objeto fiscalizado (mínimo R$ 90 mil)
 * Índice de Desenvolvimento Humano (IDH) do município
 * Resultado do julgamento da prestação de contas anual anterior da UG
@@ -25,9 +25,9 @@ O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) criou uma resolução
 * Tendência de agravamento da situação denunciada
 * Existência ou não de dano ao erário
 
-A nova regra atribui caráter sigiloso à aplicação desses critérios e proibe que os auditores de controle externo sugiram a inclusão dos fatos denunciados nas próximas fiscalizações ordinárias do tribunal.
+A nova regra atribui caráter sigiloso à aplicação desses critérios (art. 8º) e proibe que os auditores de controle externo sugiram a inclusão dos fatos denunciados nas próximas fiscalizações ordinárias do tribunal (art. 7º, § 2º).
 
-A aplicação dessa nova regra fez com que 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas. 
+A aplicação dessa nova Resolução fez com que 15% das denúncias recebidas passassem a ter seu mérito analisado. Antes da alteração, 90% das denúncias eram analisadas pelo tribunal de contas (vide ADI 7459, STF).
 
 De acordo com o tribunal, a regra foi instituída para adequar a demanda social ao quantitativo de servidores do seu quadro de auditores de controle externo. 
 
@@ -42,9 +42,12 @@ O TCE-ES possui a seguinte identidade institucional:
 * Responsabilidade sustentável – Agir para que as dimensões ambiental, econômica e social estejam em equilíbrio, de modo a promover o desenvolvimento sustentável.
 Inovação – Promover a contínua inovação com o objetivo de aumentar a eficiência, a eficácia e a qualidade do desempenho organizacional.
 * Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
-* Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.
+* Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.]
 
-Qual a sua opinião sobre essa nova resolução do TCE-ES?
+Considerando esse contexto, crie um prompt para IA que analise criteriosamente a nova resolução do TCE-ES, à luz da Declaração Universal dos Direitos Humanos.
+$$$
+
+Considerando esse contexto, execute o prompt contido em sua resposta anterior.
 $$$
 $-$-$
 
