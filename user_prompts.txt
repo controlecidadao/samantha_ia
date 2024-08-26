@@ -44,7 +44,7 @@ Inovação – Promover a contínua inovação com o objetivo de aumentar a efic
 * Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
 * Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.]
 
-Considerando esse contexto, crie um prompt para IA que analise criteriosamente a nova resolução do TCE-ES, à luz da Declaração Universal dos Direitos Humanos.
+Considerando esse contexto, crie um prompt para IA detalhado que analise criteriosamente todos os aspectos da nova resolução do TCE-ES, à luz da Declaração Universal dos Direitos Humanos.
 $$$
 
 Considerando esse contexto, execute o prompt contido em sua resposta anterior.
