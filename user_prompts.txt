@@ -336,29 +336,27 @@ Análise ERRC
 $-$-$
 
 Calcule a diferença entre a raiz quadrada "q" e a raiz cúbica "c" da diferença entre o somatório dos números ímpares e o somatório dos números pares da seguinte sequência "s": s = 1, 2, 3, 4, 5 (R=0,29)
+$$$
 $-$-$
 
 Modelos de linguagem natural (LLM) permitem ao usuário ajustar o parâmetro (nome do parâmetro) por ocasião da geração de textos. Explique detalhadamente o funcionamento deste parâmetro, seu reflexo no texto a ser gerado e como ele se relaciona com os demais parâmetros que podem ser ajustados pelo usuário. Dê exemplos de ajustes deste parâmetro.
+$$$
 $-$-$
 
 Desenvolva o texto a seguir, melhorando sua redação e ampliando-o para 5 parágrafos: TEXTO
+$$$
 $-$-$
 
 Siga as instruções abaixo, passo a passo:
 1) Gere uma pergunta a partir do assunto da sua resposta anterior que permita ampliar o conhecimento sobre o ele. Inicie sua pergunta com a palavra "PERGUNTA:";
 2) Responda a pergunta gerada. Inicie sua resposta com a palavra"RESPOSTA:"
-Exemplos:
-PERGUNTA: Qual a capital da França?
-RESPOSTA: Paris.
-PERGUNTA: Cite duas atrações turísticas de Paris?
-RESPOSTA: Torre Eiffel e Museu do Louvre.
-PERGUNTA:  Qual a altura da Torre Eiffel?
-RESPOSTA: 300 metros.
+$$$
 $-$-$
 
 [Follow the instructions:]
 1) Teach me about the human learning process. Focus on the meaning and the function of each sequencial phase of knowledge production: perception, attention, encoding, storage, consolidation, retrieval, application, reflection and forgetting.
 2) Finish summarizing all definitions.
+$$$
 $-$-$
             
 [Follow the instructions:]
@@ -366,7 +364,7 @@ $-$-$
 2) Create a question about one of them
 3) Answer the question
 4) Finish creating a question to be inserted in Google Scholar to find scientific peer-reviewed papers that validate your answer
-5) Stop generating text
+$$$
 $-$-$
 
 [Below is the page text so that a partial summary of the PDF file can be generated, as per instructions:]
@@ -376,7 +374,7 @@ $-$-$
 Explain step-by-step how a (subject) works.
 $-$-$
 
-Create 10 numbered and essencial questions to be submited to an AI system (prompts) that help the user to learn about (subject). Answer the questions just after you creaate each of them.
+Create 10 numbered and essencial questions to be submited to an AI system (prompts) that help the user to learn about (subject). Do not answer the questions.
 $-$-$
 
 Create a word list with the 10 most important conecepts related to (subject). Explain each of them in a hierarchical order of relevance.
@@ -409,7 +407,9 @@ $-$-$
 Answer the questions in your previous response in the most complete, precise, and simple way possible.
 Write using correct spelling and grammar, articulating your reasoning with semantic uniformity, coherence, cohesion, concision, clarity, and, most importantly, scientific rigor.
 Finish your answer with three new numbered questions about the same subject.
+$$$
 $-$-$
 
 [Analise o texto a seguir, parte integrante de uma petição inicial de uma denúncia redigida em linguagem coloquial e protocolizada no tribunal de contas. Apresente a melhor estratégia a ser adotada pelo tribunal de contas para fiscalizar, produzir provas e submeter à validação os indícios de irregularidade noticiados. Para cada estratégia, indique os passos e procedimentos a serem adotados:]
+$$$
 $-$-$
