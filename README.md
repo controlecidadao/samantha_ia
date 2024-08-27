@@ -105,7 +105,7 @@ While this system aims to empower users and democratize access to AI, it's cruci
 
   * [The "Modern Day Slaves" Of The AI Tech World](https://www.youtube.com/watch?v=VPSZFUiElls)
 
-  * [Others sources](https://www.google.com/search?q=ai+labor+exploitation&tbm=nws)
+  * [Other sources](https://www.google.com/search?q=ai+labor+exploitation&tbm=nws)
 
 <br>
 
