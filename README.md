@@ -952,6 +952,10 @@ You can combine stochastic tuning of different hyperparameters.
 
 The text generation hyperparameters in language models, such as **_top_k_, _top_p_, _tfs-z_, _typical_p_, _min_p_, and _temperature_**, interact in a **complementary way** to control the process of choosing the next token. Each affects token selection in different ways, but there is an order of prevalence in terms of influence on the final set of tokens that can be selected. Let's examine how these hyperparameters relate to each other and who "prevails" over whom.
 
+All these hyperparameters are adjusted **after** the model generates the logits of each token.
+
+Samantha displays the logits of each token in learning mode, indicating which one was selected after applying the hyperparameters.
+
 <br><br>
 **Order of Prevalence**
 
