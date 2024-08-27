@@ -954,7 +954,41 @@ The text generation hyperparameters in language models, such as **_top_k_, _top_
 
 All these hyperparameters are adjusted **after** the model generates the logits of each token.
 
-Samantha displays the logits of each token in learning mode, indicating which one was selected after applying the hyperparameters.
+Samantha displays the logits of each token in learning mode, **before** they are changed by the hyperparameters.
+
+Samantha also indicates which token was selected **after** applying the hyperparameters.
+
+10 vocabulary tokens most likely returned by the model to initiate the answer to the following question: **Who are you?**:
+
+**Vocabulary id / token / logit value:**
+```
+358)    ' I'       (15.83)
+40)     'I'        (14.75)     <<<  Selected
+21873)  ' Hello'   (14.68)
+9703)   'Hello'    (14.41)
+1634)   ' As'      (14.31)
+2121)   'As'       (13.98)
+20971)  ' Hi'      (13.73)
+715)    ' \n'      (13.03)
+5050)   'My'       (13.01)
+13041)  'Hi'       (12.77)
+```
+<br><br>
+**How to disable hyperparameters:**
+
+* **_temperature_:** Setting it to 1.0 keeps the original odds unchanged.
+Note: Setting it to 0 does not "disable" it, but makes the selection deterministic.
+
+* **_tfs_z_ (Tail-Free Sampling with z-score):** Setting it to a very high value effectively disables it.
+
+* **_top-p_ (nucleus sampling):** Setting it to 1.0 effectively disables it.
+
+* **_min-p_:** Setting it to a very low value (close to 0) effectively disables it.
+
+* **_typical-p_:** Setting it to 1.0 effectively disables it.
+
+* **_top-k_:** Setting it to a very high value (e.g. vocabulary size) essentially disables it.
+
 
 <br><br>
 **Order of Prevalence**
