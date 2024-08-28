@@ -1727,7 +1727,7 @@ Samantha's initial settings is **deterministic**. As a rule, this means that for
 * repeat_penalty (1)
 <br><br>
 
-Deterministic settings is used to assess training database biases.
+Deterministic settings can be used to assess training database biases.
 
 Some models tend to loop (repeat the same text indefinitely) when using highly deterministic adjustments, selecting tokens with the highest probability score. 
 Others may generate the first response with different content from subsequent ones. In this case, to always get the same response, activate the **_Reset model_** checkbox.
