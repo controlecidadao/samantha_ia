@@ -15,7 +15,7 @@
 
 💻 Samantha is just a simple interface assistant for open source artificial intelligence models, developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://huggingface.co/docs/hub/gguf) models or when required by the execution of the code created by the models (g.e. to download datasets for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
-[Understanding LLMs: A Comprehensive Overview from Training to Inference](https://arxiv.org/pdf/2401.02038v2)
+[Understanding LLMs: A Comprehensive Overview from Training to Inference (arxiv.org)](https://arxiv.org/pdf/2401.02038v2)
 
 <br>
 
@@ -59,6 +59,12 @@ Each of these models and prompts sequences can be executed more than once via th
     <img src="https://i.sstatic.net/Vp2cE.png" alt="Watch the video">
   </a>
 </p>
+
+<br>
+
+[But what is a GPT? Visual intro to transformers (3Blue1Brown)](https://www.youtube.com/watch?v=wjZofJX0v4M)
+
+[Attention in transformers, visually explained (3Blue1Brown)](https://www.youtube.com/watch?v=eMlx5fFNoYc)
 
 <br>
 
