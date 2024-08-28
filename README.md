@@ -1333,11 +1333,32 @@ However, if it proves necessary to allow the model to reselect already generated
 
 ---
 
-🚧 Under construction.
+**Presence Penalty:**
+
+The presence penalty penalizes tokens that have already appeared in the text, regardless of their frequency. It discourages the repetition of ideas or themes.
+
+<br>
+
+**Operation:**
+
+* Applies a fixed penalty to the probability of all tokens that have ever appeared in the text.
+* It doesn't consider how many times a token appeared, just whether it appeared or not.
+<br>
+
+**Effect:**
+
+* Encourages the model to explore new topics and ideas.
+* It helps prevent the model from getting stuck in a loop, repeating the same information.
+<br>
+
+**Fit:**
+
+* A higher value results in more diverse but possibly less coherent text.
+* A lower value allows for more repetition of ideas, possibly maintaining greater coherence.
 
 ---
 
-<br><br>
+<br>
 </details>
 
 <details>
@@ -1345,7 +1366,28 @@ However, if it proves necessary to allow the model to reselect already generated
 
 ---
 
-🚧 Under construction.
+**Frequency Penalty:**
+
+The frequency penalty penalizes tokens based on their frequency in the text generated so far. The more times a token appeared, the greater the penalty.
+
+<br>
+
+**Operation:**
+
+* Applies a penalty proportional to the frequency of each token in the generated text.
+* Tokens that appear more frequently receive larger penalties.
+<br>
+
+**Effect:**
+
+* Reduces the likelihood of very repetitive words or phrases.
+* Promotes a more diverse and varied vocabulary.
+<br>
+
+**Fit:**
+
+* A higher value results in less repetition of specific words.
+* A lower value allows for more repetition, which can be useful for maintaining consistency in certain contexts.
 
 ---
 
@@ -1357,6 +1399,30 @@ However, if it proves necessary to allow the model to reselect already generated
 
 ---
 
+**Repeat Penalty:**
+
+The repeat penalty is similar to the frequency penalty, but generally applies to sequences of tokens (n-grams) rather than individual tokens.
+
+<br>
+
+**Operation:**
+
+* Penalizes the repetition of sequences of tokens that have already appeared in the text.
+* The penalty may increase based on the length of the repeated sequence.
+<br>
+
+**Effect:**
+
+* Avoid repeating phrases or entire sentences.
+* Promotes greater diversity in sentence structure.
+<br>
+
+**Fit:**
+
+* A higher value prevents sentence repetitions, but may lead to less fluid text.
+* A lower value allows for more repetitions, which can be helpful in maintaining a consistent style.
+
+<br><br>
 **How `repeat_penalty` works:**
 
 📊 Starting from the default value (=1), as we reduce this value (<1) the text starts to present more and more repeated words (tokens), to the point where the model starts to repeat a certain passage or word indefinitely.
@@ -1373,7 +1439,6 @@ The `repeat_penalty` hyperparameter has a deterministic nature.
 **Adjustment tip:**
 
 📈 increase this value until the generated text reaches the desired level of diversity and does not present syntactic errors (depends on the model).
-
 ---
 
 </details>
