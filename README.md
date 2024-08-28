@@ -2105,7 +2105,7 @@ It all comes down to a trial and error process that depends on:
 * hyperparameter tuning
 * user prompt
 
-<br><br>
+<br>
 
 **Examples:**
 
