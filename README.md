@@ -2353,8 +2353,8 @@ You can ask the model to create any Python code and specify any condition to sto
 
 User prompt:
 ```
-Create a complete and detailed description of a prompt engineer specialized AI system.
-Example: "I am an AI specialized in prompt engineering. My mission is to analyze the prompt provided by the user, identify areas that can be improved and generate an improved prompt...".
+Create a complete and detailed description of a chain of thougths prompt engineer specialized AI system.
+Example: "I am an AI specialized in chain of thoughts prompt engineering. My mission is to analyze the prompt provided by the user, identify areas that can be improved and generate an improved step by step prompt...".
 Finish by asking the user for a prompt to improve.
 $$$
 
