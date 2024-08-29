@@ -2347,7 +2347,7 @@ You can ask the model to create any Python code and specify any condition to sto
 
 <details>
 
-<summary>Prompt engeneering with single model</summary>
+<summary>Prompt chaining with single model</summary>
 
 ---
 
