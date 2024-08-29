@@ -44,7 +44,7 @@ Inovação – Promover a contínua inovação com o objetivo de aumentar a efic
 * Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
 * Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.]
 
-Considerando esse contexto, crie um prompt para IA detalhado que analise criteriosamente todos os aspectos da nova resolução do TCE-ES, à luz da Declaração Universal dos Direitos Humanos.
+Considerando esse contexto, crie um prompt para IA detalhado que analise criteriosamente todos os aspectos da nova resolução do TCE-ES, à luz da Declaração Universal dos Direitos Humanos e da Convenção Interamericana dos Direito Humanos.
 $$$
 
 Considerando esse contexto, execute o prompt contido em sua resposta anterior.
@@ -52,7 +52,7 @@ $$$
 $-$-$
 
 
----Copy Samantha's features from Github page
+---Copy Samantha's features from Github page to apply this prompt
 $$$
 Introduce 10 creative ways to use Samantha Interface Assistant to solve complex problems through automatic interaction between models without human intervention. Describe the details of how to sequence prompts and models to achieve the desired result.
 
