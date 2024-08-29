@@ -1,5 +1,5 @@
 gradio==4.25.0
-llama-cpp-python==0.2.87
+llama-cpp-python==0.2.90
 markdown==3.6
 #  seaborn==0.12.2
 #  altair==5.3.0
