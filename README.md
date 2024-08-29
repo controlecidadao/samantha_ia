@@ -1497,7 +1497,9 @@ Model: https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/ma
 
  ---
 
-✅ Displays model's metadata when selected.
+✅ Displays model's token vocabulary when selected and _Learning mode_ is activated.
+
+This check box remains disabled when _Learning mode_ is not activated.
 
 ---
 
@@ -1634,7 +1636,9 @@ Model: https://huggingface.co/Triangle104/Mistral-7B-Instruct-v0.3-Q5_K_M-GGUF/r
 
  ---
 
-🚧 Under construction.
+🗑️ Manually removes the model from memory, freeing up space.
+
+When a new model is selected and the _Start chat_ button is pressed, the previous model is removed from memory automatically.
 
 ---
 
@@ -1646,7 +1650,11 @@ Model: https://huggingface.co/Triangle104/Mistral-7B-Instruct-v0.3-Q5_K_M-GGUF/r
 
  ---
 
-🚧 Under construction.
+📑 Allows you to select a PDF file located on your computer, extracting the text from each page and inserting it in the _User prompt_ field.
+
+The text on each page is separated by `$$$` to allow the model to parse it separately.
+
+Click the button to select the PDF file.
 
 ---
 
@@ -1658,7 +1666,11 @@ Model: https://huggingface.co/Triangle104/Mistral-7B-Instruct-v0.3-Q5_K_M-GGUF/r
 
  ---
 
-🚧 Under construction.
+📑 Allows the selection of a PDF file located on the computer, extracting its full text and inserting it in the _User prompt_ field.
+
+At the end, `$$$` is inserted to allow the model to fully analyze the entire text.
+
+Click the button to select the PDF file.
 
 ---
 
@@ -1757,15 +1769,6 @@ A Windows terminal will also open.
 
 <br><br>
 </details>
-
-<!--<details>
-<summary>(button)</summary>
-<br>
-
-Teste
-
-<br><br>
-</details>-->
 
 <br><br>
 **Default Settings:**
