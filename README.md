@@ -1845,7 +1845,7 @@ You can use the _Learning Mode_ to monitor and adjust the degree of determinism/
 
 ---
 
-➕ Adds the next token to the model response when `Learning Mode` is enabled.
+➕ Adds the next token to the model response when `Learning Mode` is activated.
 
 ---
 
