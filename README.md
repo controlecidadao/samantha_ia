@@ -1264,7 +1264,67 @@ It's worth noting that `top-p` is often used in combination with other sampling 
 
 ---
 
-🚧 Under construction.
+The **_min_p_** hyperparameter is a relatively recent sampling technique used in text generation by large-scale language models (LLMs). It offers an alternative approach to **_top_k_** and nucleus sampling (**_top_p_**) to control the quality and diversity of generated text.
+
+<br>
+
+**Explanation:**
+
+As with other sampling techniques, LLM calculates a probability distribution over the entire vocabulary for the next word.
+
+The **_min_p_** defines a minimum probability threshold, p_min.
+
+The method selects the smallest set of words whose summed probability is greater than or equal to p_min.
+
+The next word is then chosen from that set of words.
+
+<br>
+
+**Detailed operation:**
+
+The model calculates P(w|c) for each word w in the vocabulary, given context c.
+
+The words are ordered by decreasing probability: w₁, w₂, ..., w|V|.
+
+The algorithm selects words in the order of greatest probability until the sum of the probabilities is greater than or equal to _p_min_:
+* Let k be the smallest value such that ∑ᵢ₌₁ᵏ P(wᵢ|c) ≥ p_min
+* The set of selected words is T = {w₁, w₂, ..., wₖ}.
+* The distribution is renormalized over T:
+* P'(w|c) = P(w|c) / ∑ᵢ₌₁ᵏ P(wᵢ|c) for w ∈ T
+* P'(w|c) = 0 for w ∉ T
+* The next word is sampled according to P'(w|c).
+
+<br>
+
+**Example:**
+
+Suppose we are generating text and the model predicts the following probabilities for the next word:
+
+```
+"o":        0.3
+"one":      0.25
+"this":     0.2
+"that one": 0.15
+"some":     0.1
+```
+
+If we use min-p with p_min = 0.7, the algorithm would work like this:
+
+```
+Sum "o":                    0.3                     < 0.7
+Sum "o" + "one":            0.3 + 0.25       = 0.55 < 0.7
+Sum "the" + "one" + "this": 0.3 + 0.25 + 0.2 = 0.75 ≥ 0.7
+```
+
+Therefore, we select the first three words. Renormalizing:
+
+```
+"o":    0.3  / 0.75 = 0.4
+"one":  0.25 / 0.75 ≈ 0.33
+"this": 0.2  / 0.75 ≈ 0.27
+```
+
+The next word will be chosen randomly from these three options with the new probabilities.
 
 ---
 
@@ -1288,7 +1348,51 @@ It's worth noting that `top-p` is often used in combination with other sampling 
 
 ---
 
-🚧 Under construction.
+**How It Works**
+
+In a language model, when the next word is predicted, the model generates a probability distribution for the next token (word or part of a word), where each token has an associated probability based on its previous context. The sum of all probabilities is equal to 1.
+
+**_top_k_** works by reducing the number of options available for sampling, limiting the number of candidate tokens. It does this by selecting only the tokens with the k highest probabilities and discarding all others. Then sampling is done from these k tokens, redistributing the probabilities between them.
+
+<br>
+
+**Example:**
+
+Suppose we are generating text and the model predicts the following probabilities for the next word:
+
+```
+"o":        0.3
+"one":      0.25
+"this":     0.2
+"that one": 0.15
+"some":     0.1
+```
+
+If we use top-k with k=3, we only keep the three most likely words:
+
+```
+"o":        0.3
+"one":      0.25
+"this":     0.2
+```
+
+Then, we renormalize the probabilities:
+
+```
+"o":        0.3  / (0.3 + 0.25 + 0.2) ≈ 0.4  (40%)
+"one":      0.25 / (0.3 + 0.25 + 0.2) ≈ 0.33 (33%)
+"this":     0.2  / (0.3 + 0.25 + 0.2) ≈ 0.27 (27%)
+```
+
+The next word will be chosen from these three options with the new probabilities.
+
+<br>
+
+**Effect of Hyperparameter k**
+
+* **small k (e.g. 𝑘=1):** The model will be extremely deterministic, as it will always choose the token with the highest probability. This can lead to repetitive and predictable text.
+
+* **large k (or use all tokens without truncating):** The model will have more options and be more creative, but may generate less coherent text as low probability tokens may also be chosen.
 
 ---
 
