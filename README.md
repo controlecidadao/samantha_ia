@@ -2175,7 +2175,7 @@ Reads the text in the _User prompt_ field aloud, using the computer's SAPI5 voic
 
 ---
 
-🚧 Under construction.
+Reads the text of the model's last response aloud, using the SAPI5 computer voice selected in the _Voice Selection_ drop-down list.
 
 ---
 
@@ -2187,7 +2187,7 @@ Reads the text in the _User prompt_ field aloud, using the computer's SAPI5 voic
 
 ---
 
-🚧 Under construction.
+Reads all the chat session responses aloud, using the SAPI5 computer voice selected in the _Voice Selection_ drop-down list.
 
 ---
 
@@ -2199,7 +2199,7 @@ Reads the text in the _User prompt_ field aloud, using the computer's SAPI5 voic
 
 ---
 
-🚧 Under construction.
+List of links to the `.gguf` model search result on the Hugging Face website, separated by families (llama, gemma, phi, etc.)
 
 ---
 
@@ -2211,7 +2211,9 @@ Reads the text in the _User prompt_ field aloud, using the computer's SAPI5 voic
 
 ---
 
-🚧 Under construction.
+Samantha interface operation tips.
+
+For a complete understanding of how the interface works, see the [Samnantha[() project on Github.
 
 ---
 
