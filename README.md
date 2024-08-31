@@ -835,31 +835,68 @@ It is important to highlight that the set of concatenated responses must fit in 
 
 The context length directly impacts the memory usage and computational load. Longer `n_ctx` requires more memory and computational power.
 
-How `n_ctx` works:
+<br>
+
+**How `n_ctx` works:**
 
 It sets the upper limit on the number of tokens the model can "see" at once.
 Tokens are usually word parts, full words, or characters, depending on the tokenization method.
 The model uses this context to understand and generate text.
 For example, if `n_ctx` is 2048, the model can process up to 2048 tokens (now words) at a time.
 
-Impact on model operation:
+<br>
+
+**Impact on model operation:**
 
 During training and inference, the model attends to all tokens within this context window.<br>
 It allows the model to capture long-range dependencies in the text.<br>
 Larger `n_ctx` enables the model to handle longer sequences of text without losing earlier context.<br>
 
-Why increasing `n_ctx` increases memory usage:
+<br>
+
+**Why increasing `n_ctx` increases memory usage:**
 
 Attention mechanism: LLMs uses self-attention mechanisms (like in Transformers) which compute attention scores between all pairs of tokens in the input.<br>
 Quadratic scaling: The memory required for attention computations scales quadratically with the context length. If you double `n_ctx`, you quadruple the memory needed for attention.<br>
 
 **CAUTION: `n_ctx` MUST BE GREATER THAN (`max_tokens` + number of input tokens)** (system prompt + assistant previous response + user prompt).
 
+If the prompt text contains more tokens than the context window defined with _n_ctx_ or the memory required exceeds the total available on the computer, an error message will be displayed.
+
+<br>
+
+**Error message displayed on _Assistant output_ field:**
+
+```
+==========================================
+Error loading LongWriter-glm4-9B-Q4_K_M.gguf.
+Some models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.
+Try another model.
+==========================================
+
+```
+
+<br>
+
+**Error messages displayed on terminal:**
+
+```
+
+Requested tokens (22856) exceed context window of 10016
+
+Unable to allocate 14.2 GiB for an array with shape (25000, 151936) and data type float32
+
+```
+
+<br>
+
 When set to `0`, the system will use the maximum `n_ctx` possible (model's context window size).<br>
 As a rule, set `n_ctx` equal to `max_tokens`, but only to the value necessary to accommodate the text parsed by the model. Samantha's default values ​​for `n_ctx` and `max_tokens` are 4,000 tokens.<br>
 Before adjusting `n_ctx`, you must to unload the model by clicking _Unload model_ button.
 
-Example:
+<br>
+
+**Example:**
 
 User prompt = 2000 tokens<br>
 `n_ctx`= 4000 tokens<br>
@@ -2528,7 +2565,8 @@ You can submit any initial prompt to the model.
 <details>
 <summary>Tips & Tricks</summary>
 
-<br><br>
+---
+
 * Keep only one interface window open at a time. Multiple open windows prevent the buttons from working properly. If there is more than one Samantha tab open, only one must be executed at a time (server side and browser side are independent).
 * It is not possible to interrupt the program during the model loading and thinking phases, except by closing it. Pressing the stop buttons during these phases will only take effect when the token generation phase begins.
 * You can select the same model more than once, in any sequence you prefer. To do so, select additional models at the bottom of the dropdown list. When deleting a model, all of the same type will be excluded from the selection.
@@ -2542,7 +2580,7 @@ You can submit any initial prompt to the model.
 * If you accidentally close Samantha's browser tab, open a new tab and type `localhost` to display the full local URL: `http://localhost:7860/?__theme=dark`. In this case, Samantha's server must be running.
 * When generating code incrementally, divide the user prompt into parts separated by `$$$` that generate blocks of code that complement each other.
 
-<br>
+---
 
 </details>
 
