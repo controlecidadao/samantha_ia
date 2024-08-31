@@ -2404,7 +2404,7 @@ Experiment with other models to test their behaviors. Change the initial prompt 
 
 <details>
 
-<summary>Prompt chaining with single model</summary>
+<summary>Prompt chaining with single model - create and run code</summary>
 
 ---
 
