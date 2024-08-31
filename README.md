@@ -1373,7 +1373,106 @@ The next word will be chosen randomly from these three options with the new prob
 
 ---
 
-🚧 Under construction.
+The **_typical_p_** hyperparameter is an entropy-based sampling technique that aims to generate **more natural and less predictable text** by selecting tokens that represent what is "typical" or "expected" in a probability distribution. Unlike methods like **_top_k_** or **_top_p_**, which focus on the absolute probabilities of tokens, **_typical_p_** considers how surprising or informative a token is relative to the overall probability distribution.
+
+<br>
+
+**Technical Operation of _typical_p_**
+
+* **Entropy:** The entropy of a distribution measures the expected uncertainty or surprise of an event. In the context of language models, the higher the entropy, the more uncertain the model is about which token should be generated next. Tokens that are very close to the mean entropy of the output distribution are considered "typical", while tokens that are very far away (too predictable or very unlikely) are considered "atypical".
+
+* **Calculation of Surprise (Local Entropy):** For each token in a given probability distribution, we can calculate its surprise (or "informativeness") by comparing its probability with the average entropy of the token distribution. This surprise is measured by the divergence in relation to the average entropy, that is, how much the probability of a token deviates from the average behavior expected by the distribution.
+
+* **Selection Based on Entropy Divergence:** **_typical_p_** filters tokens based on this "divergence" or difference between the token's surprise and the average entropy of the distribution. The model orders the tokens according to how "typical" they are, that is, how close they are to the average entropy.
+
+* **Typical-p limit:** After calculating the divergences of all tokens, the model defines a cumulative probability limit, similar to **_top_p_** (nucleus sampling). However, instead of summing the tokens' absolute probabilities, **_typical_p_** considers the cumulative sum of the divergences until a portion p of the distribution is included. That p is a value between 0 and 1 (e.g. 0.9), indicating that the model will include tokens that cover 90% of the most "typical" divergences.
+
+If **p = 0.9**, the model selects tokens whose divergences in relation to the average entropy represent 90% of the expected uncertainty. This helps avoid both tokens that are extremely predictable and those that are very unlikely, promoting a more natural and fluid generation.
+
+<br>
+
+**Practical Example**
+
+Suppose the model is predicting the next word in a sentence, and the probability distribution of the tokens looks like this:
+
+* Token A: 40% (very likely)
+* Token B: 30% (reasonably likely)
+* Token C: 20% (moderately likely)
+* D Token: 5% (unlikely)
+* E Token: 3% (very unlikely)
+* F Token: 2% (rarely chosen)
+
+In the case of **_top_p_** with p = 0.9, the model would only include tokens A, B and C, as their probabilities add up to 90%. However, **_typical_p_** can include or exclude tokens based on how their probabilities compare to the average entropy of the distribution. If A is extremely predictable, it can be excluded, and tokens like B, C, and even D can be selected for their more typical representativeness in terms of entropy.
+
+<br>
+
+**Difference from Other Methods**
+
+**_top_k_** selects the **k most likely tokens directly**, regardless of entropy or probability distribution.
+
+**_top_p_** selects tokens based on the **cumulative sum of absolute probabilities**, without considering entropy or surprise.
+
+**_typical_p_**, on the other hand, introduces the notion of entropy, ensuring that the selected tokens are **neither too predictable nor too surprising**, but ones that align with the expected behavior of the distribution.
+
+<br>
+
+**How Typical-p Improves Text Generation**
+
+* **Naturalness:** **_typical-p_** prevents the model from choosing very predictable tokens (as could happen with a low temperature or restrictive top-p) or very rare tokens (as could happen with a high temperature), maintaining a fluid and natural generation.
+
+* **Controlled Diversity:** By considering the surprise of each token, it promotes diversity without sacrificing coherence. Tokens that are close to the mean entropy of the distribution are more likely to be chosen, promoting natural variations in the text.
+
+* **Avoids Extreme Outputs:** By excluding overly unlikely or predictable tokens, Typical-p keeps generation within a "safe" and natural range, without veering toward extremes of certainty or uncertainty.
+
+<br>
+
+**Interaction with Other Parameters**
+
+**_typical_p_** can be combined with other sampling methods:
+
+* When combined with **_temperature_**, **_typical_p_** further adjusts the set of selectable tokens, while **_temperature_** modulates the randomness within that set.
+  
+* It can be combined with **_top_k_** or **_top_p_** to further fine-tune the process, restricting the universe of tokens based on different probability and entropy criteria.
+
+In summary, **_typical_p_** acts in a unique way by considering the entropy of the distribution and selects tokens that are aligned with the expected behavior of this distribution, resulting in a more balanced, fluid and natural generation.
+
+<br>
+
+Here are some guidelines and strategies for tuning **_typical_p_**:
+
+   
+**_typical_p_ = 1.0:** Includes all tokens available in the distribution, without restrictions based on entropy. This is equivalent to not applying any typical restrictions, allowing the model to use the full distribution of tokens.
+
+**_typical_p < 1.0:** The lower the **_typical_p_** value, the narrower the set of tokens considered, keeping only those that most closely align with the average entropy. Common values ​​include 0.9 (90% of "typical" tokens) and 0.8 (80%).
+
+<br>
+
+**Recommendations:**
+
+**_typical-p_ = 0.9:** This is a common value that typically maintains a balance between diversity and coherence. The model will have the flexibility to generate varied text, but without allowing very extreme choices.
+
+**_typical_p_ = 0.8:** This value is more restrictive and will result in more predictable choices, keeping only tokens that most accurately align with the average entropy. Useful in scenarios where fluidity and naturalness are priorities.
+
+**_typical_p_ = 0.7 or less:** The lower the value, the more predictable the text generation will be, eliminating tokens that could be considered atypical. This may result in a less diversified and more conservative output.
+
+<br>
+
+**Fine-Tuning with _temperature_**
+
+**_typical_p_** controls the set of tokens based on entropy, but **_temperature_** can be used to adjust the randomness **within that set**. The interaction between these two parameters is important:
+
+* **_temperature_ > 1.0:** Increases randomness within the set of tokens selected by **_typical_p_**, allowing even less likely tokens to have a greater chance of being chosen. This can generate more creative or unexpected responses.
+  
+* **_temperature_ < 1.0:** Reduces randomness, making the model more conservative by preferring the most likely tokens from the set filtered by **_typical_p_**. Using a low temperature with a high **_typical_p_** (0.9 or 1.0) can result in very predictable outputs.
+
+<br>
+
+**Example:**
+
+* **_typical_p_ = 0.9 with _temperature = 1.0:** Maintains the balance between naturalness and diversity, allowing the model to generate fluid and creative text, but without major deviations.
+
+* **_typical_p_ = 0.8 with _temperature_ = 0.7:** Makes generation more conservative and predictable, preferring tokens that are closer to the average uncertainty and reducing the chance of creative variations.
+
 
 ---
 
@@ -2139,7 +2238,7 @@ The first time the button is pressed, it takes a few seconds for the window to a
 
 ---
 
-🚧 Under construction.
+When enabled when starting Samantha, this button initiates interaction with the interface through voice.
 
 ---
 
@@ -2151,7 +2250,7 @@ The first time the button is pressed, it takes a few seconds for the window to a
 
 ---
 
-🚧 Under construction.
+Interface to convert texts and responses to audio without using the internet.
 
 ---
 
