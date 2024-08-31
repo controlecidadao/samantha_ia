@@ -2492,11 +2492,12 @@ You can ask the model to create any Python code and specify any condition to sto
 
 <details>
 
-<summary>Prompt chaining with single model</summary>
+<summary>Prompt chaining with single model - chain of thougths prompt engineer</summary>
 
 ---
 
-User prompt:
+**User prompt:**
+
 ```
 Create a complete and detailed description of a chain of thougths prompt engineer specialized AI system.
 Example: "I am an AI specialized in chain of thoughts prompt engineering. My mission is to analyze the prompt provided by the user, identify areas that can be improved and generate an improved step by step prompt...".
@@ -2511,7 +2512,10 @@ Generate the code described in your previous response.
 $$$
 ```
 
-Settings:<br>
+<br>
+
+**Settings:**
+
 * Model: https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/main/gemma-2-9b-it-Q4_K_M.gguf?download=true (you can just paste the URL in _Download model for testing_ field)
 * Number of reponses: 1
 * Feedback loop: activated
