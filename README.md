@@ -2327,7 +2327,7 @@ What can I help you with today?
 
 <details>
 
-<summary>Model and prompt chaining: intelligence challenge between 2 AI models (Microsoft vs Google, judged by Meta)</summary>
+<summary>Model and prompt chaining - intelligence challenge between 2 AI models (Microsoft vs Google, judged by Meta)</summary>
 
 ---
 
