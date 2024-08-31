@@ -2213,7 +2213,7 @@ List of links to the `.gguf` model search result on the Hugging Face website, se
 
 Samantha interface operation tips.
 
-For a complete understanding of how the interface works, see the [Samnantha[() project on Github.
+For a complete understanding of how the interface works, see the [Samantha](https://github.com/controlecidadao/samantha_ia/tree/main) project on Github.
 
 ---
 
