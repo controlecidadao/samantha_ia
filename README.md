@@ -49,6 +49,8 @@
 
 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arxiv.org)](https://arxiv.org/pdf/2201.11903)
 
+<br>
+
 Each of these models and prompts sequences can be executed more than once via the **_Number of loops_** feature.
 <br><br>
 
