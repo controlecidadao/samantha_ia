@@ -2113,7 +2113,7 @@ Displays the model's latest response in a HTML pop-up browser window.
 
 Also displays the output of the Python interpreter when it is other than '' (empty string).
 
-The first time the button is pressed, it takes a few seconds for the window to appear.
+The first time the button is pressed, the browser takes a few seconds to load (default: Microsoft Edge).
 
 ---
 
