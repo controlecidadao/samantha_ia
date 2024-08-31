@@ -2675,7 +2675,13 @@ You can submit any initial prompt to the model.
 
 ---
 
-🚧 Under construction.
+Using LLMs to assist in Exploratory Data Analysis (EDA) can be summarized in two actions:
+
+**1)** decide on aspects of the analysis to be carried out.
+
+**2)** generate the programming code to be used in the analysis.
+
+Samantha has the functionality to execute the generated codes using a virtual environment in which several libraries for data analysis are installed.
 
 ---
 
