@@ -47,6 +47,8 @@
 
   * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models (model and prompt chaining) and _Single response per model_ feature.
 
+[Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arxiv.org)](https://arxiv.org/pdf/2201.11903)
+
 Each of these models and prompts sequences can be executed more than once via the **_Number of loops_** feature.
 <br><br>
 
