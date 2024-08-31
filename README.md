@@ -2463,7 +2463,7 @@ Experiment with other models to test their behaviors. Change the initial prompt 
 
 <details>
 
-<summary>Stop condition with single model</summary>
+<summary>Stop condition with single model - random number generator</summary>
 
 ---
 
