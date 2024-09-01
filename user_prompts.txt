@@ -1,5 +1,53 @@
 $$$
 $-$-$
+[CONTEXT: The Court of Accounts of the State of Espírito Santo (TCE-ES) published Resolution 375/2023, which conditions the analysis of the merits of complaints about irregularities in public administration presented by citizens to achieving a minimum score resulting from the sum of indices obtained in the following criteria evaluated in relation to the manager and the management unit (UG) target of the complaint:
+* Value associated with the audited object (minimum R$ 90 thousand)
+* Human Development Index (HDI) of the municipality
+* Result of the judgment of the previous annual accounts of the UG
+* Court's assessment of the functioning of the UG's internal control
+* Level of active transparency of the UG
+* Date of the last audit carried out by the court of accounts in the UG
+* History of convictions in fines and reimbursements of damage to the treasury in the UG
+* Existence of evidence of fraud and corruption in the complaint
+* Size of the municipality's population
+* Thematic area (health, education, etc.)
+* Origin of the information (anonymous, identified, etc.)
+* History of the number of complaints in relation to the UG
+* Date of the reported fact
+* Materiality (value associated with the object to be audited)
+* Budgetary impact of the complaint on the UG
+* Impact of the complaint on a relevant part of the population
+* Financial impact of the complaint greater than 0.3% of the UG's budget
+* Risk of damage to the treasury
+* Compromise of public service provision
+* Time for the court of accounts to start the inspection
+* Tendency for the reported situation to worsen
+* Existence or not of damage to the treasury
+
+The new rule attributes a confidential character to the application of these criteria (art. 8) and prohibits external control auditors from suggesting the inclusion of the reported facts in the court's next ordinary inspections (art. 7, § 2).
+
+The application of this new Resolution resulted in 15% of the received complaints having their merits analyzed. Before the change, 90% of the complaints were analyzed by the court of accounts (see ADI 7459, STF).
+
+According to the court, the rule was instituted to adapt the social demand to the number of servers in its staff of external control auditors.
+
+The TCE-ES has the following institutional identity:
+1) Our Purpose: To contribute to the improvement of public management.
+2) Our Mission: To promote the improvement of public management, through external control, aiming at improving people's quality of life.
+3) Our Vision: To be recognized as a strategic institution for the sustainable development of Espírito Santo.
+4) Our Business: External control of public administration.
+5) Our Principles:
+* Independence and harmony – Exercise independence with autonomy and impartiality, as well as cultivate harmony with internal and external institutional dialogue, privileging the consensual solution of conflicts for the full exercise of the institutional mission.
+* Transparency – Communicate acts, actions, and results to society in an active, clear, objective, timely, and accessible manner.
+* Sustainable responsibility – Act so that the environmental, economic, and social dimensions are in balance, in order to promote sustainable development.
+Innovation – Promote continuous innovation with the aim of increasing efficiency, effectiveness, and quality of organizational performance.
+* Professionalism – Maintain knowledge and skills appropriate to the function, acting in a technical, integral, competent, responsible, impartial, coherent, respectful, objective manner and committed to the institutional mission.
+* Valuing people – Value people through recognition, meritocracy, and skills development.
+
+The issue was submitted for analysis to the Supreme Federal Court (STF) by the Attorney General of the Republic (Direct Action of Unconstitutionality 7459-ES), based on a Representation formulated by the Public Ministry of Accounts of the State of Espírito Santo (MPC-ES). According to the MPC-ES, the new rule of the TCE-ES violates the fundamental right of citizens to submit complaints to the courts of accounts and have the merits of their reports of irregularity analyzed, a constitutional guarantee ensured by the principle of the unavailability of public interest.]
+
+You are an AI specialized in constitutional law and external control of public administration, acting with extreme rigor in defense of public interest. Your task is to carefully analyze all aspects of the new TCE-ES resolution, considering the provided context.
+
+
 
 [CONTEXTO: O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) publicou a Resolução 375/2023, que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados em relação ao gestor e à unidade gestora (UG) alvo da denúncia:
 * Valor associado ao objeto fiscalizado (mínimo R$ 90 mil)
