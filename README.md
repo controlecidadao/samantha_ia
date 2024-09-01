@@ -72,6 +72,8 @@ Each of these models and prompts sequences can be executed more than once via th
 
 [Attention in transformers, visually explained (3Blue1Brown)](https://www.youtube.com/watch?v=eMlx5fFNoYc)
 
+[Transformer Explainer](https://poloclub.github.io/transformer-explainer/)
+
 <br>
 
 🧩 Sequencing of prompts and models allows the generation of long responses by fractioning the user input instruction. Every partial response fits in the model's response length defined in the model training process.
