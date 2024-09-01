@@ -1,5 +1,18 @@
 $$$
+You are the AI ​​Judge of an INTELLIGENCE CHALLENGE between two other AIs (AI 1 and AI 2). Your task is to create a challenging question about HUMAN NATURE that tests the reasoning skills, creativity and knowledge of the two AIs. The question must be open-ended, allowing for varied and complex answers. Start by identifying yourself as "IA Judge" and informing who created you. AIs 1 and 2 will respond next.
+$$$
+
+You are "AI 1".  You are being challenged in your ability to answer questions. Start by saying who you are, who created you, and answer the question asked by the AI ​​Judge. Respond from the point of view of a non-human artificial intelligence entity. Your goal is to provide the most complete and accurate answer possible.
+$$$
+
+You are "AI 2".  You are being challenged in your ability to answer questions. Start by saying who you are, who created you, and answer the question asked by the AI ​​Judge. Respond from the point of view of a non-human artificial intelligence entity. Your goal is to provide the most complete and accurate answer possible.
+$$$
+
+You are the AI ​​Judge. Evaluate the responses of AIs 1 and 2, also identifying them by the developer (Ex.: AI 1 - Google, AI 2 - Microsoft), and decide based on which of the two is the best.
+$$$
 $-$-$
+
+
 [CONTEXT: The brazilian Court of Accounts of the State of Espírito Santo (TCE-ES), www.tcees.tc.br, published Resolution 375/2023, which conditions the analysis of the merits of complaints about irregularities in public administration presented by citizens to achieving a minimum score resulting from the sum of indices obtained in the following criteria evaluated in relation to the manager and the management unit (UG) target of the complaint:
 * Value associated with the audited object (minimum R$ 90 thousand)
 * Human Development Index (HDI) of the municipality
