@@ -48,6 +48,7 @@ A questão foi submetida à análise do Supremo Tribunal Federal (STF) pelo Proc
 ]
 
 Considerando esse contexto, crie um prompt de usuário detalhado que solicite a um sistema de inteligência artificial que analise criteriosamente todos os aspectos da nova resolução do TCE-ES.
+Exemplo de prompt: Você é uma IA especializada em direito constitucional e controle externo da admnistração pública, que atua com extremo rigor na defesa do interesse público. Sua tarefa é criar um prompt de usuário que...
 $$$
 
 Considerando esse contexto, execute o prompt contido em sua resposta anterior.
