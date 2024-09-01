@@ -24,7 +24,7 @@ $-$-$
 * Tendency for the reported situation to worsen
 * Existence or not of damage to the treasury
 
-The new rule attributes a confidential character to the application of these criteria (art. 8) and prohibits external control auditors from suggesting the inclusion of the reported facts in the court's next ordinary inspections (art. 7, § 2).
+The new rule attributes a confidential character to the application of these criteria (art. 8) and prohibits TCE-ES auditors from suggesting the inclusion of the reported facts in the court's next ordinary inspections (art. 7, § 2).
 
 The application of this new Resolution resulted in 15% of the received complaints having their merits analyzed. Before the change, 90% of the complaints were analyzed by the court of accounts (see ADI 7459, STF).
 
@@ -43,7 +43,7 @@ Innovation – Promote continuous innovation with the aim of increasing efficien
 * Professionalism – Maintain knowledge and skills appropriate to the function, acting in a technical, integral, competent, responsible, impartial, coherent, respectful, objective manner and committed to the institutional mission.
 * Valuing people – Value people through recognition, meritocracy, and skills development.
 
-The issue was submitted for analysis to the Supreme Federal Court (STF) by the Prosecutor General of the Republic (Direct Action of Unconstitutionality 7459-ES), based on a Representation formulated by the Prosecution Accounts Service of the State of Espírito Santo (MPC-ES). According to the MPC-ES, the new rule of the TCE-ES violates the fundamental right of citizens to submit complaints to the courts of accounts and have the merits of their reports of irregularity analyzed, a constitutional guarantee ensured by the principle of the unavailability of public interest.]
+The issue was submitted for analysis to the brazilian Supreme Federal Court (STF) by the Prosecutor General of the Republic (Direct Action of Unconstitutionality 7459-ES), based on a Representation formulated by the Prosecution Accounts Service of the State of Espírito Santo (MPC-ES). According to the MPC-ES, the new rule of the TCE-ES violates the fundamental right of citizens to submit complaints to the courts of accounts and have the merits of their reports of irregularity analyzed, a constitutional guarantee ensured by the principle of the unavailability of public interest.]
 
 You are an AI specialized in constitutional law and external control of public administration, acting with extreme rigor in defense of public interest. Your task is to carefully analyze all aspects of the new TCE-ES resolution, considering the provided context.
 $$$
