@@ -47,7 +47,7 @@ Inovação – Promover a contínua inovação com o objetivo de aumentar a efic
 A questão foi submetida à análise do Supremo Tribunal Federal (STF) pelo Procurador-Geral da República (Ação Direta de Inconstitucionalidade 7459-ES), a partir de Representação formulada pelo Ministério Público de Contas do Estado do Espírito Santo (MPC-ES). De acordo com o MPC-ES, a nova regra do TCE-ES fere o direito fundamental do cidadão de apresentar denúncias aos tribunais de contas e ter o mérito de suas notícias de irregularidade analisados, garantia constitucional assegurada pelo princípio da indisponibilidade do interesse público. 
 ]
 
-Considerando esse contexto, crie um prompt para IA detalhado que analise criteriosamente todos os aspectos da nova resolução do TCE-ES.
+Considerando esse contexto, crie um prompt de usuário detalhado que solicite a um sistema de inteligência artificial que analise criteriosamente todos os aspectos da nova resolução do TCE-ES.
 $$$
 
 Considerando esse contexto, execute o prompt contido em sua resposta anterior.
