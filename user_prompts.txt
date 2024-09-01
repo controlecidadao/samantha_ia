@@ -42,7 +42,10 @@ O TCE-ES possui a seguinte identidade institucional:
 * Responsabilidade sustentável – Agir para que as dimensões ambiental, econômica e social estejam em equilíbrio, de modo a promover o desenvolvimento sustentável.
 Inovação – Promover a contínua inovação com o objetivo de aumentar a eficiência, a eficácia e a qualidade do desempenho organizacional.
 * Profissionalismo – Manter conhecimentos e habilidades adequados à função, atuando de forma técnica, íntegra, competente, responsável, imparcial, coerente, respeitosa, objetiva e comprometida com a missão institucional.
-* Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.]
+* Valorização das pessoas – Valorizar as pessoas por meio do reconhecimento, da meritocracia e do desenvolvimento de competências.
+
+A questão foi submetida à análise do Supremo Tribunal Federal (STF) pelo Procurador-Geral da República (Ação Direta de Inconstitucionalidade 7459-ES), a partir de Representação formulada pelo Ministério Público de Contas do Estado do Espírito Santo (MPC-ES). De acordo com o MPC-ES, a nova regra do TCE-ES fere o direito fundamental do cidadão de apresentar denúncias aos tribunais de contas e ter o mérito de suas notícias de irregularidade analisados, garantia constitucional assegurada pelo princípio da indisponibilidade do interesse público. 
+]
 
 Considerando esse contexto, crie um prompt para IA detalhado que analise criteriosamente todos os aspectos da nova resolução do TCE-ES, à luz da Declaração Universal dos Direitos Humanos e da Convenção Interamericana dos Direito Humanos.
 $$$
