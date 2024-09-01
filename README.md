@@ -830,7 +830,7 @@ It is important to highlight that the set of concatenated responses must fit in 
 </details>
 
 <details>
-<summary>Random hyperparameters (checkbox)</summary>
+<summary>Random hyperparameters adjustments (checkbox)</summary>
 
 ---
 
