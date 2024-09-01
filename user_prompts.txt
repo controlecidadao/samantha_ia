@@ -1,6 +1,6 @@
 $$$
 $-$-$
-[CONTEXT: The Court of Accounts of the State of Espírito Santo (TCE-ES) published Resolution 375/2023, which conditions the analysis of the merits of complaints about irregularities in public administration presented by citizens to achieving a minimum score resulting from the sum of indices obtained in the following criteria evaluated in relation to the manager and the management unit (UG) target of the complaint:
+[CONTEXT: The Court of Accounts of the State of Espírito Santo (TCE-ES), www.tcees.tc.br, published Resolution 375/2023, which conditions the analysis of the merits of complaints about irregularities in public administration presented by citizens to achieving a minimum score resulting from the sum of indices obtained in the following criteria evaluated in relation to the manager and the management unit (UG) target of the complaint:
 * Value associated with the audited object (minimum R$ 90 thousand)
 * Human Development Index (HDI) of the municipality
 * Result of the judgment of the previous annual accounts of the UG
@@ -49,7 +49,7 @@ You are an AI specialized in constitutional law and external control of public a
 $$$
 
 
-[CONTEXTO: O Tribunal de Contas do Estado do Espírito Santo (TCE-ES) publicou a Resolução 375/2023, que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados em relação ao gestor e à unidade gestora (UG) alvo da denúncia:
+[CONTEXTO: O Tribunal de Contas do Estado do Espírito Santo (TCE-ES), www.tcees.tc.br, publicou a Resolução 375/2023, que condiciona a análise do mérito das denúncias de irregularidades na administração pública apresentadas por cidadãos ao atingimento de uma pontuação mínima resultante do somatório dos índices obtidos nos seguintes critérios avaliados em relação ao gestor e à unidade gestora (UG) alvo da denúncia:
 * Valor associado ao objeto fiscalizado (mínimo R$ 90 mil)
 * Índice de Desenvolvimento Humano (IDH) do município
 * Resultado do julgamento da prestação de contas anual anterior da UG
