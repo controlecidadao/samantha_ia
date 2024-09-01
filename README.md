@@ -2769,7 +2769,7 @@ Samantha has the functionality to execute the generated codes using a virtual en
 
 ---
 
-🌐 Samantha is being developed under the principles of [Open Science](https://www.unesco.org/en/open-science) (open methodology, open source, open data, open access, open peer review and open educational resources). Therefore, anyone can contribute to its improvement. 
+🌐 Samantha is being developed under the principles of [Open Science](https://www.unesco.org/en/open-science) (open methodology, open source, open data, open access, open peer review and open educational resources) and and [MIT License](https://opensource.org/licenses/MIT). Therefore, anyone can contribute to its improvement. 
 
 Feel free to share your ideas with us!
 
