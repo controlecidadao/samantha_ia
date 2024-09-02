@@ -67,7 +67,7 @@ The following video shows an example of interaction between models without human
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=KgicCGMSygU">
-    <img src="[https://i.sstatic.net/Vp2cE.png](https://github.com/controlecidadao/samantha_ia/blob/main/images/challenge.png)" alt="Watch the video">
+    <img src="https://github.com/controlecidadao/samantha_ia/blob/main/images/challenge.png" alt="Watch the video">
   </a>
 </p>
 
