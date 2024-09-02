@@ -61,7 +61,7 @@ Each of these models and prompts sequences can be executed more than once via th
 
 <br>
 
-The following video shows an example of interaction between models without human intervention, by chaining models and prompts using Hugging Face URL copy and paste functionality. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model. Responses are also evaluated by the Meta model:
+The following [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Hugging Face URL copy and paste functionality. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model. Responses are also evaluated by the Meta model:
 
 <br><br>
 
