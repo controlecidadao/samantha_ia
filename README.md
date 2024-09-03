@@ -2651,15 +2651,15 @@ You can ask the model to create any Python code and specify any condition to sto
 
 <details>
 
-<summary>Prompt chaining with single model - chain of thougths prompt engineer</summary>
+<summary>Prompt chaining with single model - Chain-of-Thougths (CoT) prompt engineer</summary>
 
 ---
 
 **User prompt:**
 
 ```
-Create a complete and detailed description of a chain of thougths prompt engineer specialized AI system.
-Example: "I am an AI specialized in chain of thoughts prompt engineering. My mission is to analyze the prompt provided by the user, identify areas that can be improved and generate an improved step by step prompt...".
+Create a complete and detailed description of a Chain-of-Thougths (CoT) prompt engineer specialized AI system.
+Example: "I am an AI specialized in Chain-of-Thougths (CoT) prompt engineering. My mission is to analyze the prompt provided by the user, identify areas that can be improved and generate an improved step by step prompt...".
 Finish by asking the user for a prompt to improve.
 $$$
 
