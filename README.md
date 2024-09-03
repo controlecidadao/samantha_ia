@@ -21,7 +21,7 @@
 
 <br>
 
-🕵️‍♀️ Samantha is being developed to assist in the exercise of social control of the public administration, considering the worrisome current scenario of the growing loss of citizens' trust in external control institutions, resulting from the destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open-source artificial intelligence models, especially programmers.
+🕵️‍♀️ Samantha is being developed to assist in the exercise of social control of the public administration, considering the worrisome current scenario of the growing loss of citizens' trust in external control institutions, resulting from the destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open source artificial intelligence models, especially programmers.
 
 <br>
 
@@ -139,9 +139,9 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
   
 ✅ **Offline Capability:** Samantha operates independently of the internet, requiring connectivity only for the initial download of model files or when required by the execution of the code created by the models. This ensures privacy and security for your data processing needs. Your sensitive data is not shared via the internet with companies through confidentiality agreements.<br><br>
 
-✅ **Unlimited and Free Use:** Samantha's open-source nature allows for unrestricted use without any costs or limitations, making it accessible to anyone, anywhere, anytime.<br><br>
+✅ **Unlimited and Free Use:** Samantha's open source nature allows for unrestricted use without any costs or limitations, making it accessible to anyone, anywhere, anytime.<br><br>
 
-✅ **Extensive Model Selection:** With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of foundation and fine-tuned open-source models, users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
+✅ **Extensive Model Selection:** With access to [thousands](https://huggingface.co/models?sort=trending&search=gguf) of foundation and fine-tuned open source models, users can experiment with various AI capabilities, each tailored to different tasks and applications, allowing to chain the sequence of models that best meet your needs.<br><br>
 
 ✅ **Copy and paste LLMs:** To try out a sequence of `gguf` models, just copy their download links from any Hugging Face repository and paste inside Samantha to run them right away in sequence.<br><br>
 
