@@ -398,7 +398,7 @@ Samantha has 3 phases:<br>
 2) Thinking (non stop)
 3) Next token selection (stop).
 
-This button works only when the next token selection phase is started, even if it was pressed previously.
+This button interrupts the token generation only when the next token selection phase is started, even if it was pressed previously.
 
 ---
 
