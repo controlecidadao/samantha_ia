@@ -264,11 +264,11 @@ Samantha needs just a `.gguf` model file to generate text. Follow these steps to
 
 2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and click on the card to open the corresponding page. Locate the _Files and versions_ tab and choose a `.gguf` model that fits in your available memory.
    
-4) Right click over the model download link icon and copy its URL.
+3) Right click over the model download link icon and copy its URL.
 
-5) Paste the model URL into Samantha's _Download models for testing_ field.
+4) Paste the model URL into Samantha's _Download models for testing_ field.
 
-6) Insert a prompt into _User prompt_ field and press `Enter`. Keep the `$$$` sign at the end of your prompt. The model will be downloaded and the response will be generated using the default deterministic settings. You can track this process via Windows Task Management.
+5) Insert a prompt into _User prompt_ field and press `Enter`. Keep the `$$$` sign at the end of your prompt. The model will be downloaded and the response will be generated using the default deterministic settings. You can track this process via Windows Task Management.
 
 <br>
 
