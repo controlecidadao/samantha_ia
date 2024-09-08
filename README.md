@@ -47,7 +47,7 @@
 
 🔗 Some chaining examples **_using_** Samantha's response **_Feedback Loop_** feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** Used to improve or complement the model's previous response through a fixed user instruction using the same model, as well as to simulate a conversatoin between 2 AIs using a single model. [Video: Simulating a Conversation Between 2 AIs](https://youtu.be/mpH2Tzb7JGE)
+  * **(model_1) responds (prompt_1) X number of responses:** Used to improve or complement the model's previous response through a fixed user instruction using the same model, as well as to simulate a conversatoin between 2 AIs using a single model [(Video: Simulating a Conversation Between 2 AIs)](https://youtu.be/mpH2Tzb7JGE).
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples user instructions sequencially with the same model (prompt chaining). Each prompt is used to refine or complete the previous response, as well as to execute a sequence of prompts that depend on the previous response.
 
