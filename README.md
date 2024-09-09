@@ -23,6 +23,8 @@
 
 [Understanding LLMs: A Comprehensive Overview from Training to Inference (arxiv.org)](https://arxiv.org/pdf/2401.02038v2)
 
+[Artificial Intelligence Papers (arxiv.org)](https://arxiv.org/list/cs.AI/recent)
+
 <br>
 
 🕵️‍♀️ Samantha is being developed to assist in the exercise of social control of the public administration, considering the worrisome current scenario of the growing loss of citizens' trust in external control institutions, resulting from the destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open source artificial intelligence models, especially programmers.
