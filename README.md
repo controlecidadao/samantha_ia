@@ -2740,6 +2740,16 @@ Using LLMs to assist in Exploratory Data Analysis (EDA) can be summarized in two
 
 Samantha has the functionality to execute the generated codes using a virtual environment in which several libraries for data analysis are installed.
 
+<br>
+
+**Incremental coding:**
+
+Each prompt in the chaining sequence creates a specific code that is saved in a python file (`temp.py`). This file is created, executed and cleaned for each prompt in the sequence.
+
+By activating the _Feedback Loop_ mode, it is possible to ask the model to change the code of its previous message to add new functionalities. Simply execute the new code created and test its functioning.
+
+This cycle must be repeated until the final code that performs the complete analysis is obtained.
+
 ---
 
 </details>
