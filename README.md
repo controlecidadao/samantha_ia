@@ -2742,9 +2742,9 @@ Samantha has the functionality to execute the generated codes using a virtual en
 
 <br>
 
-**Incremental coding:**
+🧮 **Incremental coding:**
 
-Each prompt in the chaining sequence creates a specific code that is saved in a python file (`temp.py`). This file is created, executed and cleaned for each prompt in the sequence.
+Each prompt in the chaining sequence creates a specific code that is saved in a python file (`temp.py`). This file is created, executed and cleaned for each prompt in the sequence. All Python variables are deleted at the end of each conversation cycle.
 
 By activating the _Feedback Loop_ mode, it is possible to ask the model to change the code of its previous message to add new functionalities. Simply execute the new code created and test its functioning.
 
