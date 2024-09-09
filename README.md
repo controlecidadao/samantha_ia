@@ -50,7 +50,7 @@
 
 🔗 Some chaining examples **_without using_** Samantha's response **_Feedback Loop_** feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** used to analyze model's deterministic and stochastic behavior with help of the _Learning Mode_ feature, as well as to generate multiple diverse responses with stochastic settings.
+  * **(model_1) responds (prompt_1) X number of responses:** used to analyze model's deterministic and stochastic behavior with help of the _Learning Mode_ feature, as well as to generate multiple diverse responses with stochastic settings [(Video)](https://youtu.be/bCAScwsKVCE).
 
   * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model (prompt chaining).
 
