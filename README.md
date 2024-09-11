@@ -16,7 +16,7 @@
 💻 Samantha is just a simple interface assistant for open source artificial intelligence models, developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) and [MIT License](https://opensource.org/licenses/MIT) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF](https://huggingface.co/docs/hub/gguf) models or when required by the execution of the code created by the models (g.e. to download datasets for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
 <p align="center" width="100%">
-<img width="30%" src="https://th.bing.com/th/id/OIP.AazJEzszrlnZuZPfEnyYBgAAAA?rs=1&pid=ImgDetMain" />
+<img width="50%" src="https://th.bing.com/th/id/OIP.AazJEzszrlnZuZPfEnyYBgAAAA?rs=1&pid=ImgDetMain" />
 </p>
 
 [What is Open Source AI (opensource.org)](https://opensource.org/what-is-open-source-ai)
@@ -35,6 +35,12 @@
 <br><br>
 
 ### 🎬 **Usage Examples:**
+
+<br>
+
+This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Samantha's copy and paste LLM functionality. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model. Responses are also evaluated by the Meta model.
+
+<br>
 
 <p align="center" width="100%">
 <a href="https://www.youtube.com/watch?v=KgicCGMSygU" target="_blank">
@@ -73,17 +79,14 @@
 
 <br>
 
-[Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arxiv.org)](https://arxiv.org/pdf/2201.11903)
-
 Each of these models and prompts sequences can be executed more than once via the **_Number of loops_** feature.
+
+[Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arxiv.org)](https://arxiv.org/pdf/2201.11903)
 <br><br>
 
 
 👉 **Chaining Sequence Template:   ( [models list] -> respond -> ( [user prompt list] X number of responses) ) X number of loops**
 
-<br>
-
-This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Samantha's copy and paste LLM functionality. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model. Responses are also evaluated by the Meta model.
 
 <br>
 
