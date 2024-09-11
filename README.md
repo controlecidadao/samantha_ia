@@ -38,7 +38,7 @@
 
 <br>
 
-This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Samantha's copy and paste LLM functionality. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model. Responses are also evaluated by the Meta model.
+This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Samantha's copy and paste LLM functionality. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models (by [Bartowski](https://huggingface.co/bartowski)) are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model (by [NousResearch](https://huggingface.co/NousResearch)). Responses are also evaluated by the Meta model.
 
 <br>
 
