@@ -27,7 +27,7 @@
 
 <br>
 
-🕵️‍♀️ Samantha is being developed to assist in the exercise of social control of the public administration, considering the worrisome current scenario of the growing loss of citizens' trust in external control institutions, resulting from the destructuring of the technical staff of the courts of accounts. However, its features allow it to be used by anyone interested in exploring open source artificial intelligence models, especially programmers.
+🕵️‍♀️ Samantha is being developed to assist in the exercise of social and institutional control of public administration, considering the worrying current scenario of increasing loss of citizens' trust in control institutions. Its features allow it to be used by anyone interested in exploring open source artificial intelligence models, especially programmers.
 
 <br>
 
