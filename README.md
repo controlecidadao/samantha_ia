@@ -21,8 +21,6 @@
 
 [What is Open Source AI (opensource.org)](https://opensource.org/what-is-open-source-ai)
 
-[Understanding LLMs: A Comprehensive Overview from Training to Inference (arxiv.org)](https://arxiv.org/pdf/2401.02038v2)
-
 [Artificial Intelligence Papers (arxiv.org)](https://arxiv.org/list/cs.AI/recent)
 
 <br>
