@@ -194,7 +194,7 @@ language = {
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador final). 4) '---' (ignorar prompt). 5) Return 'STOP_SAMANTHA' (sair do loop). 6) Return '' (string vazia, não exibe pop-up HTML). É possível importar um arquivo TXT contendo uma lista de prompts.",
+                'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador de prompts). 4) '---' (ignorar prompt). 5) Return 'STOP_SAMANTHA' (sair do loop). 6) Return '' (string vazia, não exibe pop-up HTML). É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Model selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignora URL.",
@@ -268,11 +268,11 @@ language = {
                 'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
                 'initial_system_prompt': '',
                 'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
-                'assistant_previous_response_info': 'Assistant previous response (text field) (1st in chat timeline). "---" ignore previous response.',
+                'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). "---" ignore previous response.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (end separator). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (prompt separators). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
                 'models_selection_info': 'Model selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
                 'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
@@ -642,14 +642,14 @@ def text_generator(
 
 
     hiperparametros = {
-        'temperature': [temperature, 0.0, 2.0],  # [valor_inicial, valor_minimo, valor_maximo]
-        'tfs_z': [tfs_z, 0.0, 1.0],
-        'top_p': [top_p, 0.0, 1.0],
-        'min_p': [min_p, 0.0, 1.0],
-        'typical_p': [typical_p, 0.0, 1.0],
-        'presence_penalty': [presence_penalty, 0.0, 1.0],
-        'frequency_penalty': [frequency_penalty, 0.0, 1.0],
-        'repeat_penalty': [repeat_penalty, 1.0, 2.0]
+        'temperature': [temperature, 0.1, 1.0],  # [valor_inicial, valor_minimo, valor_maximo]
+        'tfs_z': [tfs_z, 0.1, 1.0],
+        'top_p': [top_p, 0.1, 1.0],
+        'min_p': [min_p, 0.1, 1.0],
+        'typical_p': [typical_p, 0.1, 1.0],
+        'presence_penalty': [presence_penalty, 0.0, 0.3],
+        'frequency_penalty': [frequency_penalty, 0.0, 0.3],
+        'repeat_penalty': [repeat_penalty, 1.0, 1.2]
     }
 
 
@@ -1032,11 +1032,11 @@ def text_generator(
 
                     # INSERT USER CHAT ROLE IN THE SYSTEM PROMPT FIELD? NOT ALL MODELS HAVE SYSTEM PROMPT.
 
-                    print('>>>>> SYSTEM PROMPT:', system_prompt)
+                    print('\n\n===========================\n\n>>>>> SYSTEM PROMPT:', system_prompt)
                     print()
-                    print('>>>>> PREVIOUS RESPONSE:', previous_answer)
+                    print('\n\n===========================\n\n>>>>> PREVIOUS RESPONSE:', previous_answer)
                     print()
-                    print('>>>>> USER PROMPT:', prompt_text)
+                    print('\n\n===========================\n\n>>>>> USER PROMPT:', prompt_text)
                     print()
                     
                     # Variables used to create barblot with frequency of the tokens that are not the most likely
@@ -1323,7 +1323,7 @@ def text_generator(
                     
 
                     if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                        pyperclip.copy('')
+                        pyperclip.copy('')          # Copy '' to clipboard
                         python_return = open_idle()
                         
                         if stop_condition == True:
@@ -1482,6 +1482,9 @@ def text_generator(
     para_tudo = False                                           # Reset variable
 
     gc.collect()                                                # Final cleaning (realy needed?)
+
+    print('Chat Session Finished.')
+    print()
 
         
 # =======================
@@ -1766,6 +1769,8 @@ def text_to_speech(*inputs):        # Text to speech convertion
     cleaned = cleaned.replace('**', '').replace('#', '') # Do not speak bolded text in Markdown
     cleaned = cleaned.replace('\n', ' ') # When copy and paste text from PDF file, the text use to come with '\n' at the end of every line
     cleaned = cleaned.replace('$$$', '')
+
+    # cleaned = prompt_user
     
     try: # Delete previous audio file for allow the creation of a new one
         os.remove('ia_response.mp3')
@@ -1774,8 +1779,12 @@ def text_to_speech(*inputs):        # Text to speech convertion
     
     engine.save_to_file(cleaned, 'ia_response.mp3') # Save audio file
     engine.runAndWait()
+    print('File saved!')
     
     return 'ia_response.mp3'
+
+    # return fr'{DIRETORIO_LOCAL}\ia_response.mp3'
+    # return gr.Audio(value='ia_response.mp3', type='filepath', autoplay=False, interactive=True, show_download_button=True, editable=True, show_share_button=True)
 
 
 def unload_model():
@@ -2499,39 +2508,56 @@ def download_model_urls():
         print(e)
 
 
+
 def create_html(content):
-
-    # <meta charset="windows-1252">
-
-    # Converte o markdown para HTML
     html_content = markdown.markdown(content)
-
     html_content = html_content.replace('\n', r'<br>')
-    html_content = html_content.replace(r'><br><', r'><') # Makes the HTML popup output the same as the Samantha browser output
+    html_content = html_content.replace(r'><br><', r'><')
 
     html = f"""
     <!DOCTYPE html>
     <html lang="pt-BR">
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="{DIRETORIO_LOCAL}/images/s.ico" type="image/x-icon">
         <title>Samantha Interface Assistant</title>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <style>
-            body {{
+            html, body {{
+                margin: 0;
+                padding: 0;
+                width: 100%;
                 font-family: Arial, sans-serif;
-                padding: 20px;
-                max-width: 90%;
-                margin: 0 auto;
                 font-size: 14px;
-                text-align: justify;
-                text-justify: inter-word;
+            }}
+            body {{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #f0f0f0;
+                min-height: 100vh;
+            }}
+            .container {{
+                width: 90%;
+                max-width: 1200px;
+                margin: 20px 0;
+                background-color: white;
+                border-radius: 5px;
+                overflow: hidden;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }}
+            h3 {{
+                color: #ff3300;
+                padding: 20px;
+                margin: 0;
+                background-color: white;
             }}
             #content {{
-                background-color: #f0f0f0;
                 padding: 20px;
-                border-radius: 5px;
+                text-align: justify;
+                text-justify: inter-word;
+                overflow-x: auto;
             }}
             pre {{
                 background-color: #f0f0f0;
@@ -2543,17 +2569,88 @@ def create_html(content):
             code {{
                 font-family: Consolas, Monaco, 'Andale Mono', monospace;
                 font-size: 12px;
-                background-color: #d9d9d9;
+                background-color: #f0f0f0;
+            }}
+            table {{
+                border-collapse: collapse;
+                width: 100%;
+            }}
+            th, td {{
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
             }}
         </style>
     </head>
     <body>
-        <h3 style="color:#ff3300;">Assistant output ({last_model}):</h3>
-        <div id="content">{html_content}</div>
+        <div class="container">
+            <h3>Assistant output ({last_model}):</h3>
+            <div id="content">{html_content}</div>
+        </div>
     </body>
     </html>
     """
     return html
+
+
+
+
+# def create_html(content):
+
+#     # <meta charset="windows-1252">
+
+#     # Converte o markdown para HTML
+#     html_content = markdown.markdown(content)
+
+#     html_content = html_content.replace('\n', r'<br>')
+#     html_content = html_content.replace(r'><br><', r'><') # Makes the HTML popup output the same as the Samantha browser output
+
+#     html = f"""
+#     <!DOCTYPE html>
+#     <html lang="pt-BR">
+#     <head>
+#         <meta charset="UTF-8">
+#         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#         <link rel="icon" href="{DIRETORIO_LOCAL}/images/s.ico" type="image/x-icon">
+#         <title>Samantha Interface Assistant</title>
+#         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+#         <style>
+#             body {{
+#                 font-family: Arial, sans-serif;
+#                 padding: 20px;
+#                 max-width: 90%;
+#                 margin: 0 auto;
+#                 font-size: 14px;
+#                 text-align: justify;
+#                 text-justify: inter-word;
+#             }}
+#             #content {{
+#                 background-color: #f0f0f0;
+#                 padding: 20px;
+#                 border-radius: 5px;
+#             }}
+#             pre {{
+#                 background-color: #f0f0f0;
+#                 padding: 10px;
+#                 border-radius: 5px;
+#                 white-space: pre-wrap;
+#                 word-wrap: break-word;
+#             }}
+#             code {{
+#                 font-family: Consolas, Monaco, 'Andale Mono', monospace;
+#                 font-size: 12px;
+#                 background-color: #d9d9d9;
+#             }}
+#         </style>
+#     </head>
+#     <body>
+#         <h3 style="color:#ff3300;">Assistant output ({last_model}):</h3>
+#         <div id="content">{html_content}</div>
+#     </body>
+#     </html>
+#     """
+#     return html
+#     # return html.encode('utf-8').decode('utf-8')
 
 
 def open_chrome_window(file_path):
@@ -2583,19 +2680,16 @@ def open_chrome_window(file_path):
 
 def open_idle():
 
+    '''
+    Called inside 'text_generator' function if 'run_code' checkbox (run code automatically) is selected.
+    '''
+
     global ultima_resposta
     global counter_run
 
     click.play()
 
-    copied_text = pyperclip.paste()
-
-    # if run_code == False: # To avoid double click when pressing stop / next button
-    #     click.play()
-
-    # elif run_code == True:
-    #     if counter_run > 1:
-    #         click.play()
+    copied_text = pyperclip.paste() # Paste text (code) from clipboard, if any.
             
     print()
     print('======================')
@@ -2603,27 +2697,21 @@ def open_idle():
     print('======================')
     print()
 
-    text_1 = ultima_resposta # Model response was already generated
+    text_1 = ultima_resposta # Current response with Python code
 
-    if "#IDE" in copied_text:
+    if "#IDE" in copied_text: # '#IDE' has precedence
         text_1 = copied_text
-        #pyperclip.copy('') # Copy '' to clipboard to clean it
-        # copied_text = ''
 
     else:
-        if copied_text != '' and "```python" not in copied_text:
-            text_1 = "```python\n" + copied_text + "\n```" # <<<<<<<<<<<<<< IN TEST
+        if copied_text != '' and "```python" not in copied_text:    
+            text_1 = "```python\n" + copied_text + "\n```"          # Add Python code to the template
 
-        #pyperclip.copy('') # Copy '' to clipboard to clean it
-        # copied_text = ''
 
     # =============================
 
     # if "```" not in ultima_resposta:
     if "```python" not in text_1: # <<<<<<<<<< REPLACED
         print(f"No Markdown Python code in the response.")
-        # winsound.Beep(600, 300) # Signals to indicate that there is no markdown python code
-        # winsound.Beep(600, 300)
         return
         
     # GET PYTHON PATH
@@ -2633,41 +2721,47 @@ def open_idle():
     padrao = r"```python(.*?)\n(.*?)```"
     # padrao = r"```(.*?)\n(.*?)```"
 
-    # codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
-    codigos = re.findall(padrao, text_1, re.DOTALL) # <<<<<<<< REPLACED
-    
-    resultado = []
-    for codigo in codigos:
-        linguagem, conteudo = codigo
-        resultado.append(f"#{linguagem}\n{conteudo}")
-    
-    final_code = "\n".join(resultado)
+    try:
+        # codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
+        codigos = re.findall(padrao, text_1, re.DOTALL) # <<<<<<<< REPLACED
+        
+        resultado = []
+        for codigo in codigos:
+            linguagem, conteudo = codigo
+            resultado.append(f"#{linguagem}\n{conteudo}")
+        
+        final_code = "\n".join(resultado)
 
-    padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
+        padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
 
-    # Divide o código em linhas, filtra as linhas que não correspondem ao padrão e junta novamente
-    final_code = '\n'.join([linha for linha in final_code.split('\n') if not re.match(padrao, linha)])
-    print(final_code)
-    
-    # Insert code for changing title and icon of the matplotlib popup window
-    # c1 = "from matplotlib import pyplot as plt\n"
-    # c2 = "plt.gcf().canvas.manager.set_window_title('Samantha Interface Assistant')\n"
-    # c3 = "root = plt.gcf().canvas.manager.window\n"
-    # c4 = r"root.iconbitmap('images\s.ico')"
-    # final_code = c1 + c2 + c3 + c4 + '\n\n' + final_code
-    
-    # CREATE PYTHON FILE
-    with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
-        f.write(final_code)
+        # Divide o código em linhas, filtra as linhas que não correspondem ao padrão e junta novamente
+        final_code = '\n'.join([linha for linha in final_code.split('\n') if not re.match(padrao, linha)])
+        print(final_code)
+        
+        # Insert code for changing title and icon of the matplotlib popup window
+        # c1 = "from matplotlib import pyplot as plt\n"
+        # c2 = "plt.gcf().canvas.manager.set_window_title('Samantha Interface Assistant')\n"
+        # c3 = "root = plt.gcf().canvas.manager.window\n"
+        # c4 = r"root.iconbitmap('images\s.ico')"
+        # final_code = c1 + c2 + c3 + c4 + '\n\n' + final_code
+        
+        # CREATE PYTHON FILE
+        with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
+            temp = """import sys\nimport io\nsys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\n""" # To force the display of accented letters in Portuguese
+            f.write(temp + final_code)
 
     # RUN PYTHON FILE
-    try:
+    # try:
 
-        result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8') 
-        output = result.stdout.strip()  # Remove espaços em branco no início e no final. # Se result retornar NoneType, dá erro 'NoneType has no attribute "strip"'
-        print(output)
+        result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore') 
+        output = result.stdout #.strip()  # Remove espaços em branco no início e no final. # Se result retornar NoneType, dá erro 'NoneType has no attribute "strip"'
+        print(output)   
         print()
         print('type(output):', type(output))
+
+        if output == None:
+            output = '' # For printing something
+        
         print('len(output):', len(output))
         print()
 
@@ -2742,7 +2836,7 @@ def open_idle():
 
         ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + e.stderr
 
-    counter_run += 1
+    counter_run += 1 # Not used
 
     # CRITICAL CODE FEEDBACK
     if run_code == True and len(output) > 0: # Add the result of the code execution to the variable 'ultima_resposta' when Run Code Automatically is selected
@@ -2943,7 +3037,7 @@ document.addEventListener('keyup', shortcuts, false);
 
 </script>
 """
-
+# audio_widget = None
 
 with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
     
@@ -3039,12 +3133,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_load_system_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[0], queue=False)
                 btn_load_user_prompt = gr.Button(language['btn_user_prompt'])
                 btn_load_user_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[3], queue=False)
-                btn_download_model_url = gr.Button(language['btn_copy_model_url'])
-                btn_download_model_url.click(fn=download_model_urls, inputs=None, outputs=None, queue=True)
-
-            with gr.Row():
                 btn_load_urls_txt = gr.Button(language['btn_load_models_urls_info'])
                 btn_load_urls_txt.click(fn=load_models_urls, inputs=None, outputs=inputs[5], queue=False)
+                
+            with gr.Row():
+                btn_download_model_url = gr.Button(language['btn_copy_model_url'])
+                btn_download_model_url.click(fn=download_model_urls, inputs=None, outputs=None, queue=True)
                 btn_yy = gr.Button('')
                 btn_yy.click(fn=None, inputs=None, outputs=None, queue=False)
                 btn_xx = gr.Button('')
@@ -3072,6 +3166,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             gr.HTML("""<ul>
                         <li><a href="https://arxiv.org/list/cs.AI/recent">AI Arxiv Articles</a></li>
                         <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
+                        <li><a href="https://artificialanalysis.ai/">Artificial Analysis</a></li>
                         <li><a href="https://huggingface.co/spaces/ggml-org/gguf-my-repo">GGUF My Repository</a></li>
                         <li><a href="https://huggingface.co/spaces/arcee-ai/mergekit-gui">arcee-ai/mergekit-gui</a></li>
                         <li><a href="https://github.com/cg123/mergekit">LLM Mergekit</a></li>
@@ -3091,6 +3186,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/docs/hub/gguf">GGUF File</a></li>
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
+                        <li><a href="https://www.jasondavies.com/wordcloud/">Word Cloud Online</a></li>
+                    
                     </ul>""")
                         
                         # <li><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Benchmark</a></li>
@@ -3111,6 +3208,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     <li><a href="https://docs.bokeh.org/en/latest/index.html">Bokeh</a></li>
                     <li><a href="https://pyvis.readthedocs.io/en/latest/">Pyvis</a></li>
                     <li><a href="https://networkx.org/documentation/stable/index.html">NetworkX</a></li>
+                    <li><a href="https://pypi.org/project/ydata-profiling/">Ydata-Profiling</a></li>
                     <li><a href="https://github.com/fbdesignpro/sweetviz">Sweetviz</a></li>
                     <li><a href="https://github.com/man-group/dtale">D-Tale</a></li>
                     <li><a href="https://dataprep.ai/">DataPrep</a></li>
@@ -3248,6 +3346,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+magnum">Magnum</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+mamba">Mamba</a></li>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+glm">GLM</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+c4ai">C4AI</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+granite">Granite</a></li>
                         
                         <br>
                         <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
