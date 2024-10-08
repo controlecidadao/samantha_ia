@@ -58,7 +58,7 @@ This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of in
 
   * **(model_1) responds (prompt_1) X number of responses:** used to analyze model's deterministic and stochastic behavior with help of the _Learning Mode_ feature, as well as to generate multiple diverse responses with stochastic settings ([Video](https://youtu.be/bCAScwsKVCE)).
 
-  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model (prompt chaining).
+  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model (prompt chaining) ([Video](https://www.youtube.com/watch?v=xE9tAvbGAjU)).
 
   * **(model_1, model_2, model_n) respond (prompt_1):** used to compare models' responses for the same single prompt (model chaining). Useful for comparing different models, as well as quantized versions of the same model.
 
