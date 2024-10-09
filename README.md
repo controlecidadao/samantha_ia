@@ -82,14 +82,14 @@ This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of in
 Each of these models and prompts sequences can be executed more than once via the **_Number of loops_** feature.
 
 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arxiv.org)](https://arxiv.org/pdf/2201.11903)
-<br><br>
+<br><br><br>
 
 
 👉 **Samantha's chaining sequence template:**<br>
 > _**( [models list] -> respond -> ( [user prompt list] X number of responses) ) X number of loops**_
 
 
-<br>
+<br><br>
 
 [But what is a GPT? Visual intro to transformers (3Blue1Brown)](https://www.youtube.com/watch?v=wjZofJX0v4M)
 
