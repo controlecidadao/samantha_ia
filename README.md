@@ -83,7 +83,7 @@ Each of these models and prompts sequences can be executed more than once via th
 <br><br>
 
 
-👉 **Samantha's Chaining Sequence Template:**<br>
+👉 **Samantha's chaining sequence template:**<br>
 > _**( [models list] -> respond -> ( [user prompt list] X number of responses) ) X number of loops**_
 
 
