@@ -2,7 +2,7 @@
 # SAMANTHA INTERFACE ASSISTANT
 # =================================
 
-# This is an experimental project developed with the aim of encouraging the creation of similar works.
+# This is an experimental project developed by MPC-ES team with the aim of encouraging the creation of similar works.
 
 
 # =============
@@ -10,7 +10,7 @@
 # =============
 
 # To run llama.cpp:
-# 1) Download and install Microsoft Visual Studio Community version: https://visualstudio.microsoft.com/pt-br/downloads/?cid=learn-navbar-download-cta
+# 1) Download and install Microsoft Visual Studio Community: https://visualstudio.microsoft.com/pt-br/downloads/?cid=learn-navbar-download-cta
 #    During installation process, select only the option that contains CMake ("Desktop development with C++" or "Desenvolvimento para desktop com C++"): https://learn.microsoft.com/pt-br/cpp/get-started/media/vs2022-installer-workloads.png?view=msvc-170
 
 
@@ -22,7 +22,7 @@
 # 2) GET LOCAL DIRECTORY PATH
 # 3) INITIALIZE PYTHON MODULES
 # 4) INTERFACE LANGUAGE SELECTION
-# 5) GET LOCAL MDDEL LIST
+# 5) GET LOCAL MODEL LIST
 # 6) CREATE REMAINING GLOBAL VARIABLES
 # 7) INTERFACE VOICE CONTROL SETTINGS
 # 8) READ FILES WITH PROMPT EXAMPLES
@@ -57,34 +57,41 @@
 # CTRL + K -> CTRL + 0 = COLLAPSE ALL ITEMS
 # CTRL + K -> CTRL + J = EXPAND ALL ITEMS
 
+# ACTIVANTING JUPYRLAB VIRTUAL ENVIRONMENT WITH CONDA (TO CHECK MODULES INSTALLED)
+#(samantha) \cd samantha_ia-main
+#(samantha) \samantha_ia-main>cd miniconda3
+#(samantha) \samantha_ia-main\miniconda3>cd condabin
+#(samantha) \samantha_ia-main\miniconda3\condabin>conda activate jupyterlab
+#(jupyterlab) \samantha_ia-main\miniconda3\condabin>
+
 
 # ========================
 # 1) IMPORT PYTHON MODULES
 # ========================
 
-import gradio as gr             # Import Gradio to create a user-friendly web interface for interacting with machine learning models. This library simplifies the process of deploying models with a front-end that can accept inputs and display outputs. (Front-End Interface)
-from llama_cpp import Llama     # Import Llama_cpp to load Large Language Model (LLM) files in UGGF format, which are used for model storage and retrieval. This is the back-end component responsible for handling the model's logic and processing. (Back-End Model Loading)
-import webbrowser               # Import webbrowser to programmatically open a web page or file in the default system browser, useful for redirecting users to documentation or additional resources. (Web Browsing)
-import os                       # Import os for operations related to the operating system, such as file and directory manipulation, which can include tasks like reading, writing, and modifying files. (File System Operations)
-import pygame                   # Import pygame for playing sounds or music, providing a framework for writing video games, and handling multimedia content in Python. (Multimedia Content Playback)
-import glob                     # Import glob to search for files within a directory tree that match a specified pattern, useful for batch processing of files with similar extensions. (File Selection)
-import traceback                # Import traceback to print out error messages and stack traces when exceptions occur, helping in debugging and understanding the flow of program execution. (Error Handling)
-import time                     # Import time for controlling the delay between actions or measuring real-world time intervals, which can be used to manage the rate of token generation in Learning Mode. (Time Control)
-import pyttsx3                  # Import pyttsx3 to convert text to speech using SAPI5 voices installed on the computer, enabling textual information to be audibly spoken out loud. (Text-to-Speech)
-import re                       # Import re for creating regular expressions, which are powerful patterns used to match character combinations in strings for tasks like data validation and extraction. (Regular Expressions)
-import pandas as pd             # Import pandas to create DataFrames for visualization purposes, particularly useful for generating bar plots from token data. (Data Analysis and Visualization)
-import random                   # Import random to shuffle elements in a list or generate pseudo-random numbers, which can be used to randomize the order of model execution. (Randomization)
-from collections import Counter # Import collections.Counter to count occurrences of each element in a sequence and group similar items together. (Item Counting and Grouping)
-import winsound                 # Import winsound to create and play audio signals, such as beeps, on the computer's sound card. (Sound Synthesis)
-import fitz                     # Import fitz to extract text from PDF files using the Mozilla's poppler library. (PDF Text Extraction)
-import subprocess               # Import subprocess to execute system commands and programs from within Python, providing a way to interact with the operating system's command line. (System Command Execution)
-import pyperclip                # Import pyperclip for copying text to the clipboard, which can be useful for transferring model responses or any text data between applications. (Clipboard Management)
-import argparse                 # Import argparse to handle command-line arguments and parameters, allowing users to pass specific options to the script when it runs. (Command-Line Argument Parsing)
-import queue                    # Import queue for creating a thread-safe, deque-based queue that can be used for inter-thread communication, useful in multi-threaded applications. (Inter-Thread Communication)
-import sys                      # Import sys to access system-specific parameters like version, path, and the arguments passed to the script (argv). This is also used to print to the standard output or error. (System Information and Argument Access)
-import sounddevice as sd        # Import sounddevice as sd for real-time audio streaming in Python, which can be used to record or play audio data. (Real-Time Audio Streaming)
-from vosk import Model          # Import vosk's Model to load a speech recognition model for offline speech recognition tasks. This model converts spoken words into text without the need for an internet connection. (Offline Speech Recognition)
-from vosk import KaldiRecognizer # Import vosk's KaldiRecognizer to use the Vosk Speech Recognition Engine, which provides a simple API for converting audio data to text. (Speech Recognition)
+import gradio as gr             # Import Gradio to create a user-friendly web interface for interacting with AI models. This library simplifies the process of deploying models with a front-end that can accept inputs and display outputs (Front-End Interface).
+from llama_cpp import Llama     # Import Llama_cpp to load Large Language Model (LLM) files in UGGF format. This is the back-end component responsible for handling the model's logic and processing (Back-End Model Loading).
+import webbrowser               # Import webbrowser to programmatically open a web page or file in the default system browser (Web Browsing).
+import os                       # Import os for operations related to the operating system, such as file and directory manipulation, which can include tasks like reading, writing, and modifying files (File System Operations).
+import pygame                   # Import pygame for playing sounds or music, providing a framework for handling multimedia content in Python (Multimedia Content Playback).
+import glob                     # Import glob to search for files within a directory tree that match a specified pattern (File Selection).
+import traceback                # Import traceback to print out error messages and stack traces when exceptions occur, helping in debugging and understanding the flow of program execution (Error Handling).
+import time                     # Import time for controlling the delay between actions or measuring real-world time intervals, which can be used to manage the rate of token generation in Learning Mode (Time Control).
+import pyttsx3                  # Import pyttsx3 to convert text to speech using SAPI5 voices installed on the computer, enabling textual information to be audibly spoken out loud (Text-to-Speech).
+import re                       # Import re for creating regular expressions, which are powerful patterns used to match character combinations in strings for tasks like data validation and extraction (Regular Expressions).
+import pandas as pd             # Import pandas to create DataFrames for visualization purposes, particularly useful for generating bar plots from token data (Data Analysis and Visualization).
+import random                   # Import random to shuffle elements in a list or generate pseudo-random numbers, which can be used to randomize the order of model execution (Randomization).
+from collections import Counter # Import collections.Counter to count occurrences of each element in a sequence and group similar items together (Item Counting and Grouping).
+import winsound                 # Import winsound to create and play audio signals, such as beeps, on the computer's sound card (Sound Synthesis).
+import fitz                     # Import fitz (PyMuPDF) to extract text from PDF files using the Mozilla's poppler library (PDF Text Extraction).
+import subprocess               # Import subprocess to execute system commands and programs from within Python, providing a way to interact with the operating system's command line (System Command Execution).
+import pyperclip                # Import pyperclip for copying text to the clipboard, which can be useful for transferring model responses or any text data between applications (Clipboard Management).
+import argparse                 # Import argparse to handle command-line arguments and parameters, allowing users to pass specific options to the script when it runs (Command-Line Argument Parsing).
+import queue                    # Import queue for creating a thread-safe, deque-based queue that can be used for inter-thread communication, useful in multi-threaded applications (Inter-Thread Communication).
+import sys                      # Import sys to access system-specific parameters like version, path, and the arguments passed to the script (argv). This is also used to print to the standard output or error (System Information and Argument Access).
+import sounddevice as sd        # Import sounddevice for real-time audio streaming in Python, which can be used to record or play audio data (Real-Time Audio Streaming).
+from vosk import Model          # Import vosk's Model to load a speech recognition model for offline speech recognition tasks. This model converts spoken words into text without the need for an internet connection (Offline Speech Recognition).
+from vosk import KaldiRecognizer # Import vosk's KaldiRecognizer to use the Vosk Speech Recognition Engine, which provides a simple API for converting audio data to text (Speech Recognition).
 import json                     # Import json for parsing JSON files or encoding and decoding JSON data, which is a lightweight data interchange format. (JSON Operations)
 import requests                 # Import json allows for sending HTTP requests to remote servers and receiving HTTP responses in Python. It is used to perform tasks like fetching web pages, making API calls, and downloading files from the internet.
 from pathlib import Path        # Import Path class provides a cross-platform way of working with file system paths in Python. It can be used for creating, opening, and manipulating files or directories on the local file system.
@@ -118,7 +125,7 @@ DIRETORIO_LOCAL = os.getcwd()                   # Define a constant to store the
 pygame.init()                                   # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
 som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response/stop notification, sourced from the specified local file path.
 som.set_volume(0.2)                             # Set the volume of the notification sound to 20% of the maximum volume.
-click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a sound object for a click event, sourced from another local file path, intended to be used for interactive elements like buttons.
+click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a sound object for a click event (click sound), sourced from another local file path, intended to be used for interactive elements like buttons.
 click.set_volume(0.4)                           # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
 print()
 
@@ -168,16 +175,17 @@ if 'portuguese' in voices[0].name.lower():
 
 # Defines a dictionary `language` containing language-specific configurations for an interactive AI interface.
 # The dictionary includes various settings and options for the user interface, including titles, subtitles, warnings, instructions, prompts, buttons, and other parameters that control the behavior of the AI model's interaction with the user. 
-# It also includes information on how to use the models, manage their state, and customize their performance through various parameters like temperature, token limits, and penalties for repetition or frequency. 
+# It also includes information on how to use the models, manage their state, and customize their performance through various hyperparameters like temperature, top_p, top_k, and penalties to avoid token repetition.
 # The code is designed to be multilingual, with English and Portuguese configurations provided. 
 # This setup allows users to interact with the AI in a structured and predictable manner, with options to control the flow of conversation and the output generated by the AI models.
 
+# LLAMA-CPP-PYTHON VERSION
 llama_cpp_python_version = '0.2.90' # This variable must be updated when llama_cpp_python module is upadated
 
 language = {
             # PORTUGUESE
             'pt': {'title': 'Samantha Interface Assistant',
-                'subtitle_1': 'Ambiente de Interface Experimental Desenvolvido para Democratizar o Uso de Modelos de Inteligência Artificial de Código Aberto (Versão 0.1.0)',
+                'subtitle_1': 'Ambiente de Interface Experimental Desenvolvido para Democratizar o Uso de Modelos de Inteligência Artificial de Código Aberto (<a href="https://github.com/controlecidadao/samantha_ia">Versão 0.1.0</a>)',
                 'warning': 'ATENÇÃO',
                 'subtitle_2': 'O texto gerado pelos modelos reflete os vieses, erros e impropriedades das bases de dados usadas nos treinamentos (pré-treinamento, ajuste fino e alinhamento). Use com responsabilidade e apenas para insights!',
                 'subtitle_3': f'Projeto de <a href="https://www.unesco.org/en/open-science">Ciência Aberta</a> compartilhado no <a href="https://github.com/controlecidadao/samantha_ia/tree/main">Github</a> sob <a href="https://opensource.org/license/mit">Licença MIT</a> (Código Aberto). Desenvolvido com <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> e <a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python</a> (versão {llama_cpp_python_version}) para uso com CPU',
@@ -189,8 +197,8 @@ language = {
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
                 'initial_system_prompt': '',
-                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Caso contrário, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
-                'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). "---" ignora resposta anterior.',
+                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Quando não selecionado, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
+                'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). Use "---" para ignorar a resposta anterior.',
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
@@ -224,7 +232,7 @@ language = {
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
                 'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
-                'stop_condition_info': "Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia) e que não contenha mensagem de erro'.",
+                'stop_condition_info': "Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia) e que não contenha mensagem de erro.",
                 
                 'cumulative_response_info': 'Cumulative response (checkbox). Concatena a resposta atual do modelo com as respostas anteriores.',
                 'random_hyperparameters_info': 'Random hyperparameters adjustments (checkbox). Ajusta hyperparâmetros com valores aleatórios.',
@@ -238,7 +246,7 @@ language = {
                 'btn_user_prompt': 'User Prompt TXT',
                 'btn_copy_model_url': 'Copiar HF Links',
                 'btn_load_models_urls_info': 'Carregar URLs TXT',
-                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE, edite o código, selecione, copie e execute com o botão Executar Código.',
+                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE ao código, edite, selecione, copie e execute com o botão Executar Código.',
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código Python',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
@@ -255,7 +263,7 @@ language = {
 
             # ENGLISH
             'en': {'title': 'Samantha Interface Assistant',
-                'subtitle_1': 'Experimental Interface Environment Designed to Democratize the Use of Open Source Artificial Intelligence Models (Version 0.1.0)',
+                'subtitle_1': 'Experimental Interface Environment Designed to Democratize the Use of Open Source Artificial Intelligence Models (<a href="https://github.com/controlecidadao/samantha_ia">Version 0.1.0</a>)',
                 'warning': 'WARNING',
                 'subtitle_2': 'The text generated by the models reflects the biases, errors and improprieties of the databases used in training (pre-training, fine-tuning and alignment). Use them responsibly and for insights only!',
                 'subtitle_3': f'<a href="https://www.unesco.org/en/open-science">Open Science</a> project shared on <a href="https://github.com/waltervix/samantha_ia">Github</a> under <a href="https://opensource.org/license/mit"> MIT License</a> (Open Source). Powered by <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and <a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python</a> (version {llama_cpp_python_version}) for use with CPU',
@@ -267,8 +275,8 @@ language = {
                 'btn6': 'Replace Response',
                 'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
                 'initial_system_prompt': '',
-                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. Otherwise, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
-                'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). "---" ignore previous response.',
+                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. When unselected, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
+                'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). Use "---" to ignore previous response.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
@@ -316,7 +324,7 @@ language = {
                 'btn_user_prompt': 'User Prompt TXT',
                 'btn_copy_model_url': 'Copy HF Links',
                 'btn_load_models_urls_info': 'Load URLs TXT',
-                'assistant_raw_output_info': 'Response history. Add #IDE, edit the code, select, copy and run with Run Code button.',
+                'assistant_raw_output_info': 'Response history. Add #IDE to code, select, copy and run with Run Code button.',
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Python Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
@@ -332,11 +340,11 @@ language = {
                 }
             }
 
-# prompt the user to select their preferred language for the interface interaction, with a default option for Portuguese or English
-# read_aloud_fn desabled in the code
+# Prompt the user to select their preferred language for the interface interaction, with a default option for Portuguese or English
+# read_aloud_fn desabled in the code (to save time)
 
-if 'portuguese' in voices[0].name.lower(): # Check if the name of the voice contains the substring 'portuguese'. If it does, proceed to offer language selection.
-    print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language by pressing ENTER for Portuguese or any other key plus ENTER for English.
+if 'portuguese' in voices[0].name.lower(): # Check if the name of the voice contains the substring 'portuguese'. If it does, proceed to offer language selection in Portuguese.
+    print('Selecione o idioma da interface. Aperte ENTER para Português ou qualquer outra tecla + ENTER para Inglês:')  # Inform the user to select the interface language.
     #read_aloud_fn('Selecione o idioma da interface. Aperte ENTER para Português, ou qualquer outra tecla + ENTER para Inglês.')  # Use a function `read_aloud_fn` to verbally communicate the language selection prompt to the user.
     try:                                    # Try block to catch exceptions that may occur when reading input (e.g., EOFError)
         temp = input('')                    # Prompt the user for input without specifying a default prompt text, but with the ability to handle an empty string.
@@ -357,9 +365,9 @@ print()
 
 
 
-# ========================
-# 5) GET LOCAL MDDELS LIST
-# ========================
+# =======================
+# 5) GET LOCAL MODEL LIST
+# =======================
 
 def get_downloads_path():
     """
@@ -408,8 +416,8 @@ last_model = ''                 # Stores last loaded model name
 tokens_score = ''               # string with all top-k token-logits pair in each generation cicle. Ex: ' Hello'   (12.16)
 system_prompt = language["initial_system_prompt"] # (FIELD) First system message (default system prompt)
 previous_answer = language['first_assistant_previous_response'] # (FIELD) Stores the previous response generated by the model and used in the current response cicle. ATENTION! This phrase must be changed in 2 place in this code!
-prompt = language['user_prompt_value']     # (FIELD) Default user prompt
-ultima_resposta = language['first_assistant_previous_response']     # Stores current response to be used in the next conversation cicle, if desired
+prompt = language['user_prompt_value'] # (FIELD) Default user prompt
+ultima_resposta = language['first_assistant_previous_response'] # Stores current response to be used in the next conversation cicle, if desired
 resposta = ''                   # Stores cumulative text showed on output field (for each chat session)
 inputs = []                     # Stores Gradio interface fields in a predefined sequence
 loop_models = 1                 # Initial models loops number
@@ -442,13 +450,13 @@ original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Stores model's token vocabulary
 run_code = False                # Controls if the generated code will be executed or not
-counter_run = 1
+# counter_run = 1               #
 stop_condition = ''             # 
 cumulative_response = False     # Stores all responses of the chat session cumulatively in previous response
 browser_file = 'msedge.exe'     # Edge has high quality Text-to-Speech engine. But you can use 'chrome.exe'
 browser_path = ''               # Stores browser path to open Samantha's pop-up window
-hiperparametros = None
-random_hyper = False
+hiperparametros = None          # Hyperparameters list with fixed range for random selection
+random_hyper = False            # Stores the state of the random hyperparameters checkbox
 
 
 # ===================================
@@ -509,7 +517,10 @@ else: # If 'portuguese' SAPI5 voice is not available
 # 8) READ FILES WITH PROMPT EXAMPLES
 # ==================================
 
-# The provided code snippet is a Python script that reads two text files containing templates for user and system prompts, respectively. The prompts are separated by a special delimiter (`$-$-$`) in the files. The script then processes these templates to create a list of formatted strings for each type of prompt. Below is an annotated version of the code with comments for help maintenance:
+# The provided code snippet is a Python script that reads two text files containing templates for user and system prompts, respectively. 
+# The prompts are separated by a special delimiter (`$-$-$`) in the files. 
+# The script then processes these templates to create a list of formatted strings for each type of prompt. 
+# Below is an annotated version of the code with comments for help maintenance:
 
 with open('user_prompts.txt', encoding='utf-8', errors='ignore') as f:      # Open the file containing user prompts.
     temp = f.read()                                                         # Read the entire content of the file.
@@ -564,7 +575,8 @@ def text_generator(
         top_k, 
         presence_penalty, 
         frequency_penalty, 
-        repeat_penalty,  
+        repeat_penalty,
+
         prompt_template_p,
         show_vocabulary_p,
         vocabulary_p,
@@ -612,7 +624,7 @@ def text_generator(
     global cumulative_response
     global random_hyper
     
-    global counter_run
+    # global counter_run
 
     global hiperparametros
 
@@ -620,7 +632,7 @@ def text_generator(
     print('\nStarting "text_generator" function...\n')
     
     # Global variables bindings was necessary to avoid forbiden use of the same function parameters names
-    fast_mode = fast_mode_p         # '_p' is from text_generator function 'p'arameter
+    fast_mode = fast_mode_p                  # '_p' is from text_generator function 'p'arameter
     delay_next_token = delay_next_token_p
     system_prompt = system_prompt_p
     prompt = prompt_p
@@ -639,7 +651,6 @@ def text_generator(
     stop_condition = stop_condition_p
     cumulative_response = cumulative_response_p
     random_hyper = random_hyper_p
-
 
     hiperparametros = {
         'temperature': [temperature, 0.1, 1.0],  # [valor_inicial, valor_minimo, valor_maximo]
@@ -660,11 +671,7 @@ def text_generator(
     if stop_generation == '':       # To avoid error, set the variable with an impossible character sequence
         stop_generation = "['$$$']"
 
-
-
     ultima_resposta = '' # Always reset this variable in the beginning of every new chat cycle
-
-
 
     # Set the previous response sequence (in test)
     if infinite_loop == True:
@@ -721,7 +728,7 @@ def text_generator(
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
     prompt_split = []
     count_prompt = 0
-    counter_run = 1
+    # counter_run = 1
 
 
     # =================
@@ -863,6 +870,7 @@ def text_generator(
                      
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
 
+            # Takes a long time in some models
             if show_vocabulary == True and delay_next_token != 'OFF':
                 temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
                 vocabulary = ''
@@ -970,7 +978,7 @@ def text_generator(
                 if single_answer == True:                   # Single_answer activated
                     
                     if n_model <= len(prompt_split):        # To avoid 'IndexError: list index out of range'
-                        prompt_text = prompt_split[n_model] # IndexError: list indes out of range
+                        prompt_text = prompt_split[n_model] # IndexError: list index out of range
 
                 count_prompt += 1
                     
@@ -1002,7 +1010,7 @@ def text_generator(
                     
                     elif system_prompt == '' and previous_answer != '':
                         messages = [
-                                    {'role': 'user', 'content': ''}, # IN TEST (may degradate model response)
+                                    {'role': 'user', 'content': ''},                        # IN TEST (may degradate model response)
                                     {'role': 'assistant', 'content': previous_answer},
                                     {'role': 'user', 'content': prompt_text},
                                     ]
@@ -1010,7 +1018,7 @@ def text_generator(
                     elif system_prompt != '' and previous_answer != '':
                         messages = [                                                        # Responses to prompt_text "Olá!"
                                     {'role': 'system', 'content': system_prompt},           # Requires text to avoid short responses like this: "Boa tarde! (If it's the afternoon) / Boa noite! (If it's evening or night).""
-                                    {'role': 'user', 'content': ''}, # IN TEST (may degradate model response)
+                                    {'role': 'user', 'content': ''},                        # IN TEST (may degradate model response)
                                     {'role': 'assistant', 'content': previous_answer},      # Requires text to avoid short responses like this: "Boa tarde! Como posso ajudá-lo hoje?"
                                     {'role': 'user', 'content': prompt_text},               # Always present
                                     ]
@@ -1022,11 +1030,11 @@ def text_generator(
                                     ]
                             
                     # Feedback loop activated. Insert 'previous_answer' right before 'user', independently the user position.
-                    if infinite_loop == True and previous_answer == '': # Insert 'previous_answer' only if it was not inserted yet.
-                        for n, k in enumerate(messages):                # Loop over messages
+                    if infinite_loop == True and previous_answer == '':                    # Insert 'previous_answer' only if it was not inserted yet.
+                        for n, k in enumerate(messages):                                   # Loop over messages
                             temp = next(iter(k))
                             if k[temp] == 'user':
-                                messages.insert(n, {'role': 'user', 'content': ''}) # IN TEST
+                                messages.insert(n, {'role': 'user', 'content': ''})        # IN TEST
                                 messages.insert(n + 1, {'role': 'assistant', 'content': previous_answer}) # IN TEST
                                 break
 
@@ -1046,7 +1054,7 @@ def text_generator(
                     total_time_start = time.time()
                     unlikely_tokens = ''
 
-
+                    # For random hyperparameters
                     if random_hyper:
                         temp = ajustar_hiperparametros(hiperparametros)
                         temperature = temp['temperature']
@@ -1058,6 +1066,7 @@ def text_generator(
                         frequency_penalty = temp['frequency_penalty']
                         repeat_penalty = temp['repeat_penalty']
 
+                        # String to be added to the model response
                         hyper = f'RANDOM: temperature ({temperature}), tfs_z ({tfs_z}), min_p ({min_p}), top_p ({top_p}), typical_p ({typical_p}), presence_penalty ({presence_penalty}), frequency_penalty ({frequency_penalty}), repeat_penalty ({repeat_penalty})\n\n'
 
                     else:
@@ -1175,7 +1184,7 @@ def text_generator(
                             continue
                         
                         try:
-                            print(f'{nu})', round(time.time() - start, 2), repr(current_token))
+                            print(f'{nu})', round(time.time() - start, 2), repr(current_token)) # Print token on terminal
                         except:
                             continue
                         
@@ -1200,16 +1209,18 @@ def text_generator(
                             scores = scores[0]
                             zipped = zip(([llm.detokenize([x])] for x in range(llm._n_vocab)), scores) # [('a', 1), ('b', 2), ('c', 3)]
                             lista = list(zipped)
-                            token_score = []
                             
+                            token_score = []
                             for n, x in enumerate(lista):
                                 try:
                                     token_score.append([f'{n})    ' + "'" + x[0][0].decode() + "'    ", x[1], x[0][0].decode()])
                                 except:
                                     pass
+                            
+                            # Sort token list by descending scores
                             token_score_sorted = sorted(token_score, key=lambda x: x[1], reverse=True) # ["22867)    'lá'    ", 29.99230194091797, 'lá']
                             
-                            if top_k > 100:
+                            if top_k > 100: # Limits number of bars displayed to avoid error
                                 top_k_bar = 100
                             else:
                                 top_k_bar = top_k
@@ -1263,12 +1274,12 @@ def text_generator(
 
                         # ===================
 
-                        # Try to extract token from dict object generated by the model. Em alguns loops o token não está presente. Por isso do try/except
+                        # Try to extract token from dict object generated by the model. In some loops, token is not not present. Thats why 'try/except' clause
                         try:
                             resposta += current_token
-                            
                             ultima_resposta += current_token
-                            # Tokens com pontuação mais alta                                
+
+                            # Tokens with highest scores                                
                             # text = ''.join([repr(x[0]) + x[1] + '\n' for x in token_score_sorted])
                             stop = round((time.time() - start), 1)
                             tt = round(time.time() - total_time_start, 1)
@@ -1276,16 +1287,17 @@ def text_generator(
 
                             # <<<<<<<<<<<<<<<<
 
-                            # Retorna resposta (já com o último token) e número parcial de tokens
+                            # Returns full response (with last token) and parcial number of tokens
                             yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score}\n{unlikely_tokens}\n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)""" # nu - 1: first index has no token
                                                         
                             # <<<<<<<<<<<<<<<<
 
 
-                            # Sai do loop quando o usuário aperta o botão Stop
+                            # Exit the loop when user press Stop button
                             if para_tudo == True:
                                 break
                             
+                            # Next Token button control
                             if delay_next_token != 'OFF':
                                 if delay_next_token == 'NEXT TOKEN':
                                     while True:
@@ -1299,14 +1311,15 @@ def text_generator(
                         except:
                             pass
                         
-                        try: # Atualiza token anterior
+                        try: # Update previous token in the list
                             if len(previous_token) == 10:
                                 previous_token.pop(0)
                             previous_token.append(current_token)
                         except:
                             pass
                         
-                        start = time.time()         # Início do tempo do próximo token. Atualiza variável
+                        start = time.time()         # Start time of the next token. Update variable
+
 
                     # FAST MODE CONTINUES FROM HERE (COMMON PART FOR ALL MODES)
                     if fast_mode == True or (fast_mode == False and delay_next_token == 'OFF'): # Display response after Fast Generation Mode has finished
@@ -1314,17 +1327,20 @@ def text_generator(
                         resposta = resposta + f'\n---------- ({nu - 1} tokens, {tt}s)\n' # number of tokens from context window: llm.n_tokens len(llm.n_tokens) - len(llm._input_ids)
                         yield resposta
                     else:                           # Returns text in Learning Mode
+
+                        # <<<<<<<<<<<<<<<<
+
                         yield f"""Previous tokens: '{repr("  ".join(previous_token[:10]))}'\n{candidates} {tokens_score}\n{unlikely_tokens}\n LLM load time:   {load_stop} min. {resposta} ({input_encoded} + {nu - 1}, {stop}s)\n---------- ({tt}s)\n"""
+
+                        # <<<<<<<<<<<<<<<<
                     
                     som.play()                      # Play notification sound to warn the end of response generation
                     # while pygame.mixer.get_busy():  # Wait until notification sound ends to play (comment to make it assyncronous)
                     #     pass
 
-                    
-
                     if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                        pyperclip.copy('')          # Copy '' to clipboard
-                        python_return = open_idle()
+                        pyperclip.copy('')          # Copy '' to clipboard (make it empty)
+                        python_return = open_idle() # Returns None or 'STOP_SAMANTHA'
                         
                         if stop_condition == True:
                             if python_return == 'STOP_SAMANTHA':
@@ -1338,7 +1354,7 @@ def text_generator(
                     
                     cleaned = re.sub(r'\[.*?\]', '', ultima_resposta)       # Text cleaning for audio reproduction. Remove characters inside [] and <>
                     cleaned = re.sub(r'<.*?>', '', cleaned)
-                    cleaned = cleaned.replace('**', '').replace('#', '')    # Do not speak bolded text in Markdown
+                    cleaned = cleaned.replace('**', '').replace('#', '')    # Do not speak aloud this characters in Markdown text
                     
                     try:                                                    # Delete previous audio file for allow the creation of a new one
                         os.remove('resposta.mp3')
@@ -1374,8 +1390,7 @@ def text_generator(
                 
                 # =============================
 
-                # cumulative_response = True
-
+                # Cumulative response checkbox                
                 if infinite_loop == True and cumulative_response == True:                                      # Update previous response cumulatively. The existance of text in previous response affects the next text generation time
                     previous_answer += f'\n\n{ultima_resposta}'
                     messages[1] = {'role': 'assistant', 'content': previous_answer}
@@ -1388,6 +1403,8 @@ def text_generator(
                 #     previous_answer = ultima_resposta
                 #     messages[1] = {'role': 'assistant', 'content': previous_answer}
                 
+                
+                # UPDATE VARIABLES
                 para_tudo = False                                           # Reset variable
                 
                 full_text += ultima_resposta + '\n\n'                       # Add last response to full_text variable
@@ -1401,18 +1418,9 @@ def text_generator(
                     f.write(partial_text)
 
                 # Leaves function if reponse contains this stop words
-                # if 'STOP_SAMANTHA' in ultima_resposta:
-                #     return
-
-
-                # if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
-                #         pyperclip.copy('')
-                #         dummy_var = open_idle()
-                        
-                #         if stop_condition == True:
-                #             if dummy_var == 'STOP_SAMANTHA':
-                #                 return
-                    
+                if 'STOP_SAMANTHA' in ultima_resposta:
+                    return
+   
                 
                 # ======================
                 # CRITICAL LOOPS CONTROL
@@ -2514,6 +2522,10 @@ def create_html(content):
     html_content = html_content.replace('\n', r'<br>')
     html_content = html_content.replace(r'><br><', r'><')
 
+    # html_content = html_content.replace(r'</td><br>', r'</td>')            
+    # html_content = re.sub(r'<br>(?:<br>)+', r'<br>', html_content)           # 2 or more <br>
+    # html_content = re.sub(r'<br>(?:<br>){2,}', r'<br>', html_content)      # 3 or more <br>
+
     html = f"""
     <!DOCTYPE html>
     <html lang="pt-BR">
@@ -2590,6 +2602,9 @@ def create_html(content):
     </body>
     </html>
     """
+
+    # html = re.sub(r'<br>(?:<br>){2,}', r'<br>', html)      # 3 or more <br>
+
     return html
 
 
@@ -2771,12 +2786,18 @@ def open_idle():
             html_content = create_html(output)
 
             # Criar arquivo temporário
-            with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+            # with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+            #     f.write(html_content)
+            #     temp_file_name = f.name
+
+            with open('Samantha Interface Assistant.html', 'w', encoding='utf-8') as f:
+                html_content = re.sub(r'(<table.*?</table>)', lambda m: m.group(1).replace('<br>', ''), html_content, flags=re.DOTALL | re.IGNORECASE)
                 f.write(html_content)
-                temp_file_name = f.name
+            open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
+
 
             # Abrir nova instância do Chrome
-            open_chrome_window(os.path.realpath(temp_file_name))
+            # open_chrome_window(os.path.realpath(temp_file_name))
 
             # ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + e.stderr
 
@@ -2827,16 +2848,21 @@ def open_idle():
         html_content = create_html(e.stderr)
 
         # Criar arquivo temporário
-        with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
-            f.write(html_content)
-            temp_file_name = f.name
+        # with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
+        #     f.write(html_content)
+        #     temp_file_name = f.name
 
         # Abrir nova instância do Chrome
-        open_chrome_window(os.path.realpath(temp_file_name))
+        # open_chrome_window(os.path.realpath(temp_file_name))
+
+        with open('Samantha Interface Assistant.html', 'w', encoding='utf-8') as f:
+            html_content = re.sub(r'(<table.*?</table>)', lambda m: m.group(1).replace('<br>', ''), html_content, flags=re.DOTALL | re.IGNORECASE)
+            f.write(html_content)
+        open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
 
         ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + e.stderr
 
-    counter_run += 1 # Not used
+    # counter_run += 1 # Not used
 
     # CRITICAL CODE FEEDBACK
     if run_code == True and len(output) > 0: # Add the result of the code execution to the variable 'ultima_resposta' when Run Code Automatically is selected
@@ -3187,6 +3213,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
                         <li><a href="https://www.jasondavies.com/wordcloud/">Word Cloud Online</a></li>
+                        <li><a href="https://pyviz.org/tools.html">PyViza</a></li>
                     
                     </ul>""")
                         
