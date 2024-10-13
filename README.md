@@ -897,6 +897,25 @@ This resource has application in the study of the reflections of the interaction
 <br><br>
 </details>
 
+<details>
+<summary>Feedback Python interpreter only (checkbox)</summary>
+
+---
+
+🐍 Feedback only the Python interpreter output as the next assistant's previous response. Do not include model's response.
+
+<br>
+
+This feature reduces the number of tokens to be inserted in the assistant's previous response in the next conversation cycle.
+
+Works only with _Feedback Loop_ activated.
+
+---
+
+<br><br>
+</details>
+
+
 
 <br><br>
 **Context Window:**
