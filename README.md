@@ -2028,7 +2028,7 @@ Click the button to select the PDF file.
 </details>
 
 <details>
-<summary>TXT system prompt (button)</summary>
+<summary>System prompt TXT (button)</summary>
 
 ---
 
@@ -2042,7 +2042,24 @@ Click the button to select the TXT file.
 </details>
 
 <details>
-<summary>TXT user prompt (button)</summary>
+<summary>Prev. response TXT (button)</summary>
+
+---
+
+Fills _Assistant Previous Response_ field with a prompt saved in a TXT file.
+
+Click the button to select the TXT file.
+
+---
+
+<br><br>
+</details>
+
+
+
+
+<details>
+<summary>User prompt TXT (button)</summary>
 
 ---
 
