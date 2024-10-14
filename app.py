@@ -205,7 +205,7 @@ language = {
                 'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador de prompts). 4) '---' (ignorar prompt). 5) Return 'STOP_SAMANTHA' (sair do loop). 6) Return '' (string vazia, não exibe pop-up HTML). É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Model selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
-                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' ignora URL.",
+                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' para ignorar a URL.",
                 'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
@@ -231,11 +231,13 @@ language = {
                 'repeat_penalty_info': 'repeat_penalty (ajuste deslizante). Penalidade a ser aplicada à sequências repetidas de tokens (não à sequência das próximas palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
                 'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
                 'model_vocabulary': 'model_vocabulary (caixa de texto). Lista de todos os pares índice/token usados pelo modelo, incluindo caracteres especiais (usados para separar as partes do diálogo).',
-                'run_code_info': 'Run code automatically (caixa de texto). Executa automaticamente o código Python gerado.',
-                'stop_condition_info': "Stop condition (checkbox). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia) e que não contenha mensagem de erro.",
+                'run_code_info': 'Run code automatically (caixa de seleção). Executa automaticamente o código Python gerado.',
+                'stop_condition_info': "Stop condition (caixa de seleção). Para Samantha se o interpretador Python imprimir (no terminal) um valor diferente de '' (string vazia) e que não contenha mensagem de erro.",
                 
-                'cumulative_response_info': 'Cumulative response (checkbox). Concatena a resposta atual do modelo com as respostas anteriores.',
-                'random_hyperparameters_info': 'Random hyperparameters adjustments (checkbox). Ajusta hyperparâmetros com valores aleatórios.',
+                'cumulative_response_info': 'Cumulative response (caixa de seleção). Concatena a resposta atual do modelo com as respostas anteriores.',
+                'random_hyperparameters_info': 'Random hyperparameters adjustments (caixa de seleção). Ajusta hyperparâmetros com valores aleatórios.',
+                'interpreter_return_info': 'Feedback Python interpreter only (caixa de seleção). Retroalimenta a resposta anterior do assistente apenas com a saída atual do interpretador Python.',
+                'hide_html_info': 'Hide HTML output (caixa de seleção). Não exibe a resposta do modelo em HTML.',
                 
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
@@ -244,6 +246,9 @@ language = {
                 'btn_load_full_pdf': 'PDF Completo',
                 'btn_system_prompt': 'System Prompt TXT',
                 'btn_user_prompt': 'User Prompt TXT',
+
+                'btn_load_models_previous_response_info': 'Prev. Response TXT',
+
                 'btn_copy_model_url': 'Copiar HF Links',
                 'btn_load_models_urls_info': 'Carregar URLs TXT',
                 'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE ao código, edite, selecione, copie e execute com o botão Executar Código.',
@@ -283,7 +288,7 @@ language = {
                 'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (prompt separators). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
                 'models_selection_info': 'Model selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
-                'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' ignore URL.",
+                'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' to ignore the URL.",
                 'single_answer_info': 'Single response (checkbox). Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
@@ -314,6 +319,8 @@ language = {
                 
                 'cumulative_response_info': "Cumulative response (checkbox). Concatenates the model's current response with previous responses.",
                 'random_hyperparameters_info': 'Random hyperparameters (checkbox). Sets hyperparameters to random values.',
+                'interpreter_return_info': 'Feedback Python interpreter only (checkbox). Feedback only Python interpreter return as Assistant Previous Response.',
+                'hide_html_info': 'Hide HTML output (checkbox). Do not display model response in HTML.',
 
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
                 'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
@@ -322,6 +329,9 @@ language = {
                 'btn_load_full_pdf': 'PDF Full',
                 'btn_system_prompt': 'System Prompt TXT',
                 'btn_user_prompt': 'User Prompt TXT',
+
+                'btn_load_models_previous_response_info': 'Prev. Response TXT',
+
                 'btn_copy_model_url': 'Copy HF Links',
                 'btn_load_models_urls_info': 'Load URLs TXT',
                 'assistant_raw_output_info': 'Response history. Add #IDE to code, select, copy and run with Run Code button.',
@@ -457,6 +467,9 @@ browser_file = 'msedge.exe'     # Edge has high quality Text-to-Speech engine. B
 browser_path = ''               # Stores browser path to open Samantha's pop-up window
 hiperparametros = None          # Hyperparameters list with fixed range for random selection
 random_hyper = False            # Stores the state of the random hyperparameters checkbox
+python_interpreter_output = ''  # Python interpreter output
+interpreter_return = ''         # Feedback to previous answer only the Python interpreter output (Checkbox)
+hide_html = False               # Hide output HTML page
 
 
 # ===================================
@@ -563,6 +576,8 @@ def text_generator(
         stop_condition_p,
         cumulative_response_p,
         random_hyper_p,
+        interpreter_return_p,
+        hide_html_p,
         
         n_ctx, 
         max_tokens,
@@ -623,6 +638,8 @@ def text_generator(
     global stop_condition
     global cumulative_response
     global random_hyper
+    global interpreter_return
+    global hide_html
     
     # global counter_run
 
@@ -651,6 +668,8 @@ def text_generator(
     stop_condition = stop_condition_p
     cumulative_response = cumulative_response_p
     random_hyper = random_hyper_p
+    interpreter_return = interpreter_return_p
+    hide_html = hide_html_p
 
     hiperparametros = {
         'temperature': [temperature, 0.1, 1.0],  # [valor_inicial, valor_minimo, valor_maximo]
@@ -859,7 +878,7 @@ def text_generator(
 
                 except Exception as e:
                     model = ''                                      # Restart variable just to force new download
-                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.\nTry another model.\n==========================================\n'
+                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.\nTo exit this error, load a local model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
                     break
@@ -1343,9 +1362,13 @@ def text_generator(
                         python_return = open_idle() # Returns None or 'STOP_SAMANTHA'
                         
                         if stop_condition == True:
-                            if python_return == 'STOP_SAMANTHA':
+                            if python_return == 'STOP_SAMANTHA': # Different from None
                                 print('Stop condition reached!')
                                 return
+                            
+                        if 'STOP_SAMANTHA' in python_interpreter_output:
+                            print('STOP_SAMANTHA in Python interpreter output')
+                            return
                 
 
                     # ==============
@@ -1399,6 +1422,25 @@ def text_generator(
                     previous_answer = ultima_resposta
                     messages[1] = {'role': 'assistant', 'content': previous_answer}
 
+                # ==============================
+
+                # Python interpreter output
+                if interpreter_return == True:
+                    previous_answer = python_interpreter_output # Makes previous_answer equals to python interpreter output only
+                    messages[1] = {'role': 'assistant', 'content': previous_answer}
+
+
+
+
+
+
+
+
+
+
+
+
+
                 # if infinite_loop == True:                                   # Update previous response. The existance of text in previous response affects the next text generation time
                 #     previous_answer = ultima_resposta
                 #     messages[1] = {'role': 'assistant', 'content': previous_answer}
@@ -1418,8 +1460,8 @@ def text_generator(
                     f.write(partial_text)
 
                 # Leaves function if reponse contains this stop words
-                if 'STOP_SAMANTHA' in ultima_resposta:
-                    return
+                # if 'STOP_SAMANTHA' in ultima_resposta:
+                #     return
    
                 
                 # ======================
@@ -1429,7 +1471,7 @@ def text_generator(
                 # num_control:   Stores number of responses generated by each mode
                 # num_respostas: Number of responses set by the user in the interface
 
-                # LEAVE PROMPT LIST LOOP
+                # EXIT PROMPT LIST LOOP
                 if single_answer == False:
                     if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
                         continue
@@ -1444,18 +1486,22 @@ def text_generator(
                             
                 elif single_answer == True:
                     if num_of_the_prompt == 0:
-                        break 
+                        break
 
-                # LEAVE PROMPT LIST LOOP
+                # =========================
+
+                # EXIT PROMPT LIST LOOP
                 if single_answer == False:
                     if num_control < num_respostas:                     # Break prompt list's for loop (go back to endless where loop)
                         break
                 
                 elif single_answer == True:
                     if num_of_the_prompt == 1:
-                        break         
+                        break
+
+                # =========================      
             
-            # LEAVE WHILE LOOP
+            # EXIT WHILE LOOP
             if single_answer == False:
                 if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
                     break
@@ -1464,6 +1510,8 @@ def text_generator(
                 if num_of_the_prompt == 0:
                 # if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
                     break
+
+            # =========================
                         
 
             # THIS CODE IS OK!
@@ -2701,6 +2749,8 @@ def open_idle():
 
     global ultima_resposta
     global counter_run
+    global python_interpreter_output
+    global hide_html
 
     click.play()
 
@@ -2774,6 +2824,8 @@ def open_idle():
         print()
         print('type(output):', type(output))
 
+        python_interpreter_output = output
+
         if output == None:
             output = '' # For printing something
         
@@ -2793,7 +2845,10 @@ def open_idle():
             with open('Samantha Interface Assistant.html', 'w', encoding='utf-8') as f:
                 html_content = re.sub(r'(<table.*?</table>)', lambda m: m.group(1).replace('<br>', ''), html_content, flags=re.DOTALL | re.IGNORECASE)
                 f.write(html_content)
-            open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
+            
+            # Hide HTML page
+            if hide_html == False:
+                open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
 
 
             # Abrir nova instância do Chrome
@@ -2858,7 +2913,10 @@ def open_idle():
         with open('Samantha Interface Assistant.html', 'w', encoding='utf-8') as f:
             html_content = re.sub(r'(<table.*?</table>)', lambda m: m.group(1).replace('<br>', ''), html_content, flags=re.DOTALL | re.IGNORECASE)
             f.write(html_content)
-        open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
+
+        # Hide HTML page
+        if hide_html == False:
+            open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
 
         ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + e.stderr
 
@@ -3120,7 +3178,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 
                 gr.Checkbox(value=stop_condition, label="Stop condition", info=language['stop_condition_info'], interactive=True), 
                 gr.Checkbox(value=cumulative_response, label="Cumulative response", info=language['cumulative_response_info'], interactive=True), 
-                gr.Checkbox(value=random_hyper, label="Random hyperparameters adjustments", info=language['random_hyperparameters_info'], interactive=True), 
+                gr.Checkbox(value=random_hyper, label="Random hyperparameters adjustments", info=language['random_hyperparameters_info'], interactive=True),
+                gr.Checkbox(value=interpreter_return, label="Feedback Python interpreter only", info=language['interpreter_return_info'], interactive=True), 
+                gr.Checkbox(value=hide_html, label="Hide HTML output", info=language['hide_html_info'], interactive=True), 
                                 
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
@@ -3157,16 +3217,16 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 btn_load_system_prompt = gr.Button(language['btn_system_prompt'])
                 btn_load_system_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[0], queue=False)
+                btn_load_previous_response_txt = gr.Button(language['btn_load_models_previous_response_info'])
+                btn_load_previous_response_txt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[2], queue=False)
                 btn_load_user_prompt = gr.Button(language['btn_user_prompt'])
                 btn_load_user_prompt.click(fn=load_prompt_txt, inputs=None, outputs=inputs[3], queue=False)
-                btn_load_urls_txt = gr.Button(language['btn_load_models_urls_info'])
-                btn_load_urls_txt.click(fn=load_models_urls, inputs=None, outputs=inputs[5], queue=False)
                 
             with gr.Row():
                 btn_download_model_url = gr.Button(language['btn_copy_model_url'])
                 btn_download_model_url.click(fn=download_model_urls, inputs=None, outputs=None, queue=True)
-                btn_yy = gr.Button('')
-                btn_yy.click(fn=None, inputs=None, outputs=None, queue=False)
+                btn_load_urls_txt = gr.Button(language['btn_load_models_urls_info'])
+                btn_load_urls_txt.click(fn=load_models_urls, inputs=None, outputs=inputs[5], queue=False)
                 btn_xx = gr.Button('')
                 btn_xx.click(fn=None, inputs=None, outputs=None, queue=True)
             
