@@ -916,6 +916,22 @@ Works only with _Feedback Loop_ activated.
 </details>
 
 
+<details>
+<summary>Hide HTML output (checkbox)</summary>
+
+---
+
+Hide HTML model responses, including Python interpreter error messages.
+
+<br>
+
+---
+
+<br><br>
+</details>
+
+
+
 
 <br><br>
 **Context Window:**
