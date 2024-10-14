@@ -12,7 +12,7 @@
 <br><br>
 
 ### ✨ Welcome to Samantha: An Interface Assistant for Open Source Artificial Intelligence
-TST
+
 <br>
 
 💻 Samantha is just a simple interface assistant for open source artificial intelligence models, developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) and [MIT License](https://opensource.org/licenses/MIT) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF models](https://huggingface.co/models?sort=trending&search=gguf) or when required by the execution of the code created by the models (g.e. to download datasets for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger ones. Her mission is to help explore the boundaries of (realy) open AI models.
