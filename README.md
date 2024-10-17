@@ -269,7 +269,7 @@ To use Samantha you will need:
 
   With the browser window opened, Samantha is ready to go.
 
-  Check out the [installation video](https://www.youtube.com/watch?v=Ln1ckXsXvcI)
+  Check out the [installation video](https://www.youtube.com/watch?v=Ln1ckXsXvcI).
 
 </details>
 
