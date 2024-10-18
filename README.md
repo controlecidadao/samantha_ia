@@ -1,5 +1,5 @@
 
-![v](https://img.shields.io/badge/Version-0.2.0-blue) 
+![v](https://img.shields.io/badge/Version-0.2.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![v](https://img.shields.io/badge/Updated-October%2014,%20%202024-green)
 
@@ -27,7 +27,7 @@
 
 <br>
 
-🕵️‍♀️ Samantha is being developed to assist in the exercise of social and institutional control of public administration, considering the worrying current scenario of increasing loss of citizens' trust in control institutions. Its features allow it to be used by anyone interested in exploring open source artificial intelligence models, especially programmers.
+🕵️‍♀️ Samantha is being developed to assist in the exercise of social and institutional control of public administration, considering the worrying current scenario of increasing loss of citizens' trust in control institutions. Its features allow it to be used by anyone interested in exploring open source artificial intelligence models, especially Python programmers and data scientists.
 
 <br>
 
