@@ -1,0 +1,95 @@
+---Modelo: https://huggingface.co/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5-Coder-7B-Instruct-Q4_K_M.gguf?download=true
+$$$
+
+[
+PERSONA:
+Você é uma IA especializada em Análise de Dados Exploratória (EDA) com a linguagem de programação Python.
+Sua tarefa é analisar os arquivos fornecidos e seguir as instruções abaixo, gerando o código correspondente.
+]
+$$$
+
+
+---INSTRUÇÕES:
+ARQUIVO:
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/7312645c-772b-413e-9227-9d09f167c492/download/municipios-despesas-empenhos-1-2020.zip".
+
+EXIBINDO AS 5 PRIMEIRAS LINHAS DO PRIMEIRO ARQUIVO
+Abra diretamente a URL do primeito arquivo usando apenas a biblioteca Pandas.
+Use ';' como separador de colunas.
+Use codificação para o idioma Português (latin1).
+Importe todas as colunas usando o tipo 'str'.
+Configure o Pandas para exibir todas as colunas e todas as linhas.
+Gere um dataframe com as 5 primeiras linhas do arquivo.
+Imprima o dataframe usando o formato de tabela HTML.
+Inclua um texto explicativo antes da tabela: "5 primeiras linhas dos empenhos dos municípios capixabas (período 2020 a 2024), agrupados pelo código do fornecedor, enviados ao Tribunal de Contas do Estado do Espírito Santo (TCE-ES). Os dados disponibilizados são declaratórios (fornecidos pelos municípios com eventuais erros e imprecisões), tendo como fonte as remessas recebidas e homologadas por meio do sistema CidadES - Prestação de Contas Mensal, conforme Anexo IV da IN 68/2020."
+Inclua um link para a fonte dos dados antes da tabela: "https://dados.es.gov.br/dataset/tcees-empenho". Este link deve abrir em uma nova aba do navegador.
+$$$
+
+
+---INSTRUÇÕES:
+CRIANDO UM BANCO DE DADOS SQLITE
+
+ARQUIVOS:
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/7312645c-772b-413e-9227-9d09f167c492/download/municipios-despesas-empenhos-1-2020.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/380565d1-31da-4255-95cc-19cbe55495c5/download/municipios-despesas-empenhos-2-2020.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/8631638f-8779-46b5-b9b9-c5413cdf4307/download/municipios-despesas-empenhos-3-2020.zip",
+
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/84cbdbc0-09ee-4e70-a708-1c3e542820e0/download/municipios-despesas-empenhos-1-2021.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/5738d450-df88-42bc-8a0e-af5e7b62eb8d/download/municipios-despesas-empenhos-2-2021.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/1ac98c9f-d119-497e-a5f0-954e05173644/download/municipios-despesas-empenhos-3-2021.zip",
+
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/66f0fb9d-6ff7-447e-a1ac-9d4b247b0d7c/download/municipios-despesas-empenhos-1-2022.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/f33cb2ec-b704-4232-b489-45801b7e3985/download/municipios-despesas-empenhos-2-2022.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/55de3913-ab09-40a2-82a6-b51f1a5e88e0/download/municipios-despesas-empenhos-3-2022.zip",
+
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/c954fd75-9786-4efd-9b08-072179691476/download/municipios-despesas-empenhos-1-2023.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/e60dc4d2-5a01-4f8c-955f-707cab0a72c9/download/municipios-despesas-empenhos-2-2023.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/cea40353-d6e7-45e2-b0b8-a119127edcdf/download/municipios-despesas-empenhos-3-2023.zip",
+
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/5e4feeb8-a402-459d-a22c-10bcebd3e138/download/municipios-despesas-empenhos-1-2024.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/f1438c2a-863f-4585-bf15-bad0ebab9bd4/download/municipios-despesas-empenhos-2-2024.zip",
+"https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/34107d2b-72f2-442f-8540-14f5d5191863/download/municipios-despesas-empenhos-3-2024.zip".
+
+Crie um banco de dados Sqlite vazio chamado "despesas_municipais.db".
+Salve o banco de dados em "E:\".
+Caso o banco de dados já exista, delete o banco de dados anterior e crie um novo.
+Abra diretamente a URL do primeiro arquivo usando apenas a biblioteca Pandas.
+Use ';' como separador de colunas.
+Use codificação para o idioma Português (latin1).
+Importe todas as colunas como 'str'.
+Substitua ',' por '.' na coluna "Empenhada" e a converta para 'float'.
+Substitua ',' por '.' na coluna "Liquidada" e a converta para 'float'.
+Substitua ',' por '.' na coluna "Paga" e a converta para 'float'.
+Gere uma tabela chamada "despesas" no banco de dados "E:\despesas_municipais.db".
+Realize um loop sobre as URLs dos demais arquivos e inclua seus dados na tabela.
+Imprima informações sobre a estrutura da tabela do banco de dados. Insira um texto explicativo sobre cada item exibido.
+$$$
+
+
+---INSTRUÇÕES:
+Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "E:\despesas_municipais.db".
+A consulta deve retornar os 1200 maiores valores agregados para a coluna Empenhada, agrupados pelos valores da coluna CodigoCredorFornecedor.
+A primeira coluna deve  conter o número da linha.
+A segunda coluna deve conter o CodigoCredorFornecedor. 
+A terceira coluna deve conter o último valor da coluna NomeCredorFornecedor que corresponde ao valor agrupador da coluna CodigoCredorFornecedor.
+A quarta coluna deve conter o somatório dos valores da coluna Empenhada para o valor da coluna CodigoCredorForneceder. Use separador de milhar nesta coluna e exiba todos os números.
+Exclua as linhas do dataframe nas quais as colunas "Empenhada", "NomeCredorFornecedor" e "CodigoCredorFornecedor" possuam valores nulos.
+Exiba apenas as 1000 primeiras linhas sob a forma de tabela HTML.
+Inclua um texto explicativo antes da tabela: "1000 maiores empenhos dos municípios capixabas (período 2020 a 2024), agrupados pelo código do fornecedor, enviados ao Tribunal de Contas do Estado do Espírito Santo (TCE-ES). Os dados disponibilizados são declaratórios  (fornecidos pelos municípios com eventuais erros e imprecisões), tendo como fonte as remessas recebidas e homologadas por meio do sistema CidadES - Prestação de Contas Mensal, conforme Anexo IV da IN 68/2020."
+Inclua um link para a fonte dos dados antes da tabela: "https://dados.es.gov.br/dataset/tcees-empenho". Este link deve abrir em uma nova aba do navegador.
+$$$
+
+
+INSTRUÇÕES:
+Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "E:\despesas_municipais.db".
+A consulta deve retornar os 1200 maiores valores agregados para a coluna Empenhada, agrupados pelos valores da coluna CodigoUnidadeGestora.
+A primeira coluna deve  conter o número da linha.
+A segunda coluna deve conter o CodigoUnidadeGestora. 
+A terceira coluna deve conter o último valor da coluna UnidadeGestora que corresponde ao valor agrupador da coluna CodigoUnidadeGestora.
+A quarta coluna deve conter o somatório dos valores da coluna Empenhada para o valor da coluna CodigoUnidadeGestora. Use separador de milhar nesta coluna e exiba todos os números.
+Exclua as linhas do dataframe nas quais as colunas "Empenhada", "UnidadeGestora" e "CodigoUnidadeGestora" possuam valores nulos.
+Exiba apenas as 1000 primeiras linhas sob a forma de tabela HTML.
+Inclua um texto explicativo antes da tabela: "Empenhos dos municípios capixabas (período 2020 a 2024), agrupados pelo código da Unidade Gestora, enviados ao Tribunal de Contas do Estado do Espírito Santo (TCE-ES). Os dados disponibilizados são declaratórios  (fornecidos pelos municípios com eventuais erros e imprecisões), tendo como fonte as remessas recebidas e homologadas por meio do sistema CidadES - Prestação de Contas Mensal, conforme Anexo IV da IN 68/2020."
+Inclua um link para a fonte dos dados antes da tabela: "https://dados.es.gov.br/dataset/tcees-empenho". Este link deve abrir em uma nova aba do navegador.
+Não esqueça de exibir os valores da coluna "Empenhada" com todos os dígitos (sem notação científica).
+$$$
