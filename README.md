@@ -2113,6 +2113,8 @@ Opens [DB Browser](https://sqlitebrowser.org/) if its directory is into Samantha
 
 To use DB Browser, [download](https://sqlitebrowser.org/dl/) the `.zip`(no installer) version and unpack it into Samantha's directory: `samantha-ia-main\DB Browser for SQLite`.
 
+After unpacking, all files, including `DB Browser for SQLite.exe.exe`, must be placed inside Samantha's directory, like this: `samantha_ia-main\DB Browser for SQLite\DB Browser for SQLite.exe`.
+
 ---
 
 <br><br>
