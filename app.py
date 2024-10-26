@@ -58,10 +58,10 @@
 # CTRL + K -> CTRL + J = EXPAND ALL ITEMS
 
 # ACTIVANTING JUPYRLAB VIRTUAL ENVIRONMENT WITH CONDA (TO CHECK MODULES INSTALLED)
-#(samantha) \cd samantha_ia-main
-#(samantha) \samantha_ia-main>cd miniconda3
-#(samantha) \samantha_ia-main\miniconda3>cd condabin
-#(samantha) \samantha_ia-main\miniconda3\condabin>conda activate jupyterlab
+#(samantha)   \                                           cd samantha_ia-main
+#(samantha)   \samantha_ia-main>                          cd miniconda3
+#(samantha)   \samantha_ia-main\miniconda3>               cd condabin
+#(samantha)   \samantha_ia-main\miniconda3\condabin>      conda activate jupyterlab
 #(jupyterlab) \samantha_ia-main\miniconda3\condabin>
 
 
@@ -2721,12 +2721,12 @@ def open_chrome_window(file_path):
     global browser_path
 
     # if sys.platform == "win32":
-    #     chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    #     browser_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     
     # elif sys.platform == "darwin":
-    #     chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    #     browser_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     # else:
-    #     chrome_path = "/usr/bin/google-chrome"
+    #     browser_path = "/usr/bin/google-chrome"
 
 
     if browser_path == '':
@@ -2751,8 +2751,17 @@ def open_idle():
     global counter_run
     global python_interpreter_output
     global hide_html
+    global process
 
     click.play()
+
+    # Garante que o processo seja encerrado mesmo se houver exceção
+    if 'process' in globals():
+        try:
+            process.kill()
+            process.wait(timeout=5)  # Espera até 5 segundos pelo encerramento
+        except Exception:
+            pass
 
     copied_text = pyperclip.paste() # Paste text (code) from clipboard, if any.
             
@@ -3049,7 +3058,7 @@ def load_models_urls():
 def find_browser_exe():
 
     # Lista de unidades comuns no Windows
-    drives = ['C:', 'D:', 'E:', 'F:']
+    drives = ['C:']
 
     print(f"Iniciando a pesquisa por {browser_file}...")
     
@@ -3057,8 +3066,11 @@ def find_browser_exe():
         for root, dirs, files in os.walk(drive + '\\'):
             if browser_file in files:
                 return os.path.join(root, browser_file)
+            
+    # If default browser (msedge.exe) is not found
+    return r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     
-    return None
+    # return None
 
 # chrome_path = find_browser_exe()
 
@@ -3077,6 +3089,73 @@ def ajustar_hiperparametros(hiperparametros):
         novo_valor = random.uniform(valor_minimo, valor_maximo)
         hiperparametros_ajustados[nome] = round(novo_valor, 2)
     return hiperparametros_ajustados
+
+
+process = ''
+
+def open_auto_py_to_exe():
+
+    """
+    Open auto-py-to-exe Python library on the 'jupyterlab' virtual env.
+    """
+
+    global process
+
+    click.play()
+
+    # # Garante que o processo seja encerrado mesmo se houver exceção
+    if 'process' in globals():
+        try:
+            process.kill()
+            process.wait(timeout=5)  # Espera até 5 segundos pelo encerramento
+        except Exception:
+            pass
+
+    # GET PYTHON PATH
+    python_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe"
+
+    # venv_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab"
+    # env = os.environ.copy() # Create a copy from the current virtual env
+    # env["VIRTUAL_ENV"] = venv_path  # Define qual é o ambiente virtual ativo
+    # env["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + env["PATH"]  # Adiciona o caminho dos Scripts do novo ambiente ao PATH
+
+
+    # Executa o comando auto-py-to-exe
+    process = subprocess.Popen(
+        [python_path, "-m", "auto_py_to_exe"],
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        encoding='cp1252',  # Usa a codificação do Windows
+        # env=env
+    )
+    
+    # Aguarda a execução e captura a saída
+    stdout, stderr = process.communicate()
+    
+    # Verifica se houve erro
+    if process.returncode != 0:
+        print(f"Erro ao executar auto-py-to-exe: {stderr}")
+        # return False
+        
+    print("auto-py-to-exe iniciado com sucesso!")
+    # return True
+
+
+    # # Garante que o processo seja encerrado mesmo se houver exceção
+    # if 'process' in locals():
+    #     try:
+    #         process.kill()
+    #         process.wait(timeout=5)  # Espera até 5 segundos pelo encerramento
+    #     except Exception:
+    #         pass
+
+
+
+
+
+
+
 
 
 
@@ -3237,8 +3316,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_x1.click(fn=open_db_browser, inputs=None, outputs=None)
                 btn_x2 = gr.Button('D-Tale')
                 btn_x2.click(fn=open_dtale, inputs=None, outputs=None)
-                btn_x3 = gr.Button('')
-                btn_x3.click(fn=None, inputs=None, outputs=None)
+                btn_x3 = gr.Button('Auto-Py-To-Exe')
+                btn_x3.click(fn=open_auto_py_to_exe, inputs=None, outputs=None)
                 
             # with gr.Row():
             #     btn_x4 = gr.Button('')
@@ -3457,22 +3536,22 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Operating Tips:</h5>""")
             with gr.Row():
-                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Windows Task Manager:&nbsp;&nbsp;&nbsp;CTRL + SHIFT + ESC</span></i></h6>""")
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Windows Task Manager:&nbsp;&nbsp;&nbsp;CTRL + SHIFT + ESC.</span></i></h6>""")
             with gr.Row():
-                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samantha's Parts:&nbsp;&nbsp;&nbsp;Server (AI processing) <-> Browser Interface (display and configuration)</span></i></h6>""")
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Samantha's Parts:&nbsp;&nbsp;&nbsp;Server (AI processing) <-> Browser Interface (display and configuration).</span></i></h6>""")
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File</span></i></h6>', elem_classes='prompt')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File.</span></i></h6>', elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop)</span></i></h6>', elem_classes='prompt')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop).</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Pause Generation:&nbsp;&nbsp;&nbsp;Click anywhere on Samantha's server screen. To return, press Enter.</span></i></h6>""", elem_classes='prompt')
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response</span></i></h6>')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response.</span></i></h6>')
             
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Diversity:&nbsp;&nbsp;&nbsp;Generates syntactic (words) and semantic (meaning) diversity</span></i></h6>')
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Diversity:&nbsp;&nbsp;&nbsp;Generates syntactic (words) and semantic (meaning) diversity.</span></i></h6>')
             
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
