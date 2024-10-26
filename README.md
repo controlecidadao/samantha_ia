@@ -2148,6 +2148,135 @@ A Windows terminal will also open.
 <br><br>
 </details>
 
+
+
+<details>
+<summary>Auto-Py-To-Exe (button)</summary>
+
+---
+
+Opens [Auto-Py-To-Exe](https://pypi.org/project/auto-py-to-exe/) library, a graphical user interface to [Pyinstaller](https://pyinstaller.org/en/stable/index.html).
+<br><br>
+
+**Overview**
+
+Auto-Py-To-Exe is a user-friendly desktop application that provides a graphical interface for converting Python scripts into standalone executable files (.exe). It serves as a wrapper around PyInstaller, making the conversion process more accessible to users who prefer not to work directly with command-line interfaces.
+
+This tool is particularly valuable for Python developers who need to distribute their applications to users who don't have Python installed or prefer standalone executables. Its combination of simplicity and power makes it an excellent choice for both beginners and experienced developers.
+<br><br>
+
+
+**Basic Usage**
+
+* Select Python script via GUI
+* Configure desired options
+* Click "Convert .py to .exe"
+<br><br>
+
+**Common Workflow**
+
+<br>
+
+Script Selection:<br>
+- Choose main Python file<br>
+- Add additional files/folders if needed<br>
+<br>
+
+Configuration:<br>
+- Select output format (One File/Directory)<br>
+- Choose console window visibility<br>
+- Set icon (optional)<br>
+- Configure advanced options if needed<br>
+<br>
+
+Conversion:
+- Click convert button<br>
+- Monitor progress<br>
+- Review output/errors<br>
+<br>
+
+Testing:
+- Locate generated executable<br>
+- Test in clean environment<br>
+- Verify all dependencies are included<br>
+<br>
+
+
+**Best Practices**
+
+<br>
+
+Development:
+- Test script thoroughly before conversion<br>
+- Use relative paths within code<br>
+- Handle file paths properly for both development and executable contexts<br>
+- Keep track of all required dependencies<br>
+<br>
+
+Conversion:
+- Start with basic configuration<br>
+- Add features incrementally<br>
+- Test each major change<br>
+- Document successful configurations<br>
+<br>
+
+Distribution:
+- Test executable on clean system<br>
+- Include necessary runtime files<br>
+- Document any prerequisites<br>
+- Consider target system requirements<br>
+<br>
+
+**Common Issues and Solutions**
+
+<br>
+
+Missing Dependencies:
+- Use --hidden-import for implicit imports<br>
+- Include all required data files<br>
+- Check for dynamic/runtime imports<br>
+<br>
+
+Path Issues:
+- Use relative paths when possible<br>
+- Handle both development and executable paths<br>
+- Include necessary resource files<br>
+<br>
+
+Performance:
+- Optimize code before conversion<br>
+- Monitor executable size<br>
+- Consider using directory mode for large applications<br>
+<br>
+
+**Advantages**
+- Simplifies PyInstaller usage
+- Reduces conversion errors
+- Saves configuration for reuse
+- Provides clear error feedback
+- Supports complex project structures
+<br>
+
+**Limitations**
+- Dependent on PyInstaller capabilities
+- May produce larger executables than manual optimization
+- Some advanced PyInstaller features require command line
+- Not suitable for all Python applications
+<br>
+
+**Security Considerations**
+
+- Executable decompilation is possible
+- Sensitive information should be handled securely
+- Code obfuscation may be needed for proprietary software
+- Regular security updates recommended
+
+---
+
+<br><br>
+</details>
+
+
 <br><br>
 **Default Settings:**
 
