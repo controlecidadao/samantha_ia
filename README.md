@@ -545,6 +545,8 @@ Not all models support system prompt. Test to find out: fill in "x = 2" in the _
 
 You can simulate the effect of the system prompt by adding text in square brackets in the beginning of the _User prompt_ field: ```[This text acts as a system prompt]``` or adding the system prompt text into the _Assistant previous response_ field (do not use feedback loop).
 
+To ignore the text present in this field, include --- at the beginning.
+
 ---
 
 <br><br>
