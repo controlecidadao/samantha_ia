@@ -295,7 +295,7 @@ Samantha needs just a `.gguf` model file to generate text. Follow these steps to
 
 1) Open Windows Task Management by pressing `CTRL + SHIFT + ESC` and check available memory. Close some programs if necessary to free memory.
 
-2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and click on the card to open the corresponding page. Locate the _Files and versions_ tab and choose a `.gguf` model that fits in your available memory.
+2) Visit [Hugging Face](https://huggingface.co/models?library=gguf&sort=trending&search=gguf) repository and click on the card to open the corresponding page. Locate the _Files and versions_ tab and choose a `.gguf` text generation model that fits in your available memory.
    
 3) Right click over the model download link icon and copy its URL.
 
@@ -325,7 +325,7 @@ You can also download the model and save it permanently to your computer. For mo
 
 ### Downloading Open Source Model Files (.gguf)
 
-Open souce model can be downloaded from [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code` or `gguf portuguese`.
+Open souce text generation models can be downloaded from [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf), using `gguf` as the search parameter. You can combine two words like `gguf code` or `gguf portuguese`.
 
 You can also go to a specific repository and see all the `.gguf` models available for downloading and testing, like [https://huggingface.co/bartowski](https://huggingface.co/bartowski) or [https://huggingface.co/NousResearch](https://huggingface.co/NousResearch).
 <br><br>
