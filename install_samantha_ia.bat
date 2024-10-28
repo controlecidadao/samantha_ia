@@ -52,13 +52,23 @@ chcp 65001
 set CURRENT_DIR=%cd%
 @echo Current directory: %CURRENT_DIR%
 
+:::: Check if Miniconda directory already exists
+::if exist "%CURRENT_DIR%\miniconda3" (
+::   echo.
+::   echo The folder 'miniconda3' already exists. Exiting installation routine...
+::   pause
+::   exit
+::)
+
 :: Check if Miniconda directory already exists
 if exist "%CURRENT_DIR%\miniconda3" (
    echo.
-   echo The folder 'miniconda3' already exists. Exiting installation routine...
-   pause
-   exit
+   echo The folder 'miniconda3' already exists.
+   echo Removing existing installation...
+   rmdir /s /q "%CURRENT_DIR%\miniconda3"
+   echo Old installation removed. Continuing with new installation...
 )
+
 
 @echo.
 @echo ====================
@@ -115,7 +125,7 @@ DEL Miniconda3-latest-Windows-x86_64.exe
 
 :: Create the 'samantha' environment with Python 3.10
 @echo Creating virtual environment 'samantha'...
-call %CURRENT_DIR%\miniconda3\condabin\conda.bat create -y -n samantha python=3.10
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat create -y --prefix %CURRENT_DIR%\miniconda3\envs\samantha python=3.10
 if errorlevel 1 (
     echo.
     echo Failed to create 'samantha' environment. Exiting.
@@ -124,7 +134,7 @@ if errorlevel 1 (
 )
 
 @echo Activating 'samantha' environment...
-call %CURRENT_DIR%\miniconda3\condabin\conda.bat activate samantha
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat activate %CURRENT_DIR%\miniconda3\envs\samantha
 if errorlevel 1 (
     echo.
     echo Failed to activate 'samantha' environment. Exiting.
@@ -149,7 +159,7 @@ if errorlevel 1 (
 
 :: Create the 'jupyterlab' environment with Python 3.10
 @echo Creating virtual environment 'jupyterlab'...
-call %CURRENT_DIR%\miniconda3\condabin\conda.bat create -y -n jupyterlab python=3.10
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat create -y --prefix %CURRENT_DIR%\miniconda3\envs\jupyterlab python=3.10
 if errorlevel 1 (
     echo.
     echo Failed to create 'jupyterlab' environment. Exiting.
@@ -158,7 +168,7 @@ if errorlevel 1 (
 )
 
 @echo Activating 'jupyterlab' environment...
-call %CURRENT_DIR%\miniconda3\condabin\conda.bat activate jupyterlab
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat activate %CURRENT_DIR%\miniconda3\envs\jupyterlab
 if errorlevel 1 (
     echo.
     echo Failed to activate 'jupyterlab' environment. Exiting.

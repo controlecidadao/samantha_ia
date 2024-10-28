@@ -17,7 +17,8 @@ chcp 65001
 @echo Activating 'samantha' virtual environment...
 
 :: Ativar o ambiente base do Miniconda
-call "%cd%\miniconda3\condabin\conda.bat" activate
+call %cd%\miniconda3\condabin\conda.bat activate %cd%\miniconda3\envs\samantha
+
 
 :: Verificar se houve erro ao ativar o Miniconda
 if errorlevel 1 (
@@ -32,7 +33,7 @@ TIMEOUT /t 3
 @echo.
 
 :: Ativar o ambiente virtual 'samantha'
-call conda activate samantha
+call %cd%\miniconda3\condabin\conda.bat activate %cd%\miniconda3\envs\samantha
 
 :: Verificar se houve erro ao ativar o ambiente
 if errorlevel 1 (
