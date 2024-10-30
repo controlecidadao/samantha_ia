@@ -2119,9 +2119,9 @@ Click the button to select the TXT file.
 
 Opens [DB Browser](https://sqlitebrowser.org/) if its directory is into Samantha's directory.
 
-To use DB Browser, [download](https://sqlitebrowser.org/dl/) the `.zip`(no installer) version and unpack it into Samantha's directory: `samantha-ia-main\DB Browser for SQLite`.
+To use DB Browser, [download](https://sqlitebrowser.org/dl/) the `.zip`(no installer) version and unpack it into Samantha's directory.
 
-Rename the DB Browser directory to `DB Browser for SQLite` if necessary.
+You must rename the DB Browser directory to `DB Browser for SQLite`: : `..\samantha-ia-main\DB Browser for SQLite`
 
 ---
 
