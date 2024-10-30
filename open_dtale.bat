@@ -1,5 +1,7 @@
 @echo off
 
+title D-Tale
+
 @echo.
 @echo =======================
 @echo     STARTING D-TALE
