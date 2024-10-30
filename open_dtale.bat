@@ -1,7 +1,5 @@
 @echo off
 
-::title D-Tale
-
 @echo.
 @echo =======================
 @echo     STARTING D-TALE
@@ -16,18 +14,8 @@ chcp 65001
 @echo.
 
 @echo Activating 'jupyterlab' virtual environment...
-
-:: Activate 'base' virtual environment
-call %cd%\miniconda3\condabin\conda.bat activate
-
-:: Wait 3 seconds
-TIMEOUT /t 3
-@echo.
-
-:: Activate 'jupyterlab' virtual environment
-call conda activate jupyterlab
+call %cd%\miniconda3\condabin\conda.bat activate %cd%\miniconda3\envs\jupyterlab
 
 @echo Activated environment: %CONDA_DEFAULT_ENV%
 
 start python.exe open_dtale.py
-::start "" pythonw.exe -m idlelib -e "open_dtale.py"
