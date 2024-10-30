@@ -2172,6 +2172,11 @@ This tool is particularly valuable for Python developers who need to distribute 
 * Select Python script via GUI
 * Configure desired options
 * Click "Convert .py to .exe"
+ 
+When you copy a Python scrip using CTRL + C or _Copy Python Code_ button and run it by pressing _Run Code_ button, the code is saved as `temp.py`. Select this file to create a `.exe` file.
+
+You can use the this procedure with any code, even copyied from the internet.
+
 <br><br>
 
 **Common Workflow**
