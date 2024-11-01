@@ -51,7 +51,7 @@ ARQUIVOS:
 "https://dados.es.gov.br/dataset/5f8003e5-77b3-4f54-ab79-2f3678ad525e/resource/34107d2b-72f2-442f-8540-14f5d5191863/download/municipios-despesas-empenhos-3-2024.zip".
 
 Crie um banco de dados Sqlite vazio chamado "despesas_municipais.db".
-Salve o banco de dados em "E:\".
+Salve o banco de dados em "D:\".
 Caso o banco de dados já exista, delete o banco de dados anterior e crie um novo.
 Abra diretamente a URL do primeiro arquivo usando apenas a biblioteca Pandas.
 Use ';' como separador de colunas.
@@ -60,14 +60,14 @@ Importe todas as colunas como 'str'.
 Substitua ',' por '.' na coluna "Empenhada" e a converta para 'float'.
 Substitua ',' por '.' na coluna "Liquidada" e a converta para 'float'.
 Substitua ',' por '.' na coluna "Paga" e a converta para 'float'.
-Gere uma tabela chamada "despesas" no banco de dados "E:\despesas_municipais.db".
+Gere uma tabela chamada "despesas" no banco de dados "D:\despesas_municipais.db".
 Realize um loop sobre as URLs dos demais arquivos e inclua seus dados na tabela.
 Imprima informações sobre a estrutura da tabela do banco de dados. Insira um texto explicativo sobre cada item exibido.
 $$$
 
 
 ---INSTRUÇÕES:
-Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "E:\despesas_municipais.db".
+Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "D:\despesas_municipais.db".
 A consulta deve retornar os 1200 maiores valores agregados para a coluna Empenhada, agrupados pelos valores da coluna CodigoCredorFornecedor.
 A primeira coluna deve  conter o número da linha.
 A segunda coluna deve conter o CodigoCredorFornecedor. 
@@ -81,7 +81,7 @@ $$$
 
 
 INSTRUÇÕES:
-Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "E:\despesas_municipais.db".
+Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "D:\despesas_municipais.db".
 A consulta deve retornar os 1200 maiores valores agregados para a coluna Empenhada, agrupados pelos valores da coluna CodigoUnidadeGestora.
 A primeira coluna deve  conter o número da linha.
 A segunda coluna deve conter o CodigoUnidadeGestora. 
