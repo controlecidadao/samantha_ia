@@ -2135,7 +2135,7 @@ You must rename the DB Browser directory to `DB Browser for SQLite`: : `..\saman
 
 Opens [D-Tale](https://github.com/man-group/dtale) library interface in a new browser tab with a example dataset (titanic.csv).
 
-<br><br>
+<br>
 
 **Web Client for Visualizing Pandas Objects**
 
