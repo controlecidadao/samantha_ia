@@ -197,7 +197,7 @@ language = {
                 'btn6': 'Substituir Resposta',
                 'system_prompt_info': "System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir. Use '---' para ignorar o system prompt.",
                 'initial_system_prompt': '',
-                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Quando não selecionado, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
+                'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo da conversa. Quando não selecionado, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). Use "---" para ignorar a resposta anterior.',
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
@@ -205,7 +205,7 @@ language = {
                 'user_prompt_info': "User prompt (caixa de texto). Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento. 1) '[ ]' (pré-prompt, posicionado antes de cada prompt). 2) '[[ ]]' (prompt final, posicionado antes de todas as respostas). 3) '$$$\\n' ou '\\n' (separador de prompts). 4) '---' (ignorar prompt). 5) Return 'STOP_SAMANTHA' (sair do loop). 6) Return '' (string vazia, não exibe pop-up HTML). É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Model selection (caixa de seleção). Seleciona a sequência de modelos de inteligência artificial a ser usada (arquivos .GGUF).',
-                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL, caso não haja modelo selecionado. '---' para ignorar a URL.",
+                'model_url_info': "Download model for testing (caixa de texto). Realiza download do modelo a partir da sua URL no site Hugging Face, caso não haja modelo selecionado. Use '---' para ignorar a URL.",
                 'single_answer_info': 'Single response (checkbox). Ativa uma única resposta por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
                 'reset_model_info': "Reset model (caixa de seleção). Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Shuffle models (caixa de seleção). Embaralha ordem de execução dos modelos se forem selecionados 3 ou mais.',
@@ -280,7 +280,7 @@ language = {
                 'btn6': 'Replace Response',
                 'system_prompt_info': "System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out. Use '---' to ignore system prompt.",
                 'initial_system_prompt': '',
-                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. When unselected, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
+                'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next cycle of the conversation. When unselected, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
                 'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). Use "---" to ignore previous response.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
@@ -288,7 +288,7 @@ language = {
                 'user_prompt_info': "User prompt (text box). (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (prompt separators). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
                 'models_selection_info': 'Model selection (select box). Selects the sequence of artificial intelligence models to use (.GGUF files).',
-                'model_url_info': "Download model for testing (text box). Download the model from its URL if there is no model selected. '---' to ignore the URL.",
+                'model_url_info': "Download model for testing (text box). Download the model from its URL on Hugging Face, if there is no model selected. Use '---' to ignore the URL.",
                 'single_answer_info': 'Single response (checkbox). Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
                 'reset_model_info': "Reset model (checkbox). Reinitializes the model's internal state, eliminating the influence of the previous context.",
                 'shuffle_models_order_info': 'Shuffle models (checkbox). Shuffles order of execution of models if 3 or more are selected.',
