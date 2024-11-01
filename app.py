@@ -195,7 +195,7 @@ language = {
                 'btn4': 'Carregar Modelo',
                 'btn5': 'Parar Tudo & Reset',
                 'btn6': 'Substituir Resposta',
-                'system_prompt_info': 'System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir.',
+                'system_prompt_info': "System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir. Use '---' para ignorar o system prompt.",
                 'initial_system_prompt': '',
                 'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo de interação da conversa. Quando não selecionado, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). Use "---" para ignorar a resposta anterior.',
@@ -251,7 +251,7 @@ language = {
 
                 'btn_copy_model_url': 'Copiar HF Links',
                 'btn_load_models_urls_info': 'Carregar URLs TXT',
-                'assistant_raw_output_info': 'Histórico de respostas. Adicione #IDE ao código, edite, selecione, copie e execute com o botão Executar Código.',
+                'assistant_raw_output_info': "Histórico de respostas. Adicione '#IDE' ao código, edite, selecione, copie e execute com o botão Executar Código.",
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código Python',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
@@ -278,7 +278,7 @@ language = {
                 'btn4': 'Load Model',
                 'btn5': 'Stop All & Reset',
                 'btn6': 'Replace Response',
-                'system_prompt_info': 'System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out.',
+                'system_prompt_info': "System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out. Use '---' to ignore system prompt.",
                 'initial_system_prompt': '',
                 'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next interaction cycle of the conversation. When unselected, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
                 'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). Use "---" to ignore previous response.',
@@ -334,7 +334,7 @@ language = {
 
                 'btn_copy_model_url': 'Copy HF Links',
                 'btn_load_models_urls_info': 'Load URLs TXT',
-                'assistant_raw_output_info': 'Response history. Add #IDE to code, select, copy and run with Run Code button.',
+                'assistant_raw_output_info': "Response history. Add '#IDE' to code, select, copy and run with Run Code button.",
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Python Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
@@ -701,6 +701,10 @@ def text_generator(
     else:
         previous_answer = prev_answer
 
+    # Ignore system prompt
+    if system_prompt[:3] == '---':
+        system_prompt = ''
+    
     # Ignore previous response
     if previous_answer[:3] == '---':
         previous_answer = ''
