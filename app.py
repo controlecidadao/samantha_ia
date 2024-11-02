@@ -195,7 +195,7 @@ language = {
                 'btn4': 'Carregar Modelo',
                 'btn5': 'Parar Tudo & Reset',
                 'btn6': 'Substituir Resposta',
-                'system_prompt_info': "System prompt (caixa de texto). Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir. Use '---' para ignorar o system prompt.",
+                'system_prompt_info': "System prompt (caixa de texto). Prompt do sistema. Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir. Use '---' para ignorar o system prompt.",
                 'initial_system_prompt': '',
                 'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo da conversa. Quando não selecionado, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
                 'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). Use "---" para ignorar a resposta anterior.',
