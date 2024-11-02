@@ -80,7 +80,7 @@ Inclua um link para a fonte dos dados antes da tabela: "https://dados.es.gov.br/
 $$$
 
 
-INSTRUÇÕES:
+---INSTRUÇÕES:
 Gere um código Python que realize uma consulta SQL à tabela "despesas" do banco de dados "D:\despesas_municipais.db".
 A consulta deve retornar os 1200 maiores valores agregados para a coluna Empenhada, agrupados pelos valores da coluna CodigoUnidadeGestora.
 A primeira coluna deve  conter o número da linha.
