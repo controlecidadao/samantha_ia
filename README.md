@@ -2167,6 +2167,8 @@ Opens [Auto-Py-To-Exe](https://pypi.org/project/auto-py-to-exe/) library, a grap
 Auto-Py-To-Exe is a user-friendly desktop application that provides a graphical interface for converting Python scripts into standalone executable files (.exe). It serves as a wrapper around PyInstaller, making the conversion process more accessible to users who prefer not to work directly with command-line interfaces.
 
 This tool is particularly valuable for Python developers who need to distribute their applications to users who don't have Python installed or prefer standalone executables. Its combination of simplicity and power makes it an excellent choice for both beginners and experienced developers.
+
+To run the `.exe` file, right-click inside the directory where the file is located and select the `Open in terminal` option. Then, type the file name in the terminal and press `Enter`. This procedure allows you to identify any file execution errors.
 <br><br>
 
 
