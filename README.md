@@ -2408,6 +2408,8 @@ This button executes any Python code copied to the clipboard that uses the libra
 
 Use it in combination with _Copy Python Code_ button.
 
+To run Python code, you don't need to load the model.
+
 The `pip` and `!pip` instructions lines present in the code are ignored.
 
 Whenever Python code returns a value other than `''` (empty string), an HTML pop-up window opens to display the returned content.
