@@ -634,15 +634,11 @@ def text_generator(
     global single_answer
     global show_vocabulary
     global run_code
-    
     global stop_condition
     global cumulative_response
     global random_hyper
     global interpreter_return
     global hide_html
-    
-    # global counter_run
-
     global hiperparametros
 
     click.play()
@@ -751,7 +747,6 @@ def text_generator(
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
     prompt_split = []
     count_prompt = 0
-    # counter_run = 1
 
 
     # =================
@@ -1581,11 +1576,13 @@ def clean_output():                 # Clear Output button: clear output text
     
     global resposta
     global ultima_resposta
+    global full_text
     
     click.play()
     
     resposta = ''
     ultima_resposta = ''
+    full_text = ''
 
     html_files = glob.glob('*.html') # Delete all html files in current folder
     for file in html_files:
