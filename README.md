@@ -2123,9 +2123,9 @@ To install DB Browser:
 
 - Unpack it with its original name (it will create a directory like `DB.Browser.for.SQLite-v3.13.1-win64`).
 
-- Rename the DB Browser directory to `DB Browser for SQLite`.
+- Rename the DB Browser directory to `db_browser`.
 
-- Finally, move the `DB Browser for SQlite` directory to Samantha's directory: `..\samantha-ia-main\DB Browser for SQLite`
+- Finally, move the `db_browser` directory to Samantha's directory: `..\samantha-ia-main\db_browser`
 
 ---
 
