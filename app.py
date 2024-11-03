@@ -240,7 +240,7 @@ language = {
                 'hide_html_info': 'Hide HTML output (caixa de seleção). Não exibe a resposta do modelo em HTML.',
                 
                 'model_metadata_info': 'Model metadata (caixa de texto). Exibe metadados do modelo.',
-                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas no Modo de Aprendizagem.",
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Exibe o vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas squando o Modo de Aprendizagem está ativado.",
                 'btn_unload_model': 'Descarregar Modelo',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
@@ -323,7 +323,7 @@ language = {
                 'hide_html_info': 'Hide HTML output (checkbox). Do not display model response in HTML.',
 
                 'model_metadata_info': 'Model metadata (text box). Shows model metadata.',
-                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works in Learning Mode.",
+                'show_vocabulary_info': "Show token vocabulary (caixa de seleção). Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works when Learning Mode is enabled.",
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'PDF Full',
@@ -2488,7 +2488,7 @@ def open_db_browser():
     click.play()                        # Play a click sound
 
     try:
-        python_path = os.path.join(fr'{DIRETORIO_LOCAL}\DB Browser for SQLite', "DB Browser for SQLite.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
+        python_path = os.path.join(fr'{DIRETORIO_LOCAL}\db_browser', "DB Browser for SQLite.exe") # Define the path to the Jupyter Lab executable in the specified Python environment
         subprocess.Popen([python_path]) # Open DB Browser using the specified Python environment's executable path
     except Exception as e:
         print(f'{e}:', python_path)
@@ -3005,10 +3005,10 @@ def change_checkbox_learning_mode(value):
     
     if value == 'OFF':
         show_vocabulary = False
-        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False)
+        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True) # 
     else:
         return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
-
+        
 
 def load_models_urls():
     
@@ -3354,6 +3354,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/docs/hub/gguf">GGUF File</a></li>
                         <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering</a></li>
                         <li><a href="https://github.com/sqlitebrowser/sqlitebrowser/wiki/Using-the-Filters">DB Browser - Using Filters</a></li>
+                        <li><a href="https://sqlitebrowser.org/dl/">DB Browser Download</a></li>
                         <li><a href="https://www.jasondavies.com/wordcloud/">Word Cloud Online</a></li>
                         <li><a href="https://pyviz.org/tools.html">PyViz</a></li>
                     
