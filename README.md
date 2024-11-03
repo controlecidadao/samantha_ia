@@ -1857,9 +1857,7 @@ Model: https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF/resolve/ma
 
  ---
 
-✅ Displays model's token vocabulary when selected and _Learning mode_ is activated.
-
-This check box remains disabled when _Learning mode_ is not activated.
+✅ Displays model's token vocabulary when selected.
 
 ---
 
