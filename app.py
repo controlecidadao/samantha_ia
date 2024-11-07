@@ -49,7 +49,6 @@
 #        OUTPUT COLUMN (RIGHT)
 # 12) MAIN FUNCTION
 
-
 # VSCODE DEBUG CODE EXPLORER
 # To use VSCode Debug Mode with Gradio, put a breakpoint in the first code line inside every function called by Gradio (global variable calls do not acept breakpoint)
 # Web browser must be visible on screen (some behaviors are trigered only when browser window is visible)
@@ -460,7 +459,6 @@ original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Stores model's token vocabulary
 run_code = False                # Controls if the generated code will be executed or not
-# counter_run = 1               #
 stop_condition = ''             # 
 cumulative_response = False     # Stores all responses of the chat session cumulatively in previous response
 browser_file = 'msedge.exe'     # Edge has high quality Text-to-Speech engine. But you can use 'chrome.exe'
@@ -863,7 +861,7 @@ def text_generator(
                             rope_freq_scale=0,
                             mul_mat_q=True,
                             f16_kv=True,
-                            logits_all=False, #
+                            logits_all=False, # False IN TEST
                             embedding=False,
                             flash_attn=False,                       # default False <<<<<<<<<<<<<<<<<<<<< IN TEST
                             last_n_tokens_size=64,                  # default 64. Estava em 512
@@ -1059,6 +1057,9 @@ def text_generator(
 
                     # INSERT USER CHAT ROLE IN THE SYSTEM PROMPT FIELD? NOT ALL MODELS HAVE SYSTEM PROMPT.
 
+                    # Print hyperparameters
+                    print(f'\n\nHYPERPARAMETERS: n_ctx: {n_ctx}, max_tokens: {max_tokens}, stop: {eval(stop_generation)}, temperture: {temperature}, tfs_z: {tfs_z}, top_p: {top_p}, min_p: {min_p}, typical_p: {typical_p}, top_k: {top_k}, presence_penalty: {presence_penalty}, frequency_penalty: {frequency_penalty}, repeat_penalty: {repeat_penalty}')
+                    
                     print('\n\n===========================\n\n>>>>> SYSTEM PROMPT:', system_prompt)
                     print()
                     print('\n\n===========================\n\n>>>>> PREVIOUS RESPONSE:', previous_answer)
@@ -1090,7 +1091,7 @@ def text_generator(
 
                     else:
                         hyper = ''
-                        
+   
 
 
                     # ========================================
@@ -1122,6 +1123,8 @@ def text_generator(
                             grammar = None,
                         )):
 
+
+
                         #print(i)
                         
                         # Examples of i content:
@@ -1142,8 +1145,6 @@ def text_generator(
                         #              'delta': {'content': 'Hello'},
                         #              'finish_reason': None}]
                         # }
-
-
             
                         if nu == 0:                 # Restart variable for each new text generation cycle
                             ultima_resposta = ''    # To avoid delete last response text berofe the next generation cycle
@@ -1224,8 +1225,9 @@ def text_generator(
                         # =============
 
                         if delay_next_token != 'OFF':
+                            # scores = llm.eval_logits[-1]        # IN TEST
                             scores = llm.eval_logits
-                            scores = scores[0]
+                            scores = scores[0]                  # scores = scores[0]
                             zipped = zip(([llm.detokenize([x])] for x in range(llm._n_vocab)), scores) # [('a', 1), ('b', 2), ('c', 3)]
                             lista = list(zipped)
                             
@@ -1258,7 +1260,7 @@ def text_generator(
                                     continue   
                             
                             try:
-                                token_score_sorted = [[x[0], '   (' + str(round(x[1], 2)) + ')     <<<  Selected'] if x[2] == current_token else [x[0], '   (' + str(round(x[1], 2)) + ')'] for x in token_score_sorted ]
+                                token_score_sorted = [[x[0], '   (' + str(round(x[1], 2)) + ')     <<<<<<<<<<<<<<<    Selected'] if x[2] == current_token else [x[0], '   (' + str(round(x[1], 2)) + ')'] for x in token_score_sorted ]
                             except:
                                 pass
                             
@@ -2750,7 +2752,6 @@ def open_idle():
     '''
 
     global ultima_resposta
-    global counter_run
     global python_interpreter_output
     global hide_html
     global process
@@ -2930,8 +2931,6 @@ def open_idle():
             open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
 
         ultima_resposta = ultima_resposta + '\n\nPython Interpreter Output:\n\n' + e.stderr
-
-    # counter_run += 1 # Not used
 
     # CRITICAL CODE FEEDBACK
     if run_code == True and len(output) > 0: # Add the result of the code execution to the variable 'ultima_resposta' when Run Code Automatically is selected
@@ -3267,7 +3266,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(0, 2, 0, 0.01, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0, 5, 0, 0.01, label='temperature', info=language['temperature_info'], interactive=True),
                 gr.Slider(0, 1, 0, 0.01, label='tfs_z', info=language['tfs_z_info'], interactive=True),
                 gr.Slider(0, 1, 0, 0.01, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
                 gr.Slider(0, 1, 1, 0.01, label='min_p', info=language['min_p_info'], interactive=True), # 
