@@ -74,9 +74,10 @@ A segunda coluna deve conter o CodigoCredorFornecedor.
 A terceira coluna deve conter o último valor da coluna NomeCredorFornecedor que corresponde ao valor agrupador da coluna CodigoCredorFornecedor.
 A quarta coluna deve conter o somatório dos valores da coluna Empenhada para o valor da coluna CodigoCredorForneceder. Use separador de milhar nesta coluna e exiba todos os números.
 Exclua as linhas do dataframe nas quais as colunas "Empenhada", "NomeCredorFornecedor" e "CodigoCredorFornecedor" possuam valores nulos.
-Exiba apenas as 1000 primeiras linhas sob a forma de tabela HTML.
+Imprima apenas as 1000 primeiras linhas sob a forma de tabela HTML.
 Inclua um texto explicativo antes da tabela: "1000 maiores empenhos dos municípios capixabas (período 2020 a 2024), agrupados pelo código do fornecedor, enviados ao Tribunal de Contas do Estado do Espírito Santo (TCE-ES). Os dados disponibilizados são declaratórios  (fornecidos pelos municípios com eventuais erros e imprecisões), tendo como fonte as remessas recebidas e homologadas por meio do sistema CidadES - Prestação de Contas Mensal, conforme Anexo IV da IN 68/2020."
 Inclua um link para a fonte dos dados antes da tabela: "https://dados.es.gov.br/dataset/tcees-empenho". Este link deve abrir em uma nova aba do navegador.
+Não esqueça de exibir os valores da coluna "Empenhada" com todos os dígitos (sem notação científica) e com separador de milhar.
 $$$
 
 
@@ -88,8 +89,8 @@ A segunda coluna deve conter o CodigoUnidadeGestora.
 A terceira coluna deve conter o último valor da coluna UnidadeGestora que corresponde ao valor agrupador da coluna CodigoUnidadeGestora.
 A quarta coluna deve conter o somatório dos valores da coluna Empenhada para o valor da coluna CodigoUnidadeGestora. Use separador de milhar nesta coluna e exiba todos os números.
 Exclua as linhas do dataframe nas quais as colunas "Empenhada", "UnidadeGestora" e "CodigoUnidadeGestora" possuam valores nulos.
-Exiba apenas as 1000 primeiras linhas sob a forma de tabela HTML.
+Imprima apenas as 1000 primeiras linhas sob a forma de tabela HTML.
 Inclua um texto explicativo antes da tabela: "Empenhos dos municípios capixabas (período 2020 a 2024), agrupados pelo código da Unidade Gestora, enviados ao Tribunal de Contas do Estado do Espírito Santo (TCE-ES). Os dados disponibilizados são declaratórios  (fornecidos pelos municípios com eventuais erros e imprecisões), tendo como fonte as remessas recebidas e homologadas por meio do sistema CidadES - Prestação de Contas Mensal, conforme Anexo IV da IN 68/2020."
 Inclua um link para a fonte dos dados antes da tabela: "https://dados.es.gov.br/dataset/tcees-empenho". Este link deve abrir em uma nova aba do navegador.
-Não esqueça de exibir os valores da coluna "Empenhada" com todos os dígitos (sem notação científica).
+Não esqueça de exibir os valores da coluna "Empenhada" com todos os dígitos (sem notação científica) e com separador de milhar.
 $$$
