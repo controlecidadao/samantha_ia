@@ -221,7 +221,7 @@ language = {
                 'stop_info': r'stop (caixa de texto). Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',                
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
                 'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p” (1 = 100%).',
-                'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "m".', 
+                'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "p".', 
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estão abaixo de um limiar de tipicidade, calculado como entropia x typical_p, e então renormaliza as probabilidades deste subconjunto para amostragem',
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
                 
@@ -304,7 +304,7 @@ language = {
                 'stop_info': r'stop (text box). Contains list of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]',
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
                 'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p" (1 = 100%).',
-                'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "m".', 
+                'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "p".', 
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limits the selection of the next token to a subset whose individual probabilities are below a typicality threshold, calculated as entropy x typical_p, and then renormalizes the probabilities of this subset for sampling.',
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
                 
