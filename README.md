@@ -1423,6 +1423,8 @@ It's worth noting that `top-p` is often used in combination with other sampling 
 
 The **_min_p_** hyperparameter is a relatively recent sampling technique used in text generation by large-scale language models (LLMs). It offers an alternative approach to **_top_k_** and nucleus sampling (**_top_p_**) to control the quality and diversity of generated text.
 
+**_min_p_** is a sampling hyperparameter that works in a complementary way to **_top_p_** (nucleus sampling). While **_top_p_** sets an upper bound on cumulative probabilities, **_min_p_** sets a lower bound on individual probabilities.
+
 <br>
 
 **Explanation:**
