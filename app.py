@@ -56,12 +56,10 @@
 # CTRL + K -> CTRL + 0 = COLLAPSE ALL ITEMS
 # CTRL + K -> CTRL + J = EXPAND ALL ITEMS
 
-# ACTIVANTING JUPYRLAB VIRTUAL ENVIRONMENT WITH CONDA (TO CHECK MODULES INSTALLED)
-#(samantha)   \                                           cd samantha_ia-main
-#(samantha)   \samantha_ia-main>                          cd miniconda3
-#(samantha)   \samantha_ia-main\miniconda3>               cd condabin
-#(samantha)   \samantha_ia-main\miniconda3\condabin>      conda activate jupyterlab
-#(jupyterlab) \samantha_ia-main\miniconda3\condabin>
+# ACTIVANTING JUPYRLAB VIRTUAL ENVIRONMENT WITH CONDA (TO CHECK MODULES INSTALLED ETC.)
+# (samantha) C:\Users\t203771\Documents\samantha_ia-main>
+# (samantha) C:\Users\t203771\Documents\samantha_ia-main> conda activate C:\Users\t203771\Documents\samantha_ia-main\miniconda3\envs\jupyterlab
+# (jupyterlab) C:\Users\t203771\Documents\samantha_ia-main>
 
 
 # ========================
@@ -220,8 +218,8 @@ language = {
                 'temperature_info': 'temperature (ajuste de faixa de valores). Controla o grau de aleatoriedade na escolha do próximo token (logits / t).',
                 'stop_info': r'stop (caixa de texto). Contém lista de caracteres que interrompem a geração de texto, no formato ["$$$", ".", ".\n"]',                
                 'tfs_z_info': 'Tail Free Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa da segunda derivada “z”.',
-                'top_p_info': 'P-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p” (1 = 100%).',
-                'min_p_info': 'M-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade mínima de "p".', 
+                'top_p_info': 'Top-P Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p” (1 = 100%).',
+                'min_p_info': 'Min-P Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com probalidade individual mínima de "p" (limite inferior).', 
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estão abaixo de um limiar de tipicidade, calculado como entropia x typical_p, e então renormaliza as probabilidades deste subconjunto para amostragem',
                 'top_k_info': 'K-Sampling (ajuste deslizante). Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade.',
                 
@@ -303,8 +301,8 @@ language = {
                 'temperature_info': 'temperature (range slider). Controls the degree of randomness in choosing the next token (logits / t).',
                 'stop_info': r'stop (text box). Contains list of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]',
                 'tfs_z_info': 'Tail Free Sampling (range slider). Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
-                'top_p_info': 'P-Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p" (1 = 100%).',
-                'min_p_info': 'M-Sampling (range slider). Limits next token selection to a subset with miminum probability of "p".', 
+                'top_p_info': 'Top-P Sampling (range slider). Limits next token selection to a subset with cumulative probability of "p" (1 = 100%).',
+                'min_p_info': 'Min-P Sampling (range slider). Limits selection of the next token to a subset with minimum individual probability of "p" (lower bound).', 
                 'typical_p_info': 'Typical-P Sampling (ajuste deslizante). Limits the selection of the next token to a subset whose individual probabilities are below a typicality threshold, calculated as entropy x typical_p, and then renormalizes the probabilities of this subset for sampling.',
                 'top_k_info': 'K-Sampling (range slider). Limits selection of the next token to a subset with the "k" highest probability tokens.',
                 
@@ -1427,9 +1425,14 @@ def text_generator(
                 # ==============================
 
                 # Python interpreter output
-                if interpreter_return == True:
+                if interpreter_return == True and previous_answer != '':
                     previous_answer = python_interpreter_output # Makes previous_answer equals to python interpreter output only
                     messages[1] = {'role': 'assistant', 'content': previous_answer}
+
+                elif interpreter_return == True and previous_answer == '':
+                    print("No Assistant's Previous Response. Check if Feedback Loop checkbox is activated.")
+                    yield "No Assistant's Previous Response. Check if Feedback Loop checkbox is activated."
+                    return
 
 
 
