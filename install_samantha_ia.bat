@@ -142,6 +142,26 @@ if errorlevel 1 (
     exit /b 1
 )
 
+
+::@echo Installing C++ compilers in the environment...
+::call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y -c conda-forge compilers
+::if errorlevel 1 (
+::    echo.
+::    echo Failed to install C++ compilers. Exiting.
+::    pause
+::    exit /b 1
+::)
+
+::@echo Installing additional Windows toolchain...
+::call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y -c conda-forge m2w64-toolchain libpython
+::if errorlevel 1 (
+::    echo.
+::    echo Failed to install Windows toolchain. Exiting.
+::    pause
+::    exit /b 1
+::)
+
+
 @echo Installing dependencies for 'samantha'...
 call pip install -r requirements_samantha.txt
 if errorlevel 1 (
