@@ -1435,17 +1435,6 @@ def text_generator(
                     return
 
 
-
-
-
-
-
-
-
-
-
-
-
                 # if infinite_loop == True:                                   # Update previous response. The existance of text in previous response affects the next text generation time
                 #     previous_answer = ultima_resposta
                 #     messages[1] = {'role': 'assistant', 'content': previous_answer}
@@ -3408,16 +3397,19 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             
             gr.HTML('<br><h6><b>Online AI Systems:</b></h6>')
             gr.HTML("""<ul>
-                        <li><a href="https://chat.lmsys.org/">LLM Leaderboard</a></li>
+                        <li><a href="https://lmarena.ai">Chatbot Arena</a></li>
                         <li><a href="https://huggingface.co/spaces">Hugging Face Spaces</a></li>
-                        <li><a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a></li>
+                        <li><a href="https://gemini.google.com/app">Gemini</a></li>
+                        <li><a href="https://aistudio.google.com/app/prompts/new_chat?hl=pt-br">Google AI Studio</a></li>
                         <li><a href="https://claude.ai/new">Claude</a></li>
                         <li><a href="https://chatgpt.com/">ChatGPT</a></li>
-                        <li><a href="https://aistudio.google.com/app/prompts/new_chat?hl=pt-br">Google AI Studio</a></li>
+                        <li><a href="https://chat.deepseek.com">Deepseek</a></li>
+                        <li><a href="https://chat.mistral.ai/chat">Mistral AI - Le Chat</a></li>
+                        <li><a href="https://notebooklm.google.com">NotebookLM</a></li>
+                        <li><a href="https://www.meta.ai">Meta AI</a></li>
                         <li><a href="https://copilot.microsoft.com/">Copilot</a></li>
                         <li><a href="https://www.perplexity.ai/">Perplexity AI</a></li>
                         <li><a href="https://labs.perplexity.ai/">Perplexity Labs Playground</a></li>
-                        <li><a href="https://www.blackbox.ai/">Blackbox AI</a></li>
                     </ul>""")
             
             gr.HTML('<br><h6><b>Accessibility:</b></h6>')
