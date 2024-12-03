@@ -877,7 +877,8 @@ def text_generator(
                     resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.\nTo exit this error, load a local model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
-                    break
+                    #break
+                    return
 
                 print()
                 print('SAMANTHA: llm object created with llama.cpp. Loading model...\n\n\n')
