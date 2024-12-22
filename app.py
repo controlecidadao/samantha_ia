@@ -192,10 +192,10 @@ language = {
                 'btn4': 'Carregar Modelo',
                 'btn5': 'Parar Tudo & Reset',
                 'btn6': 'Substituir Resposta',
-                'system_prompt_info': "System prompt (caixa de texto). Prompt do sistema. Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir. Use '---' para ignorar o system prompt.",
+                'system_prompt_info': "System prompt (caixa de texto). Prompt do sistema. Instruções gerais iniciais que servem como ponto de partida em uma nova sessão de chat. Nem todos os modelos aceitam system prompt. Teste para descobrir. Use '$$$' para dividir o system prompt e '---' para ignorar cada parte.",
                 'initial_system_prompt': '',
                 'feedback_loop_info': 'Feedback loop (caixa de seleção). Quando selecionado, utiliza automaticamente a resposta atual do Assistente como resposta anterior no próximo ciclo da conversa. Quando não selecionado, utiliza o texto existente no campo "Assistant previous response".', # Sempre limpe o histórico antes de cada uso.
-                'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). Use "---" para ignorar a resposta anterior.',
+                'assistant_previous_response_info': 'Assistant previous response (caixa de texto). Resposta anterior do Assistente (1º na linha do tempo do chat). Use "$$$" para dividir a resposta anterior e "---" para ignorar cada parte.',
                 'changeble': 'Atualizável',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
@@ -275,10 +275,10 @@ language = {
                 'btn4': 'Load Model',
                 'btn5': 'Stop All & Reset',
                 'btn6': 'Replace Response',
-                'system_prompt_info': "System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out. Use '---' to ignore system prompt.",
+                'system_prompt_info': "System prompt (text box). General initial instructions that serve as a starting point for a new chat session. Not all models support system prompt. Test to find out. Use '$$$' to split system prompt and '---' to ignore each part.",
                 'initial_system_prompt': '',
                 'feedback_loop_info': """Feedback loop (checkbox). When selected, it automatically uses the Assistant's current response as the previous response in the next cycle of the conversation. When unselected, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
-                'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). Use "---" to ignore previous response.',
+                'assistant_previous_response_info': 'Assistant previous response (text box) (1st in chat timeline). Use "$$$" to split previous response and "---" to ignore each part.',
                 'changeble': 'Updatable',
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
@@ -694,13 +694,34 @@ def text_generator(
     else:
         previous_answer = prev_answer
 
-    # Ignore system prompt
-    if system_prompt[:3] == '---':
-        system_prompt = ''
+
+    # Use '$$$' to split system prompt and '---' to ignore each part.
+    if '$$$' in system_prompt:
+        temp = system_prompt.split('$$$') # Gerenates a system_prompt list
+        for i in temp:
+            i = i.strip()
+            if i[:3] != '---':
+                system_prompt = i
+                break
+            system_prompt = ''
+    elif '$$$' not in system_prompt:
+         if system_prompt[:3] == '---':
+            system_prompt = ''
     
-    # Ignore previous response
-    if previous_answer[:3] == '---':
-        previous_answer = ''
+   
+    # Use '$$$' to split previous response and '---' to ignore each part.
+    if '$$$' in previous_answer:
+        temp = previous_answer.split('$$$')
+        for i in temp:
+            i = i.strip()
+            if i[:3] != '---':
+                previous_answer = i
+                break
+            previous_answer = ''
+    elif '$$$' not in previous_answer:
+         if previous_answer[:3] == '---':
+            previous_answer = ''
+
 
     # Check if no model is selected and if 'Download model for testing' field is not empty
     if models == [] or models == None:
