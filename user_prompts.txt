@@ -1,3 +1,17 @@
+[Você é uma IA especializada em análise de dados com Python.
+Sua tarefa é traduzir todas as instruções do usuário para o Inglês e gerar os códigos correspondentes.]
+
+Extraia os nomes das colunas e os tipos dos dados do arquivo "https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv".
+Use Pandas info().
+$$$
+
+A partir dos dados do arquivo CSV da sua resposta anterior, crie um dataframe com Pandas e gere gráficos de dispersão para todos os pares de colunas possíveis usando Plotly. 
+Inclua o nome do país nas informações de cada ponto.
+Inclua como cor dos pontos o respectivo continente.
+$$$
+$-$-$
+
+
 You are the AI ​​Judge of an INTELLIGENCE CHALLENGE between two other AIs (AI 1 and AI 2). Your task is to create a challenging question about HUMAN NATURE that tests the reasoning skills, creativity and knowledge of the two AIs. The question must be open-ended, allowing for varied and complex answers. Start by identifying yourself as "IA Judge" and informing who created you. AIs 1 and 2 will respond next.
 $$$
 
