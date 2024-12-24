@@ -181,12 +181,14 @@ llama_cpp_python_version = '0.3.1' # This variable must be updated when llama_cp
 
 language = {
             # PORTUGUESE
-            'pt': {'title': 'Samantha Interface Assistant',
+            'pt': {
+                'title': 'Samantha Interface Assistant',
                 'subtitle_1': 'Interface Experimental Desenvolvida para Testar Modelos de Inteligência Artificial de Código Aberto (<a href="https://github.com/controlecidadao/samantha_ia">Versão 0.3.0</a>)',
                 'warning': 'ATENÇÃO',
                 'subtitle_2': 'O texto gerado pelos modelos reflete os vieses, erros e impropriedades dos dados usados nos treinamentos (pré-treinamento, ajuste fino e alinhamento). Use com responsabilidade e apenas para insights!',
                 'subtitle_3': f'Projeto de <a href="https://www.unesco.org/en/open-science">Ciência Aberta</a> compartilhado no <a href="https://github.com/controlecidadao/samantha_ia/tree/main">Github</a> sob <a href="https://opensource.org/license/mit">Licença MIT</a> (Código Aberto). Desenvolvido com <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> e <a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python</a> (versão {llama_cpp_python_version}) para uso com CPU',
                 
+                # LEFT COLUMN
                 'btn1': 'Iniciar Chat',
                 'btn2': 'Parar / Próximo',
                 'btn3': 'Limpar Histórico',
@@ -204,7 +206,8 @@ language = {
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Seleção de modelos. Seleciona a sequência de modelos a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download de modelos para teste. Realiza download do modelo a partir da sua URL no site Hugging Face, caso não haja modelo selecionado no campo anterior. Use '---' para ignorar cada URL.",
-                'single_answer_info': 'Ativa resposta única por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção "Number of loops" e "Number of responses".',
+                
+                'single_answer_info': "Ativa resposta única por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção 'Number of loops' e 'Number of responses'.",
                 'reset_model_info': "Reinicializa modelo. Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
                 'shuffle_models_order_info': 'Embaralha modelos. Embaralha ordem de execução dos modelos, caso sejam selecionados 3 ou mais modelos.',
                 'fast_mode_info': 'Modo Rápido. Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizagem.',
@@ -220,23 +223,23 @@ language = {
                 'max_tokens_info': 'Número máximo de tokens. Controla número máximo de tokens a serem gerados na resposta (0 = máximo possível).',
                 
                 'temperature_info': 'Controla o grau de aleatoriedade na seleção do próximo token do vocabulário (0 = token com maior probabilidade).',
-                'stop_info': r'Interrompe geração de texto quando identificado no texto quaisquer dos caracteres da lista, no formato ["$$$", ".", ".\n"]',                
+                'stop_info': r'Interrompe geração de texto quando identificado no texto quaisquer dos caracteres da lista, no formato ["$$$", ".", ".\n"].',                
                 'tfs_z_info': 'Tail Free Sampling (amostragem com cauda reduzida). Limita seleção do próximo token a um subconjunto acima da probabilidade cumulativa de corte (0 = token com maior probabilidade).',
                 'top_p_info': 'Top-P Sampling. Limita seleção do próximo token a um subconjunto com probabilidade cumulativa de “p” (0 = token com maior probabilidade).',
                 'min_p_info': 'Min-P Sampling. Limita seleção do próximo token a um subconjunto com probalidade individual mínima de "p" (1 = token com maior probabilidade).', 
-                'typical_p_info': 'Typical-P Sampling. Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estejam abaixo de um limiar de tipicidade contextual (0 = token com maior probabilidade)',
+                'typical_p_info': 'Typical-P Sampling. Limita a seleção do próximo token a um subconjunto cujas probabilidades individuais estejam abaixo de um limiar de tipicidade contextual (0 = token com maior probabilidade).',
                 'top_k_info': 'K-Sampling. Limita seleção do próximo token a um subconjunto com os "k" tokens de maior probabilidade (1 = token com maior probabilidade).',
                 
                 'presence_penalty_info': 'Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua presença no texto já gerado, independentemente da sua frequência.',
                 'frequency_penalty_info': 'Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
-                'repeat_penalty_info': 'Penalidade a ser aplicada a sequências repetidas de tokens (não a sequências dae palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
+                'repeat_penalty_info': 'Penalidade a ser aplicada a sequências repetidas de tokens (não a sequências de palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
                 
-                'model_prompt_template': 'Formato de prompt usado pelo modelo. Variáveis: "system_prompt" e "prompt".',
+                'model_prompt_template': 'Formato de prompt usado pelo modelo.',
                 'model_vocabulary': 'Vocabulário do modelo. Lista todos os pares índice/token usados pelo modelo, incluindo caracteres especiais.',
                 
                 'cumulative_response_info': 'Resposta cumulativa. Concatena a resposta atual do modelo com as respostas anteriores.',
                 'random_hyperparameters_info': 'Ajuste aleatório de hiperparâmetros. Ajusta hiperparâmetros com valores aleatórios.',
-                'interpreter_return_info': 'Retroalimenta apenas a resposta do interpretador Python. Retroalimenta a resposta anterior do assistente apenas com a saída atual do interpretador Python.',
+                'interpreter_return_info': 'Retroalimenta apenas a resposta do interpretador Python.',
                 'hide_html_info': 'Oculta saída HTML. Não exibe a resposta do modelo no formato HTML.',
                 
                 'model_metadata_info': 'Metadados do modelo. Exibe metadados do modelo.',
@@ -267,12 +270,14 @@ language = {
                 },
 
             # ENGLISH
-            'en': {'title': 'Samantha Interface Assistant',
+            'en': {
+                'title': 'Samantha Interface Assistant',
                 'subtitle_1': 'Experimental Interface Designed to Test Open Source Artificial Intelligence Models (<a href="https://github.com/controlecidadao/samantha_ia">Version 0.3.1</a>)',
                 'warning': 'WARNING',
                 'subtitle_2': 'The text generated by the models reflects the biases, errors and improprieties of the databases used in training (pre-training, fine-tuning and alignment). Use them responsibly and for insights only!',
                 'subtitle_3': f'<a href="https://www.unesco.org/en/open-science">Open Science</a> project shared on <a href="https://github.com/controlecidadao/samantha_ia/tree/main">Github</a> under <a href="https://opensource.org/license/mit"> MIT License</a> (Open Source). Powered by <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and <a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python</a> (version {llama_cpp_python_version}) for use with CPU',
                 
+                # LEFT COLUMN
                 'btn1': 'Start Chat',
                 'btn2': 'Stop / Next',
                 'btn3': 'Clean History',
@@ -283,56 +288,57 @@ language = {
                 'system_prompt_info': "System prompt. General initial instructions that serve as a starting point for a new chat session. Some models do not support system prompt. Use '$$$' to separate multiple system prompts and '---' to ignore each prompt.",
                 'initial_system_prompt': '',
                 'feedback_loop_info': """Feedback loop. When selected, it automatically uses the Assistant's current response as the previous response in the next cycle of the chat. When unselected, it uses the existing text in the "Assistant previous response" field.""", # Always clean history before each use.
-                'assistant_previous_response_info': 'Assistant previous response (1st in chat timeline). Use "$$$" to split previous response and "---" to ignore each part.',
+                'assistant_previous_response_info': "Assistant previous response (1st in chat timeline). Use '$$$' to separate multiple responses and '---' to ignore each response.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining. 1) '[ ]' (pre-prompt, placed before each prompt). 2) '[[ ]]' (final-prompt, placed before all responses). 3) '$$$\\n' or '\\n' (prompt separators). 4) '---' (ignore prompt). 5) Return 'STOP_SAMANTHA' (stop loop). 6) Return '' (empty string, do not display HTML pop-up). It is possible to import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) Return 'STOP_SAMANTHA' - exit the loop. 6) Return '' - empty string, do not display HTML window. It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
-                'models_selection_info': 'Model selection. Selects the sequence of artificial intelligence models to use (.GGUF files).',
-                'model_url_info': "Download model for testing. Download the model from its URL on Hugging Face, if there is no model selected. Use '---' to ignore the URL.",
-                'single_answer_info': 'Single response. Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables "Number of loops" and "Number of responses" checkboxes.',
-                'reset_model_info': "Reset model. Reinitializes the model's internal state, eliminating the influence of the previous context.",
-                'shuffle_models_order_info': 'Shuffle models. Shuffles order of execution of models if 3 or more are selected.',
-                'fast_mode_info': 'Fast mode. Generates text faster in background. Disables Learning Mode.',
-                'voice_selection_info': 'Voice selection. Selects SAPI5 voice on the computer.',
-                'read_aloud_info': 'Read aloud. Reads automatically the last Assistant response with the selected SAPI5 voice.',
-                'learning_mode_info': 'Learning mode. Activates Learning Mode. Works only if Fast Mode is unchecked. Time in seconds.',
-                'number_of_loops_info': 'Number of loops. Controls the number of loops of the selected models sequence.',
-                'number_of_responses_info': 'Number of responses. Controls the number of responses for each selected model.',
-                'n_ctx_info': 'n_ctx. Number of context window tokens (0 = from model). Increases RAM memory usage. Before adjusting, unload the model.',
-                'max_tokens_info': 'max_tokens. Controls maximum number of tokens that will be generated in the response. Set 0 for maximum possible.',
+                'models_selection_info': 'Model selection. Selects the sequence of models to use (.GGUF files).',
+                'model_url_info': "Download model for testing. Download the model from its URL on Hugging Face, if there is no model selected in the previous field. Use '---' to ignore the URL.",
                 
-                'temperature_info': 'Controls the degree of randomness in choosing the next token (logits / t).',
-                'stop_info': r'Contains list of characters that interrupt text generation, in the format ["$$$", ".", ".\n"]',
-                'tfs_z_info': 'Tail Free Sampling. Limits selection of the next token to a subset with cumulative probability of the second derivative “z”.',
-                'top_p_info': 'Top-P Sampling. Limits next token selection to a subset with cumulative probability of "p" (1 = 100%).',
-                'min_p_info': 'Min-P Sampling. Limits selection of the next token to a subset with minimum individual probability of "p" (lower bound).', 
-                'typical_p_info': 'Typical-P Sampling. Limits the selection of the next token to a subset whose individual probabilities are below a typicality threshold, calculated as entropy x typical_p, and then renormalizes the probabilities of this subset for sampling.',
-                'top_k_info': 'K-Sampling. Limits selection of the next token to a subset with the "k" highest probability tokens.',
+                'single_answer_info': "Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables 'Number of loops' and 'Number of responses' checkboxes.",
+                'reset_model_info': "Reset model. Reinitializes the model's internal state, eliminating the influence of the previous context.",
+                'shuffle_models_order_info': 'Shuffles order of execution of models if 3 or more are selected.',
+                'fast_mode_info': 'Generates text faster in background. Disables Learning Mode.',
+                'voice_selection_info': 'Selects SAPI5 voice on the computer.',
+                'read_aloud_info': 'Reads automatically the last Assistant response with the selected SAPI5 voice.',
+                'learning_mode_info': 'Activates Learning Mode. Works only if Fast Mode is unchecked. Time in seconds.',
+                'number_of_loops_info': 'Selects the number of loops of the selected models sequence.',
+                'number_of_responses_info': 'Selects the number of responses for each selected model.',
+                'run_code_info': 'Automatically executes generated Python code text in the format ```python <code> ```',
+
+                'stop_condition_info': "Stops the text generation loop if the Python interpreter prints (in the terminal) a value other than '' (empty string) and that does not contain error message.",
+                'n_ctx_info': 'Maximum number of context window tokens (0 = model maximum). Increases RAM memory usage. Before adjusting, unload the model.',
+                'max_tokens_info': 'Selects maximum number of tokens that will be generated in the response (0 = maximum possible).',
+                
+                'temperature_info': 'Controls the degree of randomness in selecting the next token from the vocabulary (0 = token with highest probability).',
+                'stop_info': r'Stops text generation when any of the characters in the list are identified in the text, in the format ["$$$", ".", ".\n"].',
+                'tfs_z_info': 'Tail Free Sampling. Limits selection of the next token to a subset above the cumulative cutoff probability (0 = token with highest probability).',
+                'top_p_info': 'Top-P Sampling. Limits selection of the next token to a subset with cumulative probability of “p” (0 = token with highest probability).',
+                'min_p_info': 'Min-P Sampling. Limits selection of the next token to a subset with minimum individual probability of "p" (1 = token with highest probability).', 
+                'typical_p_info': 'Typical-P Sampling. Limits the selection of the next token to a subset whose individual probabilities are below a contextual typicality threshold (0 = token with highest probability).',
+                'top_k_info': 'K-Sampling. Limits selection of the next token to a subset with the "k" highest probability tokens (1 = highest probability token).',
                 
                 'presence_penalty_info': 'Penalty to apply to the next token (not next word) based on their presence in the already generated text, regardless of its frequency.',
                 'frequency_penalty_info': 'Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
                 'repeat_penalty_info': 'Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text (repetition vs. diversity).',
-                'model_prompt_template': 'Prompt template used by the model. Variables: "system_prompt" and "prompt".',
-                'model_vocabulary': 'List of all index/token pairs used by the model, including special characters (used to separate dialog parts).',
-                'run_code_info': 'Automatically executes the generated Python code.',
-                'stop_condition_info': "Stop condition. Stops Samantha if the Python interpreter prints (in the terminal) a value other than '' (empty string) and that does not contain error message.",
                 
-                'cumulative_response_info': "Cumulative response. Concatenates the model's current response with previous responses.",
-                'random_hyperparameters_info': 'Random hyperparameters. Sets hyperparameters to random values.',
-                'interpreter_return_info': 'Feedback Python interpreter only. Feedback only Python interpreter return as Assistant Previous Response.',
-                'hide_html_info': 'Hide HTML output. Do not display model response in HTML.',
+                'model_prompt_template': 'Prompt template used by the model.',
+                'model_vocabulary': 'List of all index/token pairs used by the model, including special characters.',
+                
+                'cumulative_response_info': "Concatenates the model's current response with previous responses.",
+                'random_hyperparameters_info': 'Sets hyperparameters to random values.',
+                'interpreter_return_info': 'Feedback Python interpreter return only.',
+                'hide_html_info': 'Do not display model response in HTML.',
 
-                'model_metadata_info': 'Model metadata. Shows model metadata.',
-                'show_vocabulary_info': "Show token vocabulary. Displays the model's token vocabulary. It can significantly affect the initial model load time. Only works when Learning Mode is enabled.",
+                'model_metadata_info': 'Shows model metadata.',
+                'show_vocabulary_info': "Display the model's token vocabulary. It can significantly affect the initial model load time. Only works when Learning Mode is enabled.",
                 'btn_unload_model': 'Unload Model',
                 'btn_load_pdf_pages': 'PDF Pages',
-                'btn_load_full_pdf': 'PDF Full',
+                'btn_load_full_pdf': 'Full PDF',
                 'btn_system_prompt': 'System Prompt TXT',
                 'btn_user_prompt': 'User Prompt TXT',
-
                 'btn_load_models_previous_response_info': 'Prev. Response TXT',
-
                 'btn_copy_model_url': 'Copy HF Links',
                 'btn_load_models_urls_info': 'Load URLs TXT',
                 
@@ -342,7 +348,7 @@ language = {
                 'btn_copy_code_blocks': 'Copy Python Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
                 'btn_copy_last_response': 'Copy Last Response',
-                'btn_copy_all_responses': 'Copy All Response',
+                'btn_copy_all_responses': 'Copy All Responses',
                 'btn_voice_command': 'Voice Control',
                 'display_response': 'Response in HTML',
                 'display_responses': 'Responses in HTML',
@@ -3294,7 +3300,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(1, 1000, 40, 1, label='top_k', info=language['top_k_info'], interactive=True),
                 gr.Slider(0, 1, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 1, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
-                gr.Slider(0, 1, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
+                gr.Slider(0, 1.5, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True), # interactive=False
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
