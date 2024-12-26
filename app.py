@@ -3370,6 +3370,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://platform.openai.com/tokenizer">OpenAI Tokenizer</a></li>
                         <li><a href="https://huggingface.co/BAAI/bge-m3">Embeddings Playground</a></li>
 
+                        <li><a href="https://ig.ft.com/generative-ai/">Generative AI - Financial Times</a></li>
+
                         <li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a></li>
                         <li><a href="https://context.ai/compare/gpt-4o-2024-05-13/claude-3-opus">Compare Models</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
