@@ -771,11 +771,23 @@ def text_generator(
 
     with open('full_text.txt', 'w', errors='ignore') as f: # Delete content of the file 'full_text.txt'
         pass
-    
+
+
+    # For the case user inadvertedly closes the browser window in the middle of the chat session
+    with open('last_user_prompt.txt', mode='w', encoding='utf-8', errors='ignore') as f: # Store the last user prompt in a file
+        f.write(prompt)
+
+    with open('last_system_prompt.txt', mode='w', encoding='utf-8', errors='ignore') as f: # Store the last system prompt in a file
+        f.write(system_prompt)
+
+    with open('last_previous_response.txt', mode='w', encoding='utf-8', errors='ignore') as f: # Store the last previous response in a file
+        f.write(previous_answer)
+
+
     full_text = ''                              # Restart variable before load models.
     pre_prompt = ''                             # Required to store the 'pre_prompt' for use in each of the prompts in the prompt list
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
-    prompt_split = []
+    prompt_split = []                           
     count_prompt = 0
 
 
