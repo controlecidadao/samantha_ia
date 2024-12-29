@@ -245,6 +245,7 @@ language = {
                 'model_metadata_info': 'Metadados do modelo. Exibe metadados do modelo.',
                 'show_vocabulary_info': "Exibir vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas quando o Modo de Aprendizagem está ativado.",
                 'btn_unload_model': 'Descarregar Modelo',
+                'btn_save_user_prompt': 'Salvar User Prompt',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
                 'btn_system_prompt': 'System Prompt TXT',
@@ -334,6 +335,7 @@ language = {
                 'model_metadata_info': 'Shows model metadata.',
                 'show_vocabulary_info': "Display the model's token vocabulary. It can significantly affect the initial model load time. Only works when Learning Mode is enabled.",
                 'btn_unload_model': 'Unload Model',
+                'btn_save_user_prompt': 'Save User Prompt',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'Full PDF',
                 'btn_system_prompt': 'System Prompt TXT',
@@ -2783,6 +2785,9 @@ def open_chrome_window(file_path):
     ])
 
 
+# Variável para armazenar o processo Streamlit
+result = None
+
 def open_idle():
 
     '''
@@ -2793,6 +2798,7 @@ def open_idle():
     global python_interpreter_output
     global hide_html
     global process
+    global result
 
     click.play()
 
@@ -2862,13 +2868,30 @@ def open_idle():
         
         # CREATE PYTHON FILE
         with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
-            temp = """import sys\nimport io\nsys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\n""" # To force the display of accented letters in Portuguese
+            # temp = """import sys\nimport io\nsys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\n""" # To force the display of accented letters in Portuguese
+            temp = ''
             f.write(temp + final_code)
 
     # RUN PYTHON FILE
     # try:
+        if 'streamlit' in final_code:
 
-        result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore') 
+            # Encerra o processo Streamlit anterior, se existir
+            if result is not None:
+                print("Encerrando o processo Streamlit anterior...")
+                result.terminate()  # Encerra o processo
+                result.wait()  # Aguarda o término do processo
+                result = None
+
+            result = subprocess.Popen([fr'{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts\streamlit.exe', "run", "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') # Inicia o Streamlit em um subprocesso           
+            time.sleep(3) # Aguarda alguns segundos para garantir que o servidor Streamlit esteja em execução
+            #webbrowser.open("http://localhost:8501") # Abre o navegador na URL do Streamlit
+            print("Streamlit iniciado com sucesso!\n\n")
+
+        else:
+            result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore')
+            # result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
+    
         output = result.stdout #.strip()  # Remove espaços em branco no início e no final. # Se result retornar NoneType, dá erro 'NoneType has no attribute "strip"'
         print(output)   
         print()
@@ -2879,7 +2902,11 @@ def open_idle():
         if output == None:
             output = '' # For printing something
         
-        print('len(output):', len(output))
+        try:
+            print('len(output):', len(output))
+        except:
+            output = '' # For printing something
+        
         print()
 
         if len(output) > 0 or '#IDE' in final_code:
@@ -3191,9 +3218,52 @@ def open_auto_py_to_exe():
     #         pass
 
 
+def save_user_prompt():
+    """
+    Saves user prompt to a TXT file using Tkinter window.
+    """
+    
+    try:
+        del root
+        del tk
+    except:
+        pass
 
+    import tkinter as tk
 
+    click.play()
 
+    root = tk.Tk()
+    root.withdraw()
+    root.attributes('-topmost', True) # Root window on the topmost
+
+    while True:
+        try:
+            path = tk.filedialog.asksaveasfilename(
+                title="Save User Prompt",
+                filetypes=[("TXT Files", "*.txt")],
+                defaultextension=".txt"
+            ) # Raising "RuntimeError: main thread is not in main loop"
+            break
+        except Exception as e:
+            print('ERROR IN tk.filedialog:', traceback.format_exc())
+            return
+
+    path = path.replace('/', '\\')
+
+    root.destroy()
+    del root
+    del tk
+
+    if path == '':
+        return ''
+
+    with open(path, 'w', encoding='utf-8', errors='ignore') as file:
+        file.write(prompt)
+
+    return path
+
+    
 
 
 
@@ -3346,8 +3416,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_download_model_url.click(fn=download_model_urls, inputs=None, outputs=None, queue=True)
                 btn_load_urls_txt = gr.Button(language['btn_load_models_urls_info'])
                 btn_load_urls_txt.click(fn=load_models_urls, inputs=None, outputs=inputs[5], queue=False)
-                btn_xx = gr.Button('')
-                btn_xx.click(fn=None, inputs=None, outputs=None, queue=True)
+                btn_save_user_prompt = gr.Button(language['btn_save_user_prompt'])
+                btn_save_user_prompt.click(fn=save_user_prompt, inputs=None, outputs=None, queue=False)
             
             gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA):</b></h6>')
 
