@@ -19,7 +19,7 @@
 # APP STEPS DESCRIPTION
 # =====================
 
-# 1) IMPORT PYTHON MODULES
+# 1) IMPORT PYTHON MODULES, CLASSES AND FUNCTIONS
 # 2) GET LOCAL DIRECTORY PATH
 # 3) INITIALIZE PYTHON MODULES
 # 4) GRADIO INTERFACE LANGUAGE SELECTION
@@ -63,9 +63,9 @@
 # (jupyterlab) full-path-to-current-directory>
 
 
-# ========================
-# 1) IMPORT PYTHON MODULES
-# ========================
+# ===============================================
+# 1) IMPORT PYTHON MODULES, CLASSES AND FUNCTIONS
+# ===============================================
 
 import gradio as gr               # Import Gradio to create a user-friendly web interface for interacting with AI models. This library simplifies the process of deploying models with a front-end that can accept inputs and display outputs (Front-End Interface).
 from llama_cpp import Llama       # Import Llama_cpp to load Large Language Model (LLM) files in UGGF format. This is the back-end component responsible for handling the model's logic and processing (Back-End Model Loading).
@@ -183,7 +183,7 @@ llama_cpp_python_version = '0.3.1' # This variable must be updated when llama_cp
 language = {
             # PORTUGUESE
             'pt': {
-                # TITLE
+                # TITLE ===============================================
                 'title': 'Samantha Interface Assistant',
                 'subtitle_1': 'Interface Experimental Desenvolvida para Testar Modelos de Inteligência Artificial de Código Aberto (<a href="https://github.com/controlecidadao/samantha_ia">Versão 0.3.0</a>)',
                 'warning': 'ATENÇÃO',
@@ -236,7 +236,7 @@ language = {
                 'frequency_penalty_info': 'Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
                 'repeat_penalty_info': 'Penalidade a ser aplicada a sequências repetidas de tokens (não a sequências de palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
                 
-                'model_prompt_template': 'Formato de prompt usado pelo modelo.',
+                # 'model_prompt_template': 'Formato de prompt usado pelo modelo.',
                 'model_vocabulary': 'Vocabulário do modelo. Lista todos os pares índice/token usados pelo modelo, incluindo caracteres especiais.',
                 
                 'cumulative_response_info': 'Resposta cumulativa. Concatena a resposta atual do modelo com as respostas anteriores.',
@@ -266,8 +266,10 @@ language = {
                 'btn_copy_last_response': 'Copiar Resposta',
                 'btn_copy_all_responses': 'Copiar Respostas',
                 'btn_voice_command': 'Controle por Voz',
+                
                 'display_response': 'Resposta em HTML',
                 'display_responses': 'Respostas em HTML',
+                
                 'btn_idle': 'Executar Código',
                 'btn_text_to_speech': 'Texto para Voz',
                 'btn_last_response': 'Última Resposta',
@@ -276,7 +278,7 @@ language = {
 
             # ENGLISH
             'en': {
-                # TITLE
+                # TITLE ===============================================
                 'title': 'Samantha Interface Assistant',
                 'subtitle_1': 'Experimental Interface Designed to Test Open Source Artificial Intelligence Models (<a href="https://github.com/controlecidadao/samantha_ia">Version 0.3.1</a>)',
                 'warning': 'WARNING',
@@ -329,7 +331,7 @@ language = {
                 'frequency_penalty_info': 'Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
                 'repeat_penalty_info': 'Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text (repetition vs. diversity).',
                 
-                'model_prompt_template': 'Prompt template used by the model.',
+                # 'model_prompt_template': 'Prompt template used by the model.',
                 'model_vocabulary': 'List of all index/token pairs used by the model, including special characters.',
                 
                 'cumulative_response_info': "Concatenates the model's current response with previous responses.",
@@ -359,8 +361,10 @@ language = {
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Responses',
                 'btn_voice_command': 'Voice Control',
+                
                 'display_response': 'Response in HTML',
                 'display_responses': 'Responses in HTML',
+                
                 'btn_idle': 'Run Code',
                 'btn_text_to_speech': 'Text to Speech',
                 'btn_last_response': 'Last Response',
@@ -463,7 +467,7 @@ y_score = []                    # Initial bargraph_2 parameter (prompts frequenc
 delay_next_token = 'OFF'        # Learning Mode OFF. Controls token generation delay and barplots display
 one_click = False               # Used to disable click sound on some buttons
 next_token = False              # Controls NEXT TOKEN button infinite loop
-prompt_template = ''            # Stores model prompt template extracted from TXT file
+# prompt_template = ''            # Stores model prompt template extracted from TXT file
 vocabulary = ''                 # Stores model vocabulary (all possible tokens used by the model)
 full_text = ''                  # Text of all responses of the sequence (prompts list, models list, number of responses and models loops) in one session
 para_tudo = False               # Stop text generation in the current model execution (STOP / NEXT button)
@@ -613,7 +617,7 @@ def text_generator(
         frequency_penalty, 
         repeat_penalty,
 
-        prompt_template_p,
+        dummy_var, #prompt_template_p, # Dummy variable to avoid error in the function call
         show_vocabulary_p,
         vocabulary_p,
         ):
@@ -641,7 +645,7 @@ def text_generator(
     global delay_next_token
     global system_prompt
     global random_list
-    global prompt_template
+    # global prompt_template
     global reset_mode
     global selected_voice
     global engine
@@ -674,7 +678,7 @@ def text_generator(
     loop_models = loop_models_p
     read_aloud = read_aloud_p
     random_list = random_list_p
-    prompt_template = prompt_template_p
+    # prompt_template = prompt_template_p
     reset_mode = reset_mode_p
     selected_voice = selected_voice_p
     vocabulary = vocabulary_p
@@ -889,6 +893,7 @@ def text_generator(
                 try:                                                # Delete previous model from memory
                     del llm
                     gc.collect()
+                    vocabulary = ''
                 except:
                     pass
                 last_model = model                                  # Update last_model variable
@@ -944,16 +949,16 @@ def text_generator(
                 model_metadata = str(llm.metadata).replace(',', '\n ') # Extract model's metadata and converts it to string
 
             # Takes a long time in some models
-            if show_vocabulary == True and delay_next_token != 'OFF':
+            if show_vocabulary == True and delay_next_token != 'OFF' and vocabulary == '':
                 temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
-                vocabulary = ''
+                # vocabulary = ''
                 for n, x in enumerate(temp):
                     try:
                         vocabulary += f'{n})    {repr(x.decode())}\n'
                     except:
                         vocabulary += f'{n})    {repr(x)}\n'
-            else:
-                vocabulary = ''
+            # else:
+            #     vocabulary = ''
             
             if max_tokens == 0:
                 max_tokens = None   
@@ -1831,9 +1836,9 @@ def open_browser():                 # Open default browser with Gradio server on
     webbrowser.open('http://localhost:7860/?__theme=dark')
 
 
-def update_template_field():        # Update model template field
+# def update_template_field():        # Update model template field
     
-    return prompt_template
+#     return prompt_template
 
 
 def sel_model():                    # Select model
@@ -3408,6 +3413,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 1, 0, 0.1, label='presence_penalty', info=language['presence_penalty_info'], interactive=True),
                 gr.Slider(0, 1, 0, 0.1, label='frequency_penalty', info=language['frequency_penalty_info'], interactive=True),
                 gr.Slider(0, 1.5, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
+                
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
                 gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True), # interactive=False
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
