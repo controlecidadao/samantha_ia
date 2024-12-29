@@ -2888,9 +2888,23 @@ def open_idle():
             #webbrowser.open("http://localhost:8501") # Abre o navegador na URL do Streamlit
             print("Streamlit iniciado com sucesso!\n\n")
 
+        elif 'Dash' in final_code:
+
+            # Encerra o processo Streamlit anterior, se existir
+            if result is not None:
+                print("Encerrando o processo Dash anterior...")
+                result.terminate()  # Encerra o processo
+                result.wait()  # Aguarda o término do processo
+                result = None
+
+            result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
+            time.sleep(10)
+            webbrowser.open("http://localhost:8050")
+            print("Dash iniciado com sucesso!\n\n")
+
         else:
-            result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore')
-            # result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
+            # result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore')
+            result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
     
         output = result.stdout #.strip()  # Remove espaços em branco no início e no final. # Se result retornar NoneType, dá erro 'NoneType has no attribute "strip"'
         print(output)   
@@ -3486,6 +3500,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     <li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
                     <li><a href="https://altair-viz.github.io/">Vega-Altair</a></li>
                     <li><a href="https://plotly.com/python/">Plotly</a></li>
+                    <li><a href="https://dash.plotly.com/">Dash</a></li>
+                    <li><a href="https://streamlit.io/">Streamlit</a></li>
                     <li><a href="https://docs.bokeh.org/en/latest/index.html">Bokeh</a></li>
                     <li><a href="https://pyvis.readthedocs.io/en/latest/">Pyvis</a></li>
                     <li><a href="https://networkx.org/documentation/stable/index.html">NetworkX</a></li>
@@ -3515,22 +3531,23 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                     <li><a href="https://www.youtube.com/watch?v=Ylz779Op9Pw">How to Improve LLMs with RAG</a></li>
                     </ul>""")
             
-            gr.HTML('<br><h6><b>Online AI Systems:</b></h6>')
-            gr.HTML("""<ul>
-                        <li><a href="https://lmarena.ai">Chatbot Arena</a></li>
-                        <li><a href="https://huggingface.co/spaces">Hugging Face Spaces</a></li>
-                        <li><a href="https://gemini.google.com/app">Gemini</a></li>
-                        <li><a href="https://aistudio.google.com/app/prompts/new_chat?hl=pt-br">Google AI Studio</a></li>
-                        <li><a href="https://claude.ai/new">Claude</a></li>
-                        <li><a href="https://chatgpt.com/">ChatGPT</a></li>
-                        <li><a href="https://chat.deepseek.com">Deepseek</a></li>
-                        <li><a href="https://chat.mistral.ai/chat">Mistral AI - Le Chat</a></li>
-                        <li><a href="https://notebooklm.google.com">NotebookLM</a></li>
-                        <li><a href="https://www.meta.ai">Meta AI</a></li>
-                        <li><a href="https://copilot.microsoft.com/">Copilot</a></li>
-                        <li><a href="https://www.perplexity.ai/">Perplexity AI</a></li>
-                        <li><a href="https://labs.perplexity.ai/">Perplexity Labs Playground</a></li>
-                    </ul>""")
+            # gr.HTML('<br><h6><b>Online AI Systems:</b></h6>')
+            # gr.HTML("""<ul>
+            #             <li><a href="https://lmarena.ai">Chatbot Arena</a></li>
+            #             <li><a href="https://huggingface.co/spaces">Hugging Face Spaces</a></li>
+            #             <li><a href="https://gemini.google.com/app">Gemini</a></li>
+            #             <li><a href="https://aistudio.google.com/app/prompts/new_chat?hl=pt-br">Google AI Studio</a></li>
+            #             <li><a href="https://claude.ai/new">Claude</a></li>
+            #             <li><a href="https://chatgpt.com/">ChatGPT</a></li>
+            #             <li><a href="https://chat.deepseek.com">Deepseek</a></li>
+            #             <li><a href="https://chat.mistral.ai/chat">Mistral AI - Le Chat</a></li>
+            #             <li><a href="https://notebooklm.google.com">NotebookLM</a></li>
+            #             <li><a href="https://www.meta.ai">Meta AI</a></li>
+            #             <li><a href="https://copilot.microsoft.com/">Copilot</a></li>
+            #             <li><a href="https://www.perplexity.ai/">Perplexity AI</a></li>
+            #             <li><a href="https://labs.perplexity.ai/">Perplexity Labs</a></li>
+            #             <li><a href="https://labs.perplexity.ai/">Perplexity Labs Playground</a></li>
+            #         </ul>""")
             
             gr.HTML('<br><h6><b>Accessibility:</b></h6>')
             gr.HTML("""<ul>
@@ -3610,33 +3627,57 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_full_audio.click(fn=load_full_audio, inputs=inputs, outputs=audio_widget, queue=False)
             
             with gr.Row():
-                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Models Repositories:</h5>""")
+                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Open Source Models:</h5>""")
             
             with gr.Row():
                 gr.HTML("""<ul>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a></li>
-                        <br>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+phi">Phi</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+gemma">Gemma</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+llama">Llama</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+qwen">Qwen</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+wizard">WizardLM</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+dolphin">Dolphin</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+mistral">Mistral</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+hermes">Hermes</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+arcee">Arcee</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+magnum">Magnum</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+mamba">Mamba</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+glm">GLM</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+c4ai">C4AI</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+granite">Granite</a></li>
-                        
-                        <br>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
-                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
+                        <li><a href="https://huggingface.co/models?sort=trending&search=gguf">All Hugging Face GGUF Models</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+phi">Phi</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+gemma">Gemma</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+llama">Llama</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+qwen">Qwen</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+wizard">WizardLM</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+dolphin">Dolphin</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+mistral">Mistral</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+hermes">Hermes</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+arcee">Arcee</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+magnum">Magnum</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+mamba">Mamba</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+glm">GLM</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+c4ai">C4AI</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+granite">Granite</a></li> 
                         </ul>""")
+
+            with gr.Row():
+                gr.HTML("""<br><h5 style="text-align: left; margin: -5px 0 0; color: #f3813f">Online Interfaces:</h5>""")
+
+            with gr.Row():
+                gr.HTML("""<ul>
+                        <li><a href="https://chatgpt.com/">ChatGPT</a> 
+                        <a href="https://claude.ai/new">Claude</a> 
+                        <a href="https://aistudio.google.com/app/prompts/new_chat">Google AI Studio</a> 
+                        <a href="https://gemini.google.com/app">Gemini</a> 
+                        <a href="https://notebooklm.google.com/">NotebookLM</a> 
+                        <a href="https://chat.mistral.ai/">Mistral</a> 
+                        <a href="https://www.perplexity.ai/">Perplexity</a> 
+                        <a href="https://labs.perplexity.ai/">Perplexity Labs</a>  
+                        <a href="https://www.deepseek.com/">DeepSeek</a> 
+                        <a href="https://www.meta.ai/">Meta</a> 
+                        <a href="https://glhf.chat/chat/create">GLHF Chat</a> 
+                        <a href="https://llamacoder.together.ai/">LlamaCoder</a> 
+                        <a href="https://websim.ai/">Websim</a> 
+                        <a href="https://lmarena.ai/">Chatbot Arena</a> 
+                        <a href="https://huggingface.co/spaces">Mamba</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+glm">HF Spaces</a></li> 
+                        </ul>""")
+            
+                
+                        # <br>
+                        # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
+                        # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
+                        
 
                         # <li><a href="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF">bartowski/gemma-2-9b-it-GGUF</a></li>
                         # <li><a href="https://huggingface.co/bartowski/gemma-2-27b-it-GGUF">bartowski/gemma-2-27b-it-GGUF</a></li>
