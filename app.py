@@ -483,8 +483,8 @@ model_url = ''                  # Stores the model url for downloading
 previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
 original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
-show_vocabulary = False         # Stores model's token vocabulary
-run_code = False                # Controls if the generated code will be executed or not
+show_vocabulary = False         # Activates model's token vocabulary
+run_code = False                # Controls if the generated code will be automatically executed or not
 stop_condition = ''             # Stop text generation condition
 cumulative_response = False     # Stores all responses of the chat session cumulatively in previous response
 browser_file = 'msedge.exe'     # Edge has high quality Text-to-Speech engine. But you can use 'chrome.exe'
@@ -494,8 +494,8 @@ random_hyper = False            # Stores the state of the random hyperparameters
 python_interpreter_output = ''  # Python interpreter output
 interpreter_return = ''         # Feedback to previous answer only the Python interpreter output (Checkbox)
 hide_html = False               # Hide output HTML page
-process = ''                    # Stores the process name
-result = None                   # Stores the Streamlit / Dash process
+result = None                   # Stores the Streamlit / Dash subprocess
+process = ''                    # Stores other subprocesses
 
 
 # ===================================
@@ -692,6 +692,7 @@ def text_generator(
     interpreter_return = interpreter_return_p
     hide_html = hide_html_p
 
+    # Hyperparameters range for random selection
     hiperparametros = {
         'temperature': [temperature, 0.1, 2.0],  # [valor_inicial, valor_minimo, valor_maximo]
         'tfs_z': [tfs_z, 0.1, 2.0],
@@ -711,14 +712,14 @@ def text_generator(
     if stop_generation == '':       # To avoid error, set the variable with an impossible character sequence
         stop_generation = "['$$$']"
 
-    ultima_resposta = '' # Always reset this variable in the beginning of every new chat cycle
+    ultima_resposta = ''            # Always reset this variable in the beginning of every new chat cycle
 
-    # Set the previous response sequence (in test)
+    # Set the previous response sequence
     if infinite_loop == True:
-        if ultima_resposta == '':   # This variable is set to '' when Clear Button is pressed (clean_output function)
+        if ultima_resposta == '':               # This variable is set to '' when Clear Button is pressed (clean_output function)
             previous_answer = prev_answer
         else:
-            previous_answer = ultima_resposta # ultima_resposta refers to the current response
+            previous_answer = ultima_resposta   # ultima_resposta refers to the current response
     else:
         previous_answer = prev_answer
 
@@ -753,16 +754,13 @@ def text_generator(
 
     # Check if no model is selected and if 'Download model for testing' field is not empty
     if models == [] or models == None:
-
         if len(model_url.split('\n')) > 0:
             models = model_url.split('\n')  # URL
             models = [x.strip() for x in models if x[:3] != '---']
             models = [x for x in models if x != '']
-
         else:
             yield 'Select a directory containing UGGF file.'
             return
-    
     else:
         if isinstance(models, str):
             models = [models]
@@ -789,7 +787,7 @@ def text_generator(
         pass
 
 
-    # For the case user inadvertedly closes the browser window in the middle of the chat session
+    # Create prompt backup files for the case user inadvertedly closes the browser window in the middle of the chat session
     with open('last_user_prompt.txt', mode='w', encoding='utf-8', errors='ignore') as f: # Store the last user prompt in a file
         f.write(prompt)
 
@@ -800,6 +798,7 @@ def text_generator(
         f.write(previous_answer)
 
 
+    # Reset variables before each new chat session
     full_text = ''                              # Restart variable before load models.
     pre_prompt = ''                             # Required to store the 'pre_prompt' for use in each of the prompts in the prompt list
     final_prompt = ''                           # Required to store the 'final_prompt' for use in each of the prompts in the prompt list
@@ -810,6 +809,8 @@ def text_generator(
     # =================
     # LOOPS DESCRIPTION
     # =================
+
+    # ( [models list] -> respond -> ( [user prompt list] X number of responses) ) X number of loops
 
     # NUMBER OF SEQUENCES (3x, 10x, 100x...)                                       5TH LOOP
     #      |
@@ -833,7 +834,7 @@ def text_generator(
         # SINGLE ANSWER CONTROL - PART 1
         # ==============================
 
-        # Return on the last prompt when number of models is greater
+        # Return on the last prompt when number of models is greater (break cases)
         if single_answer == True:                   # Single_answer activated
 
             if len(models) <= len(prompt_split):    # If number of models is minus or equal to number of prompts
@@ -849,7 +850,8 @@ def text_generator(
         # DOWNLOAD MODEL ONLY FOR TESTING
         # ================================
 
-        # Model is downloaded and saved with the same file name, replacing the previous one
+        # Model is downloaded and saved with the same file name ('MODEL_FOR_TESTING.gguf'), replacing the previous one.
+        # If model download is not finished (e.g: no space on disk), the original file name is kept.
 
         if 'http' in model and previous_model_url == model:
             model = 'MODEL_FOR_TESTING.gguf'    # If .gguf file was downloaded partially, system will raise 'ValueError: Failed to load model from file:...\MODEL_FOR_TESTING.gguf'
@@ -1069,6 +1071,7 @@ def text_generator(
 
                 if 'full_text' in prompt_text:       # Check for replacing last prompt
                     prompt_text = prompt_text.replace('full_text', full_text + '\n$$$')
+
 
                 # =============================
 
