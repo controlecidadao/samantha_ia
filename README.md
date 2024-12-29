@@ -2114,6 +2114,21 @@ Click the button to select the TXT file.
 
 
 <details>
+<summary>Save User Prompt (button)</summary>
+
+---
+
+Saves the _User prompt_ in a TXT file.
+
+Click the button to select the directory where to save the file.
+
+---
+
+<br><br>
+</details>
+
+
+<details>
 <summary>DB Browser (button)</summary>
 
 ---
