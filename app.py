@@ -185,7 +185,7 @@ language = {
             'pt': {
                 # TITLE ===============================================
                 'title': 'Samantha Interface Assistant',
-                'subtitle_1': 'Interface Experimental Desenvolvida para Testar Modelos de Inteligência Artificial de Código Aberto (<a href="https://github.com/controlecidadao/samantha_ia">Versão 0.3.0</a>)',
+                'subtitle_1': 'Interface Experimental Desenvolvida para Testar Modelos de Inteligência Artificial de Código Aberto (<a href="https://github.com/controlecidadao/samantha_ia">Versão 0.4.0</a>)',
                 'warning': 'ATENÇÃO',
                 'subtitle_2': 'O texto gerado pelos modelos reflete os vieses, erros e impropriedades dos dados usados nos treinamentos (pré-treinamento, ajuste fino e alinhamento). Use com responsabilidade e apenas para insights!',
                 'subtitle_3': f'Projeto de <a href="https://www.unesco.org/en/open-science">Ciência Aberta</a> compartilhado no <a href="https://github.com/controlecidadao/samantha_ia/tree/main">Github</a> sob <a href="https://opensource.org/license/mit">Licença MIT</a> (Código Aberto). Desenvolvido com <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> e <a href="https://pypi.org/project/llama-cpp-python/">llama-cpp-python</a> (versão {llama_cpp_python_version}) para uso com CPU',
@@ -204,7 +204,7 @@ language = {
                 'assistant_previous_response_info': "Resposta anterior do Assistente (1º na linha do tempo do chat). Use '$$$' para separar múltiplas respostas e '---' para ignorar cada resposta.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento: 1) '[ ]' - prompt inicial, posicionado antes de cada prompt. 2) '[[ ]]' - prompt final, posicionado antes de todas as respostas. 3) '$$$\\n' ou '\\n' - separador de prompts. 4) '---' - ignorar prompt. 5) Return 'STOP_SAMANTHA' - sair do loop. 6) Return '' - string vazia, não exibe janela HTML. É possível importar um arquivo TXT contendo uma lista de prompts.",
+                'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento: 1) '[ ]' - prompt inicial, posicionado antes de cada prompt. 2) '[[ ]]' - prompt final, posicionado antes de todas as respostas. 3) '$$$\\n' ou '\\n' - separador de prompts. 4) '---' - ignorar prompt. 5) Return 'STOP_SAMANTHA' - sair do loop. 6) Return '' - string vazia, não exibe janela HTML. 7) \{temperature=0, etc.\} - hiperparâmetros do prompt. É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Seleção de modelos. Seleciona a sequência de modelos a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download de modelos para teste. Realiza download do modelo a partir da sua URL no site Hugging Face, caso não haja modelo selecionado no campo anterior. Use '---' para ignorar cada URL.",
@@ -241,7 +241,7 @@ language = {
                 
                 'cumulative_response_info': 'Resposta cumulativa. Concatena a resposta atual do modelo com as respostas anteriores.',
                 'random_hyperparameters_info': 'Ajuste aleatório de hiperparâmetros. Ajusta hiperparâmetros com valores aleatórios.',
-                'interpreter_return_info': 'Retroalimenta apenas a resposta do interpretador Python.',
+                'interpreter_return_info': 'Retroalimenta como resposta anterior apenas o retorno do interpretador Python.',
                 'hide_html_info': 'Oculta saída HTML. Não exibe a resposta do modelo no formato HTML.',
                 
                 'model_metadata_info': 'Metadados do modelo. Exibe metadados do modelo.',
@@ -299,7 +299,7 @@ language = {
                 'assistant_previous_response_info': "Assistant previous response (1st in chat timeline). Use '$$$' to separate multiple responses and '---' to ignore each response.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) Return 'STOP_SAMANTHA' - exit the loop. 6) Return '' - empty string, do not display HTML window. It is possible to import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) Return 'STOP_SAMANTHA' - exit the loop. 6) Return '' - empty string, do not display HTML window. 7) \{temperature=0, etc.\} - prompt hyperparameters. It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
                 'models_selection_info': 'Model selection. Selects the sequence of models to use (.GGUF files).',
                 'model_url_info': "Download model for testing. Download the model from its URL on Hugging Face, if there is no model selected in the previous field. Use '---' to ignore the URL.",
@@ -336,7 +336,7 @@ language = {
                 
                 'cumulative_response_info': "Concatenates the model's current response with previous responses.",
                 'random_hyperparameters_info': 'Sets hyperparameters to random values.',
-                'interpreter_return_info': 'Feedback Python interpreter return only.',
+                'interpreter_return_info': 'Feeds back only the return from the Python interpreter as the previous response.',
                 'hide_html_info': 'Do not display model response in HTML.',
 
                 'model_metadata_info': 'Shows model metadata.',
@@ -480,7 +480,7 @@ reset_mode = True               # Reset model for each prompt run of the chainin
 audio = None                    # Stores pygame audio object
 model_metadata = ''             # Stores llm metadata to show on interface
 model_url = ''                  # Stores the model url for downloading
-previous_model_url = ''         # Stores the model url to check if it changed in every generation cicle ('text_generation' function call)
+previous_model_url = ''         # Stores the previous model url to check if it changed in every generation cicle ('text_generation' function call)
 original_filename = ''          # Stores the model name from url
 single_answer = False           # Activates one single answer per model
 show_vocabulary = False         # Activates model's token vocabulary
@@ -851,7 +851,7 @@ def text_generator(
         # ================================
 
         # Model is downloaded and saved with the same file name ('MODEL_FOR_TESTING.gguf'), replacing the previous one.
-        # If model download is not finished (e.g: no space on disk), the original file name is kept.
+        # If model download is not finished (e.g: no space on disk), the original name is kept in the incomplete file.
 
         if 'http' in model and previous_model_url == model:
             model = 'MODEL_FOR_TESTING.gguf'    # If .gguf file was downloaded partially, system will raise 'ValueError: Failed to load model from file:...\MODEL_FOR_TESTING.gguf'
@@ -1049,6 +1049,62 @@ def text_generator(
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
             # For loop used in a different way
+
+
+                # The code below is executed for every prompt in the prompt list. It forces the model to generate a response based on the interface hyperparameters (not on the prompt hyperparameters).
+                max_tokens_final = max_tokens
+                temperature_final = temperature
+                tfs_z_final = tfs_z
+                top_p_final = top_p
+                min_p_final = min_p
+                typical_p_final = typical_p
+                top_k_final = top_k
+                presence_penalty_final = presence_penalty
+                frequency_penalty_final = frequency_penalty
+                repeat_penalty_final = repeat_penalty
+
+
+                # HIPERPARÂMETROS NO PROMPT
+                # Exemplo de formato: {n_ctx=512, max_tokens=100, stop=STOP, temperature=1.0, tfs_z=1.0, top_p=1.0, min_p=0.1, typical_p=0.5, top_k=50, presence_penalty=0.0, frequency_penalty=0.0, repeat_penalty=1.0}
+                # Extrai o conteúdo do texto entre chaves existente no prompt
+                if '{' in prompt_text and '}' in prompt_text:
+
+                    temp = re.findall(r'\{[\r\n]*([\s\S]*?)[\r\n]*\}', prompt_text)[0]
+
+                    temp = temp.split(',') # Split the text between curly braces by comma (list)
+
+                    # Convert the text between curly braces into a dictionary
+                    hiperparametros_prompt = {}
+                    for i in temp:
+                        i = i.strip()
+                        hiperparametros_prompt[i.split('=')[0]] = i.split('=')[1]
+
+                    for i in hiperparametros_prompt.keys():
+                        if i == 'max_tokens':
+                            max_tokens_final = int(hiperparametros_prompt[i])
+                        elif i == 'temperature':
+                            temperature_final = float(hiperparametros_prompt[i])
+                        elif i == 'tfs_z':
+                            tfs_z_final = float(hiperparametros_prompt[i])
+                        elif i == 'top_p':
+                            top_p_final = float(hiperparametros_prompt[i])
+                        elif i == 'min_p':
+                            min_p_final = float(hiperparametros_prompt[i])
+                        elif i == 'typical_p':
+                            typical_p_final = float(hiperparametros_prompt[i])
+                        elif i == 'top_k':
+                            top_k_final = int(hiperparametros_prompt[i])
+                        elif i == 'presence_penalty':
+                            presence_penalty_final = float(hiperparametros_prompt[i])
+                        elif i == 'frequency_penalty':
+                            frequency_penalty_final = float(hiperparametros_prompt[i])
+                        elif i == 'repeat_penalty':
+                            repeat_penalty_final = float(hiperparametros_prompt[i])
+
+                    print('Hiperparâmetros no prompt:', hiperparametros_prompt)
+
+                    prompt_text = re.sub(r'\{[\r\n]*([\s\S]*?)[\r\n]*\}', '', prompt_text)
+
                 
                 # ==============================
                 # SINGLE ANSWER CONTROL - PART 2
@@ -1141,17 +1197,17 @@ def text_generator(
                     # For random hyperparameters
                     if random_hyper:
                         temp = ajustar_hiperparametros(hiperparametros)
-                        temperature = temp['temperature']
-                        tfs_z = temp['tfs_z']
-                        top_p = temp['top_p']
-                        min_p = temp['min_p']
-                        typical_p = temp['typical_p']
-                        presence_penalty = temp['presence_penalty']
-                        frequency_penalty = temp['frequency_penalty']
-                        repeat_penalty = temp['repeat_penalty']
+                        temperature_final = temp['temperature']
+                        tfs_z_final = temp['tfs_z']
+                        top_p_final = temp['top_p']
+                        min_p_final = temp['min_p']
+                        typical_p_final = temp['typical_p']
+                        presence_penalty_final = temp['presence_penalty']
+                        frequency_penalty_final = temp['frequency_penalty']
+                        repeat_penalty_final = temp['repeat_penalty']
 
                         # String to be added to the model response
-                        hyper = f'RANDOM: temperature ({temperature}), tfs_z ({tfs_z}), min_p ({min_p}), top_p ({top_p}), typical_p ({typical_p}), presence_penalty ({presence_penalty}), frequency_penalty ({frequency_penalty}), repeat_penalty ({repeat_penalty})\n\n'
+                        hyper = f'RANDOM: temperature ({temperature_final}), tfs_z ({tfs_z_final}), min_p ({min_p_final}), top_p ({top_p_final}), typical_p ({typical_p_final}), presence_penalty ({presence_penalty_final}), frequency_penalty ({frequency_penalty_final}), repeat_penalty ({repeat_penalty_final})\n\n'
 
                     else:
                         hyper = ''
@@ -1167,18 +1223,18 @@ def text_generator(
                             messages = messages,
                             functions =  None,
                             function_call = None,
-                            temperature = temperature,             # default: 0.2
-                            top_p = top_p,                         # default: 0.95
-                            min_p = min_p,                         # default: 0.05
-                            typical_p = typical_p,                 # default: 1.0
-                            top_k = top_k,                         # default: 40
-                            stream = True,                         # default: False
-                            stop = eval(stop_generation),          # default: None
-                            max_tokens = max_tokens,               # default: 254 32k = 32768 None
-                            presence_penalty = presence_penalty,   # default: 0
-                            frequency_penalty = frequency_penalty, # default: 0
-                            repeat_penalty = repeat_penalty,       # default: 1.1
-                            tfs_z = tfs_z,                         # default: 1
+                            temperature = temperature_final,             # default: 0.2
+                            top_p = top_p_final,                         # default: 0.95
+                            min_p = min_p_final,                         # default: 0.05
+                            typical_p = typical_p_final,                 # default: 1.0
+                            top_k = top_k_final,                         # default: 40
+                            stream = True,                               # default: False
+                            stop = eval(stop_generation),                # default: None
+                            max_tokens = max_tokens_final,               # default: 254 32k = 32768 None
+                            presence_penalty = presence_penalty_final,   # default: 0
+                            frequency_penalty = frequency_penalty_final, # default: 0
+                            repeat_penalty = repeat_penalty_final,       # default: 1.1
+                            tfs_z = tfs_z_final,                         # default: 1
                             mirostat_mode = 0,
                             mirostat_tau = 5,
                             mirostat_eta = 0.1,
@@ -1495,10 +1551,10 @@ def text_generator(
                     previous_answer = python_interpreter_output # Makes previous_answer equals to python interpreter output only
                     messages[1] = {'role': 'assistant', 'content': previous_answer}
 
-                elif interpreter_return == True and previous_answer == '':
-                    print("No Assistant's Previous Response. Check if Feedback Loop checkbox is activated.")
-                    yield "No Assistant's Previous Response. Check if Feedback Loop checkbox is activated."
-                    return
+                # elif interpreter_return == True and previous_answer == '':
+                #     print("No Assistant's Previous Response. Check if Feedback Loop checkbox is activated.")
+                #     yield "No Assistant's Previous Response. Check if Feedback Loop checkbox is activated."
+                #     return
 
 
                 # if infinite_loop == True:                                   # Update previous response. The existance of text in previous response affects the next text generation time
@@ -2479,6 +2535,7 @@ def extract_models_names():         # Load Model button: open window to choose d
     global last_models_list
     global last_diretorio
     global last_model
+    global gr
 
     click.play()
     
@@ -2925,8 +2982,18 @@ def open_idle():
             # result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore')
             result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
     
-        output = result.stdout #.strip()  # Remove espaços em branco no início e no final. # Se result retornar NoneType, dá erro 'NoneType has no attribute "strip"'
-        print(output)   
+        # Capture the output of the Python interpreter
+        stdout, stderr = result.communicate()
+
+        print('stdout:', stdout) # stdout = standard output
+        print('stderr:', stderr) # stderr = standard error
+
+        output = stdout + stderr
+
+        output = output.strip()  # Remove espaços em branco no início e no final
+
+        # output = result.stdout #.strip()  # Remove espaços em branco no início e no final. # Se result retornar NoneType, dá erro 'NoneType has no attribute "strip"'
+        # print(output)   
         print()
         print('type(output):', type(output))
 
@@ -3297,10 +3364,6 @@ def save_user_prompt():
     return path
 
     
-
-
-
-
 
 # ====================
 # 11) GRADIO INTERFACE
@@ -3717,9 +3780,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;temperature (0), tfs_z (0), top_p (0), min_p (1), typical_p (0), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1), reset_model (True)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;{temperature=0, tfs_z=0, top_p=0, min_p=1, typical_p=0, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1, reset_model=True}</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;temperature (0.8), tfs_z (1), top_p (0.95), min_p (0.05), typical_p (1), top_k (40), presence_penalty (0), frequency_penalty (0), repeat_penalty (1.1), reset_model (True)</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;{temperature=0.8, tfs_z=1, top_p=0.95, min_p=0.05, typical_p=1, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1.1, reset_model=True}</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha close" or "samantha fechar" to stop listening</span></i></h6>')         
             
