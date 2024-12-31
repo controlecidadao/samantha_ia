@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.3.0-blue)
+![v](https://img.shields.io/badge/Version-0.4.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-October%2029,%20%202024-green)
+![v](https://img.shields.io/badge/Updated-December%2030,%20%202024-green)
 ![Visualizações](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fcontrolecidadao%2Fsamantha_ia&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false)
 
 
