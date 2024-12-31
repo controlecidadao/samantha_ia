@@ -215,7 +215,7 @@ language = {
                 'fast_mode_info': 'Modo Rápido. Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizagem.',
                 'voice_selection_info': 'Seleção de voz. Seleciona voz SAPI5 no computador.',
                 'read_aloud_info': 'Modo de Leitura. Lê automaticamente a última resposta do Assistente com a voz SAPI5 selecionada.',
-                'learning_mode_info': 'Modo de Apredizagem. Ativa Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado. Tempo de atraso em segundos.',
+                'learning_mode_info': 'Modo de Apredizagem. Ativa Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado. Tempo de atraso em segundos (0s, 0.3s, 1s).',
                 'number_of_loops_info': 'Número de loops. Seleciona o número de loops da sequência de modelos selecionada.',
                 'number_of_responses_info': 'Número de respostas. Seleciona o número de respostas para cada modelo selecionado.',
                 'run_code_info': 'Executa automaticamente o texto de código Python gerado no formato ```python <código> ```.',
@@ -239,7 +239,7 @@ language = {
                 # 'model_prompt_template': 'Formato de prompt usado pelo modelo.',
                 'model_vocabulary': 'Vocabulário do modelo. Lista todos os pares índice/token usados pelo modelo, incluindo caracteres especiais.',
                 
-                'cumulative_response_info': 'Resposta cumulativa. Concatena a resposta atual do modelo com as respostas anteriores.',
+                'cumulative_response_info': 'Resposta cumulativa. Concatena a resposta atual do modelo com as respostas anteriores. Feedback loop deve estar ativado.',
                 'random_hyperparameters_info': 'Ajuste aleatório de hiperparâmetros. Ajusta hiperparâmetros com valores aleatórios.',
                 'interpreter_return_info': 'Retroalimenta como resposta anterior apenas o retorno do interpretador Python.',
                 'hide_html_info': 'Oculta saída HTML. Não exibe a resposta do modelo no formato HTML.',
@@ -310,7 +310,7 @@ language = {
                 'fast_mode_info': 'Generates text faster in background. Disables Learning Mode.',
                 'voice_selection_info': 'Selects SAPI5 voice on the computer.',
                 'read_aloud_info': 'Reads automatically the last Assistant response with the selected SAPI5 voice.',
-                'learning_mode_info': 'Activates Learning Mode. Works only if Fast Mode is unchecked. Time in seconds.',
+                'learning_mode_info': 'Activates Learning Mode. Works only if Fast Mode is unchecked. Delay time in seconds (0s, 0.3s, 1s).',
                 'number_of_loops_info': 'Selects the number of loops of the selected models sequence.',
                 'number_of_responses_info': 'Selects the number of responses for each selected model.',
                 'run_code_info': 'Automatically executes generated Python code text in the format ```python <code> ```',
@@ -334,7 +334,7 @@ language = {
                 # 'model_prompt_template': 'Prompt template used by the model.',
                 'model_vocabulary': 'List of all index/token pairs used by the model, including special characters.',
                 
-                'cumulative_response_info': "Concatenates the model's current response with previous responses.",
+                'cumulative_response_info': "Concatenates the model's current response with previous responses. Feedback loop must be activated.",
                 'random_hyperparameters_info': 'Sets hyperparameters to random values.',
                 'interpreter_return_info': 'Feeds back only the return from the Python interpreter as the previous response.',
                 'hide_html_info': 'Do not display model response in HTML.',
@@ -3482,8 +3482,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
                 gr.Slider(0, 300_000, 4000, 1, label='max_tokens', info=language['max_tokens_info'], interactive=True),
                 gr.Textbox('["§§§"]', label='stop', info=language['stop_info'], interactive=True),
-                gr.Slider(0, 2, 0, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
-                gr.Slider(0, 2, 0, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
+                gr.Slider(0, 5, 0, 0.1, label='temperature', info=language['temperature_info'], interactive=True),
+                gr.Slider(0, 5, 0, 0.1, label='tfs_z', info=language['tfs_z_info'], interactive=True),
                 gr.Slider(0, 1, 0, 0.1, label='top_p', info=language['top_p_info'], interactive=True), # 1e-5 (0.00001) try to make refference to the probability of one single token
                 gr.Slider(0, 1, 1, 0.1, label='min_p', info=language['min_p_info'], interactive=True), # 
                 gr.Slider(0, 1, 0, 0.1, label='typical_p', info=language['typical_p_info'], interactive=True), # 
@@ -3749,8 +3749,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <a href="https://llamacoder.together.ai/">LlamaCoder</a> 
                         <a href="https://websim.ai/">Websim</a> 
                         <a href="https://lmarena.ai/">Chatbot Arena</a> 
-                        <a href="https://huggingface.co/spaces">Mamba</a> 
-                        <a href="https://huggingface.co/models?sort=trending&search=gguf+glm">HF Spaces</a></li> 
+                        <a href="https://huggingface.co/spaces">HF Spaces</a></li> 
                         </ul>""")
             
                 
