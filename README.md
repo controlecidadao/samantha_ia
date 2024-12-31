@@ -610,6 +610,10 @@ If the Python code execution returns only the word `STOP_SAMANTHA`, it stops tok
 
 If the Python code execution returns only `''` (empty string), it does not display the HTML pop-up window.
 
+You can add specific hyperparameters before each prompt. You must use this pattern:<br>
+
+`{max_tokens=4000, temperature=0, tfs_z=0, top_p=0, min_p=1, typical_p=0, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1}`
+
 Example:<br>
 
 _[You are a poet that writes only in Portuguese]_<br>
@@ -626,6 +630,7 @@ _"A vida é um rio que flui sem parar, levando-nos para além do que conhecemos.
 _Love and life are intertwined forces that shape our existence. Love burns within us like a fire, guiding us through life's journey with passion and purpose. Meanwhile, life itself is a dynamic and ever-changing river, constantly flowing and carrying us beyond the familiar and into the unknown. Together, love and life create a powerful current that propels us forward, urging us to explore, discover, and grow._
 
 ---
+
 
 <br><br>
 </details>
