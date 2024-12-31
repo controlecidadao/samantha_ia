@@ -204,10 +204,10 @@ language = {
                 'assistant_previous_response_info': "Resposta anterior do Assistente (1º na linha do tempo do chat). Use '$$$' para separar múltiplas respostas e '---' para ignorar cada resposta.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento: 1) '[ ]' - prompt inicial, posicionado antes de cada prompt. 2) '[[ ]]' - prompt final, posicionado antes de todas as respostas. 3) '$$$\\n' ou '\\n' - separador de prompts. 4) '---' - ignorar prompt. 5) Return 'STOP_SAMANTHA' - sair do loop. 6) Return '' - string vazia, não exibe janela HTML. 7) \{temperature=0, etc.\} - hiperparâmetros do prompt. É possível importar um arquivo TXT contendo uma lista de prompts.",
+                'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento: 1) '[ ]' - prompt inicial, posicionado antes de cada prompt. 2) '[[ ]]' - prompt final, posicionado antes de todas as respostas. 3) '$$$\\n' ou '\\n' - separador de prompts. 4) '---' - ignorar prompt. 5) Código Python retorna 'STOP_SAMANTHA' - sair do loop. 6) Return '' - string vazia, não exibe janela HTML. 7) \{temperature=0, etc.\} - hiperparâmetros do prompt. É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Seleção de modelos. Seleciona a sequência de modelos a ser usada (arquivos .GGUF).',
-                'model_url_info': "Download de modelos para teste. Realiza download do modelo a partir da sua URL no site Hugging Face, caso não haja modelo selecionado no campo anterior. Use '---' para ignorar cada URL.",
+                'model_url_info': "Download de modelos para teste. Realiza download do modelo a partir da sua URL no site Hugging Face, caso não haja modelo selecionado no campo anterior. Use '\\n' para separar cada URL e '---' para ignorar.",
                 
                 'single_answer_info': "Ativa resposta única por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção 'Number of loops' e 'Number of responses'.",
                 'reset_model_info': "Reinicializa modelo. Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
@@ -299,10 +299,10 @@ language = {
                 'assistant_previous_response_info': "Assistant previous response (1st in chat timeline). Use '$$$' to separate multiple responses and '---' to ignore each response.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) Return 'STOP_SAMANTHA' - exit the loop. 6) Return '' - empty string, do not display HTML window. 7) \{temperature=0, etc.\} - prompt hyperparameters. It is possible to import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) Python code returns 'STOP_SAMANTHA' - exit the loop. 6) Return '' - empty string, do not display HTML window. 7) \{temperature=0, etc.\} - prompt hyperparameters. It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
                 'models_selection_info': 'Model selection. Selects the sequence of models to use (.GGUF files).',
-                'model_url_info': "Download model for testing. Download the model from its URL on Hugging Face, if there is no model selected in the previous field. Use '---' to ignore the URL.",
+                'model_url_info': "Download model for testing. Download the model from its URL on Hugging Face, if there is no model selected in the previous field. Use '\\n' to separe each URL and '---' to ignore.",
                 
                 'single_answer_info': "Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables 'Number of loops' and 'Number of responses' checkboxes.",
                 'reset_model_info': "Reset model. Reinitializes the model's internal state, eliminating the influence of the previous context.",
@@ -1479,6 +1479,8 @@ def text_generator(
                     # while pygame.mixer.get_busy():  # Wait until notification sound ends to play (comment to make it assyncronous)
                     #     pass
 
+
+                    # PYTHON INTERPRETER OUTPUT
                     if run_code == True:            # Run code automatically at the end of generation. Pressing stop button interrupts execution.
                         pyperclip.copy('')          # Copy '' to clipboard (make it empty)
                         python_return = open_idle() # Returns None or 'STOP_SAMANTHA'
@@ -2999,7 +3001,7 @@ def open_idle():
 
         python_interpreter_output = output
 
-        if output == None:
+        if output == None or output.strip() == 'None':
             output = '' # For printing something
         
         try:
@@ -3169,10 +3171,20 @@ def change_checkbox_learning_mode(value):
     
     if value == 'OFF':
         show_vocabulary = False
-        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True) # 
+        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
     else:
         return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
         
+
+
+def change_fast_mode(bool_value):
+        
+        if bool_value:
+            return gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=False)
+        else:
+            return gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=True)
+
+
 
 def load_models_urls():
     
@@ -3491,6 +3503,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             # Activate / Deactivate display model vocabulary when "Leraning Mode" chackbox changes
             inputs[12].change(fn=change_checkbox_learning_mode, inputs=inputs[12], outputs=[inputs[-2]])
 
+            # Activate / Deactivate "Learning Mode" when "Fast Mode" chackbox changes
+            inputs[9].change(fn=change_fast_mode, inputs=inputs[9], outputs=[inputs[12]]) # inputs[9]
+
 
             with gr.Row():
                 btn_unload = gr.Button(language['btn_unload_model'])
@@ -3780,9 +3795,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;{temperature=0, tfs_z=0, top_p=0, min_p=1, typical_p=0, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1, reset_model=True}</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;{max_tokens=4000, temperature=0, tfs_z=0, top_p=0, min_p=1, typical_p=0, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1, reset_model=True}</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;{temperature=0.8, tfs_z=1, top_p=0.95, min_p=0.05, typical_p=1, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1.1, reset_model=True}</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;{max_tokens=4000, temperature=0.8, tfs_z=1, top_p=0.95, min_p=0.05, typical_p=1, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1.1, reset_model=True}</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha close" or "samantha fechar" to stop listening</span></i></h6>')         
             
