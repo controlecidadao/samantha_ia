@@ -1067,43 +1067,50 @@ def text_generator(
                 # HIPERPARÂMETROS NO PROMPT
                 # Exemplo de formato: {n_ctx=512, max_tokens=100, stop=STOP, temperature=1.0, tfs_z=1.0, top_p=1.0, min_p=0.1, typical_p=0.5, top_k=50, presence_penalty=0.0, frequency_penalty=0.0, repeat_penalty=1.0}
                 # Extrai o conteúdo do texto entre chaves existente no prompt
-                if '{' in prompt_text and '}' in prompt_text:
+                try:
+                    
+                    if '{' in prompt_text and '}' in prompt_text:
 
-                    temp = re.findall(r'\{[\r\n]*([\s\S]*?)[\r\n]*\}', prompt_text)[0]
+                        temp = re.findall(r'\{[\r\n]*([\s\S]*?)[\r\n]*\}', prompt_text)[0]
 
-                    temp = temp.split(',') # Split the text between curly braces by comma (list)
+                        temp = temp.split(',') # Split the text between curly braces by comma (list)
 
-                    # Convert the text between curly braces into a dictionary
-                    hiperparametros_prompt = {}
-                    for i in temp:
-                        i = i.strip()
-                        hiperparametros_prompt[i.split('=')[0]] = i.split('=')[1]
+                        # Convert the text between curly braces into a dictionary
+                        hiperparametros_prompt = {}
+                        for i in temp:
+                            i = i.strip()
+                            hiperparametros_prompt[i.split('=')[0]] = i.split('=')[1]
 
-                    for i in hiperparametros_prompt.keys():
-                        if i == 'max_tokens':
-                            max_tokens_final = int(hiperparametros_prompt[i])
-                        elif i == 'temperature':
-                            temperature_final = float(hiperparametros_prompt[i])
-                        elif i == 'tfs_z':
-                            tfs_z_final = float(hiperparametros_prompt[i])
-                        elif i == 'top_p':
-                            top_p_final = float(hiperparametros_prompt[i])
-                        elif i == 'min_p':
-                            min_p_final = float(hiperparametros_prompt[i])
-                        elif i == 'typical_p':
-                            typical_p_final = float(hiperparametros_prompt[i])
-                        elif i == 'top_k':
-                            top_k_final = int(hiperparametros_prompt[i])
-                        elif i == 'presence_penalty':
-                            presence_penalty_final = float(hiperparametros_prompt[i])
-                        elif i == 'frequency_penalty':
-                            frequency_penalty_final = float(hiperparametros_prompt[i])
-                        elif i == 'repeat_penalty':
-                            repeat_penalty_final = float(hiperparametros_prompt[i])
+                        for i in hiperparametros_prompt.keys():
+                            if i == 'max_tokens':
+                                max_tokens_final = int(hiperparametros_prompt[i])
+                            elif i == 'temperature':
+                                temperature_final = float(hiperparametros_prompt[i])
+                            elif i == 'tfs_z':
+                                tfs_z_final = float(hiperparametros_prompt[i])
+                            elif i == 'top_p':
+                                top_p_final = float(hiperparametros_prompt[i])
+                            elif i == 'min_p':
+                                min_p_final = float(hiperparametros_prompt[i])
+                            elif i == 'typical_p':
+                                typical_p_final = float(hiperparametros_prompt[i])
+                            elif i == 'top_k':
+                                top_k_final = int(hiperparametros_prompt[i])
+                            elif i == 'presence_penalty':
+                                presence_penalty_final = float(hiperparametros_prompt[i])
+                            elif i == 'frequency_penalty':
+                                frequency_penalty_final = float(hiperparametros_prompt[i])
+                            elif i == 'repeat_penalty':
+                                repeat_penalty_final = float(hiperparametros_prompt[i])
 
-                    print('Hiperparâmetros no prompt:', hiperparametros_prompt)
+                        print('Hiperparâmetros no prompt:', hiperparametros_prompt)
 
-                    prompt_text = re.sub(r'\{[\r\n]*([\s\S]*?)[\r\n]*\}', '', prompt_text)
+                        prompt_text = re.sub(r'\{[\r\n]*([\s\S]*?)[\r\n]*\}', '', prompt_text)
+
+                except Exception as e:                                        # Returns response with error message and display it on output interface
+                    yield 'Error when trying to extract hyperparameters from prompt.\nMandatory format: {n_ctx=512, max_tokens=100, stop=STOP, temperature=1.0, tfs_z=1.0, top_p=1.0, min_p=0.1, typical_p=0.5, top_k=50, presence_penalty=0.0, frequency_penalty=0.0, repeat_penalty=1.0}'
+                    print(traceback.format_exc())
+                    return
 
                 
                 # ==============================
