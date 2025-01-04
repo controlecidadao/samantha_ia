@@ -2,9 +2,9 @@
 title Samantha IA Server
 
 @echo.
-@echo ========================================
-@echo     SAMANTHA IA - INTERFACE ASSISTANT
-@echo ========================================
+@echo ====================================
+@echo     SAMANTHA INTERFACE ASSISTANT
+@echo ====================================
 @echo.
 
 :: Habilitar UTF-8 para caracteres especiais
@@ -46,9 +46,9 @@ if errorlevel 1 (
 @echo Activated environment: %CONDA_DEFAULT_ENV%
 @echo.
 
-@echo ===========================
-@echo     STARTING SAMANTHA IA
-@echo ===========================
+@echo =========================
+@echo     STARTING SAMANTHA
+@echo =========================
 @echo.
 
 @echo Running 'python app.py' on terminal...
