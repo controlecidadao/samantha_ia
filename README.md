@@ -2315,6 +2315,22 @@ Performance:
 </details>
 
 
+<details>
+<summary>Auto-Py-To-Exe (button)</summary>
+
+---
+
+Closes all instances created with the Python interpreter of the `jyupyterlab` virtual environment.
+
+Use this button to force close running modules that block the Python interpreter, such as servers.
+
+---
+
+<br><br>
+</details>
+
+
+
 <br><br>
 **Default Settings:**
 
