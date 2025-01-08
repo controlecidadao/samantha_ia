@@ -53,6 +53,7 @@ packaging==24.1
 pandas==2.1.4
 pillow==10.4.0
 pipdeptree==2.24.0
+psutil==6.1.1
 pycparser==2.22
 pydantic==2.8.2
 pydantic_core==2.20.1
