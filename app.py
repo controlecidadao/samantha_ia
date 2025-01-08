@@ -100,6 +100,7 @@ import shutil                     # Import shutil for transferring files and dir
 from bs4 import BeautifulSoup     # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
 import tempfile                   # Import tempfile to create temporary files and directories.
 import markdown                   # Import the markdown library for converting Markdown text to HTML.
+import psutil                     # Import psutil to access system details and process management functions. It provides an interface for retrieving information about system resources, such as CPU, memory, disk, and network usage.
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -211,7 +212,7 @@ language = {
                 
                 'single_answer_info': "Ativa resposta única por modelo. Prompts que excedam o número de modelos ou modelos que excedam o número de prompts são ignorados. Desabilita caixas de seleção 'Number of loops' e 'Number of responses'.",
                 'reset_model_info': "Reinicializa modelo. Reinicializa estado interno do modelo, eliminando influência do contexto anterior.",
-                'shuffle_models_order_info': 'Embaralha modelos. Embaralha ordem de execução dos modelos, caso sejam selecionados 3 ou mais modelos.',
+                'shuffle_models_order_info': 'Embaralha modelos distintos. Embaralha ordem de execução dos modelos, caso sejam selecionados 3 ou mais modelos distintos.',
                 'fast_mode_info': 'Modo Rápido. Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizagem.',
                 'voice_selection_info': 'Seleção de voz. Seleciona voz SAPI5 no computador.',
                 'read_aloud_info': 'Modo de Leitura. Lê automaticamente a última resposta do Assistente com a voz SAPI5 selecionada.',
@@ -236,7 +237,6 @@ language = {
                 'frequency_penalty_info': 'Penalidade a ser aplicada ao próximo token (não à próxima palavra) com base em sua frequência no texto já gerado.',
                 'repeat_penalty_info': 'Penalidade a ser aplicada a sequências repetidas de tokens (não a sequências de palavras) com base em sua presença no texto já gerado (repetição vs. diversidade).',
                 
-                # 'model_prompt_template': 'Formato de prompt usado pelo modelo.',
                 'model_vocabulary': 'Vocabulário do modelo. Lista todos os pares índice/token usados pelo modelo, incluindo caracteres especiais.',
                 
                 'cumulative_response_info': 'Resposta cumulativa. Concatena a resposta atual do modelo com as respostas anteriores. Feedback loop deve estar ativado.',
@@ -306,7 +306,7 @@ language = {
                 
                 'single_answer_info': "Activates a single response per model. Prompts that exceed the number of models or models that exceed the number of prompts are ignored. Disables 'Number of loops' and 'Number of responses' checkboxes.",
                 'reset_model_info': "Reset model. Reinitializes the model's internal state, eliminating the influence of the previous context.",
-                'shuffle_models_order_info': 'Shuffles order of execution of models if 3 or more are selected.',
+                'shuffle_models_order_info': 'Shuffles order of execution of distinct models if 3 or more are selected.',
                 'fast_mode_info': 'Generates text faster in background. Disables Learning Mode.',
                 'voice_selection_info': 'Selects SAPI5 voice on the computer.',
                 'read_aloud_info': 'Reads automatically the last Assistant response with the selected SAPI5 voice.',
@@ -331,7 +331,6 @@ language = {
                 'frequency_penalty_info': 'Penalty to apply to the next token (not next word) based on their frequency in the already generated text.',
                 'repeat_penalty_info': 'Penalty to apply to repeated sequence of tokens (not next words sequence) based on their presence in the already generated text (repetition vs. diversity).',
                 
-                # 'model_prompt_template': 'Prompt template used by the model.',
                 'model_vocabulary': 'List of all index/token pairs used by the model, including special characters.',
                 
                 'cumulative_response_info': "Concatenates the model's current response with previous responses. Feedback loop must be activated.",
@@ -467,7 +466,6 @@ y_score = []                    # Initial bargraph_2 parameter (prompts frequenc
 delay_next_token = 'OFF'        # Learning Mode OFF. Controls token generation delay and barplots display
 one_click = False               # Used to disable click sound on some buttons
 next_token = False              # Controls NEXT TOKEN button infinite loop
-# prompt_template = ''            # Stores model prompt template extracted from TXT file
 vocabulary = ''                 # Stores model vocabulary (all possible tokens used by the model)
 full_text = ''                  # Text of all responses of the sequence (prompts list, models list, number of responses and models loops) in one session
 para_tudo = False               # Stop text generation in the current model execution (STOP / NEXT button)
@@ -647,7 +645,6 @@ def text_generator(
     global delay_next_token
     global system_prompt
     global random_list
-    # global prompt_template
     global reset_mode
     global selected_voice
     global engine
@@ -680,7 +677,6 @@ def text_generator(
     loop_models = loop_models_p
     read_aloud = read_aloud_p
     random_list = random_list_p
-    # prompt_template = prompt_template_p
     reset_mode = reset_mode_p
     selected_voice = selected_voice_p
     vocabulary = vocabulary_p
@@ -955,14 +951,11 @@ def text_generator(
             # Takes a long time in some models
             if show_vocabulary == True and delay_next_token != 'OFF' and vocabulary == '':
                 temp = [llm.detokenize([x]) for x in range(llm._n_vocab)] # Get the model vocacubulary
-                # vocabulary = ''
                 for n, x in enumerate(temp):
                     try:
                         vocabulary += f'{n})    {repr(x.decode())}\n'
                     except:
                         vocabulary += f'{n})    {repr(x)}\n'
-            # else:
-            #     vocabulary = ''
             
             if max_tokens == 0:
                 max_tokens = None   
@@ -1051,7 +1044,6 @@ def text_generator(
 
             for num_of_the_prompt, prompt_text in enumerate(prompt_split): # Prompt list. Runs current model over each prompt from the list
             # For loop used in a different way
-
 
                 # The code below is executed for every prompt in the prompt list. It forces the model to generate a response based on the interface hyperparameters (not on the prompt hyperparameters).
                 max_tokens_final = max_tokens
@@ -1640,26 +1632,6 @@ def text_generator(
 
             # =========================
                         
-
-            # THIS CODE IS OK!
-            #     # Controls the sequence of the four concatenated loops (MODEL -> ENDLESS -> PROMPTS -> TOKENS)
-            #     if num_of_the_prompt < len(prompt_split) - 1:   # Continues loop for each prompt separeted by $$$
-            #         continue
-            #     else:
-            #         if num_control < num_respostas:             # Break prompt list's for loop (go back to endless where loop)
-            #             break
-            #         elif num_control == num_respostas:          # Decides if goes to endless where loop or to models loop
-            #             if n_model < len(models) - 1:           # Leave prompt list's for loop (go back to endless where loop)
-            #                 break
-            #             elif n_model == len(models) - 1:        # Leave the function
-            #                 return
-                
-            #     if num_control < num_respostas:                 # Break prompt list's for loop (go back to endless where loop)
-            #         break           
-            
-            # if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
-            #     break
-
             num_control += 1
 
     para_tudo = False                                           # Reset variable
@@ -1677,11 +1649,20 @@ def text_generator(
 # TO DO: Include docstring and comments in all functions
 
 def random_list_fn(models):         # Shuffles models list avoiding that equals itens get togueter (Created with Claude.ai)
+
+    """
+    This function shuffles a list of models (>= 3 items), avoiding that equal items get together.
+    It works as follows:
+    1) Count the number of times each element appears in the list.
+    2) Create a new list with the same elements, but in random order.
+    3) Shuffle the new list until no equal elements are together.
+    4) Return the shuffled list.
+    """
+    
+    contagens = Counter(models)         # {'model_1.gguf': 1, 'model_2.gguf': 1, 'model_3.gguf': 1}
+    elementos = list(contagens.keys())  # ['model_1.gguf', 'model_2.gguf', 'model_3.gguf']
     
     resultado = []
-    contagens = Counter(models)
-    elementos = list(contagens.keys())
-    
     for elemento in elementos:
         resultado.extend([elemento] * contagens[elemento])
     
@@ -2870,8 +2851,6 @@ def open_chrome_window(file_path):
         "--app=file://" + file_path
     ])
 
-
-import psutil
 
 def kill_streamlit():
     process_name = "streamlit.exe"  # Nome do processo a ser encerrado
