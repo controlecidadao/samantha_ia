@@ -2852,21 +2852,59 @@ def open_chrome_window(file_path):
     ])
 
 
-def kill_streamlit():
-    process_name = "streamlit.exe"  # Nome do processo a ser encerrado
+# def kill_streamlit():
+#     process_name = "streamlit.exe"  # Nome do processo a ser encerrado
 
-    try:
-        # Usa o comando taskkill para encerrar o processo pelo nome
-        process = subprocess.Popen(["taskkill", "/IM", process_name, "/F"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
+#     try:
+#         # Usa o comando taskkill para encerrar o processo pelo nome
+#         process = subprocess.Popen(["taskkill", "/IM", process_name, "/F"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+#         stdout, stderr = process.communicate()
 
-        if process.returncode == 0:
-            print(f"Processo {process_name} encerrado com sucesso.")
-        else:
-            print(f"Nenhum processo {process_name} encontrado ou erro ao encerrar.")
-    except Exception as e:
-        print(f"Erro ao tentar encerrar o processo {process_name}: {e}")
+#         if process.returncode == 0:
+#             print(f"Processo {process_name} encerrado com sucesso.")
+#         else:
+#             print(f"Nenhum processo {process_name} encontrado ou erro ao encerrar.")
+#     except Exception as e:
+#         print(f"Erro ao tentar encerrar o processo {process_name}: {e}")
 
+
+
+def close_all_python_instances_in_jupyterlab_env():
+
+    click.play()
+    
+    caminho_venv = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab"  # Caminho do ambiente virtual a ser fechado
+    
+    # Normaliza o caminho do ambiente virtual para garantir comparação correta
+    caminho_venv = os.path.normcase(os.path.normpath(caminho_venv))
+
+    # Lista para armazenar os processos Python no ambiente virtual
+    processos_venv = []
+
+    # Itera sobre todos os processos em execução
+    for proc in psutil.process_iter(['pid', 'name', 'exe', 'environ']):
+        try:
+            # Verifica se o processo é um interpretador Python
+            if 'python' in proc.info['name'].lower():
+                # Obtém o caminho do executável do processo
+                caminho_executavel = proc.info['exe']
+                if caminho_executavel and caminho_venv in os.path.normcase(os.path.normpath(caminho_executavel)):
+                    processos_venv.append(proc)
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+
+    # Fecha os processos encontrados
+    for proc in processos_venv:
+        try:
+            print(f"Fechando processo PID {proc.info['pid']} ({proc.info['name']})")
+            proc.terminate()  # Encerra o processo
+        except Exception as e:
+            print(f"Erro ao fechar processo PID {proc.info['pid']}: {e}")
+
+
+
+import select
+dtale_process = None
 
 def open_idle():
 
@@ -2881,6 +2919,7 @@ def open_idle():
     global result
     global streamlit_processs
     global dash_process
+    global dtale_process
 
     click.play()
 
@@ -2954,9 +2993,8 @@ def open_idle():
             temp = ''
             f.write(temp + final_code)
 
-
-    # RUN PYTHON FILE
-    # try:
+        # =============================
+        
         if 'streamlit' in final_code:
 
             # Encerra o processo Streamlit anterior, se existir
@@ -2973,7 +3011,10 @@ def open_idle():
             print("Streamlit iniciado com sucesso!\n\n")
 
             # Capture the output of the Python interpreter  
-            stdout, stderr = streamlit_processs.communicate()
+            # stdout, stderr = streamlit_processs.communicate() # This method blocks until the process is finished
+            stdout = ''
+            stderr = ''
+
 
         elif 'Dash' in final_code:
 
@@ -2985,12 +3026,39 @@ def open_idle():
                 dash_process = None
 
             dash_process = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
-            time.sleep(10)
+            time.sleep(20)
             webbrowser.open("http://localhost:8050")
             print("Dash iniciado com sucesso!\n\n")
 
             # Capture the output of the Python interpreter  
-            stdout, stderr = dash_process.communicate()
+            # stdout, stderr = dash_process.communicate() # This method blocks until the process is finished
+            stdout = ''
+            stderr = ''
+
+
+        elif 'dtale' in final_code:
+
+            # Encerra o processo Streamlit anterior, se existir
+            if dtale_process is not None:
+                print("Encerrando o processo D-Tale anterior...")
+                dtale_process.terminate()  # Encerra o processo
+                dtale_process.wait()  # Aguarda o término do processo
+                dtale_process = None
+
+            dtale_process = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
+            # time.sleep(10)
+            # webbrowser.open("http://127.0.0.1:7861")
+            print("D-Tale iniciado com sucesso!\n\n")
+
+            # Capture the output of the Python interpreter
+            # try:
+            #     stdout, stderr = dtale_process.communicate()
+            # except:
+            #     pass
+
+            stdout = ''
+            stderr = ''
+
 
         else:
             # result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore')
@@ -3554,6 +3622,14 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_x2.click(fn=open_dtale, inputs=None, outputs=None)
                 btn_x3 = gr.Button('Auto-Py-To-Exe')
                 btn_x3.click(fn=open_auto_py_to_exe, inputs=None, outputs=None)
+
+            with gr.Row():
+                btn_x4 = gr.Button('Close All Python')
+                btn_x4.click(fn=close_all_python_instances_in_jupyterlab_env, inputs=None, outputs=None)
+                btn_x5 = gr.Button('')
+                btn_x5.click(fn=None, inputs=None, outputs=None)
+                btn_x6 = gr.Button('')
+                btn_x6.click(fn=None, inputs=None, outputs=None)
                 
             # with gr.Row():
             #     btn_x4 = gr.Button('')
