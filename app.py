@@ -495,7 +495,9 @@ python_interpreter_output = ''  # Python interpreter output
 interpreter_return = ''         # Feedback to previous answer only the Python interpreter output (Checkbox)
 hide_html = False               # Hide output HTML page
 result = None                   # Stores the Streamlit / Dash subprocess
-process = ''                    # Stores other subprocesses
+process = ''                    # Stores other subprocesses (D-Tale and others)
+streamlit_processs = None       # Stores the Streamlit process
+dash_process = None             # Stores the Dash process
 
 
 # ===================================
@@ -1064,9 +1066,9 @@ def text_generator(
                 repeat_penalty_final = repeat_penalty
 
 
-                # HIPERPARÂMETROS NO PROMPT
-                # Exemplo de formato: {n_ctx=512, max_tokens=100, stop=STOP, temperature=1.0, tfs_z=1.0, top_p=1.0, min_p=0.1, typical_p=0.5, top_k=50, presence_penalty=0.0, frequency_penalty=0.0, repeat_penalty=1.0}
-                # Extrai o conteúdo do texto entre chaves existente no prompt
+                # Extract hyperparameters from the prompt text
+                # Example of format: {n_ctx=512, max_tokens=100, stop=STOP, temperature=1.0, tfs_z=1.0, top_p=1.0, min_p=0.1, typical_p=0.5, top_k=50, presence_penalty=0.0, frequency_penalty=0.0, repeat_penalty=1.0} 
+                # The hyperparameters are extracted from the prompt text and used to generate the response. If the prompt text does not contain hyperparameters, the default values are used.
                 try:
                     
                     if '{' in prompt_text and '}' in prompt_text:
@@ -1368,10 +1370,10 @@ def text_generator(
                             # Sort token list by descending scores
                             token_score_sorted = sorted(token_score, key=lambda x: x[1], reverse=True) # ["22867)    'lá'    ", 29.99230194091797, 'lá']
                             
-                            if top_k > 100: # Limits number of bars displayed to avoid error
+                            if top_k_final > 100: # Limits number of bars displayed to avoid error
                                 top_k_bar = 100
                             else:
-                                top_k_bar = top_k
+                                top_k_bar = top_k_final
                             
                             x_bar = [l[0] for l in token_score_sorted[:top_k_bar]]
                             y_bar = [round(l[1], 2) for l in token_score_sorted[:top_k_bar]]
@@ -1407,7 +1409,7 @@ def text_generator(
                                     break
 
 
-                            token_score_sorted = token_score_sorted[:top_k] # top_k, 10
+                            token_score_sorted = token_score_sorted[:top_k_final] # top_k, 10
                             
                             try:
                                 tokens_score = ''.join([repr(x[0]) + x[1] + '\n' for x in token_score_sorted])
@@ -2869,8 +2871,22 @@ def open_chrome_window(file_path):
     ])
 
 
-# Variável para armazenar o processo Streamlit
+import psutil
 
+def kill_streamlit():
+    process_name = "streamlit.exe"  # Nome do processo a ser encerrado
+
+    try:
+        # Usa o comando taskkill para encerrar o processo pelo nome
+        process = subprocess.Popen(["taskkill", "/IM", process_name, "/F"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+
+        if process.returncode == 0:
+            print(f"Processo {process_name} encerrado com sucesso.")
+        else:
+            print(f"Nenhum processo {process_name} encontrado ou erro ao encerrar.")
+    except Exception as e:
+        print(f"Erro ao tentar encerrar o processo {process_name}: {e}")
 
 
 def open_idle():
@@ -2884,6 +2900,8 @@ def open_idle():
     global hide_html
     global process
     global result
+    global streamlit_processs
+    global dash_process
 
     click.play()
 
@@ -2957,42 +2975,50 @@ def open_idle():
             temp = ''
             f.write(temp + final_code)
 
+
     # RUN PYTHON FILE
     # try:
         if 'streamlit' in final_code:
 
             # Encerra o processo Streamlit anterior, se existir
-            if result is not None:
+            if streamlit_processs is not None:
                 print("Encerrando o processo Streamlit anterior...")
-                result.terminate()  # Encerra o processo
-                result.wait()  # Aguarda o término do processo
-                result = None
+                streamlit_processs.terminate()  # Encerra o processo
+                streamlit_processs.wait()  # Aguarda o término do processo
+                streamlit_processs = None
+                # kill_streamlit()
 
-            result = subprocess.Popen([fr'{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts\streamlit.exe', "run", "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') # Inicia o Streamlit em um subprocesso           
+            streamlit_processs = subprocess.Popen([fr'{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\Scripts\streamlit.exe', "run", "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8') # , errors='ignore' Inicia o Streamlit em um subprocesso           
             time.sleep(3) # Aguarda alguns segundos para garantir que o servidor Streamlit esteja em execução
             #webbrowser.open("http://localhost:8501") # Abre o navegador na URL do Streamlit
             print("Streamlit iniciado com sucesso!\n\n")
 
+            # Capture the output of the Python interpreter  
+            stdout, stderr = streamlit_processs.communicate()
+
         elif 'Dash' in final_code:
 
             # Encerra o processo Streamlit anterior, se existir
-            if result is not None:
+            if dash_process is not None:
                 print("Encerrando o processo Dash anterior...")
-                result.terminate()  # Encerra o processo
-                result.wait()  # Aguarda o término do processo
-                result = None
+                dash_process.terminate()  # Encerra o processo
+                dash_process.wait()  # Aguarda o término do processo
+                dash_process = None
 
-            result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
+            dash_process = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
             time.sleep(10)
             webbrowser.open("http://localhost:8050")
             print("Dash iniciado com sucesso!\n\n")
+
+            # Capture the output of the Python interpreter  
+            stdout, stderr = dash_process.communicate()
 
         else:
             # result = subprocess.run([python_path, "temp.py"], check=True, capture_output=True, text=True, encoding='utf-8', errors='ignore')
             result = subprocess.Popen([python_path, "temp.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', errors='ignore') 
     
-        # Capture the output of the Python interpreter
-        stdout, stderr = result.communicate()
+            # Capture the output of the Python interpreter  
+            stdout, stderr = result.communicate()
 
         print('stdout:', stdout) # stdout = standard output
         print('stderr:', stderr) # stderr = standard error
@@ -3245,23 +3271,25 @@ def load_models_urls():
 
 def find_browser_exe():
 
-    # Lista de unidades comuns no Windows
+    # List of possible drives
     drives = ['C:']
 
-    print(f"Iniciando a pesquisa por {browser_file}...")
+    # Look for the default browser in the possible drives
+    print(f"Searching for {browser_file}...")
     
     for drive in drives:
         for root, dirs, files in os.walk(drive + '\\'):
             if browser_file in files:
                 return os.path.join(root, browser_file)
             
-    # If default browser (msedge.exe) is not found
-    return r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    # If Edge is not found, try to find Chrome path
+    for drive in drives:
+        for root, dirs, files in os.walk(drive + '\\'):
+            if 'chrome.exe' in files:
+                return os.path.join(root, 'chrome.exe')
+
+    # return r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     
-    # return None
-
-# chrome_path = find_browser_exe()
-
 
 def ajustar_hiperparametros(hiperparametros):
     """
@@ -3803,7 +3831,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;{max_tokens=4000, temperature=0, tfs_z=0, top_p=0, min_p=1, typical_p=0, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1, reset_model=True}</span></i></h6>')         
             with gr.Row():
-                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;{max_tokens=4000, temperature=0.8, tfs_z=1, top_p=0.95, min_p=0.05, typical_p=1, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1.1, reset_model=True}</span></i></h6>')         
+                gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Stochastic Settings:&nbsp;&nbsp;&nbsp;{max_tokens=4000, temperature=0.8, tfs_z=1, top_p=0.95, min_p=0.05, typical_p=1, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1.1}</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Voice Commands:&nbsp;&nbsp;&nbsp;English and Portuguese: say "ok" or "samantha" in a speech prompt to submit it. Say just "samantha close" or "samantha fechar" to stop listening</span></i></h6>')         
             
