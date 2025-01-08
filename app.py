@@ -3615,6 +3615,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             
             gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA):</b></h6>')
 
+            # These buttons has fixed labels and are not translated
             with gr.Row():
                 btn_x1 = gr.Button('DB Browser')
                 btn_x1.click(fn=open_db_browser, inputs=None, outputs=None)
@@ -3623,6 +3624,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_x3 = gr.Button('Auto-Py-To-Exe')
                 btn_x3.click(fn=open_auto_py_to_exe, inputs=None, outputs=None)
 
+            # These buttons has fixed labels and are not translated
             with gr.Row():
                 btn_x4 = gr.Button('Close All Python')
                 btn_x4.click(fn=close_all_python_instances_in_jupyterlab_env, inputs=None, outputs=None)
@@ -3630,15 +3632,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_x5.click(fn=None, inputs=None, outputs=None)
                 btn_x6 = gr.Button('')
                 btn_x6.click(fn=None, inputs=None, outputs=None)
-                
-            # with gr.Row():
-            #     btn_x4 = gr.Button('')
-            #     btn_x4.click(fn=, inputs=None, outputs=None)
-            #     btn_x5 = gr.Button('')
-            #     btn_x5.click(fn=None, inputs=None, outputs=None)
-            #     btn_x6 = gr.Button('')
-            #     btn_x6.click(fn=None, inputs=None, outputs=None)
-            
+                           
             gr.HTML('<br><h6><b>Useful links:</b></h6>')
             gr.HTML("""<ul>
                         <li><a href="https://arxiv.org/list/cs.AI/recent">AI Arxiv Articles</a></li>
