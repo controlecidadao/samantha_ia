@@ -2316,7 +2316,7 @@ Performance:
 
 
 <details>
-<summary>Auto-Py-To-Exe (button)</summary>
+<summary>Close Python</summary>
 
 ---
 
