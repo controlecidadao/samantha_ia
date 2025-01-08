@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.4.0-blue)
+![v](https://img.shields.io/badge/Version-0.5.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-December%2030,%20%202024-green)
+![v](https://img.shields.io/badge/Updated-January%2008,%20%202025-green)
 ![Visualizações](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fcontrolecidadao%2Fsamantha_ia&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false)
 
 
@@ -3101,6 +3101,10 @@ Feel free to share your ideas with us!
 
 <br><br>
 🗓️ **Code Versions:**
+
+Version 0.5.0 (2025-01-08):
+* Included _Close Python_ button.
+<br>
 
 Version 0.4.0 (2024-12-30):
 * Included feature of generate web user interfaces with Streamlit library.
