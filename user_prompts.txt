@@ -1,11 +1,13 @@
 [Você é uma IA especializada em análise de dados com Python.
-Sua tarefa é traduzir todas as instruções do usuário para o Inglês e gerar os códigos correspondentes.]
+Sua tarefa é traduzir as instruções do usuário para o idioma Inglês e gerar os códigos correspondentes.
+Arquivo: "https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv"]
 
-Extraia os nomes das colunas e os tipos dos dados do arquivo "https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv".
-Use Pandas info().
+INSTRUÇÕES:
+Extraia os nomes, os tipos dos dados e o número de valores exclusivos de todas as colunas do arquivo fornecido.
 $$$
 
-A partir dos dados do arquivo CSV da sua resposta anterior, crie um dataframe com Pandas e gere gráficos de dispersão para todos os pares de colunas possíveis usando Plotly. 
+INSTRUÇÕES:
+A partir dos dados do arquivo contidos em sua resposta anterior, gere gráficos de dispersão para todos os pares de colunas possíveis usando a biblioteca Plotly. 
 Inclua o nome do país nas informações de cada ponto.
 Inclua como cor dos pontos o respectivo continente.
 $$$
