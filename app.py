@@ -1493,6 +1493,12 @@ def text_generator(
                         if 'STOP_SAMANTHA' in python_interpreter_output:
                             print('STOP_SAMANTHA in Python interpreter output')
                             return
+
+                    # ASSISTANT RESPONSE STOP CONDITION
+                    if 'STOP_SAMANTHA' in ultima_resposta:
+                        print("STOP_SAMANTHA in Assistant's response")
+                        return
+                
                 
 
                     # ==============
