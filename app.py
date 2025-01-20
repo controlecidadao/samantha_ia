@@ -205,7 +205,7 @@ language = {
                 'assistant_previous_response_info': "Resposta anterior do Assistente (1º na linha do tempo do chat). Use '$$$' para separar múltiplas respostas e '---' para ignorar cada resposta.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Texto para Voz',
-                'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento: 1) '[ ]' - prompt inicial, posicionado antes de cada prompt. 2) '[[ ]]' - prompt final, posicionado antes de todas as respostas. 3) '$$$\\n' ou '\\n' - separador de prompts. 4) '---' - ignorar prompt. 5) Código Python retorna 'STOP_SAMANTHA' - sair do loop. 6) Return '' - string vazia, não exibe janela HTML. 7) \{temperature=0, etc.\} - hiperparâmetros do prompt. É possível importar um arquivo TXT contendo uma lista de prompts.",
+                'user_prompt_info': "Prompt do usuário (2º na linha do tempo do chat). Divisão do prompt para encadeamento: 1) '[ ]' - prompt inicial, posicionado antes de cada prompt. 2) '[[ ]]' - prompt final, posicionado antes de todas as respostas. 3) '$$$\\n' ou '\\n' - separador de prompts. 4) '---' - ignorar prompt. 5) 'STOP_SAMANTHA' na resposta do Assistente ou no retorno do interpretador Python - sair do loop. 6) Return '' - string vazia, não exibe janela HTML. 7) \{temperature=0, etc.\} - hiperparâmetros do prompt. É possível importar um arquivo TXT contendo uma lista de prompts.",
                 'user_prompt_value': 'Quem é você?\n\n\n$$$',
                 'models_selection_info': 'Seleção de modelos. Seleciona a sequência de modelos a ser usada (arquivos .GGUF).',
                 'model_url_info': "Download de modelos para teste. Realiza download do modelo a partir da sua URL no site Hugging Face, caso não haja modelo selecionado no campo anterior. Use '\\n' para separar cada URL e '---' para ignorar.",
@@ -299,7 +299,7 @@ language = {
                 'assistant_previous_response_info': "Assistant previous response (1st in chat timeline). Use '$$$' to separate multiple responses and '---' to ignore each response.",
                 'first_assistant_previous_response': '',
                 'text_to_speech': 'Text to Speech',
-                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) Python code returns 'STOP_SAMANTHA' - exit the loop. 6) Return '' - empty string, do not display HTML window. 7) \{temperature=0, etc.\} - prompt hyperparameters. It is possible to import a TXT file containing a list of prompts.",
+                'user_prompt_info': "User prompt (2nd in chat timeline). Prompt splitting for chaining: 1) '[ ]' - initial prompt, placed before each prompt. 2) '[[ ]]' - final prompt, placed before all responses. 3) '$$$\\n' or '\\n' - prompt separators. 4) '---' - ignore prompt. 5) 'STOP_SAMANTHA' in Assistant's response or in Python return - exit the loop. 6) Return '' - empty string, do not display HTML window. 7) \{temperature=0, etc.\} - prompt hyperparameters. It is possible to import a TXT file containing a list of prompts.",
                 'user_prompt_value': 'Who are you?\n\n\n$$$',
                 'models_selection_info': 'Model selection. Selects the sequence of models to use (.GGUF files).',
                 'model_url_info': "Download model for testing. Download the model from its URL on Hugging Face, if there is no model selected in the previous field. Use '\\n' to separe each URL and '---' to ignore.",
@@ -617,7 +617,7 @@ def text_generator(
         frequency_penalty, 
         repeat_penalty,
 
-        dummy_var, #prompt_template_p, # Dummy variable to avoid error in the function call
+        dummy_var,              #prompt_template_p, # Dummy variable to avoid error in the function call
         show_vocabulary_p,
         vocabulary_p,
         ):
@@ -692,7 +692,7 @@ def text_generator(
 
     # Hyperparameters range for random selection
     hiperparametros = {
-        'temperature': [temperature, 0.1, 2.0],  # [valor_inicial, valor_minimo, valor_maximo]
+        'temperature': [temperature, 0.1, 2.0],  # [hyperparameter, minimum value, maximum value]
         'tfs_z': [tfs_z, 0.1, 2.0],
         'top_p': [top_p, 0.1, 1.0],
         'min_p': [min_p, 0.1, 1.0],
@@ -939,7 +939,6 @@ def text_generator(
                     resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.\nTo exit this error, load a local model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
-                    #break
                     return
 
                 print()
