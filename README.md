@@ -27,6 +27,8 @@
 
 [What is Open Source AI (opensource.org)](https://opensource.org/what-is-open-source-ai)
 
+[Does LLM size matters? (Gary Explains)](https://www.youtube.com/watch?v=kgSMRmW2frA)
+
 [Artificial Intelligence Papers (arxiv.org)](https://arxiv.org/list/cs.AI/recent)
 
 <br>
