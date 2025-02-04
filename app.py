@@ -935,8 +935,16 @@ def text_generator(
                         )
 
                 except Exception as e:
+                    try:
+                        os.remove(model_path + '\\' + previous_model_url)        # Delete incomplete file
+                    except:
+                        pass
+                    
                     model = ''                                      # Restart variable just to force new download
-                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama.cpp Python binding used by Samantha.\nTo exit this error, load a local model.\n==========================================\n'
+                    # model_url = ''                                  # IN TEST
+                    previous_model_url = ''                         # IN TEST
+                    
+                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama-cpp-python binding used by Samantha.\nTo exit this error, load a local model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
                     return
