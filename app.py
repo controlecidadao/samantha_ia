@@ -2883,7 +2883,7 @@ def open_chrome_window(file_path):
         "--window-size=400,300",
         "--window-position=100,100",
         "--app=file://" + file_path
-    ])
+    ], shell=True)
 
 
 # def kill_streamlit():
