@@ -85,7 +85,7 @@ This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of in
 
 <br>
 
-Each of these models and prompts sequences can be executed more than once via the **_Number of loops_** feature.
+Each of these models and prompts sequences can be executed more than once via the _Number of Loops_ feature.
 
 <br><br>
 
@@ -108,7 +108,7 @@ Each of these models and prompts sequences can be executed more than once via th
 🧩 Sequencing of prompts and models allows the generation of long responses by fractioning the user input instruction. Every partial response fits in the model's response length defined in the model training process.
 <br><br>
 
-🔧 As an open source tool for automatic self-interaction between AI models, Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop** 🔁. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial imprecise instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user. See Anthropic [system prompts](https://docs.anthropic.com/en/release-notes/system-prompts).
+🔧 As an open source tool for automatic self-interaction between AI models, Samantha Interface Assistant was designed to explore **reverse prompt engineering with self-improvement feedback loop** 🔁. This technique helps small large language models (LLM) to generate more accurate responses by transferring to the model the task of creating the final prompt and corresponding response based on the user's initial imprecise instructions, adding intermediate layers to the prompt construction process. Samantha doesn't have a hidden system prompt like it does with proprietary models. All instructions are controlled by the user. See Anthropic's [open system prompts](https://docs.anthropic.com/en/release-notes/system-prompts).
 <br><br>
 
 🎲 Thanks to **emergent behavior** resulting from generalization patterns extracted from training texts, with the right prompt and proper hyperparameter configuration, even small models working together can generate big responses!
@@ -122,12 +122,12 @@ Each of these models and prompts sequences can be executed more than once via th
 
 <br>
 
-⚠️ **Use Responsibly:**
+⚠️ **Use Responsibly and for Insights Only:**
 The generated text reflects the content, biases, errors and improprieties present in their training datasets. We encourage responsible use of Samantha and for insights only, always keeping ethical considerations at the forefront of our interactions with AI algorithms, which are just complex mathematical models that generates coherent texts from the sequencing of words (tokens) based on the probability patterns extracted from the training texts.
 
 <br>
 
-🦾 **The Instrumental Nature of AI:** Recognizing the technological monopoly of artificial intelligence as a possible instrument of domination and the expansion of social inequalities represents a challenge at this inflection point in history. Noting the flaws of the smaller models during the text generation process aids in this understanding by comparing them with the claimed perfection of the larger proprietary models. It is necessary to reposition things in their proper places and question the romantic reductionist view of attributing human characteristics - such as intelligence (anthropomorphization caused by the psychological phenomenon of pareidolia) - to a technology produced by the human intellect. For this reason, it is essential to demystify artificial intelligence through a didactic approach to how this novel "word/token calculator" works. Certainly, the dopamine of the initial charm artificially created by the market will not withstand the generation of a few hundred tokens (token is the name given to the basic building block of texts that an LLM uses to understand and generate text. A token may be an entire word or part of a word).
+🦾 **The Instrumental Nature of AI:** Recognizing the technological monopoly of artificial intelligence as a possible instrument of domination and the expansion of social inequalities represents a challenge at this inflection point in history. Noting the flaws of the smaller models during the text generation process aids in this understanding by comparing them with the claimed perfection of the larger proprietary models. It is necessary to reposition things in their proper places and question the romantic reductionist view of attributing human characteristics - such as intelligence (anthropomorphization caused by the psychological phenomenon of pareidolia) - to a technology produced by the human intellect. For this reason, it is essential to demystify artificial intelligence through a didactic approach to how this novel "word probabilistic calculator" works. Certainly, the dopamine of the initial charm artificially created by the market will not withstand the generation of a few hundred tokens (token is the name given to the basic building block of texts that an LLM uses to understand and generate text. A token may be an entire word or part of a word).
 
 <br>
 
