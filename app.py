@@ -3706,7 +3706,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
                 
-                gr.Checkbox(value=read_aloud_online, label="Use Edge browser's online synthesizer", info=language['read_aloud_online_info'], interactive=True),
+                gr.Checkbox(value=read_aloud_online, label="Edge browser's online synthesizer", info=language['read_aloud_online_info'], interactive=True),
                 
                 gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 5, 10, 100, 1000000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
