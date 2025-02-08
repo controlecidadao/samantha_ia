@@ -81,7 +81,7 @@ This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of in
 
   * **(model_1, model_2, model_n) respond (prompt_1):** Used to improve previous model's response using disctinct models (model chaining), as well as to generate a dialog between different models.
 
-  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models (model and prompt chaining) and _Single response per model_ feature.
+  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models (model and prompt chaining) and _Single Response per Model_ feature.
 
 <br>
 
