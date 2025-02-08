@@ -1568,7 +1568,7 @@ def text_generator(
                                     break  # Sai do loop após executar a função
                                 else:
                                     #print("Som está sendo reproduzido. Aguardando...")
-                                    time.sleep(1)  # Aguarda 5 segundos antes de verificar novamente
+                                    time.sleep(5)  # Aguarda 5 segundos antes de verificar novamente
 
                         else:
                             audio = pygame.mixer.Sound('resposta.mp3')
@@ -3570,7 +3570,7 @@ import sounddevice as sd
 import numpy as np
 import time
 
-def is_audio_playing(threshold=0.01):
+def is_audio_playing(threshold=0.005):
     """
     Verifica se há som sendo reproduzido no sistema.
     :param threshold: Limite de volume para considerar como "som ativo".
@@ -3586,9 +3586,13 @@ def is_audio_playing(threshold=0.01):
 
     # Calcula o valor RMS (Root Mean Square) do áudio
     rms = np.sqrt(np.mean(audio_data**2))
+    print(f'RMS (threshold: {threshold}):', rms)
 
     # Retorna True se o volume for maior que o limite
-    return rms > threshold
+    if rms > threshold:
+        return True
+    else:
+        return False
 
 # def minha_funcao():
 #     """
