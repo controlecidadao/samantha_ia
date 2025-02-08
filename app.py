@@ -101,6 +101,8 @@ from bs4 import BeautifulSoup     # Import BeautifulSoup for parsing HTML and XM
 import tempfile                   # Import tempfile to create temporary files and directories.
 import markdown                   # Import the markdown library for converting Markdown text to HTML.
 import psutil                     # Import psutil to access system details and process management functions. It provides an interface for retrieving information about system resources, such as CPU, memory, disk, and network usage.
+import pygetwindow as gw          # Import pygetwindow to interact with windows on the desktop. It allows for tasks like getting window information, moving, resizing, and closing windows programmatically.
+import pyautogui                  # Import pyautogui for automating mouse and keyboard actions. It provides functions for controlling the mouse, keyboard, and screen, which can be used for tasks like clicking, typing, and taking screenshots.
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -216,6 +218,7 @@ language = {
                 'fast_mode_info': 'Modo Rápido. Gera texto mais rápido em segundo plano. Desativa Modo de Aprendizagem.',
                 'voice_selection_info': 'Seleção de voz. Seleciona voz SAPI5 no computador.',
                 'read_aloud_info': 'Modo de Leitura. Lê automaticamente a última resposta do Assistente com a voz SAPI5 selecionada.',
+                'read_aloud_online_info': 'Modo Online. Lê usando o sintetizador online do navegador Edge.',
                 'learning_mode_info': 'Modo de Apredizagem. Ativa Modo de Aprendizagem. Funciona apenas se Fast Mode estiver desmarcado. Tempo de atraso em segundos (0s, 0.3s, 1s).',
                 'number_of_loops_info': 'Número de loops. Seleciona o número de loops da sequência de modelos selecionada.',
                 'number_of_responses_info': 'Número de respostas. Seleciona o número de respostas para cada modelo selecionado.',
@@ -310,6 +313,8 @@ language = {
                 'fast_mode_info': 'Generates text faster in background. Disables Learning Mode.',
                 'voice_selection_info': 'Selects SAPI5 voice on the computer.',
                 'read_aloud_info': 'Reads automatically the last Assistant response with the selected SAPI5 voice.',
+                'read_aloud_online_info': "Reads using the Edge browser's online synthesizer.",
+                
                 'learning_mode_info': 'Activates Learning Mode. Works only if Fast Mode is unchecked. Delay time in seconds (0s, 0.3s, 1s).',
                 'number_of_loops_info': 'Selects the number of loops of the selected models sequence.',
                 'number_of_responses_info': 'Selects the number of responses for each selected model.',
@@ -471,6 +476,7 @@ full_text = ''                  # Text of all responses of the sequence (prompts
 para_tudo = False               # Stop text generation in the current model execution (STOP / NEXT button)
 stop_all = False                # Stop text generation of all models loop and resets model loaded (STOP ALL / RESET button)
 read_aloud = False              # Read last model response aloud automatically (Checkbox)
+read_aloud_online = False       # Read last model response aloud using Edge browser (Checkbox)
 infinite_loop = False           # Transpose current response automatically to the model previous response variable (Checkbox)
 fast_mode = False               # Select Fast Mode for text generation without showing on interface (Checkbox)
 random_list = False             # Shuffle models order (if number of models >= 3) (Checkbox)
@@ -593,6 +599,7 @@ def text_generator(
         fast_mode_p,
         selected_voice_p,
         read_aloud_p,
+        read_aloud_online_p,
         delay_next_token_p,
         loop_models_p,
         num_respostas,
@@ -635,6 +642,7 @@ def text_generator(
     global prompt
     global infinite_loop
     global read_aloud
+    global read_aloud_online
     global x_bar
     global y_bar
     global color_bar
@@ -676,6 +684,7 @@ def text_generator(
     infinite_loop = infinite_loop_p
     loop_models = loop_models_p
     read_aloud = read_aloud_p
+    read_aloud_online = read_aloud_online_p
     random_list = random_list_p
     reset_mode = reset_mode_p
     selected_voice = selected_voice_p
@@ -1548,9 +1557,34 @@ def text_generator(
                 
                     # Read aloud the saved audio file with the previous Assistant response
                     if read_aloud == True:
-                        audio = pygame.mixer.Sound('resposta.mp3')
-                        audio.set_volume(1.0)
-                        audio.play()
+
+                        if read_aloud_online == True:                       # Read aloud the output window text with Edge browser
+                            read_samantha_output_window()                       # Read aloud the output window text with Edge browser
+                            time.sleep(5)                                       # Wait 1 second before deleting the audio file
+                            
+                            # Loop para verificar o estado do áudio
+                            while True:
+                                if not is_audio_playing():
+                                    break  # Sai do loop após executar a função
+                                else:
+                                    #print("Som está sendo reproduzido. Aguardando...")
+                                    time.sleep(1)  # Aguarda 5 segundos antes de verificar novamente
+
+                        else:
+                            audio = pygame.mixer.Sound('resposta.mp3')
+                            audio.set_volume(1.0)
+                            audio.play()
+                            while pygame.mixer.get_busy():              # Wait until the sound has finished playing (synchronous behavior)
+                                pass
+
+
+
+
+
+
+
+
+
 
                 # MAIN EXCEPT
                 except Exception as e:
@@ -2789,7 +2823,7 @@ def create_html(content):
     </head>
     <body>
         <div class="container">
-            <h3>Assistant output ({last_model}):</h3>
+            <!--<h3>Assistant output ({last_model}):</h3>-->
             <div id="content">{html_content}</div>
         </div>
     </body>
@@ -3491,7 +3525,90 @@ def save_user_prompt():
 
     return path
 
+
+def read_samantha_output_window():
+
+    # Abre o Microsoft Edge
+    # subprocess.Popen(["start", "msedge"], shell=True)
     
+    # Aguarda alguns segundos para o navegador abrir
+    # time.sleep(5)
+
+    # open_chrome_window(fr'{DIRETORIO_LOCAL}\Samantha Interface Assistant.html')
+
+    exibir_resposta_html()
+
+    time.sleep(3)
+
+    # Procura a janela com o título "Samantha Interface Assistant"
+    while True:
+        try:
+            janela = gw.getWindowsWithTitle("Samantha Interface Assistant")[0]
+            break
+        except IndexError:
+            # print("Janela não encontrada. Tentando novamente...")
+            time.sleep(1)
+
+    # Verifica se a janela foi encontrada
+    if janela:
+        # Ativa a janela
+        janela.activate()
+        time.sleep(1)
+        
+        # Maximiza a janela
+        # janela.maximize()
+        # time.sleep(1)
+        
+        # Pressiona a tecla 'Ctrl + Shift + U' para ler o texto da página (leitura assíncrona)
+        pyautogui.hotkey('ctrl', 'shift', 'u')
+    else:
+        print("Janela com o título 'Samantha Interface Assistant' não encontrada.")
+
+
+
+import sounddevice as sd
+import numpy as np
+import time
+
+def is_audio_playing(threshold=0.01):
+    """
+    Verifica se há som sendo reproduzido no sistema.
+    :param threshold: Limite de volume para considerar como "som ativo".
+    :return: True se o som estiver sendo reproduzido, False caso contrário.
+    """
+    # Configuração da captura de áudio
+    duration = 3.0  # Duração da captura em segundos
+    sample_rate = 44100  # Taxa de amostragem
+
+    # Captura o áudio do sistema
+    audio_data = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=2, dtype='float32')
+    sd.wait()  # Aguarda a captura ser concluída
+
+    # Calcula o valor RMS (Root Mean Square) do áudio
+    rms = np.sqrt(np.mean(audio_data**2))
+
+    # Retorna True se o volume for maior que o limite
+    return rms > threshold
+
+# def minha_funcao():
+#     """
+#     Função que será executada apenas quando não houver som sendo reproduzido.
+#     """
+#     print("Nenhum som está sendo reproduzido. Executando a função...")
+
+# # Loop para verificar o estado do áudio
+# while True:
+#     if not is_audio_playing():
+#         read_samantha_output_window()
+#         break  # Sai do loop após executar a função
+#     else:
+#         #print("Som está sendo reproduzido. Aguardando...")
+#         time.sleep(1)  # Aguarda 5 segundos antes de verificar novamente
+
+
+
+
+
 
 # ====================
 # 11) GRADIO INTERFACE
@@ -3584,6 +3701,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
+                
+                gr.Checkbox(value=read_aloud_online, label="Use Edge browser's online synthesizer", info=language['read_aloud_online_info'], interactive=True),
+                
                 gr.Radio(['OFF', 0, 0.3, 1, 3, 10, 'NEXT TOKEN'], value='OFF', label='Learning Mode', info=language['learning_mode_info'], interactive=leaning_mode_interatcive),
                 gr.Radio([1, 2, 3, 5, 10, 100, 1000000], value=1, label="Number of loops", info=language['number_of_loops_info'], interactive=True),
                 gr.Radio([1, 2, 3, 5, 10, 100, 1000000], value=1, label="Number of responses", info=language['number_of_responses_info'], interactive=True),
