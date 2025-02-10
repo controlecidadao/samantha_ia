@@ -3984,9 +3984,11 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <a href="https://gemini.google.com/app">Gemini</a> 
                         <a href="https://notebooklm.google.com/">NotebookLM</a> 
                         <a href="https://chat.mistral.ai/">Mistral</a> 
+                        <a href="https://m365.cloud.microsoft/chat">MS Copilot</a> 
                         <a href="https://www.perplexity.ai/">Perplexity</a> 
                         <a href="https://labs.perplexity.ai/">Perplexity Labs</a>  
                         <a href="https://www.deepseek.com/">DeepSeek</a> 
+                        <a href="https://chat.qwenlm.ai/">Qwen</a> 
                         <a href="https://www.meta.ai/">Meta</a> 
                         <a href="https://glhf.chat/chat/create">GLHF Chat</a> 
                         <a href="https://llamacoder.together.ai/">LlamaCoder</a> 
@@ -3994,13 +3996,10 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <a href="https://lmarena.ai/">Chatbot Arena</a> 
                         <a href="https://huggingface.co/spaces">HF Spaces</a></li> 
                         </ul>""")
-            
-                
+
                         # <br>
                         # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+code">Code</a></li>
                         # <li><a href="https://huggingface.co/models?sort=trending&search=gguf+portuguese">Portuguese</a></li>
-                        
-
                         # <li><a href="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF">bartowski/gemma-2-9b-it-GGUF</a></li>
                         # <li><a href="https://huggingface.co/bartowski/gemma-2-27b-it-GGUF">bartowski/gemma-2-27b-it-GGUF</a></li>
                         # <li><a href="https://huggingface.co/Qwen/Qwen2-0.5B-Instruct-GGUF">Qwen/Qwen2-0.5B-Instruct-GGUF</a></li>
@@ -4030,10 +4029,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops.</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Context Window:&nbsp;&nbsp;&nbsp;System Prompt + Previous Response + User Prompt + Current Response.</span></i></h6>')
-            
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Diversity:&nbsp;&nbsp;&nbsp;Generates syntactic (words) and semantic (meaning) diversity.</span></i></h6>')
-            
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
@@ -4083,9 +4080,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
         btn5.click(fn=stop_running_all, inputs=None, outputs=None, queue=False)
         btn6.click(fn=update_previous_answer, inputs=None, outputs=inputs[2], queue=False, show_progress='hidden')
 
-        # if show_vocabulary == True:
         saida.change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=True, show_progress=False)
-            
         saida.change(fn=update_metadata, inputs=None, outputs=inputs[-3], trigger_mode='always_last', queue=True, show_progress=False)
 
         # inputs[-1].change(fn=update_metadata, inputs=None, outputs=inputs[-2], trigger_mode='always_last', queue=True, show_progress=False)
@@ -4097,16 +4092,19 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
 
 def main():
 
-    while True:
+    """
+    Main function to run the interface.
+    """
+
+    while True:                         # Loop to keep the interface running in case of errors
         try:
-            demo.queue()                # Put interface on queue
+            demo.queue()                # Put interface on queue (wait for user input)
             open_browser()              # Open browser before endpoint generation (wait demo launch)
             demo.launch(share=False, favicon_path=fr"{DIRETORIO_LOCAL}\images\s.ico")
-        except Exception as e:
-            print(e)
+        except Exception as e:          # In case of error, the loop will continue
+            print(e)                    # Print error message
             continue
 
 
 if __name__ == '__main__':
     main()
-    
