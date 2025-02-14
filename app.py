@@ -78,6 +78,7 @@ import time                       # Import time for controlling the delay betwee
 import pyttsx3                    # Import pyttsx3 to convert text to speech using SAPI5 voices installed on the computer, enabling textual information to be audibly spoken out loud (Text-to-Speech).
 import re                         # Import re for creating regular expressions, which are powerful patterns used to match character combinations in strings for tasks like data validation and extraction (Regular Expressions).
 import pandas as pd               # Import pandas to create DataFrames for visualization purposes, particularly useful for generating bar plots from token data (Data Analysis and Visualization).
+import numpy as np                # Import numpy for numerical computing and data manipulation, providing support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions (Numerical Computing).
 import random                     # Import random to shuffle elements in a list or generate pseudo-random numbers, which can be used to randomize the order of model execution (Randomization).
 from collections import Counter   # Import collections.Counter to count occurrences of each element in a sequence and group similar items together (Item Counting and Grouping).
 import winsound                   # Import winsound to create and play audio signals, such as beeps, on the computer's sound card (Sound Synthesis).
@@ -314,7 +315,6 @@ language = {
                 'voice_selection_info': 'Selects SAPI5 voice on the computer.',
                 'read_aloud_info': 'Reads automatically the last Assistant response with the selected SAPI5 voice.',
                 'read_aloud_online_info': "Reads using the Edge browser's online synthesizer.",
-                
                 'learning_mode_info': 'Activates Learning Mode. Works only if Fast Mode is unchecked. Delay time in seconds (0s, 0.3s, 1s).',
                 'number_of_loops_info': 'Selects the number of loops of the selected models sequence.',
                 'number_of_responses_info': 'Selects the number of responses for each selected model.',
@@ -480,7 +480,7 @@ read_aloud_online = False       # Read last model response aloud using Edge brow
 infinite_loop = False           # Transpose current response automatically to the model previous response variable (Checkbox)
 fast_mode = False               # Select Fast Mode for text generation without showing on interface (Checkbox)
 random_list = False             # Shuffle models order (if number of models >= 3) (Checkbox)
-reset_mode = True               # Reset model for each prompt run of the chaining (Checkbox)
+reset_mode = False              # Reset model for each prompt run of the chaining (Checkbox)
 audio = None                    # Stores pygame audio object
 model_metadata = ''             # Stores llm metadata to show on interface
 model_url = ''                  # Stores the model url for downloading
@@ -1559,16 +1559,20 @@ def text_generator(
                     if read_aloud == True:
 
                         if read_aloud_online == True:                       # Read aloud the output window text with Edge browser
-                            read_samantha_output_window()                       # Read aloud the output window text with Edge browser
-                            time.sleep(5)                                       # Wait 1 second before deleting the audio file
+                            read_samantha_output_window()                   # Read aloud the output window text with Edge browser
+                            time.sleep(5)                                   # Wait 1 second before deleting the audio file
                             
-                            # Loop para verificar o estado do áudio
-                            while True:
-                                if not is_audio_playing():
-                                    break  # Sai do loop após executar a função
-                                else:
-                                    #print("Som está sendo reproduzido. Aguardando...")
-                                    time.sleep(5)  # Aguarda 5 segundos antes de verificar novamente
+                            # Wait until the reading is finished. You can stop the reading by pressing the Stop button
+                            temp = calcular_tempo_pausa(cleaned)
+                            for i in range(int(temp)):
+                                time.sleep(1)                                       
+                                if i % 3 == 0 and (para_tudo == True or stop_all == True): # Stop button pressed
+                                    if stop_all == True:
+                                        som.play()                                         # Play notification sound to warn the end of response generation
+                                        stop_all = False
+                                        return
+                                    para_tudo = False
+                                    break
 
                         else:
                             audio = pygame.mixer.Sound('resposta.mp3')
@@ -1576,15 +1580,6 @@ def text_generator(
                             audio.play()
                             while pygame.mixer.get_busy():              # Wait until the sound has finished playing (synchronous behavior)
                                 pass
-
-
-
-
-
-
-
-
-
 
                 # MAIN EXCEPT
                 except Exception as e:
@@ -3544,6 +3539,7 @@ def read_samantha_output_window():
     while True:
         try:
             janela = gw.getWindowsWithTitle("Samantha Interface Assistant")[0]
+            time.sleep(2)
             break
         except IndexError:
             # print("Janela não encontrada. Tentando novamente...")
@@ -3551,67 +3547,78 @@ def read_samantha_output_window():
 
     # Verifica se a janela foi encontrada
     if janela:
-        # Ativa a janela
-        janela.activate()
-        time.sleep(1)
-        
-        # Maximiza a janela
-        # janela.maximize()
-        # time.sleep(1)
-        
-        # Pressiona a tecla 'Ctrl + Shift + U' para ler o texto da página (leitura assíncrona)
-        pyautogui.hotkey('ctrl', 'shift', 'u')
+        try:
+            # Ativa a janela
+            janela.activate()
+            time.sleep(2)
+            
+            # Maximiza a janela
+            janela.maximize()
+            time.sleep(2)
+            
+            # Pressiona a tecla 'Ctrl + Shift + U' para ler o texto da página (leitura assíncrona)
+            pyautogui.hotkey('ctrl', 'shift', 'u')
+        except:
+            print('Error on trying to read the text from the Edge browser window.')
+            pass
     else:
-        print("Janela com o título 'Samantha Interface Assistant' não encontrada.")
+        print("Window with title 'Samantha Interface Assistant' not found.")
 
 
+def calcular_tempo_pausa(texto, palavras_por_minuto=200):
+    # Configurações de tempo
+    segundos_por_palavra = 60 / palavras_por_minuto
+    pausas = {
+        '.': 0.6,   # Ponto final
+        '!': 0.6,   # Exclamação
+        '?': 0.6,   # Interrogação
+        ',': 0.6,   # Vírgula
+        ';': 0.6,   # Ponto e vírgula
+        ':': 0.6,    # Dois pontos
 
-import sounddevice as sd
-import numpy as np
-import time
+        '(': 0.6,    # Abre parênteses
+        ')': 0.6,    # Fecha parênteses
+    }
+    
+    # Calcula componentes do tempo
+    palavras = texto.split()
+    num_palavras = len(palavras)
+    
+    # Conta pausas de pontuação
+    tempo_pausas = sum(pausas.get(caractere, 0) for caractere in texto)
+    
+    # Calcula tempo base de leitura
+    tempo_leitura = num_palavras * segundos_por_palavra
+    
+    # Tempo total = leitura + pausas
+    tempo_total = tempo_leitura + tempo_pausas
+    
+    return tempo_total
 
-def is_audio_playing(threshold=0.005):
-    """
-    Verifica se há som sendo reproduzido no sistema.
-    :param threshold: Limite de volume para considerar como "som ativo".
-    :return: True se o som estiver sendo reproduzido, False caso contrário.
-    """
-    # Configuração da captura de áudio
-    duration = 3.0  # Duração da captura em segundos
-    sample_rate = 44100  # Taxa de amostragem
 
-    # Captura o áudio do sistema
-    audio_data = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=2, dtype='float32')
-    sd.wait()  # Aguarda a captura ser concluída
-
-    # Calcula o valor RMS (Root Mean Square) do áudio
-    rms = np.sqrt(np.mean(audio_data**2))
-    print(f'RMS (threshold: {threshold}):', rms)
-
-    # Retorna True se o volume for maior que o limite
-    if rms > threshold:
-        return True
-    else:
-        return False
-
-# def minha_funcao():
+# def is_audio_playing(threshold=0.005):
 #     """
-#     Função que será executada apenas quando não houver som sendo reproduzido.
+#     Verifica se há som sendo reproduzido no sistema.
+#     :param threshold: Limite de volume para considerar como "som ativo".
+#     :return: True se o som estiver sendo reproduzido, False caso contrário.
 #     """
-#     print("Nenhum som está sendo reproduzido. Executando a função...")
+#     # Configuração da captura de áudio
+#     duration = 3.0  # Duração da captura em segundos
+#     sample_rate = 44100  # Taxa de amostragem
 
-# # Loop para verificar o estado do áudio
-# while True:
-#     if not is_audio_playing():
-#         read_samantha_output_window()
-#         break  # Sai do loop após executar a função
+#     # Captura o áudio do sistema
+#     audio_data = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=2, dtype='float32')
+#     sd.wait()  # Aguarda a captura ser concluída
+
+#     # Calcula o valor RMS (Root Mean Square) do áudio
+#     rms = np.sqrt(np.mean(audio_data**2))
+#     print(f'RMS (threshold: {threshold}):', rms)
+
+#     # Retorna True se o volume for maior que o limite
+#     if rms > threshold:
+#         return True
 #     else:
-#         #print("Som está sendo reproduzido. Aguardando...")
-#         time.sleep(1)  # Aguarda 5 segundos antes de verificar novamente
-
-
-
-
+#         return False
 
 
 # ====================
@@ -3627,6 +3634,7 @@ css = """
 #prompt_id textarea {border-color: #777777 !important}
 """
 
+# Javascript code
 shortcut_js = """
 <script>
 function shortcuts(e) {
@@ -3640,32 +3648,11 @@ function shortcuts(e) {
     }
 }
 document.addEventListener('keyup', shortcuts, false);
-
-
-//function changeFavicon(newFaviconUrl) {
-//    let link = document.querySelector("link[rel~='icon']");
-//    if (!link) {
-//        link = document.createElement('link');
-//        link.rel = 'icon';
-//        document.getElementsByTagName('head')[0].appendChild(link);
-//    }
-//    link.href = newFaviconUrl;
-//}
-//changeFavicon('images/s.ico');
-
 </script>
 """
-# audio_widget = None
 
 with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # AttributeError: Cannot call change outside of a gradio.Blocks context.
-    
-    # Page image
-    # gr.HTML("""
-    #         <img id="overlay-image" src="images/s2.png" alt="Overlay Image" style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 9999;">
-    #         """)
-    
-    # gr.Image("images/s2.png", show_label=False, show_download_button=False, height=40, width=40, min_width=40)
-        
+         
     # Page title
     gr.HTML(f'<h1 style="text-align: center; margin: -5px 0 0; color: #f3813f">{language["title"]}</h1>')
     gr.HTML(f'<h5 style="text-align: center; margin: -7px 0 0px"><b><span style="color: #9CA3AF;">{language["subtitle_1"]}</span></b></h5>')
@@ -3806,9 +3793,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://huggingface.co/spaces/Xenova/the-tokenizer-playground">Tokenizer Playground</a></li>
                         <li><a href="https://platform.openai.com/tokenizer">OpenAI Tokenizer</a></li>
                         <li><a href="https://huggingface.co/BAAI/bge-m3">Embeddings Playground</a></li>
-
                         <li><a href="https://ig.ft.com/generative-ai/">Generative AI - Financial Times</a></li>
-
                         <li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a></li>
                         <li><a href="https://context.ai/compare/gpt-4o-2024-05-13/claude-3-opus">Compare Models</a></li>
                         <li><a href="https://huggingface.co/datasets/taesiri/arxiv_qa">Training Dataset Example</a></li>
@@ -4100,7 +4085,12 @@ def main():
         try:
             demo.queue()                # Put interface on queue (wait for user input)
             open_browser()              # Open browser before endpoint generation (wait demo launch)
-            demo.launch(share=False, favicon_path=fr"{DIRETORIO_LOCAL}\images\s.ico")
+            demo.launch(
+                favicon_path=fr"{DIRETORIO_LOCAL}\images\s.ico",
+                share=False,            # Change to True to share server
+                # server_name="0.0.0.0",  # Uncomment to share server
+                # server_port=7861        # Uncomment to share server
+                )
         except Exception as e:          # In case of error, the loop will continue
             print(e)                    # Print error message
             continue
