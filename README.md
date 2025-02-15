@@ -6,7 +6,6 @@
 
 
 
-
 ![banner](https://github.com/controlecidadao/samantha_ia/blob/main/images/banner.png)
 
 
