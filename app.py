@@ -2306,8 +2306,8 @@ def load_prompt_txt():
     cleaned_lines = []
     
     for line in lines:
-        if not line.startswith('---'): # not line.startswith('#') and 
-            cleaned_lines.append(line)
+        # if not line.startswith('---'): # not line.startswith('#') and 
+        cleaned_lines.append(line)        
     
     cleaned_text = ''.join(cleaned_lines)
     
@@ -3322,7 +3322,6 @@ def change_checkbox_learning_mode(value):
     else:
         return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
         
-
 
 def change_fast_mode(bool_value):
         
