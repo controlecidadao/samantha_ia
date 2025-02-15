@@ -23,7 +23,7 @@
 # 2) GET LOCAL DIRECTORY PATH
 # 3) INITIALIZE PYTHON MODULES
 # 4) GRADIO INTERFACE LANGUAGE SELECTION
-# 5) GET LOCAL MODEL LIST IN DOWNLOAD FOLDER
+# 5) GET LOCAL MODEL LIST IN DOWNLOADS FOLDER
 # 6) CREATE REMAINING GLOBAL VARIABLES
 # 7) INTERFACE VOICE CONTROL SETTINGS
 # 8) READ FILES WITH PROMPT EXAMPLES
@@ -183,7 +183,7 @@ if 'portuguese' in voices[0].name.lower():
 
 # LLAMA-CPP-PYTHON VERSION
 llama_cpp_python_version = '0.3.6' # This variable must be updated when llama_cpp_python module is upadated in Samantha
-samantha_version = '0.6.0' # This variable must be updated when Samantha is updated
+samantha_version = '0.7.0' # This variable must be updated when Samantha is updated
 language = {
             # PORTUGUESE
             'pt': {
@@ -460,6 +460,7 @@ ultima_resposta = language['first_assistant_previous_response'] # Stores current
 resposta = ''                   # Stores cumulative text showed on output field (for each chat session)
 inputs = []                     # Stores Gradio interface fields in a predefined sequence
 loop_models = 1                 # Initial models loops number
+original_prompt = ''            # Stores the original prompt before extract [] and [[]] parts
 
 # Variables to review use
 x_bar = ['gra', 'fi', 'co', 'pa', 'ra', 'tes', 'te']         # Initial bargraph_1 parameter (top-k prompts scores)
@@ -672,6 +673,7 @@ def text_generator(
     global interpreter_return
     global hide_html
     global hiperparametros
+    global original_prompt
 
     click.play()
     print('\nStarting "text_generator" function...\n')
@@ -698,6 +700,8 @@ def text_generator(
     random_hyper = random_hyper_p
     interpreter_return = interpreter_return_p
     hide_html = hide_html_p
+
+    original_prompt = prompt # Before extract [] and [[]] parts
 
     # Hyperparameters range for random selection
     hiperparametros = {
@@ -1560,7 +1564,7 @@ def text_generator(
 
                         if read_aloud_online == True:                       # Read aloud the output window text with Edge browser
                             read_samantha_output_window()                   # Read aloud the output window text with Edge browser
-                            time.sleep(5)                                   # Wait 1 second before deleting the audio file
+                            time.sleep(5)                                   # Wait 5 seconds
                             
                             # Wait until the reading is finished. You can stop the reading by pressing the Stop button
                             temp = calcular_tempo_pausa(cleaned)
@@ -3516,7 +3520,7 @@ def save_user_prompt():
         return ''
 
     with open(path, 'w', encoding='utf-8', errors='ignore') as file:
-        file.write(prompt)
+        file.write(original_prompt)
 
     return path
 
