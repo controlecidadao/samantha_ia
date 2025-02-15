@@ -3707,7 +3707,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Checkbox(value=stop_condition, label="Stop condition", info=language['stop_condition_info'], interactive=True), 
                 gr.Checkbox(value=cumulative_response, label="Cumulative response", info=language['cumulative_response_info'], interactive=True), 
                 gr.Checkbox(value=random_hyper, label="Random hyperparameters adjustments", info=language['random_hyperparameters_info'], interactive=True),
-                gr.Checkbox(value=interpreter_return, label="Feedback Python interpreter only", info=language['interpreter_return_info'], interactive=True), 
+                gr.Checkbox(value=interpreter_return, label="Feedback Python interpreter output only", info=language['interpreter_return_info'], interactive=True), 
                 gr.Checkbox(value=hide_html, label="Hide HTML output", info=language['hide_html_info'], interactive=True), 
                                 
                 gr.Slider(0, 300_000, 4000, 64, label='n_ctx', info=language['n_ctx_info'], interactive=True),
