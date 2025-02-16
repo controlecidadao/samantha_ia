@@ -3541,7 +3541,7 @@ def read_samantha_output_window():
     # Procura a janela com o título "Samantha Interface Assistant"
     while True:
         try:
-            janela = gw.getWindowsWithTitle("Samantha Interface Assistant")[0]
+            janela = gw.getWindowsWithTitle("Samantha Interface Assistant")[-1] # Get the last window
             time.sleep(2)
             break
         except IndexError:
