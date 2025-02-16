@@ -1907,7 +1907,7 @@ def update_barplot_widget():        # Update barplot 1 with tokens scores distri
             interactive=True,
             visible= show,
             x_title="Top-k Tokens",
-            y_title="Logits Score"
+            y_title="Raw Logits Score"
         )
 
     # TO ANALYSE: CREATE BARPLOT THAT SEQUENCIATE ON X AXIS ALL SELECTED TOKEN WITH ITS RESPECTIVE SCORE ON Y AXIS: https://www.youtube.com/watch?v=FdTRzgbBP8o
