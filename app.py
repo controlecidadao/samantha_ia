@@ -4022,6 +4022,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Raw Logits Scores:&nbsp;&nbsp;&nbsp;The greater the difference, the more likely the choice.</span></i></h6>""")
             with gr.Row():
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">User Prompt:&nbsp;&nbsp;&nbsp;What you don't specify, the model decides for you probabilistically.</span></i></h6>""")
+            with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Deterministic Settings:&nbsp;&nbsp;&nbsp;{max_tokens=4000, temperature=0, tfs_z=0, top_p=0, min_p=1, typical_p=0, top_k=40, presence_penalty=0, frequency_penalty=0, repeat_penalty=1, reset_model=True}</span></i></h6>')         
