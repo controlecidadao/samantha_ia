@@ -790,7 +790,7 @@ def text_generator(
         if random_list == True and len(set(models)) >= 3: # Shuffles models order if >= 3 (Checkbox)
             models = random_list_fn(models)     # Auxiliary function
 
-    if models == []:                            # For the case when model is not selected
+    if models == [] and model_url == '':        # For the case when model is not selected and URL is not provided
         yield 'Model not selected.'             # Use simple sentence
         return                                  # Leaves the function
 
@@ -930,17 +930,17 @@ def text_generator(
                             use_mlock=False,
                             seed=4294967295,                        #-1,
                             n_ctx=n_ctx,                            # default: 512 <<<<<<<<<<<<<<<<<<<<<<<<<<<<< SET BY THE USER (NECESSARY TO RELOAD MODEL TO PRODUCE EFFECTS)
-                            n_batch=512,                            # default: 512 Estava em 256
+                            n_batch=128,                            # default: 512 Estava em 256
                             n_threads=None,                         # Estava em None
                             n_threads_batch=None,                   # Estava em None
                             rope_freq_base=0,
                             rope_freq_scale=0,
                             mul_mat_q=True,
                             f16_kv=True,
-                            logits_all=True, # False for llama-cpp-python 0.2.90
+                            logits_all=True,                        # False for llama-cpp-python 0.2.90
                             embedding=False,
                             flash_attn=False,                       # default False <<<<<<<<<<<<<<<<<<<<< IN TEST
-                            last_n_tokens_size=64,                  # default 64. Estava em 512
+                            last_n_tokens_size=32,                  # default 64. Estava em 512
                             lora_base=None,
                             lora_scale=1.0,
                             lora_path=None,
@@ -966,11 +966,12 @@ def text_generator(
                     #     os.remove(model_path + '\\' + model_url)         # Delete incomplete file
                     #     return
                     
-                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama-cpp-python binding used by Samantha. Try another model.\n==========================================\n'
+                    resposta += f'\n\n==========================================\nError loading {original_filename}.\nSome models may not be loaded due to their technical characteristics or incompatibility with the current version of the llama-cpp-python binding used by Samantha. Check the terminal for more details. Try another model.\n==========================================\n'
                     yield resposta
                     print(traceback.format_exc())
                     
                     return
+                    
 
                 print()
                 print('SAMANTHA: llm object created with llama.cpp. Loading model...\n\n\n')
@@ -1161,6 +1162,8 @@ def text_generator(
 
 
                 # =============================
+
+                next_model = False
 
                 # MAIN TRY BLOCK
                 try:                        # For error treatement during tokens generation. Error is displayed on web interface and on terminal, but not crash the program
@@ -1587,10 +1590,13 @@ def text_generator(
 
                 # MAIN EXCEPT
                 except Exception as e:
-                    yield resposta                                          # Returns response with error message and display it on output interface
+                    # yield resposta                                          # Returns response with error message and display it on output interface
                     print(traceback.format_exc())
-
-                    return
+                    resposta += e.__str__() + '\n'                            # Add error message to the response
+                    yield resposta
+                    next_model = True
+                    break
+                    # return
                 
                 # =============================
 
@@ -1677,6 +1683,10 @@ def text_generator(
                 # =========================      
             
             # EXIT WHILE LOOP
+            if next_model == True:                                      # Jump to the next model after error (e.g. System role not supprted with Gemma models)
+                next_model = False
+                break
+
             if single_answer == False:
                 if n_model < len(models) - 1 and num_control == num_respostas: # Break endless while loop (go back to model loop)
                     break
