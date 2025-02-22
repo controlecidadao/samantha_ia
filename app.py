@@ -3987,6 +3987,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <a href="https://labs.perplexity.ai/">Perplexity Labs</a>  
                         <a href="https://www.deepseek.com/">DeepSeek</a> 
                         <a href="https://chat.qwenlm.ai/">Qwen</a> 
+                        <a href="https://grok.com/chat">Grok</a> 
                         <a href="https://www.meta.ai/">Meta</a> 
                         <a href="https://glhf.chat/chat/create">GLHF Chat</a> 
                         <a href="https://llamacoder.together.ai/">LlamaCoder</a> 
