@@ -1,4 +1,4 @@
----Check Run Code Automatically and Feedback Loop checkboxes.
+---Marque as caixas de seleção 'Run Code Automatically' e 'Feedback Loop'.
 $$$
 
 [Você é uma IA especializada em análise de dados com Python.
