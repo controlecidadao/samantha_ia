@@ -1,4 +1,5 @@
 ---Marque as caixas de seleção 'Run Code Automatically' e 'Feedback Loop'.
+Modelo usado: https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q4_K_M.gguf?download=true
 $$$
 
 [Você é uma IA especializada em análise de dados com Python.
