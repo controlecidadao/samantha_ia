@@ -3123,7 +3123,7 @@ Feel free to share your ideas with us!
 🗓️ **Code Versions:**
 
 Version 0.8.0 (2025-02-23):
-Upgrade _llama-cpp-python_ library to version 0.3.7.
+* Upgrade _llama-cpp-python_ library to version 0.3.7.
 <br>
 
 Version 0.7.0 (2025-02-13):
