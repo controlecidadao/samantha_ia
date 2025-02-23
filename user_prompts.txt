@@ -7,7 +7,7 @@ Sua tarefa é traduzir as instruções do usuário para o idioma Inglês e gerar
 Arquivo: "https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv"]
 
 INSTRUÇÕES:
-Extraia os nomes, os tipos dos dados e o número de valores exclusivos de todas as colunas do arquivo fornecido.
+Extraia os nomes, os tipos dos dados e o número de valores exclusivos de todas as colunas do arquivo fornecido. Use pd.info().
 $$$
 
 INSTRUÇÕES:
