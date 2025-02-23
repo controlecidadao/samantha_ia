@@ -246,7 +246,7 @@ To use Samantha you will need:
 
   ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
 <br><br>
-* Download the zip file from Samantha's repository by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unzip it to your computer. Select the drive where you want to install the program:
+* Download the zip file from Samantha's repository by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unzip it to your computer. Select the drive where you want to install the program (Ex.: `C:\Users\You\Documents`):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
