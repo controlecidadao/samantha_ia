@@ -76,22 +76,21 @@ import numpy as np                # Import numpy for numerical computing and dat
 import fitz                       # Import fitz (PyMuPDF) to extract text from PDF files using the Mozilla's poppler library (PDF Text Extraction): https://pymupdf.readthedocs.io/en/latest/#
 import pyperclip                  # Import pyperclip for copying text to the clipboard, which can be useful for transferring model responses or any text data between applications (Clipboard Management): https://github.com/asweigart/pyperclip
 import sounddevice as sd          # Import sounddevice for real-time audio streaming in Python, which can be used to record or play audio data (Real-Time Audio Streaming): https://github.com/spatialaudio/python-sounddevice
-from vosk import Model            # Import vosk's Model to load a simple speech recognition model for offline speech recognition tasks. This model converts spoken words into text without the need for an internet connection (Offline Speech Recognition).
+from vosk import Model            # Import vosk's Model to load a simple speech recognition model for offline speech recognition tasks. This model converts spoken words into text without the need for an internet connection (Offline Speech Recognition): https://alphacephei.com/vosk/
 from vosk import KaldiRecognizer  # Import vosk's KaldiRecognizer to use the Vosk Speech Recognition Engine, which provides a simple API for converting audio data to text (Speech Recognition).
-import psutil                     # Import psutil to access system details and process management functions. It provides an interface for retrieving information about system resources, such as CPU, memory, disk, and network usage.
-import pygetwindow as gw          # Import pygetwindow to interact with windows on the desktop. It allows for tasks like getting window information, moving, resizing, and closing windows programmatically.
-import pyautogui                  # Import pyautogui for automating mouse and keyboard actions. It provides functions for controlling the mouse, keyboard, and screen, which can be used for tasks like clicking, typing, and taking screenshots.
-from bs4 import BeautifulSoup     # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks.
-import requests                   # Import json allows for sending HTTP requests to remote servers and receiving HTTP responses in Python. It is used to perform tasks like fetching web pages, making API calls, and downloading files from the internet.
-import markdown                   # Import the markdown library for converting Markdown text to HTML.
+import psutil                     # Import psutil to access system details and process management functions. It provides an interface for retrieving information about system resources, such as CPU, memory, disk, and network usage: https://psutil.readthedocs.io/en/latest/
+import pygetwindow as gw          # Import pygetwindow to interact with windows on the desktop. It allows for tasks like getting window information, moving, resizing, and closing windows programmatically: https://github.com/asweigart/pygetwindow
+import pyautogui                  # Import pyautogui for automating mouse and keyboard actions. It provides functions for controlling the mouse, keyboard, and screen, which can be used for tasks like clicking, typing, and taking screenshots: https://pyautogui.readthedocs.io/en/latest/index.html
+from bs4 import BeautifulSoup     # Import BeautifulSoup for parsing HTML and XML documents. It provides a simple and easy-to-use way to scrape and analyze web pages, and is often used in web scraping and data mining tasks: https://www.crummy.com/software/BeautifulSoup/
+import requests                   # Import requests for sending HTTP requests to remote servers and receiving HTTP responses in Python. It is used to perform tasks like fetching web pages, making API calls, and downloading files from the internet: https://requests.readthedocs.io/en/latest/
+import pygame                     # Import pygame for playing sounds or music, providing a framework for handling multimedia content in Python (Multimedia Content Playback): https://www.pygame.org/news
 
 # Python Standard Library Modules
-import webbrowser                 # Import webbrowser to programmatically open a web page or file in the default system browser (Web Browsing): https://docs.python.org/3/library/webbrowser.html
-import os                         # Import os for operations related to the operating system, such as file and directory manipulation, which can include tasks like reading, writing, and modifying files (File System Operations): https://docs.python.org/3/library/os.html
-import pygame                     # Import pygame for playing sounds or music, providing a framework for handling multimedia content in Python (Multimedia Content Playback): https://www.pygame.org/news
-import glob                       # Import glob to search for files within a directory tree that match a specified pattern (File Selection): https://docs.python.org/3/library/glob.html
-import traceback                  # Import traceback to print out error messages and stack traces when exceptions occur, helping in debugging and understanding the flow of program execution (Error Handling): https://docs.python.org/3/library/traceback.html
-import time                       # Import time for controlling the delay between actions or measuring real-world time intervals, which can be used to manage the rate of token generation in Learning Mode (Time Control): https://docs.python.org/3/library/time.html
+import webbrowser                 # Import webbrowser to programmatically open a web page or file in the default system browser (Web Browsing)
+import os                         # Import os for operations related to the operating system, such as file and directory manipulation, which can include tasks like reading, writing, and modifying files (File System Operations)
+import glob                       # Import glob to search for files within a directory tree that match a specified pattern (File Selection)
+import traceback                  # Import traceback to print out error messages and stack traces when exceptions occur, helping in debugging and understanding the flow of program execution (Error Handling)
+import time                       # Import time for controlling the delay between actions or measuring real-world time intervals, which can be used to manage the rate of token generation in Learning Mode (Time Control)
 import re                         # Import re for creating regular expressions, which are powerful patterns used to match character combinations in strings for tasks like data validation and extraction (Regular Expressions).
 import random                     # Import random to shuffle elements in a list or generate pseudo-random numbers, which can be used to randomize the order of model execution (Randomization).
 from collections import Counter   # Import collections.Counter to count occurrences of each element in a sequence and group similar items together (Item Counting and Grouping).
@@ -107,6 +106,7 @@ import gc                         # Import gc to help manage memory by automatic
 import shutil                     # Import shutil for transferring files and directories. It provides a high-level interface for working with files and directories on the local file system.
 import tempfile                   # Import tempfile to create temporary files and directories.
 import winsound                   # Import winsound to create and play audio signals, such as beeps, on the computer's sound card (Sound Synthesis).
+import markdown                   # Import the markdown library for converting Markdown text to HTML.
 
 # tkinter module is imported - and deleted - inside auxiliaries function to avoid error
 
@@ -126,7 +126,7 @@ DIRETORIO_LOCAL = os.getcwd()                   # Define a constant to store the
 # 3) INITIALIZE PYTHON MODULES
 # ============================
 
-# PYGAME: Create 2 objects
+# PYGAME: Create 2 objects (som and click) and set their volumes
 pygame.init()                                   # Initialize the Pygame mixer for handling audio playback. This must be done before loading any sounds or music.
 som = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\notification.mp3") # Load and store a sound object for the end-of-model response/stop notification, sourced from the specified local file path.
 som.set_volume(0.2)                             # Set the volume of the notification sound to 20% of the maximum volume.
@@ -134,7 +134,7 @@ click = pygame.mixer.Sound(fr"{DIRETORIO_LOCAL}\click.mp3") # Load and store a s
 click.set_volume(0.4)                           # Set the volume of the click sound to 40% of the maximum volume, making it audible but not overpowering.
 print()
 
-# PYTTSX3: Create 2 objects and 1 variable
+# PYTTSX3: Create 2 objects and 1 variable (engine, voices and selected_voice) and set the selected voice
 engine = pyttsx3.init(driverName='sapi5')       # Initialize the text-to-speech engine using pyttsx3 with the 'sapi5' driver.
 voices = engine.getProperty('voices')           # Retrieve a list of available voices from the TTS engine instance.
 print('Number of voices installed on the computer:', len(voices), f'(0 a {len(voices) - 1})') # Display the total number of voices installed on the user's computer and an informational note about the count.
@@ -3966,7 +3966,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <a href="https://huggingface.co/models?sort=trending&search=gguf+hermes">Hermes</a> 
                         <a href="https://huggingface.co/models?sort=trending&search=gguf+openchat">OpenChat</a> 
                         <a href="https://huggingface.co/models?sort=trending&search=gguf+deepseek">DeepSeek</a> 
-                        <a href="https://huggingface.co/models?sort=trending&search=gguf+arcee">Arcee</a> 
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+arcee">Arcee</a>
+                        <a href="https://huggingface.co/models?sort=trending&search=gguf+ozone">Ozone</a> 
                         <a href="https://huggingface.co/models?sort=trending&search=gguf+magnum">Magnum</a> 
                         <a href="https://huggingface.co/models?sort=trending&search=gguf+mamba">Mamba</a> 
                         <a href="https://huggingface.co/models?sort=trending&search=gguf+glm">GLM</a> 
@@ -4025,8 +4026,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">File Required:&nbsp;&nbsp;&nbsp;.GGUF Model File.</span></i></h6>', elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Generation Phases:&nbsp;&nbsp;&nbsp;Model Loading (non stop) -> Thinking (non stop) -> Next Token Selection (stop).</span></i></h6>', elem_classes='prompt')
-            with gr.Row():
-                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Pause Generation:&nbsp;&nbsp;&nbsp;Click anywhere on Samantha's server screen. To return, press Enter.</span></i></h6>""", elem_classes='prompt')
+            # with gr.Row():
+            #     gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Pause Generation:&nbsp;&nbsp;&nbsp;Click anywhere on Samantha's server terminal screen. To return, press Enter on terminal.</span></i></h6>""", elem_classes='prompt')
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Chaining Sequence:&nbsp;&nbsp;&nbsp;( [Models List] -> Respond -> ([User Prompt List] X Number of Responses) ) X Number of Loops.</span></i></h6>')         
             with gr.Row():
@@ -4036,7 +4037,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Raw Logits Scores:&nbsp;&nbsp;&nbsp;The greater the difference, the more likely the choice.</span></i></h6>""")
             with gr.Row():
-                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">User Prompt:&nbsp;&nbsp;&nbsp;What you don't specify, the model decides for you probabilistically.</span></i></h6>""")
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">User Prompt:&nbsp;&nbsp;&nbsp;What you don't specify, the model decides for you based on probabilistic patterns extracted from the training texts.</span></i></h6>""")
+            with gr.Row():
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Semantic Paths:&nbsp;&nbsp;&nbsp;Words' initial tokens give semantic direction to the text; words' complementary tokens only finish them.</span></i></h6>""")
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
