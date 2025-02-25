@@ -3070,7 +3070,7 @@ def open_idle():
         # CREATE PYTHON FILE
         with open(fr'{DIRETORIO_LOCAL}\temp.py', 'w', encoding='utf-8') as f:
             # temp = """import sys\nimport io\nsys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\n""" # To force the display of accented letters in Portuguese
-            temp = ''
+            temp = """import sys\nimport io\n# Configure to use UTF-8\nsys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\nsys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')"""
             f.write(temp + final_code)
 
         # =============================
@@ -3175,6 +3175,7 @@ def open_idle():
             
             # Criar conteúdo HTML
             html_content = create_html(output)
+            # print(html_content)
 
             # Criar arquivo temporário
             # with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html', encoding='utf-8') as f:
@@ -4036,10 +4037,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Diversity:&nbsp;&nbsp;&nbsp;Generates syntactic (words) and semantic (meaning) diversity.</span></i></h6>')
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Raw Logits Scores:&nbsp;&nbsp;&nbsp;The greater the difference, the more likely the choice.</span></i></h6>""")
+            
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">User Prompt:&nbsp;&nbsp;&nbsp;What you don't specify, the model decides for you based on probabilistic patterns extracted from the training texts.</span></i></h6>""")
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Semantic Paths:&nbsp;&nbsp;&nbsp;Words' initial tokens give semantic direction to the text; words' complementary tokens only finish them.</span></i></h6>""")
+            
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
