@@ -3825,6 +3825,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                         <li><a href="https://sqlitebrowser.org/dl/">DB Browser Download</a></li>
                         <li><a href="https://www.jasondavies.com/wordcloud/">Word Cloud Online</a></li>
                         <li><a href="https://pyviz.org/tools.html">PyViz</a></li>
+                        <li><a href="https://www.softpedia.com/get/System/System-Miscellaneous/Mouse-Point-Viewer.shtml">Mouse Point Viwer</a></li>
                     
                     </ul>""")
                         
