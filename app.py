@@ -186,7 +186,7 @@ if 'portuguese' in voices[0].name.lower():
 
 # LLAMA-CPP-PYTHON VERSION
 llama_cpp_python_version = '0.3.7' # This variable must be updated when llama_cpp_python module is upadated in Samantha
-samantha_version = '0.8.0' # This variable must be updated when Samantha is updated
+samantha_version = '0.9.0' # This variable must be updated when Samantha is updated
 language = {
             # PORTUGUESE
             'pt': {
