@@ -47,7 +47,7 @@
 
 <br>
 
-This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Samantha's copy and paste LLM feature. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models (by [Bartowski](https://huggingface.co/bartowski)) are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model (by [NousResearch](https://huggingface.co/NousResearch)). Responses are also evaluated by the Meta model.
+This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of interaction between models without human intervention, by chaining models and prompts using Samantha's _Copy and Paste LLM_ feature. Quantized versions of the **Microsoft Phi 3.5** and **Google Gemma 2** models (by [Bartowski](https://huggingface.co/bartowski)) are challenged to answer a question about _human nature_ created by the **Meta Llama 3.1** model (by [NousResearch](https://huggingface.co/NousResearch)). Responses are also evaluated by the Meta model.
 
 <br>
 
@@ -67,24 +67,24 @@ This [video](https://www.youtube.com/watch?v=KgicCGMSygU) shows an example of in
 
 🔗 Some chaining examples **_without using_** Samantha's response **_Feedback Loop_** feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** used to analyze model's deterministic and stochastic behavior with help of the _Learning Mode_ feature, as well as to generate multiple diverse responses with stochastic settings ([Video](https://youtu.be/bCAScwsKVCE)).
+  * **Model_1** responds **(Prompt_1 X Number of Responses)**: used to analyze model's deterministic and stochastic behavior with help of the _Learning Mode_ feature, as well as to generate multiple diverse responses with stochastic settings ([Video](https://youtu.be/bCAScwsKVCE)).
 
-  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to execute multiples instructions sequencially with the same model (prompt chaining) ([Video](https://www.youtube.com/watch?v=xE9tAvbGAjU)).
+  * **Model_1** responds **(Prompt_1, Prompt_2, Prompt_n)**: used to execute multiples instructions sequencially with the same model (prompt chaining) ([Video](https://www.youtube.com/watch?v=xE9tAvbGAjU)).
 
-  * **(model_1, model_2, model_n) respond (prompt_1):** used to compare models' responses for the same single prompt (model chaining). Useful for comparing different models, as well as quantized versions of the same model.
+  * **(Model_1, Model_2, Model_n)** respond **Prompt_1**: used to compare models' responses for the same single prompt (model chaining). Useful for comparing different models, as well as quantized versions of the same model.
 
-  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** used to compare models' responses for a list of prompts, as well as to execute a sequence of instructions using disctinct models (model and prompt chaining). Each model respond all prompts. In turn, when using the _Single Response per Model_ feature, each model respond to only one specific prompt.
+  * **(Model_1, Model_2, Model_n)** respond **(Prompt_1, Prompt_2, Prompt_n)**: used to compare models' responses for a list of prompts, as well as to execute a sequence of instructions using disctinct models (model and prompt chaining). Each model respond all prompts. In turn, when using the _Single Response per Model_ feature, each model respond to only one specific prompt.
 <br><br>
 
 🔗 Some chaining examples **_using_** Samantha's response **_Feedback Loop_** feature:
 
-  * **(model_1) responds (prompt_1) X number of responses:** Used to improve or complement the model's previous response through a fixed user instruction using the same model, as well as to simulate an endless conversation between 2 AIs using a single model ([Video](https://youtu.be/mpH2Tzb7JGE)).
+  * **Model_1** responds **(Prompt_1 X Number of Responses)**: Used to improve or complement the model's previous response through a fixed user instruction using the same model, as well as to simulate an endless conversation between 2 AIs using a single model ([Video](https://youtu.be/mpH2Tzb7JGE)).
 
-  * **(model_1) responds (prompt_1, prompt_2, prompt_n):** used to improve model's previous response through multiples user instructions sequencially with the same model (prompt chaining). Each prompt is used to refine or complete the previous response, as well as to execute a sequence of prompts that depend on the previous response, such as performing Exploratory Data Analysis (EDA) with incremental coding ([Video](https://www.youtube.com/watch?v=K_rVrkyhT0U)).
+  * **Model_1** responds **(Prompt_1, Prompt_2, Prompt_n)**: used to improve model's previous response through multiples user instructions sequencially with the same model (prompt chaining). Each prompt is used to refine or complete the previous response, as well as to execute a sequence of prompts that depend on the previous response, such as performing Exploratory Data Analysis (EDA) with incremental coding ([Video](https://www.youtube.com/watch?v=K_rVrkyhT0U)).
 
-  * **(model_1, model_2, model_n) respond (prompt_1):** Used to improve previous model's response using disctinct models (model chaining), as well as to generate a dialog between different models.
+  * **(Model_1, Model_2, Model_n)** respond **Prompt_1**: Used to improve previous model's response using disctinct models (model chaining), as well as to generate a dialog between different models.
 
-  * **(model_1, model_2, model_n) respond (prompt_1, prompt_2, prompt_n):** Used to execute a sequence of instructions using disctinct models (model and prompt chaining) and _Single Response per Model_ feature.
+  * **(Model_1, Model_2, Model_n)** respond **(Prompt_1, Prompt_2, Prompt_n)**: Used to execute a sequence of instructions using disctinct models (model and prompt chaining) and _Single Response per Model_ feature.
 
 <br>
 
@@ -95,7 +95,7 @@ Each of these models and prompts sequences can be executed more than once via th
 
 👉 **Samantha's chaining sequence template:**
 <br>
-> _**( [models list] -> respond -> ( [user prompt list] X number of responses) ) X number of loops**_
+> _**{ [Models List] -> respond -> ( [User Prompt List] X Number of Responses) } X Number of Loops**_
 
 
 <br><br>
