@@ -268,7 +268,7 @@ language = {
                 'assistant_raw_output_info': "Histórico de respostas. Adicione '#IDE' ao código, edite, selecione, copie e execute com o botão Executar Código.",
                 
                 'btn_next_token': 'Próximo Token',
-                'btn_copy_code_blocks': 'Copiar Código Python',
+                'btn_copy_code_blocks': 'Copiar Código',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
                 'btn_copy_last_response': 'Copiar Resposta',
                 'btn_copy_all_responses': 'Copiar Respostas',
@@ -363,7 +363,7 @@ language = {
                 'assistant_raw_output_info': "Response history. Add '#IDE' to code, select, copy and run with Run Code button.",
                 
                 'btn_next_token': 'Next Token',
-                'btn_copy_code_blocks': 'Copy Python Code',
+                'btn_copy_code_blocks': 'Copy Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Responses',
@@ -2243,18 +2243,24 @@ def copy_code():
     
     click.play()
     
+    # Extract code blocks from the last response
     padrao = r"```(.*?)\n(.*?)```"
 
+    # Find all code blocks in the last response
     codigos = re.findall(padrao, ultima_resposta, re.DOTALL)
 
+    # Format the code blocks
     resultado = []
     
+    # Add the code blocks to the result
     for codigo in codigos:
         linguagem, conteudo = codigo
         resultado.append(f"#{linguagem}\n{conteudo}")
     
+    # Join the code blocks
     temp = "\n".join(resultado)
 
+    # Copy the code blocks to the clipboard
     padrao = r'^\s*(!?pip\s.*?)$' # Padrão regex para encontrar linhas que começam com "pip" ou "!pip"
 
     # Divide o código em linhas, filtra as linhas que não correspondem ao padrão e junta novamente
@@ -3019,15 +3025,23 @@ def open_idle():
     print('======================')
     print()
 
-    text_1 = ultima_resposta # Current response with Python code
+    text_1 = ultima_resposta    # Current response with Python code
 
-    if "#IDE" in copied_text: # '#IDE' has precedence
+    if "#IDE" in copied_text:   # '#IDE' has precedence
         text_1 = copied_text
+
+    # If copied text is a complete HTML file, save it to a file and open it in the browser
+    elif "<html" in copied_text and "</html>" in copied_text:
+        with open(fr'{DIRETORIO_LOCAL}\html_file.html', 'w', encoding='utf-8') as f:
+            f.write(copied_text)
+        webbrowser.open(fr'{DIRETORIO_LOCAL}\html_file.html')
+        return
 
     else:
         if copied_text != '' and "```python" not in copied_text:    
             text_1 = "```python\n" + copied_text + "\n```"          # Add Python code to the template
 
+    
 
     # =============================
 
