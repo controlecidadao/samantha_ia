@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.8.0-blue)
+![v](https://img.shields.io/badge/Version-0.9.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-February%2023,%20%202025-green)
+![v](https://img.shields.io/badge/Updated-March%209,%20%202025-green)
 ![Visualizações](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fcontrolecidadao%2Fsamantha_ia&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false)
 
 
@@ -3129,6 +3129,10 @@ Feel free to share your ideas with us!
 
 <br><br>
 🗓️ **Code Versions:**
+
+Version 0.9.0 (2025-03-09):
+* Included HTML code execution feature.
+<br>
 
 Version 0.8.0 (2025-02-23):
 * Upgrade _llama-cpp-python_ library to version 0.3.7.
