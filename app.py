@@ -2242,6 +2242,11 @@ def launch_notebook():
 def copy_code():
     
     click.play()
+
+    # Copy the full last response to the clipboard if it has a html code block
+    if "<html" in ultima_resposta and "</html>" in ultima_resposta:
+        pyperclip.copy(ultima_resposta) # Copy the last response to the clipboard
+        return
     
     # Extract code blocks from the last response
     padrao = r"```(.*?)\n(.*?)```"
@@ -3032,8 +3037,19 @@ def open_idle():
 
     # If copied text is a complete HTML file, save it to a file and open it in the browser
     elif "<html" in copied_text and "</html>" in copied_text:
+        # padrao = r"```html(.*?)\n(.*?)```"
+        padrao = r"<html(.*?)\n(.*?)</html>"
+        codigos = re.findall(padrao, copied_text, re.DOTALL) # <<<<<<<< REPLACED
+        resultado = []
+        for codigo in codigos:
+            linguagem, conteudo = codigo
+            # resultado.append(f"#{linguagem}\n{conteudo}")
+            resultado.append(conteudo)
+        final_code = "\n".join(resultado)
+        final_code = final_code.replace("```html", "").replace("```", "")
+
         with open(fr'{DIRETORIO_LOCAL}\html_file.html', 'w', encoding='utf-8') as f:
-            f.write(copied_text)
+            f.write(final_code)
         webbrowser.open(fr'{DIRETORIO_LOCAL}\html_file.html')
         return
 
