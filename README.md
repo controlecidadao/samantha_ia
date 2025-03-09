@@ -20,9 +20,13 @@
 
 💻 Samantha is just a simple interface assistant for open source text generation artificial intelligence models, developed under [Open Science](https://www.unesco.org/en/open-science) principles (open methodology, open source, open data, open access, open peer review and open educational resources) and [MIT License](https://opensource.org/licenses/MIT) for use on common Windows computers (without GPU). The program runs the LLM locally, free of charge and unlimitedly, without the need for an internet connection, except to download [GGUF models](https://huggingface.co/models?sort=trending&search=gguf) (GGUF stands for GPT-Generated Unified Format), using online text-to-speech synthesizer, or when required by the execution of the code created by the models (g.e. to download datasets for data analysis). Its objective is to democratize knowledge about the use of AI and demonstrate that, using the appropriate technique, even small models are capable of producing responses similar to those of larger ones. Her mission is to help explore the boundaries of (realy) open AI models.
 
+<br>
 <p align="center" width="100%">
-<img width="25%" src="https://th.bing.com/th/id/OIP.AazJEzszrlnZuZPfEnyYBgAAAA?rs=1&pid=ImgDetMain" />
+<a href="https://blog.n8n.io/open-source-llm/" target="_blank">
+   <img width="50%" class="clickable-image" src="https://github.com/controlecidadao/samantha_ia/blob/main/images/llm_logos.jpg" alt="Open Source LLM" />
+</a>
 </p>
+<br>
 
 [What is Open Source AI (opensource.org)](https://opensource.org/what-is-open-source-ai)
 
