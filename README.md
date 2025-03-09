@@ -99,7 +99,7 @@ Each of these models and prompts sequences can be executed more than once via th
 
 👉 **Samantha's chaining sequence template:**
 <br>
-> _**{ [Models List] -> respond -> ( [User Prompt List] X Number of Responses ) } X Number of Loops**_
+> _**{ &nbsp;&nbsp;&nbsp;[Models List] &nbsp;&nbsp;&nbsp;-> &nbsp;&nbsp;&nbsp;respond &nbsp;&nbsp;&nbsp;-> &nbsp;&nbsp;&nbsp;( &nbsp;&nbsp;&nbsp;[User Prompt List] &nbsp;&nbsp;&nbsp;X &nbsp;&nbsp;&nbsp;Number of Responses &nbsp;&nbsp;&nbsp;) &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;X &nbsp;&nbsp;&nbsp;Number of Loops**_
 
 
 <br><br>
