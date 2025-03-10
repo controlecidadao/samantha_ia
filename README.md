@@ -429,6 +429,8 @@ When this button is pressed, the system starts loading the model selected in the
 
 If the model is already loaded into memory, pressing the button starts generating the text.
 
+Press `CTRL + SHIFT + ESC` to open Windows Task Manager and monitor the process.
+
 
 ---
 
