@@ -425,6 +425,9 @@ Alternatively, a Hugging Face model URL can be provided to _Download model for t
 
 If both fields are filled in, the model selected via the dropdown list takes precedence.
 
+When this button is pressed, the system starts loading the model selected in the dropdown list or downloading the model whose link was entered in the _Download model for testing_ field. The outline of the _Output field_ starts flashing slowly in orange to indicate the start of the process.
+
+
 ---
 
 <br><br>
