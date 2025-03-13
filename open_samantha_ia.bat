@@ -29,7 +29,7 @@ if errorlevel 1 (
 )
 
 :: Aguardar 3 segundos
-TIMEOUT /t 3
+::TIMEOUT /t 3
 @echo.
 
 :: Ativar o ambiente virtual 'samantha'
