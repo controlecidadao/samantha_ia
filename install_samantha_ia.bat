@@ -162,11 +162,12 @@ if errorlevel 1 (
 ::)
 
 :: Instalar o Git no ambiente virtual sem criar atalhos no menu
-@echo Installing Git in the 'samantha' environment...
-call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y -c conda-forge git
+@echo Instalando Git no ambiente 'samantha' sem atalhos...
+::call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y git --no-shortcuts --no-update-deps -n samantha
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y git --no-shortcuts --no-update-deps -c conda-forge -p %CURRENT_DIR%\miniconda3\envs\samantha
 if errorlevel 1 (
     echo.
-    echo Failed to install Git. Exiting.
+    echo Falha ao instalar Git. Saindo.
     pause
     exit /b 1
 )
