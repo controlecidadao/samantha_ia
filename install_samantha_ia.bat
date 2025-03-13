@@ -163,8 +163,7 @@ if errorlevel 1 (
 
 :: Install o Git no ambiente virtual sem criar atalhos no menu
 @echo Installing Git in the 'samantha' environment...
-set MENUINST=simple
-call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y git
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y git --no-update-deps
 if errorlevel 1 (
     echo.
     echo Failed to install Git. Exiting.
