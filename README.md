@@ -421,7 +421,7 @@ _Start chat_ button keyboard shortcut: Press `Enter` anywhere on the page.
 
 To generate text, a model must be pre-selected in _Model selection_ dropdown list. You can download `.gguf` models from the [Hugging Face](https://huggingface.co/models?sort=trending&search=gguf) repository. 
 
-Alternatively, a Hugging Face model URL can be provided to _Download model for testing_ field. 
+Alternatively, a Hugging Face model URL can be provided into _Download model for testing_ field. 
 
 If both fields are filled in, the model selected via the dropdown list takes precedence.
 
