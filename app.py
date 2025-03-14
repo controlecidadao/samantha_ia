@@ -4068,12 +4068,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Token Diversity:&nbsp;&nbsp;&nbsp;Generates syntactic (words) and semantic (meaning) diversity.</span></i></h6>')
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Raw Logits Scores:&nbsp;&nbsp;&nbsp;The greater the difference, the more likely the choice.</span></i></h6>""")
-            
+            with gr.Row():
+                gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Processing Time:&nbsp;&nbsp;&nbsp;The larger the model and input text, the longer the processing time.</span></i></h6>""")
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">User Prompt:&nbsp;&nbsp;&nbsp;What you don't specify, the model decides for you based on probabilistic patterns extracted from the training texts.</span></i></h6>""")
             with gr.Row():
                 gr.HTML("""<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Semantic Paths:&nbsp;&nbsp;&nbsp;Words' initial tokens give semantic direction to the text; words' complementary tokens only finish them.</span></i></h6>""")
-            
             with gr.Row():
                 gr.HTML('<h6 style="text-align: left;"><i><span style="color: #9CA3AF;">Hyperparameter Tuning:&nbsp;&nbsp;&nbsp;context window, stop words, token sampling and penalties.</span></i></h6>')         
             with gr.Row():
