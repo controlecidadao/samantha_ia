@@ -3560,9 +3560,16 @@ def save_copied_text():
     while True:
         try:
             path = tk.filedialog.asksaveasfilename(
-                title="Save User Prompt",
-                filetypes=[("TXT Files", "*.txt")],
-                defaultextension=".txt"
+                title="Save Copied Text to File",
+                filetypes=[
+                ("Text Files", "*.txt"),
+                ("Python Files", "*.py"),
+                ("HTML Files", "*.html"),
+                ("CSV Files", "*.csv"),
+                ("JSON Files", "*.json"),
+                ("All Files", "*.*")
+                ],
+                defaultextension=""
             ) # Raising "RuntimeError: main thread is not in main loop"
             break
         except Exception as e:
