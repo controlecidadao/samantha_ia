@@ -186,7 +186,7 @@ if 'portuguese' in voices[0].name.lower():
 
 # LLAMA-CPP-PYTHON VERSION
 llama_cpp_python_version = '0.3.8' # This variable must be updated when llama_cpp_python module is upadated in Samantha
-samantha_version = '0.11.0'        # This variable must be updated when Samantha is updated
+samantha_version = '0.10.0'        # This variable must be updated when Samantha is updated
 language = {
             # PORTUGUESE
             'pt': {
@@ -255,7 +255,7 @@ language = {
                 'show_vocabulary_info': "Exibir vocabulário de tokens do modelo. Pode afetar significativamente o tempo de carregamento inicial do modelo. Funciona apenas quando o Modo de Aprendizagem está ativado.",
                 
                 'btn_unload_model': 'Descarregar Modelo',
-                'btn_save_user_prompt': 'Salvar User Prompt',
+                'btn_save_copied_text': 'Salvar Texto Copiado',
                 'btn_load_pdf_pages': 'PDF em Páginas',
                 'btn_load_full_pdf': 'PDF Completo',
                 'btn_system_prompt': 'System Prompt TXT',
@@ -350,7 +350,7 @@ language = {
                 'show_vocabulary_info': "Display the model's token vocabulary. It can significantly affect the initial model load time. Only works when Learning Mode is enabled.",
                 
                 'btn_unload_model': 'Unload Model',
-                'btn_save_user_prompt': 'Save User Prompt',
+                'btn_save_copied_text': 'Save Copied Text',
                 'btn_load_pdf_pages': 'PDF Pages',
                 'btn_load_full_pdf': 'Full PDF',
                 'btn_system_prompt': 'System Prompt TXT',
@@ -1585,6 +1585,7 @@ def text_generator(
                                     break
 
                         else:
+                            time.sleep(2)                              # Wait 2 second
                             audio = pygame.mixer.Sound('resposta.mp3')
                             audio.set_volume(1.0)
                             audio.play()
@@ -3362,10 +3363,25 @@ def change_checkbox_learning_mode(value):
     
     if value == 'OFF':
         show_vocabulary = False
-        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
+        return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False)
     else:
         return gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True)
         
+
+def change_read_aloud(read_aloud_off, read_aloud_on):
+
+    global read_aloud
+    global read_aloud_online
+
+    if read_aloud_on == True:
+        read_aloud = True
+        read_aloud_online = True
+        return gr.Checkbox(value=True, label='Read aloud', info=language['read_aloud_info'], interactive=True)
+    
+    elif read_aloud_on == False:
+        read_aloud_online = False
+        return gr.Checkbox(value=False, label='Read aloud', info=language['read_aloud_info'], interactive=True)
+    
 
 def change_fast_mode(bool_value):
         
@@ -3522,7 +3538,7 @@ def open_auto_py_to_exe():
     #         pass
 
 
-def save_user_prompt():
+def save_copied_text():
     """
     Saves user prompt to a TXT file using Tkinter window.
     """
@@ -3563,7 +3579,9 @@ def save_user_prompt():
         return ''
 
     with open(path, 'w', encoding='utf-8', errors='ignore') as file:
-        file.write(original_prompt)
+        # file.write(original_prompt)
+        temp = pyperclip.paste()
+        file.write(temp)
 
     return path
 
@@ -3737,6 +3755,7 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Checkbox(value=reset_mode, label="Reset model", info=language['reset_model_info'], interactive=True),
                 gr.Checkbox(value=random_list, label="Shuffle models", info=language['shuffle_models_order_info'], interactive=True),
                 gr.Checkbox(value=fast_mode, label="Fast Mode", info=language['fast_mode_info'], interactive=True),
+                
                 gr.Dropdown(choices=[x.name for x in voices], value=selected_voice, multiselect=False, label="Voice selection", info=language['voice_selection_info'], interactive=True),                    
                 gr.Checkbox(value=read_aloud, label="Read response aloud", info=language['read_aloud_info'], interactive=True),
                 
@@ -3767,18 +3786,23 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 gr.Slider(0, 1.5, 1, 0.1, label='repeat_penalty', info=language['repeat_penalty_info'], interactive=True),
                 
                 gr.Textbox(value=model_metadata, label='Model metadata', info=language['model_metadata_info'], elem_classes='prompt'),
-                gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=True), # interactive=False
+                gr.Checkbox(value=show_vocabulary, label="Show model's vocabulary", info=language['show_vocabulary_info'], interactive=False), # interactive=False
                 gr.Textbox(value='', lines=1, label='Model vocabulary', info=language['model_vocabulary'], elem_classes='prompt')
             ]
 
             # Activate / Deactivate Number of Response and Number of Loops checkboxes when "Single Response per Model" chackbox changes
-            inputs[6].change(fn=change_checkbox_single_response, inputs=inputs[6], outputs=[inputs[13], inputs[14]])
+            inputs[6].change(fn=change_checkbox_single_response, inputs=inputs[6], outputs=[inputs[14], inputs[15]])
             
             # Activate / Deactivate display model vocabulary when "Leraning Mode" chackbox changes
-            inputs[12].change(fn=change_checkbox_learning_mode, inputs=inputs[12], outputs=[inputs[-2]])
+            inputs[13].change(fn=change_checkbox_learning_mode, inputs=inputs[13], outputs=[inputs[-2]])
 
             # Activate / Deactivate "Learning Mode" when "Fast Mode" chackbox changes
-            inputs[9].change(fn=change_fast_mode, inputs=inputs[9], outputs=[inputs[12]]) # inputs[9]
+            inputs[9].change(fn=change_fast_mode, inputs=inputs[9], outputs=[inputs[13]]) # inputs[9]
+
+
+            # Activate / Deactivate "Read aloud" when "Read aloud online" chackbox changes
+            inputs[12].change(fn=change_read_aloud, inputs=[inputs[11], inputs[12]], outputs=[inputs[11]]) # inputs[9]
+
 
 
             with gr.Row():
@@ -3802,8 +3826,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_download_model_url.click(fn=download_model_urls, inputs=None, outputs=None, queue=True)
                 btn_load_urls_txt = gr.Button(language['btn_load_models_urls_info'])
                 btn_load_urls_txt.click(fn=load_models_urls, inputs=None, outputs=inputs[5], queue=False)
-                btn_save_user_prompt = gr.Button(language['btn_save_user_prompt'])
-                btn_save_user_prompt.click(fn=save_user_prompt, inputs=None, outputs=None, queue=False)
+                btn_save_copied_text = gr.Button(language['btn_save_copied_text'])
+                btn_save_copied_text.click(fn=save_copied_text, inputs=None, outputs=None, queue=False)
             
             gr.HTML('<br><h6><b>Exploratory Data Analysis (EDA):</b></h6>')
 
