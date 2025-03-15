@@ -216,6 +216,16 @@ if errorlevel 1 (
 )
 @echo.
 
+@echo Installing Chromium for Playwright...
+call pip install pytest-playwright
+if errorlevel 1 (
+    echo.
+    echo Failed to install Chromium por Playwright. Exiting.
+    pause
+    exit /b 1
+)
+@echo.
+
 @echo All tasks completed successfully!
 pause
 exit
