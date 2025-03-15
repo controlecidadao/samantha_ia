@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.10.0-blue)
+![v](https://img.shields.io/badge/Version-0.11.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-March%2013,%20%202025-green)
+![v](https://img.shields.io/badge/Updated-March%2015,%20%202025-green)
 ![Visualizações](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fcontrolecidadao%2Fsamantha_ia&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false)
 
 
@@ -230,7 +230,7 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Keyboard and Mouse Automation:** You can create a sequence of prompts to automate tasks on your computer using the [PyautoGUI](https://pyautogui.readthedocs.io/en/latest/index.html) library (see [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/). You can even convert Python files (`.py`) to executable files (`.exe`) using the [Auto-Py-To-Exe](https://pypi.org/project/auto-py-to-exe/) button, a Graphical User Interface (GUI) for the [Pyinstaller](https://pyinstaller.org/en/stable/index.html) library.<br><br>
 
-✅ **Data Analysis Tools:** A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [SciPy](https://scipy.org/), [Scikit-Learn](https://scikit-learn.org/stable/index.html#), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Bokeh](https://docs.bokeh.org/en/latest/index.html), [Dash](https://plotly.com/examples/), [Streamlit](https://streamlit.io/), [Ydata-Profiling](https://pypi.org/project/ydata-profiling/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [Selenium](https://selenium-python.readthedocs.io/), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [SQLAlchemy](https://www.sqlalchemy.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available for comprehensive analysis and visualization. Integration with [DB Browser](https://sqlitebrowser.org/about/) is also available (see DB Browser button).<br>
+✅ **Data Analysis Tools:** A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [SciPy](https://scipy.org/), [Scikit-Learn](https://scikit-learn.org/stable/index.html#), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Bokeh](https://docs.bokeh.org/en/latest/index.html), [Dash](https://plotly.com/examples/), [Streamlit](https://streamlit.io/), [Ydata-Profiling](https://pypi.org/project/ydata-profiling/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [Selenium](https://selenium-python.readthedocs.io/), [Playwirght](https://playwright.dev/python/docs/library), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [SQLAlchemy](https://www.sqlalchemy.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available for comprehensive analysis and visualization. Integration with [DB Browser](https://sqlitebrowser.org/about/) is also available (see DB Browser button).<br>
 For a complete list of all Python libraries intalled in `jupyterlab` virtual environment, use a prompt like **_"Create a Python code that prints all modules installed using `pkgutil` library."_** and press _Copy Code_ and _Run Code_ buttons after code generation. The result will be displayed in a browser popup. You can also use `pipdeptree --packages module_name` in any environment-enabled terminal to see its dependencies.<br><br>
 
 ✅ **Performance Optimized:** To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size to save memory and computational resources.<br>
@@ -3140,6 +3140,10 @@ Feel free to share your ideas with us!
 
 <br><br>
 🗓️ **Code Versions:**
+
+Version 0.11.0 (2025-03-15):
+* Playwright (Chromium) Python library included.
+<br>
 
 Version 0.10.0 (2025-03-13):
 * Upgrade _llama-cpp-python_ library to version 0.3.8.
