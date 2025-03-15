@@ -210,7 +210,7 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Document Handling:** The system can load small PDF and TXT files. User prompts, system prompt and model's URL list can be inputted via a TXT file for convenience.<br><br>
 
-✅ **Versatile Text Input:** Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous model response and user prompt to guide the model's response. You can save user prompts to TXT files.<br><br>
+✅ **Versatile Text Input:** Fields for prompt insertion allow users to interact with the system effectively, including system prompt, previous model response and user prompt to guide the model's response. You can save copied texts to TXT files.<br><br>
 
 ✅ **Code Integration:** Automatic extraction of Python code blocks or HTML code from model's response, along with pre-installed [JupyterLab](https://jupyter.org/) integrated development environment (IDE) in an isolated virtual environment, enables users to run generated code swiftly for immediate results.<br><br>
 
@@ -2158,11 +2158,11 @@ Click the button to select the TXT file.
 
 
 <details>
-<summary>Save User Prompt (button)</summary>
+<summary>Save Copied Text (button)</summary>
 
 ---
 
-Saves the _User prompt_ in a TXT file.
+Saves the copied text (clipboard) to a TXT file.
 
 Click the button to select the directory where to save the file.
 
