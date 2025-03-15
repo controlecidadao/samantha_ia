@@ -172,6 +172,7 @@ pyperclip==1.8.2
 PyRect==0.2.0
 PyScreeze==1.0.1
 PySocks==1.7.1
+pytesseract==0.3.13
 pytest==8.3.5
 pytest-base-url==2.1.0
 pytest-playwright==0.7.0
