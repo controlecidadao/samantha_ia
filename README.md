@@ -30,8 +30,6 @@
 </p>
 <br>
 
-[Large Language Models for the Curious Beginner (3Blue1Brown)](https://www.youtube.com/watch?v=LPZh9BOjkQs) - Youtube video with voice selection
-
 [What is Open Source AI (opensource.org)](https://opensource.org/what-is-open-source-ai)
 
 [Does LLM size matters? (Gary Explains)](https://www.youtube.com/watch?v=kgSMRmW2frA)
@@ -108,6 +106,8 @@ Each of these models and prompts sequences can be executed more than once via th
 
 <br><br>
 
+[Large Language Models for the Curious Beginner (3Blue1Brown)](https://www.youtube.com/watch?v=LPZh9BOjkQs) - Youtube video with voice selection
+
 [But what is a GPT? Visual intro to transformers (3Blue1Brown)](https://www.youtube.com/watch?v=wjZofJX0v4M)
 
 [Attention in transformers, visually explained (3Blue1Brown)](https://www.youtube.com/watch?v=eMlx5fFNoYc)
@@ -130,6 +130,10 @@ Each of these models and prompts sequences can be executed more than once via th
 <br>
 
 🌎 **A Small Step:** Samantha is just a movement towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers, walking a journey to democratize AI and make it a force for good in our daily lives.
+
+<br>
+
+[How AI Took Over The World (Art of the Problem)](https://www.youtube.com/watch?v=SN4Z95pvg0Y)
 
 <br>
 
