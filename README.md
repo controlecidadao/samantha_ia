@@ -106,6 +106,8 @@ Each of these models and prompts sequences can be executed more than once via th
 
 <br><br>
 
+[Large Language Models explained briefly (3Blue1Brown)](https://www.youtube.com/watch?v=LPZh9BOjkQs)
+
 [But what is a GPT? Visual intro to transformers (3Blue1Brown)](https://www.youtube.com/watch?v=wjZofJX0v4M)
 
 [Attention in transformers, visually explained (3Blue1Brown)](https://www.youtube.com/watch?v=eMlx5fFNoYc)
