@@ -131,7 +131,7 @@ Each of these models and prompts sequences can be executed more than once via th
 
 🌎 **A Small Step:** Samantha is just a movement towards a future where artificial intelligence is not a privilege but a tool for all in a world where individuals can leverage AI to enhance their productivity, creativity, and decision-making without barriers, walking a journey to democratize AI and make it a force for good in our daily lives.
 
-[How AI Took Over The World (Art of the Problem)](https://www.youtube.com/watch?v=SN4Z95pvg0Y)
+[Everything is a Pattern: How AI Took Over The World (Art of the Problem)](https://www.youtube.com/watch?v=SN4Z95pvg0Y)
 
 <br>
 
