@@ -30,6 +30,8 @@
 </p>
 <br>
 
+[Large Language Models for the Curious Beginner (3Blue1Brown)](https://www.youtube.com/watch?v=LPZh9BOjkQs) - Youtube video with voice selection
+
 [What is Open Source AI (opensource.org)](https://opensource.org/what-is-open-source-ai)
 
 [Does LLM size matters? (Gary Explains)](https://www.youtube.com/watch?v=kgSMRmW2frA)
@@ -105,8 +107,6 @@ Each of these models and prompts sequences can be executed more than once via th
 
 
 <br><br>
-
-[Large Language Models explained briefly (3Blue1Brown)](https://www.youtube.com/watch?v=LPZh9BOjkQs)
 
 [But what is a GPT? Visual intro to transformers (3Blue1Brown)](https://www.youtube.com/watch?v=wjZofJX0v4M)
 
