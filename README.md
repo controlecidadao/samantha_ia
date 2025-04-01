@@ -2359,21 +2359,41 @@ Performance:
 <br><br>
 </details>
 
-
 <details>
-<summary>Close Python</summary>
+<summary>Open Jupyterlab (button)</summary>
 
 ---
 
-Closes all instances created with the Python interpreter of the `jyupyterlab` virtual environment.
+Opens [Jupyterlab](https://jupyter.org/) integrated development environment (IDE) in a new browser tab.
 
-Use this button to force close running modules that block the Python interpreter, such as servers.
+Jupyterlab is installed in a separate Python virtual environment with many libraries available, such as:
+
+* [Pandas](https://pandas.pydata.org/)
+* [Numpy](https://numpy.org/)
+* [SciPy](https://scipy.org/)
+* [Scikit-Learn](https://scikit-learn.org/stable/index.html#)
+* [Matplotlib](https://matplotlib.org/)
+* [Seaborn](https://seaborn.pydata.org/)
+* [Vega-Altair](https://altair-viz.github.io/)
+* [Plotly](https://plotly.com/python/)
+* [Bokeh](https://docs.bokeh.org/en/latest/index.html)
+* [Dash](https://plotly.com/examples/)
+* [Ydata-Profiling](https://pypi.org/project/ydata-profiling/)
+* [Sweetviz](https://pypi.org/project/sweetviz/)
+* [D-Tale](https://github.com/man-group/dtale)
+* [DataPrep](https://dataprep.ai/)
+* [NetworkX](https://networkx.org/)
+* [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html)
+* [Selenium](https://selenium-python.readthedocs.io/)
+* [PyMuPDF](https://pypi.org/project/PyMuPDF/)
+* [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
+
+For a complete list of all Python available libraries, use a prompt like **_"create a Python code that prints all modules installed using `pkgutil` library. Separate each module with \<br\> tag."_** and press _Run code_ button. The result will be displayed in a browser popup.
 
 ---
 
 <br><br>
 </details>
-
 
 
 <br><br>
@@ -2539,42 +2559,6 @@ You can press this button during response generation to copy the already generat
 </details>
 
 <details>
-<summary>Open Jupyterlab (button)</summary>
-
----
-
-Opens [Jupyterlab](https://jupyter.org/) integrated development environment (IDE) in a new browser tab.
-
-Jupyterlab is installed in a separate Python virtual environment with many libraries available, such as:
-
-* [Pandas](https://pandas.pydata.org/)
-* [Numpy](https://numpy.org/)
-* [SciPy](https://scipy.org/)
-* [Scikit-Learn](https://scikit-learn.org/stable/index.html#)
-* [Matplotlib](https://matplotlib.org/)
-* [Seaborn](https://seaborn.pydata.org/)
-* [Vega-Altair](https://altair-viz.github.io/)
-* [Plotly](https://plotly.com/python/)
-* [Bokeh](https://docs.bokeh.org/en/latest/index.html)
-* [Dash](https://plotly.com/examples/)
-* [Ydata-Profiling](https://pypi.org/project/ydata-profiling/)
-* [Sweetviz](https://pypi.org/project/sweetviz/)
-* [D-Tale](https://github.com/man-group/dtale)
-* [DataPrep](https://dataprep.ai/)
-* [NetworkX](https://networkx.org/)
-* [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html)
-* [Selenium](https://selenium-python.readthedocs.io/)
-* [PyMuPDF](https://pypi.org/project/PyMuPDF/)
-* [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
-
-For a complete list of all Python available libraries, use a prompt like **_"create a Python code that prints all modules installed using `pkgutil` library. Separate each module with \<br\> tag."_** and press _Run code_ button. The result will be displayed in a browser popup.
-
----
-
-<br><br>
-</details>
-
-<details>
 <summary>Response in HTML (button)</summary>
 
 ---
@@ -2598,6 +2582,60 @@ The first time the button is pressed, the browser takes a few seconds to load (d
 Displays the all the current chat session responses in a HTML pop-up browser window.
 
 The first time the button is pressed, it takes a few seconds for the window to appear.
+
+---
+
+<br><br>
+</details>
+
+<details>
+<summary>Save Python File</summary>
+
+---
+
+Save copied text as a Python file (`.py`) in the selected folder.
+
+Python files are typically used to create a routine that performs a certain task.
+
+---
+
+<br><br>
+</details>
+
+<details>
+<summary>Run Files</summary>
+
+---
+
+Execute a sequence of selected Python files (`.py`).
+
+The user can select one or more files.
+
+The files are executed observing the numerical order contained at the beginning of each file name (1_file.py, 2_file.py etc.).
+
+---
+
+<br><br>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<details>
+<summary>Close Python</summary>
+
+---
+
+Closes all instances created with the Python interpreter of the `jyupyterlab` virtual environment.
+
+Use this button to force close running modules that block the Python interpreter, such as servers.
 
 ---
 
