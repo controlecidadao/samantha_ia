@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.11.0-blue)
+![v](https://img.shields.io/badge/Version-0.12.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-March%2015,%20%202025-green)
+![v](https://img.shields.io/badge/Updated-April%2001,%20%202025-green)
 
 <!--![](https://komarev.com/ghpvc/?username=controlecidadao&abbreviated=true&label=Views)-->
 <!-- Fonte: https://github.com/antonkomarev/github-profile-views-counter-->
@@ -238,6 +238,8 @@ Special thanks to Georgi Gerganov and the whole team working on [llama.cpp](http
 
 ✅ **Data Analysis Tools:** A suite of data analysis tools like [Pandas](https://pandas.pydata.org/), [Numpy](https://numpy.org/), [SciPy](https://scipy.org/), [Scikit-Learn](https://scikit-learn.org/stable/index.html#), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Vega-Altair](https://altair-viz.github.io/), [Plotly](https://plotly.com/python/), [Bokeh](https://docs.bokeh.org/en/latest/index.html), [Dash](https://plotly.com/examples/), [Streamlit](https://streamlit.io/), [Ydata-Profiling](https://pypi.org/project/ydata-profiling/), [Sweetviz](https://pypi.org/project/sweetviz/), [D-Tale](https://github.com/man-group/dtale), [DataPrep](https://dataprep.ai/), [NetworkX](https://networkx.org/), [Pyvis](https://pyvis.readthedocs.io/en/latest/index.html), [Selenium](https://selenium-python.readthedocs.io/), [Playwright](https://playwright.dev/python/docs/library), [Pytesseract](https://github.com/madmaze/pytesseract), [PyMuPDF](https://pypi.org/project/PyMuPDF/), [SQLAlchemy](https://www.sqlalchemy.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) are available for comprehensive analysis and visualization. Integration with [DB Browser](https://sqlitebrowser.org/about/) (see DB Browser button) and [Tesseract OCR for Windows](https://github.com/UB-Mannheim/tesseract/wiki) (installation of executable file required. Provide the full path to the `.exe` file) is also available.<br>
 For a complete list of all Python libraries intalled in `jupyterlab` virtual environment, use a prompt like **_"Create a Python code that prints all modules installed using `pkgutil` library."_** and press _Copy Code_ and _Run Code_ buttons after code generation. The result will be displayed in a browser popup. You can also use `pipdeptree --packages module_name` in any environment-enabled terminal to see its dependencies, and `pip check` to check conflicts.<br><br>
+
+✅ **Automated Workflow Creation:** The system allows automatically saving copied text as a Python file (`.py`) and sequentially executing multiple Python files according to their numbering. Simply copy the code with `CTRL + C`, click the `Save Python File` button and specify a numeric prefix for the file (e.g., 01_setup.py, 02_process.py). When ready, the user can click the `Run Files` button to run all files in the correct numerical order, creating modular and organized workflows.
 
 ✅ **Performance Optimized:** To ensure smooth performance on CPUs, Samantha maintains a limited chat history to just the previous response, reducing the model's context window size to save memory and computational resources.<br>
 
@@ -3184,6 +3186,11 @@ Feel free to share your ideas with us!
 
 <br><br>
 🗓️ **Code Versions:**
+
+Version 0.12.0 (2025-04-01):
+* Added "Save Python File" and "Run Files" buttons to allow creation and execution of routines.
+* Repositioning of buttons.
+<br>
 
 Version 0.11.0 (2025-03-15):
 * Playwright (Chromium) and Pytesseract Python libraries included.
