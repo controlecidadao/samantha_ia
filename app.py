@@ -186,7 +186,7 @@ if 'portuguese' in voices[0].name.lower():
 
 # LLAMA-CPP-PYTHON VERSION
 llama_cpp_python_version = '0.3.8' # This variable must be updated when llama_cpp_python module is upadated in Samantha
-samantha_version = '0.10.0'        # This variable must be updated when Samantha is updated
+samantha_version = '0.12.0'        # This variable must be updated when Samantha is updated
 language = {
             # PORTUGUESE
             'pt': {
@@ -270,9 +270,12 @@ language = {
                 'btn_next_token': 'Próximo Token',
                 'btn_copy_code_blocks': 'Copiar Código',
                 'btn_open_jupyterlab': 'Abrir JupyterLab',
+                'btn_close_python': 'Fechar Python',
                 'btn_copy_last_response': 'Copiar Resposta',
                 'btn_copy_all_responses': 'Copiar Respostas',
                 'btn_voice_command': 'Controle por Voz',
+                'btn_save_python_file': 'Salvar Arquivo Python',
+                'btn_run_files': 'Executar Arquivos',
                 
                 'display_response': 'Resposta em HTML',
                 'display_responses': 'Respostas em HTML',
@@ -365,9 +368,12 @@ language = {
                 'btn_next_token': 'Next Token',
                 'btn_copy_code_blocks': 'Copy Code',
                 'btn_open_jupyterlab': 'Open JupyterLab',
+                'btn_close_python': 'Close Python',
                 'btn_copy_last_response': 'Copy Last Response',
                 'btn_copy_all_responses': 'Copy All Responses',
                 'btn_voice_command': 'Voice Control',
+                'btn_save_python_file': 'Save Python File',
+                'btn_run_files': 'Run Files',
                 
                 'display_response': 'Response in HTML',
                 'display_responses': 'Responses in HTML',
@@ -3537,11 +3543,17 @@ def open_auto_py_to_exe():
     #     except Exception:
     #         pass
 
+# tk = None
+# root = None
+
 
 def save_copied_text():
     """
-    Saves user prompt to a TXT file using Tkinter window.
+    Saves user prompt to a file using Tkinter window.
     """
+
+    # global tk
+    # global root
     
     try:
         del root
@@ -3562,8 +3574,8 @@ def save_copied_text():
             path = tk.filedialog.asksaveasfilename(
                 title="Save Copied Text to File",
                 filetypes=[
-                ("Text Files", "*.txt"),
                 ("Python Files", "*.py"),
+                ("Text Files", "*.txt"),
                 ("HTML Files", "*.html"),
                 ("CSV Files", "*.csv"),
                 ("JSON Files", "*.json"),
@@ -3585,9 +3597,9 @@ def save_copied_text():
     if path == '':
         return ''
 
-    with open(path, 'w', encoding='utf-8', errors='ignore') as file:
-        # file.write(original_prompt)
+    with open(path, 'w', encoding='utf-8', errors='replace') as file: # 'replace' forces the writing of accented characters, even if they are not in the ASCII table
         temp = pyperclip.paste()
+        # temp = temp.encode('utf-8', errors='replace').decode('utf-8')
         file.write(temp)
 
     return path
@@ -3666,6 +3678,108 @@ def calcular_tempo_pausa(texto, palavras_por_minuto=200):
     tempo_total = tempo_leitura + tempo_pausas
     
     return tempo_total
+
+
+# import os
+# import tkinter as tk
+# from tkinter import filedialog
+# import subprocess
+# import re
+
+def run_python_files():
+    """
+    Função que:
+    1) Abre uma janela para selecionar uma pasta
+    2) Identifica todos os arquivos .py
+    3) Executa os arquivos .py em ordem crescente baseado no número inicial do nome do arquivo
+    """
+
+    # global tk
+    # global root
+
+    python_path = fr"{DIRETORIO_LOCAL}\miniconda3\envs\jupyterlab\python.exe"
+
+    try:
+        # del root
+        # del tk
+        root.destroy()
+    except:
+        pass
+    
+    import tkinter as tk
+    from tkinter import filedialog
+
+    click.play()
+
+    # Criar janela raiz do Tkinter (invisível)
+    root = tk.Tk()
+    root.withdraw()  # Esconde a janela principal
+    root.attributes('-topmost', True) # Root window on the topmost
+
+    # Abrir janela de seleção de arquivos .py
+    arquivos_selecionados = filedialog.askopenfilenames(
+        title="Selecione os scripts Python",
+        filetypes=[("Arquivos Python", "*.py")]
+    )
+
+    # del tk
+    # del root
+    root.destroy()
+
+    # Verificar se arquivos foram selecionados
+    if not arquivos_selecionados:
+        print("Nenhum arquivo selecionado. Encerrando.")
+        return
+
+    # Função para extrair o número inicial do nome do arquivo
+    def extrair_numero_inicial(caminho_arquivo):
+        # Extrai apenas o nome do arquivo do caminho completo
+        nome_arquivo = os.path.basename(caminho_arquivo)
+        
+        # Usa expressão regular para extrair o número inicial
+        match = re.match(r'^(\d+)', nome_arquivo)
+        return int(match.group(1)) if match else float('inf')
+
+    # Ordenar arquivos baseado no número inicial
+    arquivos_ordenados = sorted(
+        arquivos_selecionados, 
+        key=extrair_numero_inicial
+    )
+
+    # Executar cada script na ordem
+    for caminho_completo in arquivos_ordenados:
+        # Obtém o nome do arquivo para impressão
+        nome_arquivo = os.path.basename(caminho_completo)
+        
+        print(f"\n--- Executando {nome_arquivo} ---")
+        try:
+            # Obtém o diretório do arquivo para definir o diretório de trabalho
+            diretorio_trabalho = os.path.dirname(caminho_completo)
+            
+            # Executa o script usando subprocess
+            resultado = subprocess.run(
+                [python_path, caminho_completo], 
+                capture_output=True, 
+                text=True, 
+                cwd=diretorio_trabalho
+            )
+            
+            # Imprime a saída padrão
+            if resultado.stdout:
+                print("Saída padrão:")
+                print(resultado.stdout)
+            
+            # Imprime erros, se houver
+            if resultado.stderr:
+                print("Erros:")
+                print(resultado.stderr)
+            
+            print(f"--- Fim da execução de {nome_arquivo} ---\n")
+        
+        except Exception as e:
+            print(f"Erro ao executar {nome_arquivo}: {e}")
+
+
 
 
 # def is_audio_playing(threshold=0.005):
@@ -3806,11 +3920,8 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
             # Activate / Deactivate "Learning Mode" when "Fast Mode" chackbox changes
             inputs[9].change(fn=change_fast_mode, inputs=inputs[9], outputs=[inputs[13]]) # inputs[9]
 
-
             # Activate / Deactivate "Read aloud" when "Read aloud online" chackbox changes
             inputs[12].change(fn=change_read_aloud, inputs=[inputs[11], inputs[12]], outputs=[inputs[11]]) # inputs[9]
-
-
 
             with gr.Row():
                 btn_unload = gr.Button(language['btn_unload_model'])
@@ -3849,10 +3960,12 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
 
             # These buttons has fixed labels and are not translated
             with gr.Row():
-                btn_x4 = gr.Button('Close Python')
-                btn_x4.click(fn=close_all_python_instances_in_jupyterlab_env, inputs=None, outputs=None)
-                btn_x5 = gr.Button('')
-                btn_x5.click(fn=None, inputs=None, outputs=None)
+                btn_notebook = gr.Button(language['btn_open_jupyterlab'])
+                btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
+                btn_xx6 = gr.Button('')
+                btn_xx6.click(fn=None, inputs=None, outputs=None)
+                # btn_close_python = gr.Button(language['btn_close_python'])
+                # btn_close_python.click(fn=close_all_python_instances_in_jupyterlab_env, inputs=None, outputs=None)
                 btn_x6 = gr.Button('')
                 btn_x6.click(fn=None, inputs=None, outputs=None)
                            
@@ -3966,8 +4079,9 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 btn_last_response.click(fn=copy_last_response, inputs=None, outputs=None, queue=False)
                 btn_all_responses = gr.Button(language['btn_copy_all_responses'])
                 btn_all_responses.click(fn=copy_all_responses, inputs=None, outputs=None, queue=False)
-                btn_notebook = gr.Button(language['btn_open_jupyterlab'])
-                btn_notebook.click(fn=launch_notebook, inputs=None, outputs=None, queue=False)
+                btn_x5 = gr.Button('')
+                btn_x5.click(fn=None, inputs=None, outputs=None)
+                
                 
                 
                 # =================================
@@ -3992,6 +4106,11 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
                 # =================================
             
 
+            with gr.Row():
+                btn_save_python_file = gr.Button(language['btn_save_python_file']) # Save copied text (code) into a .py file
+                btn_run_files = gr.Button(language['btn_run_files'])       # Select a folder and execute Python files within it
+                btn_close_python = gr.Button(language['btn_close_python'])
+            
             with gr.Row():
                 plot_1 = gr.BarPlot(visible=False) # Creates first plot that is updeted in the sequence (https://www.gradio.app/docs/barplot)
                 demo.load(fn=update_barplot_widget, inputs=None, outputs=plot_1)
@@ -4157,6 +4276,10 @@ with gr.Blocks(css=css, title='Samantha IA', head=shortcut_js) as demo: # Attrib
         btn5.click(fn=go_to_next_token, inputs=None, outputs=None, queue=False)     # Bound to STOP ALL / RESET button
         btn5.click(fn=stop_running_all, inputs=None, outputs=None, queue=False)
         btn6.click(fn=update_previous_answer, inputs=None, outputs=inputs[2], queue=False, show_progress='hidden')
+
+        btn_save_python_file.click(fn=save_copied_text, inputs=None, outputs=None, queue=False)
+        btn_run_files.click(fn=run_python_files, inputs=None, outputs=None, queue=False)
+        btn_close_python.click(fn=close_all_python_instances_in_jupyterlab_env, inputs=None, outputs=None)
 
         saida.change(fn=update_vocabulary, inputs=None, outputs=inputs[-1], trigger_mode='always_last', queue=True, show_progress=False)
         saida.change(fn=update_metadata, inputs=None, outputs=inputs[-3], trigger_mode='always_last', queue=True, show_progress=False)
