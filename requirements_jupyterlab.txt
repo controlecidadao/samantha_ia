@@ -161,6 +161,7 @@ pydantic==1.10.18
 pydeck==0.9.1
 pydot==1.4.2
 pyee==12.1.1
+pygame==2.6.1
 PyGetWindow==0.0.9
 Pygments==2.18.0
 pyinstaller==6.11.0
