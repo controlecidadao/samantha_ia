@@ -255,44 +255,64 @@ For a complete list of all Python libraries intalled in `jupyterlab` virtual env
 <details>
 <summary>Instructions</summary>
 
-<br><br>
-To use Samantha you will need:
-<br><br>
-* Install [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
+<br>
 
-  ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
+### Portable version:
+
+To use Samantha portable version you need to do just two things:
 <br><br>
-* Download the zip file from Samantha's repository by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unzip it to your computer. Select the drive where you want to install the program (Ex.: `C:\Users\You\Documents`):
+
+1) Install Microsoft [Visual Studio Community](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
+
+     ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
+<br><br>
+
+2) Download and unzip the `samantha_ai-main` folder containing the portable version of the programs (Samantha, DB Browser and Tesseract) by clicking [here](https://drive.google.com/file/d/12H18IbhS5IXgfPUcBmURTrD8eGKFDPCJ/view?usp=sharing). You will need 7 GB of free space after unpacking.
+<br><br>
+
+### Installable version:
+
+You can also install Samantha using the following procedure:
+<br><br>
+
+1) Install Microsoft [Visual Studio Community](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
+
+     ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
+<br><br>
+
+2) Download the zip file from Samantha's repository by clicking [here](https://github.com/controlecidadao/samantha_ia/archive/refs/heads/main.zip) and unzip it to your computer. Select the drive where you want to install the program (Ex.: `C:\Users\You\Documents`):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/directory.png)
 <br><br>
-* Open `samantha_ia-main` directory and double click on `install_samantha_ia.bat` file to start installation. Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm. We encorage to inspect the code of all files (use [VirusTotal](https://www.virustotal.com/gui/home/upload) and AI systems to do so):
+
+3) Open `samantha_ia-main` directory and double click on `install_samantha_ia.bat` file to start installation. Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm. We encorage to inspect the code of all files (use [VirusTotal](https://www.virustotal.com/gui/home/upload) and AI systems to do so):
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
-  >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
+     >_This is the critical part of the installation. If everything goes well, the process will complete without displaying error messages in the terminal._<br>
 
-  <br>
+     <br>
   
-  The installation process takes about _**20 minutes**_ and should end with the creation of two virtual environments: `samantha`, to run just the AI ​​model, and `jupyterlab`, to run the other installed programs. It will take up about _**6 GB**_ of your hard drive.
+     This installation process takes about _**20 minutes**_ and should end with the creation of two virtual environments: `samantha`, to run just the AI ​​model, and `jupyterlab`, to run the other installed programs. It will take up about _**7 GB**_ of your hard drive.
+<br><br>
+
+### Running Samantha
+
+Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you to confirm the source of the `.bat` file. This authorisation is required only the first time you run the program. Click on 'More info' and confirm:<br>
+
+![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
+
+A terminal window will open. This is the Samantha's **server-side**.
+
+After answering the initial questions (interface language and voice control options - voice control is not suitable for first use), the interface will open in a new browser tab. This is the Samantha's **browser-side**:
 
 <br>
 
-* Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you again to confirm the source of the `.bat` file. This authorisation is required only the first time you run the program. Click on 'More info' and confirm:<br>
+![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
 
-  ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
+With the browser window opened, Samantha is ready to go.
 
-  A terminal window will open. This is the Samantha's **server-side**.
-
-  After answering the initial questions (interface language and voice control options - voice control is not suitable for first use), the interface will open in a new browser tab. This is the Samantha's **browser-side**:
-
-  <br>
-
-  ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/interface_english.png)<br><br>
-
-  With the browser window opened, Samantha is ready to go.
-
-  Check out the [installation video](https://www.youtube.com/watch?v=Ln1ckXsXvcI).
+Check out the [installation video](https://www.youtube.com/watch?v=Ln1ckXsXvcI).
 
 </details>
 
