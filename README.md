@@ -257,9 +257,9 @@ For a complete list of all Python libraries intalled in `jupyterlab` virtual env
 
 <br>
 
-### Portable version:
+### Packaged version:
 
-To use Samantha portable version you need to do just two things:
+To use Samantha packaged version you need to do just two things:
 <br><br>
 
 1) Install Microsoft [Visual Studio Community](https://visualstudio.microsoft.com/pt-br/vs/community/) (free community version) on your computer. Download it, run it, and select only the option **Desktop development with C++** (administrator privileges required):
