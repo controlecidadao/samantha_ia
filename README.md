@@ -286,6 +286,7 @@ You can also install Samantha using the following procedure:
 <br><br>
 
 3) Open `samantha_ia-main` directory and double click on `install_samantha_ia.bat` file to start installation. Windows may ask you to confirm the origin of the `.bat` file. Click on 'More info' and confirm. We encorage to inspect the code of all files (use [VirusTotal](https://www.virustotal.com/gui/home/upload) and AI systems to do so):
+   <br>
 
    ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/install.png)<br><br>
 
