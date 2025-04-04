@@ -267,7 +267,7 @@ To use Samantha packaged version you need to do just two things:
      ![cmake](https://github.com/controlecidadao/samantha_ia/blob/main/images/cmake2.png)
 <br><br>
 
-2) Download and unzip the `samantha_ai-main` folder containing the portable version of the programs (Samantha, DB Browser and Tesseract) by clicking [here](https://drive.google.com/file/d/12H18IbhS5IXgfPUcBmURTrD8eGKFDPCJ/view?usp=sharing). You will need 7 GB of free space after unpacking.
+2) Download and unzip the `samantha_ai-main.zip` file (1.6 GB) containing the portable version of the programs (Samantha, DB Browser and Tesseract) by clicking [here](https://drive.google.com/file/d/12H18IbhS5IXgfPUcBmURTrD8eGKFDPCJ/view?usp=sharing). You will need 7 GB of free space after unpacking.
 <br><br>
 
 ### Installable version:
