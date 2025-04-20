@@ -799,7 +799,8 @@ def text_generator(
         if random_list == True and len(set(models)) >= 3: # Shuffles models order if >= 3 (Checkbox)
             models = random_list_fn(models)     # Auxiliary function
 
-    if models == [] and model_url == '':        # For the case when model is not selected and URL is not provided
+    # if models == [] and model_url == '':        # For the case when model is not selected and URL is not provided
+    if models == [] and (model_url == ''or [x.strip() for x in models if x[:3] != '---'] == []):
         yield 'Model not selected.'             # Use simple sentence
         return                                  # Leaves the function
 
@@ -893,7 +894,10 @@ def text_generator(
                 gc.collect()
             except:
                 yield 'Error when trying to download model for testing. See details in terminal. Model deleted.'
-                os.remove(model_path + '\\' + model.split('/')[-1].split('?')[0])         # Delete incomplete file
+                try:
+                    os.remove(model_path + '\\' + model.split('/')[-1].split('?')[0])         # Delete incomplete file
+                except:
+                    pass
                 model = ''
                 previous_model_url = ''
                 return
@@ -961,7 +965,9 @@ def text_generator(
 
                 except Exception as e:
                     try:
-                        os.remove(model_path + '\\' + previous_model_url)        
+                        os.remove(model_path + '\\' + previous_model_url)
+                        print('Removed model file:', model_path + '\\' + previous_model_url)
+                        print()
                     except:
                         pass
                     
@@ -3043,9 +3049,10 @@ def open_idle():
         text_1 = copied_text
 
     # If copied text is a complete HTML file, save it to a file and open it in the browser
-    elif "<html" in copied_text and "</html>" in copied_text:
-        # padrao = r"```html(.*?)\n(.*?)```"
-        padrao = r"<html(.*?)\n(.*?)</html>"
+    elif "```html" in copied_text: # and "</html>" in copied_text:
+        padrao = r"```html(.*?)\n(.*?)```"
+    # elif "<html" in copied_text and "</html>" in copied_text:
+        # padrao = r"<html(.*?)\n(.*?)</html>"
         codigos = re.findall(padrao, copied_text, re.DOTALL) # <<<<<<<< REPLACED
         resultado = []
         for codigo in codigos:
