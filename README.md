@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.12.0-blue)
+![v](https://img.shields.io/badge/Version-0.13.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-April%2001,%20%202025-green)
+![v](https://img.shields.io/badge/Updated-May%2008,%20%202025-green)
 
 <!--![](https://komarev.com/ghpvc/?username=controlecidadao&abbreviated=true&label=Views)-->
 <!-- Fonte: https://github.com/antonkomarev/github-profile-views-counter-->
@@ -3207,6 +3207,10 @@ Feel free to share your ideas with us!
 
 <br><br>
 🗓️ **Code Versions:**
+
+Version 0.13.0 (2025-05-08):
+* Upgrade _llama-cpp-python_ library to version 0.3.9.
+<br>
 
 Version 0.12.0 (2025-04-01):
 * Added "Save Python File" and "Run Files" buttons to allow creation and execution of routines.
