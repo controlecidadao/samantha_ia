@@ -107,6 +107,7 @@ kaleido==0.2.1
 kiwisolver==1.4.5
 locket==1.0.0
 lz4==4.3.3
+lxml==5.4.0
 Markdown==3.6
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
