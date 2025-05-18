@@ -3,6 +3,9 @@ import pandas as pd
 import webbrowser
 import time
 
+import dtale.global_state as global_state
+global_state.set_app_settings(dict(enable_web_uploads=True))
+
 print()
 print('Starting D-Tale...')
 print()
