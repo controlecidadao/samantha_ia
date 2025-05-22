@@ -299,7 +299,7 @@ You can also install Samantha using the following procedure:
 
 ### Running Samantha
 
-Once installed, open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you to confirm the source of the `.bat` file. This authorisation is required only the first time you run the program. Click on 'More info' and confirm:<br>
+Open Samantha by double clicking on `open_samantha.bat` file. Windows may ask you to confirm the source of the `.bat` file. This authorisation is required only the first time you run the program. Click on 'More info' and confirm:<br>
 
 ![directory](https://github.com/controlecidadao/samantha_ia/blob/main/images/open_samantha.png)<br><br>
 
