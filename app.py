@@ -4312,7 +4312,7 @@ def main():
                 favicon_path=fr"{DIRETORIO_LOCAL}\images\s.ico",
                 share=False,            # Change to True to share server
                 # server_name="0.0.0.0",  # Uncomment to share server
-                # server_port=7861        # Uncomment to share server
+                # server_port=7860        # Uncomment to share server
                 )
         except Exception as e:          # In case of error, the loop will continue
             print(e)                    # Print error message
