@@ -163,7 +163,7 @@ While this system aims to empower users and democratize access to AI, it's cruci
 
 [Como funciona o trabalho humano por trás da inteligência artificial](https://www.youtube.com/watch?v=F0M9OH5n-hg)
 
-[The "Modern Day Slaves" Of The AI Tech World](https://www.youtube.com/watch?v=VPSZFUiElls)
+<!--[The "Modern Day Slaves" Of The AI Tech World](https://www.youtube.com/watch?v=VPSZFUiElls)-->
 
 [Other sources](https://www.google.com/search?q=ai+labor+exploitation&tbm=nws)
 
