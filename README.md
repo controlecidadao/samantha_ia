@@ -1,7 +1,7 @@
 
-![v](https://img.shields.io/badge/Version-0.17.0-blue)
+![v](https://img.shields.io/badge/Version-0.18.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![v](https://img.shields.io/badge/Updated-August%2011,%20%202025-green)
+![v](https://img.shields.io/badge/Updated-September%2014,%20%202025-green)
 
 <!--![](https://komarev.com/ghpvc/?username=controlecidadao&abbreviated=true&label=Views)-->
 <!-- Fonte: https://github.com/antonkomarev/github-profile-views-counter-->
@@ -3207,6 +3207,10 @@ Feel free to share your ideas with us!
 
 <br><br>
 🗓️ **Code Versions:**
+
+Version 0.18.0 (2025-09-14):
+* Upgrade _llama-cpp-python_ library to version 0.3.15.
+<br>
 
 Version 0.17.0 (2025-08-11):
 * Upgrade _llama-cpp-python_ library to version 0.3.15.
