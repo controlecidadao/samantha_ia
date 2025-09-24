@@ -1,21 +1,27 @@
 @echo off
-
-@echo.
-@echo =======================
-@echo     STARTING D-TALE
-@echo =======================
+@echo =================
+@echo EXECUTANDO D-TALE
+@echo =================
 @echo.
 
 :: For UTF-8 characters (shows latin accent letters)
 chcp 65001
 @echo.
 
-@echo Current directory: %cd%
+:: Obtém o diretório atual
+@set CURRENT_DIR=%cd%
+@echo Diretorio atual: %CURRENT_DIR%
+
+:: Verifica se o Python do ambiente virtual existe
+@if not exist "%CURRENT_DIR%\miniconda3\envs\jupyterlab\python.exe" (
+    @echo ERRO: Python do ambiente 'jupyterlab' nao encontrado.
+    @pause
+    @exit /b 1
+)
+
+@echo Executando 'python open_dtale.py' diretamente do ambiente virtual...
 @echo.
+@"%CURRENT_DIR%\miniconda3\envs\jupyterlab\python.exe" open_dtale.py
+@pause
+@exit /b
 
-@echo Activating 'jupyterlab' virtual environment...
-call %cd%\miniconda3\condabin\conda.bat activate %cd%\miniconda3\envs\jupyterlab
-
-@echo Activated environment: %CONDA_DEFAULT_ENV%
-
-start python.exe open_dtale.py
