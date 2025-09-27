@@ -52,14 +52,6 @@ chcp 65001
 set CURRENT_DIR=%cd%
 @echo Current directory: %CURRENT_DIR%
 
-:::: Check if Miniconda directory already exists
-::if exist "%CURRENT_DIR%\miniconda3" (
-::   echo.
-::   echo The folder 'miniconda3' already exists. Exiting installation routine...
-::   pause
-::   exit
-::)
-
 :: Check if Miniconda directory already exists
 if exist "%CURRENT_DIR%\miniconda3" (
    echo.
@@ -68,7 +60,6 @@ if exist "%CURRENT_DIR%\miniconda3" (
    rmdir /s /q "%CURRENT_DIR%\miniconda3"
    echo Old installation removed. Continuing with new installation...
 )
-
 
 @echo.
 @echo ====================
@@ -93,13 +84,6 @@ if not exist Miniconda3-latest-Windows-x86_64.exe (
 @echo.
 @echo Verifying file integrity...
 certutil -hashfile Miniconda3-latest-Windows-x86_64.exe SHA256
-:: Add checksum verification here if the expected hash is known, for example:
-:: set expected_hash=your_expected_hash_here
-:: if not "%hash%"=="%expected_hash%" (
-::     echo.
-::     echo Hash verification failed. Exiting.
-::     exit /b 1
-:: )
 
 @echo.
 @echo Installing Miniconda in %CURRENT_DIR%\miniconda3...
@@ -115,6 +99,34 @@ if errorlevel 1 (
 @echo Removing installer file...
 DEL Miniconda3-latest-Windows-x86_64.exe
 @echo Miniconda installation completed successfully!
+@echo.
+
+:: Section: Accept Terms of Service
+@echo ================================
+@echo ACCEPTING CONDA TERMS OF SERVICE
+@echo ================================
+@echo.
+
+@echo Accepting Conda Terms of Service for required channels...
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+if errorlevel 1 (
+    echo.
+    echo Failed to accept Terms of Service for main channel. Continuing anyway...
+)
+
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+if errorlevel 1 (
+    echo.
+    echo Failed to accept Terms of Service for r channel. Continuing anyway...
+)
+
+call %CURRENT_DIR%\miniconda3\condabin\conda.bat tos accept --override-channels --channel https://repo.anaconda.com/pkgs/msys2
+if errorlevel 1 (
+    echo.
+    echo Failed to accept Terms of Service for msys2 channel. Continuing anyway...
+)
+
+@echo Terms of Service acceptance completed.
 @echo.
 
 :: Section: Environment Setup
@@ -142,32 +154,12 @@ if errorlevel 1 (
     exit /b 1
 )
 
-
-::@echo Installing C++ compilers in the environment...
-::call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y -c conda-forge compilers
-::if errorlevel 1 (
-::    echo.
-::    echo Failed to install C++ compilers. Exiting.
-::    pause
-::    exit /b 1
-::)
-
-::@echo Installing additional Windows toolchain...
-::call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y -c conda-forge m2w64-toolchain libpython
-::if errorlevel 1 (
-::    echo.
-::    echo Failed to install Windows toolchain. Exiting.
-::    pause
-::    exit /b 1
-::)
-
-:: Instalar o Git no ambiente virtual sem criar atalhos no menu
-@echo Instalando Git no ambiente 'samantha' sem atalhos...
-::call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y git --no-shortcuts --no-update-deps -n samantha
+:: Install Git in the virtual environment without creating shortcuts
+@echo Installing Git in 'samantha' environment without shortcuts...
 call %CURRENT_DIR%\miniconda3\condabin\conda.bat install -y git --no-shortcuts --no-update-deps -c conda-forge -p %CURRENT_DIR%\miniconda3\envs\samantha
 if errorlevel 1 (
     echo.
-    echo Falha ao instalar Git. Saindo.
+    echo Failed to install Git. Exiting.
     pause
     exit /b 1
 )
@@ -220,7 +212,7 @@ if errorlevel 1 (
 call pip install pytest-playwright
 if errorlevel 1 (
     echo.
-    echo Failed to install Chromium por Playwright. Exiting.
+    echo Failed to install Chromium for Playwright. Exiting.
     pause
     exit /b 1
 )
