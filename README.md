@@ -257,7 +257,7 @@ For a complete list of all Python libraries intalled in `jupyterlab` virtual env
 
 <br>
 
-### Packaged version:
+<!--### Packaged version:
 
 To use Samantha packaged version you need to do just two things:
 <br><br>
@@ -269,6 +269,7 @@ To use Samantha packaged version you need to do just two things:
 
 2) Download and unzip the `SAMANTHA.zip` file (1.6 GB) containing the portable version of the programs (Samantha, DB Browser, Tesseract etc.) by clicking [here](https://drive.usercontent.google.com/download?id=1PnC7kte2bHE27Hq96uugI9_UmF-vzmwj). You will need 7 GB of free space after unpacking.
 <br><br>
+-->
 
 ### Installable version:
 
